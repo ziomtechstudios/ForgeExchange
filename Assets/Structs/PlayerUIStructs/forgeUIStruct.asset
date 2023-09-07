@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21cef8832415aac7b6ea59ef4f63640, type: 3}
+  m_Name: forgeUIStruct
+  m_EditorClassIdentifier: 
+  barUI: {fileID: 7865980528660344153, guid: 7c32c127d096b6d4590e8b3bc16915a3, type: 3}
+  circleUI: {fileID: 214322800988793841, guid: f6aed141a1d55ab47bb13250de9509ba, type: 3}
+  barTitle: Temp
+  circleTitle: Fuel
