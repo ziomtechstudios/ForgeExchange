@@ -18,7 +18,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private GameObject holdingPrefab;
         [SerializeField] private ItemController holdingCont;
         [SerializeField] private InventoryController m_InventoryCont;
-        [SerializeField] private PolygonCollider2D m_Collider;
+        [SerializeField] private BoxCollider2D m_Collider;
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerUIController playerUIController;
         [SerializeField] private string backPackObjPath;
@@ -96,7 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             stockpileLayer = (1<<LayerMask.NameToLayer("stockpile"));
             boundsLayer =  (1 << LayerMask.NameToLayer("bounds"));
             layerMask = (stockpileLayer|workstationLayer|boundsLayer);
-            m_Collider = GetComponent<PolygonCollider2D>();
+            m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
             backpackCont = backPackObj.GetComponent<BackpackController>();
             playerInput = GetComponent<PlayerInput>();

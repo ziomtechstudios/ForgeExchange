@@ -5,7 +5,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
     public class CraftTableController : WorkstationController
     {
         #region Serialized Fields
-        [SerializeField] private Animator m_Animator;
+        //[SerializeField] private Animator m_Animator;
         [SerializeField] private GameObject craftMenuObj;
         [SerializeField] private string[] Recipes;
         [SerializeField] private int numRecipes;
@@ -20,7 +20,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #endregion
         #region "Getters/Setters"
         public StockpileController StockpileCont{get{return stockpileController;}}
-        public bool InUseHash{get{ return m_Animator.GetBool(inUseHash); } set { m_Animator.SetBool(inUseHash, value); } }
+        //public bool InUseHash{get{ return m_Animator.GetBool(inUseHash); } set { m_Animator.SetBool(inUseHash, value); } }
         public IDictionary<string, GameObject> CraftedItemDict { get { return craftedItemsDict; } }
         #endregion
         #region Public Funcs
@@ -45,7 +45,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #region "Event Functions"
         // Start is called before the first frame update
         void Awake(){
-            m_Animator = transform.Find("Tools").transform.gameObject.GetComponent<Animator>();
+            //m_Animator = transform.Find("Tools").transform.gameObject.GetComponent<Animator>();
             inUseHash = Animator.StringToHash("InUse");
             craftMenuObj = transform.Find("Canvas/CraftingMenu").gameObject;
             //Recipes = new string[numRecipes];
