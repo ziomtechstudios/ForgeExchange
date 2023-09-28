@@ -29,7 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
 
         private Animator m_Animator;
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash;
-        private int layerMask, stockpileLayer, workstationLayer, boundsLayer;
+        private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
         private void MovePlayer(bool moving){
@@ -92,10 +92,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             moveYHash = Animator.StringToHash("MoveY");
             isMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
-            workstationLayer = (1<<LayerMask.NameToLayer("workstation"));
-            stockpileLayer = (1<<LayerMask.NameToLayer("stockpile"));
-            boundsLayer =  (1 << LayerMask.NameToLayer("bounds"));
-            layerMask = (stockpileLayer|workstationLayer|boundsLayer);
+
+            layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")));
             m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
             backpackCont = backPackObj.GetComponent<BackpackController>();
@@ -109,7 +107,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             //If player wants to move
             if(isMoving){
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if((m_Collider.IsTouchingLayers(boundsLayer)) && (hit.transform != null))
+                if((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
                     MovePlayer(false);
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else
