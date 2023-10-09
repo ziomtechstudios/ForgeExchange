@@ -52,7 +52,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_PlayerCont = GetComponent<PlayerController>();
             playerAttackHash = Animator.StringToHash("isAttacking");
-            weaponAttackHash = Animator.StringToHash("isAttacking");
+            weaponAttackHash = Animator.StringToHash("isWAttacking");
             LookXHash = Animator.StringToHash("LookX");
             LookYHash = Animator.StringToHash("LookY");
 

@@ -19,6 +19,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: coal_Item
       objectReference: {fileID: 0}
+    - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620681703460000771, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620681703460000771, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -73,3 +85,22 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 66b64c73c3be3ee9f8b45ab0e3dd2a49, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+--- !u!1 &1889874052148490108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+  m_PrefabInstance: {fileID: 1480468036308771868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6737222858521219208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889874052148490108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d732067b798dbe5b4d425a52a76476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refinement: 1
+  prefabItemStruct: {fileID: 11400000, guid: 66b64c73c3be3ee9f8b45ab0e3dd2a49, type: 2}
