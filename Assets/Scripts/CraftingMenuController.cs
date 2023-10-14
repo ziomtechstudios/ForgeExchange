@@ -74,10 +74,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
+            //  Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  
             if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas"))
             {
+                //  THe slot that we are draggin from, does it have an item?
                 if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
                 {
+                    //Based on the type of slot it is pass relevant parameters
                     switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                     {
                         case ("BackpackSlots"):
@@ -90,6 +93,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             DragAndDropSlot.SelectItem(eventData, movingSlot, craftingSlots, noItemSprite, out ogSlotIndex, out ogSlotType);
                             break;
                         case ("CraftingMenu"):
+                            //If we are dragging an item from the crafted slot, the player has chosen to craft the item
+                            //Therefore we will empty the contents of the crafting table
                             if (craftedSlot[0].SlotWithItem)
                             {
                                 foreach (SlotController ingredient in craftingSlots)
@@ -115,10 +120,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void OnEndDrag(PointerEventData eventData)
         {
+            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is not the slot for the crated item            Making sure the destination of the drag is not a blank portion of menu                   
             if (eventData.pointerCurrentRaycast.gameObject != null && !eventData.pointerCurrentRaycast.gameObject.transform.name.Contains("Slot0") && !eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Contains("Canvas") && movingSlot.SlotWithItem)
             {
-                if (!eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem)
+                Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name);
+                //  The slot at the destination of the drag has does not have an item                                           Checking to see that the destination slot holds no profab 
+                if (!eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
                 {
+                    
                     switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                     {
                         case ("BackpackSlots"):
