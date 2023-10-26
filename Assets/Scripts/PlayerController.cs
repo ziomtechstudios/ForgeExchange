@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,8 +59,13 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             ///The last dir the player moves in is the players looking direction
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
+            float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f)?(1.00f):(-1.00f));
+            float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
+            moveDir = new Vector2(moveDirX, moveDirY);
+            bool isMovingDiag = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f));
+            moveDir = (isMovingDiag) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
             isMoving = (moveDir != Vector2.zero);
-            lookDir = (isMoving)?(moveDir.normalized):(lookDir);
+            lookDir = (isMoving)?(moveDir):(lookDir);
         }
         public void ToggleRun(InputAction.CallbackContext context){
             if (context.started)
