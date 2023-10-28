@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -59,9 +59,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             ///The last dir the player moves in is the players looking direction
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
+            //Rounding the value of the given direction to the nearest integer Range of -1 to 1 implied since vector is based on joystick interaction
+            //If the component of the vector is negative make sure to carry that over once the magnitude has been rounded
             float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f)?(1.00f):(-1.00f));
             float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
             moveDir = new Vector2(moveDirX, moveDirY);
+            //Detect if the player is attempting to move diagonal so we can avoid it.
             bool isMovingDiag = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f));
             moveDir = (isMovingDiag) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
             isMoving = (moveDir != Vector2.zero);
@@ -98,7 +101,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             moveYHash = Animator.StringToHash("MoveY");
             isMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
-
             layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")));
             m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
