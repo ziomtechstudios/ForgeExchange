@@ -349,8 +349,8 @@
                     "id": "fe51dcdb-45ce-4cdc-924e-7301a20b8028",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Block",

@@ -46,7 +46,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 m_Animator.SetFloat(lookYHash, lookDir.y);
             }
             if (playerAttackCont.HasWeapon)
-                playerAttackCont.UpdateWeaponAnim();
+                playerAttackCont.UpdateWeaponAnim(false);
         }
         #endregion
         #region Public Members
@@ -88,6 +88,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public Animator PlayerAnimator { get { return m_Animator; } }
         public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
         public Vector2 LookDir { get { return lookDir; } }
+        public bool IsMoving { get { return isMoving; } set {  isMoving = value; } }
         #endregion
         // Start is called before the first frame update
         void Start(){

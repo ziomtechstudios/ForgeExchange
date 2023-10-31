@@ -31,7 +31,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             Destroy(playerWeapon);
             hasWeapon = false;
         }
-        public void UpdateWeaponAnim() {
+        public void UpdateWeaponAnim(bool isAttacking) {
+            m_WeaponCont.WeaponSpriteRenderer.enabled = isAttacking;
             m_WeaponCont.WeaponAnimator.SetFloat(LookXHash, m_PlayerCont.LookDir.x);
             m_WeaponCont.WeaponAnimator.SetFloat(LookYHash, m_PlayerCont.LookDir.y);
         }
@@ -41,10 +42,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //The player is pressing the attakc button and has a weapon
             if(context.started && (m_WeaponCont != null))
             {
-                UpdateWeaponAnim();
+                UpdateWeaponAnim(true);
                 m_PlayerCont.PlayerAnimator.SetTrigger(playerAttackHash);
                 m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
             }
+            if(context.performed)
+                UpdateWeaponAnim(false);
         }
         #endregion
         // Start is called before the first frame update

@@ -18,7 +18,11 @@ PrefabInstance:
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: -1555941641, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+    - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_SortingOrder
       value: 6
@@ -119,6 +123,7 @@ MonoBehaviour:
   prefabItemStruct: {fileID: 11400000, guid: 4b15b7d0affac6e45ae7a8811c53966a, type: 2}
   weaponStruct: {fileID: 11400000, guid: 5df6dca5fe04141438037f8bd29910dc, type: 2}
   m_Animator: {fileID: 2125903955372038014}
+  m_SpriteRenderer: {fileID: 0}
 --- !u!95 &2125903955372038014 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
