@@ -145,10 +145,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             {
                                 if (craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
                                 {
-                                    craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? (potentialItem.GetComponent<SpriteRenderer>().sprite) : (noItemSprite);
+                                    craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
+                                    craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? (craftedSlot[0].ItemCont.ItemIcon) : (noItemSprite);
                                     craftedSlot[0].SlotPrefab = potentialItem;
                                     craftedSlot[0].SlotWithItem = true;
-                                    craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
                                     craftTableCont.Work(craftedSlot[0].ItemCont);
                                 }
                                 else

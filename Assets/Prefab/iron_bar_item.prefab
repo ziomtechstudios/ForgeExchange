@@ -79,7 +79,8 @@ PrefabInstance:
       propertyPath: prefabItemStruct
       value: 
       objectReference: {fileID: 11400000, guid: d0a5bdeaa4939f3429f3744949cb0ac0, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
 --- !u!1 &8270811349214939455 stripped
 GameObject:
@@ -100,3 +101,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refinement: 1
   prefabItemStruct: {fileID: 11400000, guid: d0a5bdeaa4939f3429f3744949cb0ac0, type: 2}
+  itemIcon: {fileID: 1102796783, guid: acef24146fdefa2a78b4c030450569ec, type: 3}

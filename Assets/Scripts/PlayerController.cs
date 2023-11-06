@@ -1,4 +1,3 @@
- using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,7 +45,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 m_Animator.SetFloat(lookYHash, lookDir.y);
             }
             if (playerAttackCont.HasWeapon)
-                playerAttackCont.UpdateWeaponAnim(false);
+                playerAttackCont.UpdateWeaponAnim();
         }
         #endregion
         #region Public Members
@@ -55,12 +54,13 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public void OnMove(InputAction.CallbackContext context){
             ///<summary>
             ///Player Movement
-            ///Player movement input taken as 2D Vector and is translted to movement of gameObject
-            ///The last dir the player moves in is the players looking direction
+            ///Player movement input taken as 2D Vector and is translted to movement of gameObject.
+            ///The last dir the player moves in is the players looking direction.
+            ///Rounding the value of the given direction to the nearest integer. Range of -1 to 1 implied since vector is based on joystick interaction.
+            ///If the component of the vector is negative make sure to carry that over once the magnitude has been rounded.
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
-            //Rounding the value of the given direction to the nearest integer Range of -1 to 1 implied since vector is based on joystick interaction
-            //If the component of the vector is negative make sure to carry that over once the magnitude has been rounded
+
             float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f)?(1.00f):(-1.00f));
             float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
             moveDir = new Vector2(moveDirX, moveDirY);

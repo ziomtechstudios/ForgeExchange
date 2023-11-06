@@ -94,7 +94,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                         slotConts[i].SlotWithItem = true;
                         slotConts[i].SlotPrefab = playerCont.HoldingPrefab;
                         slotConts[i].ItemCont = playerCont.HoldingCont;
-                        slotConts[i].ItemImage.sprite = playerCont.HoldingPrefab.GetComponent<SpriteRenderer>().sprite;
+                        slotConts[i].ItemImage.sprite = playerCont.HoldingPrefab.GetComponent<ItemController>().ItemIcon;
                         //Empty players hands only if the player isnt selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {

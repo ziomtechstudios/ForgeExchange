@@ -18,9 +18,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 ogSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
                 ogSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
                 //Moving item from Selected Slot to Moving Slot
-                movingSlotCont.ItemImage.sprite = slots[ogSlotIndex].ItemImage.sprite;
-                movingSlotCont.SlotWithItem = true;
                 movingSlotCont.ItemCont = slots[ogSlotIndex].ItemCont;
+                movingSlotCont.ItemImage.sprite = movingSlotCont.ItemCont.ItemIcon;
+                movingSlotCont.SlotWithItem = true;
                 movingSlotCont.SlotPrefab = slots[ogSlotIndex].SlotPrefab;
                 //Emptying Selected Slot 
                 slots[ogSlotIndex].ItemImage.sprite = noItemSprite;
