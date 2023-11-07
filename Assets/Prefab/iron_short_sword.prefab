@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &699245841556328323
+--- !u!1001 &3555760520678717512
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,16 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Name
-      value: mithril_sword
+      value: iron_short_sword
       objectReference: {fileID: 0}
     - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_TagString
       value: Weapon
       objectReference: {fileID: 0}
-    - target: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fa4253243a928e6498d2361be4ddec3a, type: 2}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,38 +59,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2620681703460000771, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
---- !u!1 &506017075671237859 stripped
+--- !u!212 &2426437853350859102 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+  m_PrefabInstance: {fileID: 3555760520678717512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2922386986310681508 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+  m_PrefabInstance: {fileID: 3555760520678717512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4605241645559018280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-  m_PrefabInstance: {fileID: 699245841556328323}
+  m_PrefabInstance: {fileID: 3555760520678717512}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-7464791638044350641
+--- !u!114 &-5215207092700577673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506017075671237859}
+  m_GameObject: {fileID: 4605241645559018280}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d2ad925febe7fd4da44f8e5a3947aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   refinement: 1
-  prefabItemStruct: {fileID: 11400000, guid: 18ff8ee7ece4bd444b89a611b454e48e, type: 2}
-  itemIcon: {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+  prefabItemStruct: {fileID: 11400000, guid: d0a5bdeaa4939f3429f3744949cb0ac0, type: 2}
+  itemIcon: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
   weaponStruct: {fileID: 11400000, guid: db0ac4e0fcb785b4e81f028b7789e9bc, type: 2}
-  m_Animator: {fileID: 1180724043096929391}
-  m_SpriteRenderer: {fileID: 1819684488817534613}
---- !u!95 &1180724043096929391 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-  m_PrefabInstance: {fileID: 699245841556328323}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1819684488817534613 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-  m_PrefabInstance: {fileID: 699245841556328323}
-  m_PrefabAsset: {fileID: 0}
+  m_Animator: {fileID: 2922386986310681508}
+  m_SpriteRenderer: {fileID: 2426437853350859102}

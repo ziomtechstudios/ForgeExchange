@@ -141,6 +141,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             currentRecipe = null;
                             foreach (SlotController ingredient in craftingSlots)
                                 currentRecipe += (ingredient.SlotWithItem) ? (ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag) : ("_");
+
                             if (currentRecipe != null)
                             {
                                 if (craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))

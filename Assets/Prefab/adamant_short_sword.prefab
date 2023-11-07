@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Name
       value: adamant_short_sword
@@ -15,6 +19,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: aa670b6d1f9fe7640956234cb35713f6, type: 2}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,7 +67,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2620681703460000771, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
 --- !u!212 &2583952721103789489 stripped
 SpriteRenderer:

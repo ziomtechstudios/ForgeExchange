@@ -13,17 +13,17 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private ItemController craftedCont;
         [SerializeField] private CraftingMenuController craftingMenuController;
         [SerializeField] private StockpileController stockpileController;
+        [SerializeField] IDictionary<string, GameObject> craftedItemsDict;
         #endregion
         #region Private Fields/Members
         private int inUseHash;
-        private IDictionary<string, GameObject> craftedItemsDict;
         #endregion
         #region "Getters/Setters"
         public StockpileController StockpileCont{get{return stockpileController;}}
         //public bool InUseHash{get{ return m_Animator.GetBool(inUseHash); } set { m_Animator.SetBool(inUseHash, value); } }
         public IDictionary<string, GameObject> CraftedItemDict { get { return craftedItemsDict; } }
         #endregion
-        #region Public Funcs
+        #region Public Members
         public override void ToggleUse(PlayerController playerCont)
         {
             craftMenuObj.SetActive(!craftMenuObj.activeInHierarchy);

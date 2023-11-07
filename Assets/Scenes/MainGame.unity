@@ -705,7 +705,7 @@ PrefabInstance:
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemPrefab
       value: 
-      objectReference: {fileID: 1560987628691976045, guid: bba2232027d72170d82c47614425b453, type: 3}
+      objectReference: {fileID: 8270811349214939455, guid: 943a766fd6ce97340b45090be25ad7f1, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 2
@@ -723,8 +723,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: itemTags.Array.data[2]
+      value: AdamantOre
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[3]
-      value: GreenMetalBar
+      value: AdamantMetalBar
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[4]
@@ -894,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemPrefab
       value: 
-      objectReference: {fileID: 6523370096078143492, guid: c8748494eea8ad409ad06f9b781e5964, type: 3}
+      objectReference: {fileID: 8861168423362456300, guid: 8bacc4916a6920eab83847253d70398d, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.size
       value: 6
@@ -908,8 +912,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: itemTags.Array.data[2]
+      value: AdamantOre
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[3]
-      value: GreenMetalBar
+      value: AdamantMetalBar
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[4]
@@ -1175,30 +1183,74 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 293479856}
     m_Modifications:
-    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: m_SpriteRenderer
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: numRecipes
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[4]
+      value: _AdamantBar__AdamantBar__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[5]
+      value: __AdamantBar__AdamantBar__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[6]
+      value: __MithrilOre__MithrilOre__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[7]
+      value: _MithrilOre__MithrilOre__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[8]
+      value: MithrilOre__MithrilOre__WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[9]
+      value: IronBar__IronBar__WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[10]
+      value: _IronBar__IronBar__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[11]
+      value: __IronBar__IronBar__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[6]
       value: 
-      objectReference: {fileID: 1127130885, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: itemSprites.Array.data[0]
+      objectReference: {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[7]
       value: 
-      objectReference: {fileID: -1294127789, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
-    - target: {fileID: 2198725361258699361, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: m_Size.x
-      value: 0.2765562
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198725361258699361, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: m_Size.y
-      value: 0.08767158
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198725361258699361, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.00038835406
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198725361258699361, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.010397747
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[8]
+      value: 
+      objectReference: {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[9]
+      value: 
+      objectReference: {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[10]
+      value: 
+      objectReference: {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[11]
+      value: 
+      objectReference: {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
     - target: {fileID: 6386700912813093083, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_Name
       value: craftTable
@@ -1348,10 +1400,10 @@ PrefabInstance:
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemPrefab
       value: 
-      objectReference: {fileID: 8861168423362456300, guid: 8bacc4916a6920eab83847253d70398d, type: 3}
+      objectReference: {fileID: 4334522629706852286, guid: b77ea69ee98cca6418d1c246b356dda1, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: emptyStockpileSprite
@@ -1359,11 +1411,15 @@ PrefabInstance:
       objectReference: {fileID: -267636346, guid: 140a35c7a21c5c6229752641e2e0065e, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemSprites.Array.size
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: itemTags.Array.data[2]
+      value: AdamantOre
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[3]
-      value: GreenMetalBar
+      value: AdamantMetalBar
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[4]
@@ -1372,6 +1428,10 @@ PrefabInstance:
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemTags.Array.data[5]
       value: IronMetalBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: itemTags.Array.data[6]
+      value: MithrilOre
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: itemSprites.Array.data[0]
@@ -1397,6 +1457,10 @@ PrefabInstance:
       propertyPath: itemSprites.Array.data[5]
       value: 
       objectReference: {fileID: -886840765, guid: 140a35c7a21c5c6229752641e2e0065e, type: 3}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: itemSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: -955785182, guid: 140a35c7a21c5c6229752641e2e0065e, type: 3}
     - target: {fileID: 2164121907716010104, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.084

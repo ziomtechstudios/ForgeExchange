@@ -5657,7 +5657,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00038838387, y: 0.0035037734}
+  m_Offset: {x: 0.00038835406, y: 0.010397747}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5668,7 +5668,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19527984, y: 0.059370004}
+  m_Size: {x: 0.2765562, y: 0.08767158}
   m_EdgeRadius: 0
 --- !u!114 &1038668128
 MonoBehaviour:
@@ -5690,23 +5690,23 @@ MonoBehaviour:
   circleAmnt: 0
   craftMenuObj: {fileID: 1004073334}
   Recipes:
-  - CopperBar__WoodStick_____
-  - _CopperBar__WoodStick____
-  - __CopperBar__WoodStick___
-  - ___CopperBar__WoodStick__
-  - ____CopperBar__WoodStick_
-  - _____CopperBar__WoodStick
+  - CopperBar__CopperBar__WoodStick__
+  - _CopperBar__CopperBar__WoodStick_
+  - __CopperBar__CopperBar__WoodStick
+  - AdamantBar__AdamantBar__WoodStick__
+  - '_AdamantBar__AdamantBar__WoodStick_ '
+  - '__AdamantBar__AdamantBar__WoodStick '
   numRecipes: 6
   craftableItems:
   - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
   - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
   - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
+  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
+  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
+  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
   craftedCont: {fileID: 0}
   craftingMenuController: {fileID: 1004073338}
-  stockpileController: {fileID: 0}
+  stockpileController: {fileID: 1038668129}
 --- !u!114 &1038668129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5719,16 +5719,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac3f8be7d42cb3408893a3fdc8d63c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpriteRenderer: {fileID: 0}
+  m_SpriteRenderer: {fileID: 583378844944101580}
   quantity: 0
   maxQuantity: 1
   isEmpty: 0
   itemPrefab: {fileID: 0}
   emptyStockpileSprite: {fileID: 0}
   itemSprites:
-  - {fileID: -647034234, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+  - {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
+  - {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
   itemTags:
-  - CopperDagger
+  - CopperShortSword
+  - AdamantShortSword
 --- !u!1001 &1630820083241298726
 PrefabInstance:
   m_ObjectHideFlags: 0
