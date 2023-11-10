@@ -2,8 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Com.ZiomtechStudios.ForgeExchange{
-    public class InventoryController : MonoBehaviour{
+namespace Com.ZiomtechStudios.ForgeExchange
+{
+    public class InventoryController : MonoBehaviour
+    {
         #region Serialized Fields
         [Tooltip("Amount of inventory slots.")][SerializeField] private int inventoryAmnt;
         [SerializeField] private SlotController[] slotConts;
@@ -12,7 +14,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [Tooltip("Sprite used by slot to indicate there is no item.")][SerializeField] private Sprite noItemSprite;
         #endregion
         #region Private Funcs
-        private bool ToggleHolding(int index){
+        private bool ToggleHolding(int index)
+        {
             //If the slot selected has an item the player holds the item
             playerCont.HoldingItem = (slotConts[index].SlotWithItem && !slotConts[index].SlotInUse);
             //Update sprite of what player is holding to that of what was in the selected slot
@@ -51,7 +54,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public bool SlotsAreFull { get { return slotsAreFull; } }
         public SlotController[] SlotConts { get { return slotConts; } }
         public int InventoryAmnt { get { return inventoryAmnt; } }
-        public Sprite NoItemSprite{get{return noItemSprite;}}
+        public Sprite NoItemSprite { get { return noItemSprite; } }
         #endregion
         #region Public funcs
         public void DroppingItem()
@@ -77,11 +80,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                         break;
                     }
                 }
-                slotsAreFull = Array.TrueForAll(slotConts, slotCont => slotCont.SlotWithItem == true);
             }
+            AreAllSlotsFull();
         }
         public void SlotItem()
         {
+            AreAllSlotsFull();
             //If the player is holding an object and all their slots are not occupied
             if (playerCont.HoldingItem && !(slotsAreFull))
             {
@@ -106,10 +110,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                     }
                 }
             }
+            AreAllSlotsFull();
         }
         public void OnSelect(InputAction.CallbackContext context)
         {
-            if(context.started) {
+            if (context.started)
+            {
                 int slot = int.Parse(context.action.name) - 1;
                 SelectSlot(slot);
                 //If the plaer is holding a weapon change the control scheme to combat controls,
@@ -117,7 +123,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 if (playerCont.HoldingPrefab != null)
                 {
                     bool isWeapon = playerCont.HoldingPrefab.tag.Contains("Weapon");
-                    playerCont.PlayerInput.SwitchCurrentActionMap((playerCont.HoldingItem) ? (isWeapon ? ("CombatControls") : ("ShopControls")) : ("ShopControls"));
+                    playerCont.PlayerInput.SwitchCurrentActionMap(isWeapon ? ("CombatControls") : ("ShopControls"));
                     if (isWeapon)
                         playerCont.PlayerAtkCont.EquipWeapon();
                 }
@@ -126,11 +132,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 //Debug.Log($"{playerCont.PlayerInput.currentActionMap.name} is the current control scheme.");
             }
             //Helps avoid non-needed work  
-            slotsAreFull = Array.TrueForAll(slotConts, slotCont => slotCont.SlotWithItem == true);
+            AreAllSlotsFull();
         }
         #endregion
         // Start is called before the first frame update
-        void Start(){
+        void Start()
+        {
             playerCont = transform.parent.parent.parent.GetComponent<PlayerController>();
             slotConts = new SlotController[inventoryAmnt];
             slotsAreFull = false;
@@ -143,10 +150,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 slotConts[i].SlotPrefab = null;
                 slotConts[i].SlotImage.fillCenter = !(slotConts[i].SlotInUse);
             }
-        }
-        void Update(){
-            if(!slotsAreFull)
-                AreAllSlotsFull();
         }
     }
 }

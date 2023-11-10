@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -17,7 +15,7 @@ public class ProgressBar : MonoBehaviour
     public bool showPercent;
 
     [Header("Bar Setting")]
-    public Color BarColor;   
+    public Color BarColor;
     public Color BarBackGroundColor;
     public Sprite BarBackGroundSprite;
     [Range(1f, 100f)]
@@ -47,7 +45,7 @@ public class ProgressBar : MonoBehaviour
         }
     }
 
-        
+
 
     private void Awake()
     {
@@ -66,7 +64,7 @@ public class ProgressBar : MonoBehaviour
         txtTitle.fontSize = TitleFontSize;
 
         bar.color = BarColor;
-        barBackground.color = BarBackGroundColor; 
+        barBackground.color = BarBackGroundColor;
         barBackground.sprite = BarBackGroundSprite;
 
         UpdateValue(barValue);
@@ -78,7 +76,7 @@ public class ProgressBar : MonoBehaviour
     public void UpdateValue(float val)
     {
         bar.fillAmount = val;
-        string percentage = showPercent?val + "%":"";
+        string percentage = showPercent ? val + "%" : "";
         txtTitle.text = Title + " " + percentage;
 
         if (Alert >= val)
@@ -96,7 +94,7 @@ public class ProgressBar : MonoBehaviour
     private void Update()
     {
         if (!Application.isPlaying)
-        {           
+        {
             UpdateValue(50);
             txtTitle.color = TitleColor;
             txtTitle.font = TitleFont;
@@ -105,7 +103,7 @@ public class ProgressBar : MonoBehaviour
             bar.color = BarColor;
             barBackground.color = BarBackGroundColor;
 
-            barBackground.sprite = BarBackGroundSprite;           
+            barBackground.sprite = BarBackGroundSprite;
         }
         else
         {

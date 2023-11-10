@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Linq;
-using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
+using UnityEngine;
 
 
 #nullable enable
@@ -111,7 +107,7 @@ namespace Meryel.UnityCodeAssist.Editor
         {
             var isMonoBehaviour = type.IsSubclassOf(typeof(MonoBehaviour));
             var isScriptableObject = type.IsSubclassOf(typeof(ScriptableObject));
-            
+
             if (!isMonoBehaviour && !isScriptableObject)
             {
                 Serilog.Log.Warning("{Type} is not a valid Unity object", type.ToString());
@@ -136,7 +132,7 @@ namespace Meryel.UnityCodeAssist.Editor
             obj = getObjectToSend(Selection.activeObject, type);
             if (obj != null)
                 return obj;
-            
+
 
             //**--check source code of this, for sorting
             var filteredArray = Selection.GetFiltered(type, SelectionMode.Unfiltered);
@@ -251,7 +247,7 @@ namespace Meryel.UnityCodeAssist.Editor
                 //var monoBehaviourType = typeof(MonoBehaviour);
                 //if (type == monoBehaviourType || type.IsSubclassOf(monoBehaviourType))
                 //    return true;
-                
+
                 //else if(type is interface)//**--
 
                 return false;

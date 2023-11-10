@@ -1,4 +1,3 @@
-using Com.ZiomtechStudios.ForgeExchange;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +16,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private GameObject playerWeapon;
         #endregion
         #region "Getters/Setters"
-        public bool HasWeapon{ get { return hasWeapon; } }
+        public bool HasWeapon { get { return hasWeapon; } }
         #endregion
         #region "Public Fields"
         public void EquipWeapon()
@@ -30,8 +29,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             Destroy(playerWeapon);
             hasWeapon = false;
+            m_PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
         }
-        public void UpdateWeaponAnim() 
+        public void UpdateWeaponAnim()
         {
             m_WeaponCont.WeaponAnimator.SetFloat(LookXHash, m_PlayerCont.LookDir.x);
             m_WeaponCont.WeaponAnimator.SetFloat(LookYHash, m_PlayerCont.LookDir.y);
@@ -39,7 +39,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnAttack(InputAction.CallbackContext context)
         {
             //The player is pressing the attakc button and has a weapon
-            if(context.started && (m_WeaponCont != null))
+            if (context.started && (m_WeaponCont != null))
             {
                 UpdateWeaponAnim();
                 m_PlayerCont.PlayerAnimator.SetTrigger(playerAttackHash);
@@ -59,4 +59,4 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         }
     }
-}   
+}

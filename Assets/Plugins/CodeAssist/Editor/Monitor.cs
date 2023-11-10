@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
@@ -136,11 +135,11 @@ namespace Meryel.UnityCodeAssist.Editor
 
         static void OnSelectionChanged()
         {
-            
+
             //**--check order, last selected should be sent last as well
             //**--limit here, what if too many?
             //selectedObjects.UnionWith(Selection.objects);
-            foreach(var so in Selection.objects)
+            foreach (var so in Selection.objects)
             {
                 SetDirty(so);
             }
@@ -155,7 +154,7 @@ namespace Meryel.UnityCodeAssist.Editor
             else if (obj is Component component)
                 SetDirty(component.gameObject);
             //else
-                //;//**--scriptable obj
+            //;//**--scriptable obj
         }
 
         public static void SetDirty(GameObject go)

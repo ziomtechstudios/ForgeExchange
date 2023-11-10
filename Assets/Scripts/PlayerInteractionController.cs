@@ -1,4 +1,3 @@
-using Com.ZiomtechStudios.ForgeExchange;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -57,7 +56,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 playerCont.PlayerBackPackCont.gameObject.SetActive(true);
                 workstationCont.ToggleUse(playerCont);
                 //If the player is sing the caft table then disable to in-game quickslots so that the only ones available are the copy in the crafting menu.
-                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(!playerCont.PlayerLOS.transform.tag.Contains("Craft Table"));
+                //playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(!playerCont.PlayerLOS.transform.tag.Contains("Craft Table"));
                 return false;
             }
             else if (stockpileCont.Quantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
@@ -76,7 +75,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //Forge, Quelcher, Sandstone, etc...
                     case 8:
                         //If the player is holding an object let them interact with the workstation
-                        //If the player does not have an item them they are going to want to uise the workstation
+                        //If the player does not have an item them they are going to want to use the workstation
                         playerCont.HoldingItem = (playerCont.HoldingItem) ? InteractWorkstation() : UseWorkstation();
                         break;
                     //Coal pile, wood pile, etc...
@@ -84,7 +83,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         //If the player is not holding an item check that the quickslots are not full
                         //and that the player does not have the backpack open in order to allow them to pick up the desired object
                         //If the player is holding an object allow them to drop the object
-                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? ((playerCont.PlayerInventoryCont.SlotsAreFull) ? (false) : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())):(DropObj());
+                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? ((playerCont.PlayerInventoryCont.SlotsAreFull) ? (false) : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
                         break;
                     default:
                         break;

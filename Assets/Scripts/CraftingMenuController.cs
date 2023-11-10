@@ -1,5 +1,4 @@
 using System;
-using Com.ZiomtechStudios.ForgeExchange;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,7 +16,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string currentRecipe;
         [SerializeField] private Sprite noItemSprite;
         [SerializeField] private int craftedSlotNum, backPackSlotNum, quickSlotsSlotNum;
-        [SerializeField] private PlayerController curPlayerCont;
+        [SerializeField] private PlayerController currentUserController;
         #endregion
         #region "Private Funcs/Members
         private RectTransform craftMenuRectTrans;
@@ -58,19 +57,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region Getters/Setters
         public string CurrentRecipe { get { return currentRecipe; } }
+        public SlotController[] BackPackSlots { get { return backPackSlots; } }
+        public SlotController[] QuickSlots { get { return quickSlots; } }
         #endregion
         #region "Public Functions/Members"
+        public void CloseMenu()
+        {
+            craftTableCont.ToggleUse(currentUserController);
+        }
         public void SyncCraftingMenuSlots(PlayerController playerCont)
         {
             SynchronizeSlots.SyncSlots(backPackSlots, playerCont.PlayerBackPackCont.BackPackSlots);
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
-            curPlayerCont = playerCont;
-            //curPlayerCont.PlayerInventoryCont.gameObject.SetActive(false);
-        }
-        public void ExitCraftingMenu()
-        {
-
-            gameObject.SetActive(false);
+            currentUserController = playerCont;
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -127,7 +126,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //  The slot at the destination of the drag has does not have an item                                           Checking to see that the destination slot holds no profab 
                 if (!eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
                 {
-                    
+
                     switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                     {
                         case ("BackpackSlots"):
@@ -140,7 +139,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             DragAndDropSlot.DropItem(movingSlot, craftingSlots, noItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                             currentRecipe = null;
                             foreach (SlotController ingredient in craftingSlots)
-                                currentRecipe += (ingredient.SlotWithItem) ? (ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag) : ("_");
+                                currentRecipe += ((ingredient.SlotWithItem) ? (ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag) : ("_"));
 
                             if (currentRecipe != null)
                             {
@@ -186,13 +185,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftedSlot = new SlotController[1];
             craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
             movingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
-        }
-        void OnDisable()
-        {
-            SynchronizeSlots.SyncSlots(curPlayerCont.PlayerBackPackCont.BackPackSlots, backPackSlots);
-            SynchronizeSlots.SyncSlots(curPlayerCont.PlayerInventoryCont.SlotConts, quickSlots);
-            curPlayerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
-            curPlayerCont = null;
         }
     }
 }

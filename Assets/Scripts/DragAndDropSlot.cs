@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public static class DragAndDropSlot{
+    public static class DragAndDropSlot
+    {
         public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, out int ogSlotIndex, out string ogSlotType)
         {
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name);
@@ -36,20 +35,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.pointerCurrentRaycast.screenPosition, eventData.pressEventCamera, out Vector2 anchoredPosition);
             movingSlotRectTransform.anchoredPosition = anchoredPosition;
         }
-        public static void DropItem(SlotController movingSlotCont, SlotController[] slots,  Sprite noItemSprite, int slotIndex)
+        public static void DropItem(SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int slotIndex)
         {
-                
-                //SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
-                slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
-                slots[slotIndex].SlotWithItem = true;
-                slots[slotIndex].ItemCont = movingSlotCont.ItemCont;
-                slots[slotIndex].SlotPrefab = movingSlotCont.SlotPrefab;
-                //Emptying Moving Slot
-                movingSlotCont.ItemImage.sprite = noItemSprite;
-                movingSlotCont.SlotWithItem = false;
-                movingSlotCont.ItemCont = null;
-                movingSlotCont.SlotPrefab = null;
-                movingSlotCont.gameObject.SetActive(false);
+
+            //SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
+            slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
+            slots[slotIndex].SlotWithItem = true;
+            slots[slotIndex].ItemCont = movingSlotCont.ItemCont;
+            slots[slotIndex].SlotPrefab = movingSlotCont.SlotPrefab;
+            //Emptying Moving Slot
+            movingSlotCont.ItemImage.sprite = noItemSprite;
+            movingSlotCont.SlotWithItem = false;
+            movingSlotCont.ItemCont = null;
+            movingSlotCont.SlotPrefab = null;
+            movingSlotCont.gameObject.SetActive(false);
 
         }
     }

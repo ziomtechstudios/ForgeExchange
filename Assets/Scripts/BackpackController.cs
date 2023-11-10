@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-namespace Com.ZiomtechStudios.ForgeExchange{
+namespace Com.ZiomtechStudios.ForgeExchange
+{
     public class BackpackController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         #region Private Serialized Fields
@@ -35,9 +36,9 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         #endregion
         #region Getters/Setters
-        public string OGSlotType{get{return ogSlotType;}}
+        public string OGSlotType { get { return ogSlotType; } }
         public int OGSlotIndex { get { return ogSlotIndex; } }
-        public SlotController[] BackPackSlots { get { return backPackSlots;}}
+        public SlotController[] BackPackSlots { get { return backPackSlots; } }
         #endregion
         #region Public Funcs
         public void FindBackpackSlots()
@@ -47,7 +48,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public void SyncQuickSlots(string order)
         {
-            switch (order) {
+            switch (order)
+            {
                 //Make Quick Slots in menu match the ones in-game
                 case "InGameToMenu":
                     SynchronizeSlots.SyncSlots(quickSlots, m_InventoryCont.SlotConts);
@@ -61,7 +63,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             m_InventoryCont.AreAllSlotsFull();
         }
         //Store info of original item is contained in and move the item to the moving slot
-        public void OnBeginDrag(PointerEventData eventData){
+        public void OnBeginDrag(PointerEventData eventData)
+        {
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
@@ -116,17 +119,18 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         #endregion
         // Start is called before the first frame update
-        void Awake(){
+        void Awake()
+        {
             m_InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
             m_PlayerUIController = m_InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
             movingSlot = transform.Find("Slot13").gameObject;
             movingSlotCont = movingSlot.GetComponent<SlotController>();
-            movingSlotRectTransform = movingSlot.GetComponent<RectTransform>();    
+            movingSlotRectTransform = movingSlot.GetComponent<RectTransform>();
             backPackSlots = new SlotController[numSlots];
             backPackRectTransform = GetComponent<RectTransform>();
             FindBackpackSlots();
             quickSlots = new SlotController[m_InventoryCont.InventoryAmnt];
-            for(int i=0;i<m_InventoryCont.InventoryAmnt;i++)
+            for (int i = 0; i < m_InventoryCont.InventoryAmnt; i++)
                 quickSlots[i] = transform.Find($"QuickSlots/Slot{i}").gameObject.GetComponent<SlotController>();
         }
         void OnEnable()

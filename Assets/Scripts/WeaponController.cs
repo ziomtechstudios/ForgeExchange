@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
@@ -15,7 +13,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Animator WeaponAnimator { get { return m_Animator; } }
         public SpriteRenderer WeaponSpriteRenderer { get { return m_SpriteRenderer; } }
         #endregion
-        private void Start(){
+        private void Start()
+        {
             m_Animator = GetComponent<Animator>();
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
         }

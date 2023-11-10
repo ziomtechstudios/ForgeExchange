@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Com.ZiomtechStudios.ForgeExchange{
+namespace Com.ZiomtechStudios.ForgeExchange
+{
     public class CraftTableController : WorkstationController
     {
         #region Serialized Fields
@@ -19,22 +20,29 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         private int inUseHash;
         #endregion
         #region "Getters/Setters"
-        public StockpileController StockpileCont{get{return stockpileController;}}
+        public StockpileController StockpileCont { get { return stockpileController; } }
         //public bool InUseHash{get{ return m_Animator.GetBool(inUseHash); } set { m_Animator.SetBool(inUseHash, value); } }
         public IDictionary<string, GameObject> CraftedItemDict { get { return craftedItemsDict; } }
         #endregion
         #region Public Members
         public override void ToggleUse(PlayerController playerCont)
         {
-            craftMenuObj.SetActive(!craftMenuObj.activeInHierarchy);
             if (craftMenuObj.activeInHierarchy)
-                craftingMenuController.SyncCraftingMenuSlots(playerCont);
-            else
+            {
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
-        }
-        public void CloseMenu()
-        {
-            craftMenuObj.SetActive(false);
+                craftMenuObj.SetActive(false);       
+                SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.BackPackSlots,craftingMenuController.BackPackSlots);
+                SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, craftingMenuController.QuickSlots);
+                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
+                playerCont.UsingWorkstation = false;
+            }
+            else
+            {
+                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
+                craftMenuObj.SetActive(true);
+                craftingMenuController.SyncCraftingMenuSlots(playerCont);
+                playerCont.UsingWorkstation = true;
+            }
         }
         public override void Work(ItemController itemCont)
         {
@@ -44,7 +52,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #endregion
         #region "Event Functions"
         // Start is called before the first frame update
-        void Awake(){
+        void Awake()
+        {
             //m_Animator = transform.Find("Tools").transform.gameObject.GetComponent<Animator>();
             inUseHash = Animator.StringToHash("InUse");
             craftMenuObj = transform.Find("Canvas/CraftingMenu").gameObject;

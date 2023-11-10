@@ -1,15 +1,13 @@
+using NetMQ;
+using NetMQ.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
-using UnityEngine;
-using UnityEditor;
-using NetMQ;
-using NetMQ.Sockets;
 using System.Threading;
-using Task = System.Threading.Tasks.Task;
+using UnityEngine;
 //using CancellationToken = System.Threading;
 using Application = UnityEngine.Application;
+using Task = System.Threading.Tasks.Task;
 
 
 #nullable enable
@@ -154,12 +152,12 @@ namespace Meryel.UnityCodeAssist.Editor
                 pubSocket = null;
                 return;
             }
-            
+
 
             //pubSocket.SendReady += PubSocket_SendReady;
             //SendConnect();
 
-            pullTaskCancellationTokenSource  = new CancellationTokenSource();
+            pullTaskCancellationTokenSource = new CancellationTokenSource();
             //pullThread = new System.Threading.Thread(async () => await PullAsync(conn.pushPull, pullThreadCancellationTokenSource.Token));
             //pullThread = new System.Threading.Thread(() => InitPull(conn.pushPull, pullTaskCancellationTokenSource.Token));
             //pullThread.Start();
@@ -171,11 +169,11 @@ namespace Meryel.UnityCodeAssist.Editor
                 System.Threading.Tasks.TaskCreationOptions.LongRunning, System.Threading.Tasks.TaskScheduler.Current);
             */
 
-            
+
             pullTask = Task.Factory.StartNew(
                 () => InitPull(pushPull, pullTaskCancellationTokenSource.Token),
                 System.Threading.Tasks.TaskCreationOptions.LongRunning);
-            
+
             //InitPull(conn.pushPull);
 
             Serilog.Log.Debug("NetMQ server initializing, initialized");
@@ -342,7 +340,7 @@ namespace Meryel.UnityCodeAssist.Editor
         public void SendConnect()
         {
             var connect = Self;
-            
+
             SendAux(connect);
         }
 
@@ -429,7 +427,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
         public void SendTags(string[] tags) =>
             SendStringArrayAux(Synchronizer.Model.Ids.Tags, tags);
-            
+
         /*
         {
             
@@ -497,7 +495,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
             Serilog.Log.Debug("SendGO: {GoName}", go.name);
 
-            var dataOfSelf = go.ToSyncModel(priority:10000);
+            var dataOfSelf = go.ToSyncModel(priority: 10000);
             if (dataOfSelf != null)
                 SendAux(dataOfSelf);
 
@@ -514,7 +512,7 @@ namespace Meryel.UnityCodeAssist.Editor
                 foreach (var doc in dataOfComponents)
                     SendAux(doc);
             }
-            
+
         }
 
         public void SendScriptableObject(ScriptableObject so)

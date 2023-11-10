@@ -15,18 +15,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string slotType;
         #endregion
         #region Getters/Setters
-        public bool SlotInUse{get{return slotInUse;}set{slotInUse = value;}}
+        public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
         public bool SlotWithItem { get { return slotWithItem; } set { slotWithItem = value; } }
-        public GameObject SlotPrefab { get {  return slotPrefab; } set { slotPrefab = value; } }
+        public GameObject SlotPrefab { get { return slotPrefab; } set { slotPrefab = value; } }
         public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
-        public Image ItemImage { get { return itemImage; } set {  itemImage = value; } }
+        public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
         public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
         #endregion
         #region Public Funcs
         public void Awake()
         {
             slotImage = GetComponent<Image>();
-            itemImage = transform.Find($"Item{transform.name.Remove(0,4)}").gameObject.GetComponent<Image>();
+            itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
         }
         #endregion
     }
