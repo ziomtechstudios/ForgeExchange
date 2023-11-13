@@ -2636,7 +2636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531720977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0794, y: -0.0807, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4274,7 +4274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bbb4178fe049638458ee8fd33d76b085, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e049daf3757ff8f4e80a36f8f4e08df2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4296,7 +4296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementRange: 10
+  m_MovementRange: 1
   m_DynamicOriginRange: 100
   m_ControlPath: <AndroidJoystick>/stick
   m_Behaviour: 0
@@ -4386,7 +4386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -906352798, guid: 6010798d9cbaffe4bb268ef4c76adf3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2e4ee2f1e47955439518938dc6398b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5766,8 +5766,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CraftingMenuController, Assembly-CSharp
-        m_MethodName: ExitCraftingMenu
+        m_TargetAssemblyTypeName: Com.ZiomtechStudios.ForgeExchange.CraftingMenuController,
+          Assembly-CSharp
+        m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5973,6 +5974,7 @@ MonoBehaviour:
   runSpeed: 0.6
   interactDist: 0.15
   holdingItem: 0
+  usingWorkstation: 0
   holdingPrefab: {fileID: 0}
   holdingCont: {fileID: 0}
   m_InventoryCont: {fileID: 2417434154705275472}

@@ -9369,74 +9369,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 106285502, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1004073338}
-    - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: CraftingMenuController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1280522333, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1531720978, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1531720978, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975200065, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_Behaviour
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975200065, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_MovementRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975200066, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e049daf3757ff8f4e80a36f8f4e08df2, type: 3}
-    - target: {fileID: 1977494653, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e2e4ee2f1e47955439518938dc6398b9, type: 3}
-    - target: {fileID: 2417434154386360299, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2417434154386360299, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.16
-      objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800258, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_Collider
       value: 
       objectReference: {fileID: 2417434155176800257, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
     - target: {fileID: 2417434155176800260, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1837501493, guid: bb426c393d0ad6b479d750f672cd2d7b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800262, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_Name
       value: player
@@ -9485,40 +9429,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8080217881945599358, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_ControlPath
-      value: <AndroidGamepad>/dpad
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_MovementRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_PointerDownAction.m_Id
-      value: 44f0c7a6-e519-4d87-bc8c-3c9fa66ab65d
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_PointerMoveAction.m_Id
-      value: d8484ef6-72fb-4e1a-8b79-d0bfbb41ed56
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_UseIsolatedInputActions
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_PointerDownAction.m_Name
-      value: Pointer Down
-      objectReference: {fileID: 0}
-    - target: {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_PointerMoveAction.m_Name
-      value: Pointer Move
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8840797478688371095, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
 --- !u!1001 &8359663827196314598
 PrefabInstance:
