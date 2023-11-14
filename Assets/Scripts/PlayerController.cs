@@ -56,15 +56,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         #endregion
         #region Public Members
-        public void Immobolize()
-        {
-            isMoving = false;
-        }
-        public void Mobolize()
-        {
-            isMoving = true;
-        }
-
         public void OnMove(InputAction.CallbackContext context)
         {
             ///<summary>

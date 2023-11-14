@@ -20,6 +20,10 @@ PrefabInstance:
       value: coal_Item
       objectReference: {fileID: 0}
     - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_TagString
       value: Item
       objectReference: {fileID: 0}
@@ -85,6 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 66b64c73c3be3ee9f8b45ab0e3dd2a49, type: 2}
     m_RemovedComponents:
     - {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+    - {fileID: 906800896134731824, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
 --- !u!1 &1889874052148490108 stripped
 GameObject:
