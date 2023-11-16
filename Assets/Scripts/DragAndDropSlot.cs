@@ -37,19 +37,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public static void DropItem(SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int slotIndex)
         {
-
-            //SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
-            slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
-            slots[slotIndex].SlotWithItem = true;
-            slots[slotIndex].ItemCont = movingSlotCont.ItemCont;
-            slots[slotIndex].SlotPrefab = movingSlotCont.SlotPrefab;
-            //Emptying Moving Slot
-            movingSlotCont.ItemImage.sprite = noItemSprite;
-            movingSlotCont.SlotWithItem = false;
-            movingSlotCont.ItemCont = null;
-            movingSlotCont.SlotPrefab = null;
-            movingSlotCont.gameObject.SetActive(false);
-
+            if (movingSlotCont.SlotPrefab != null) {
+                //SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
+                slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
+                slots[slotIndex].SlotWithItem = true;
+                slots[slotIndex].ItemCont = movingSlotCont.ItemCont;
+                slots[slotIndex].SlotPrefab = movingSlotCont.SlotPrefab;
+                //Emptying Moving Slot
+                movingSlotCont.ItemImage.sprite = noItemSprite;
+                movingSlotCont.SlotWithItem = false;
+                movingSlotCont.ItemCont = null;
+                movingSlotCont.SlotPrefab = null;
+                movingSlotCont.gameObject.SetActive(false);
+            }
         }
     }
 }

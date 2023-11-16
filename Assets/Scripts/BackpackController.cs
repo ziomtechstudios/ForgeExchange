@@ -94,7 +94,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnEndDrag(PointerEventData eventData)
         {
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name);
-            if (eventData.pointerCurrentRaycast.gameObject != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name.Contains("Canvas") && movingSlotCont.SlotWithItem)
+            if (eventData.pointerCurrentRaycast.gameObject != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name.Contains("Canvas") && movingSlotCont.SlotWithItem && movingSlotCont.SlotPrefab != null)
             {
                 if (!(eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem))
                 {

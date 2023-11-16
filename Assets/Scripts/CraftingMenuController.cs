@@ -120,7 +120,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnEndDrag(PointerEventData eventData)
         {
             //  The players finger has stopped dragging onto a slot   Making sure the destination slot is not the slot for the crated item            Making sure the destination of the drag is not a blank portion of menu                   
-            if (eventData.pointerCurrentRaycast.gameObject != null && !eventData.pointerCurrentRaycast.gameObject.transform.name.Contains("Slot0") && !eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Contains("Canvas") && movingSlot.SlotWithItem)
+            if (eventData.pointerCurrentRaycast.gameObject != null && !eventData.pointerCurrentRaycast.gameObject.transform.name.Contains("Slot0") && !eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Contains("Canvas") && movingSlot.SlotWithItem &&  movingSlot.SlotPrefab != null)
             {
                 Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name);
                 //  The slot at the destination of the drag has does not have an item                                           Checking to see that the destination slot holds no profab 
