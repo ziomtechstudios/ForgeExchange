@@ -1,3 +1,4 @@
+using Com.ZiomtechStudiosZiomtech.ForgeExchange;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -98,6 +99,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         counterText.text = $"{stockpileCont.Quantity}/{stockpileCont.MaxQuantity}";
                         if (!counterText.gameObject.activeInHierarchy)
                             counterText.gameObject.SetActive(true);
+                        break;
+                    case 13:
+                        EnemyController enemyCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<EnemyController>();
+                        barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
+                        if (barTransform != null)
+                        {
+                            barUI.gameObject.transform.position = playerCam.WorldToScreenPoint(enemyCont.gameObject.transform.Find("barUILOC").position);
+                            barUI.BarValue = enemyCont.HP;
+                            //Toggle UI items visibility  assign Title of UI activated UI items
+                            if (!barUI.gameObject.activeInHierarchy)
+                            {
+                                barUI.gameObject.SetActive(true);
+                                barUI.Title = enemyCont.EnemyUIStruct.barTitle;
+                            }
+                        }
                         break;
                     default:
                         break;
