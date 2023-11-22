@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.ZiomtechStudiosZiomtech.ForgeExchange 
+namespace Com.ZiomtechStudios.ForgeExchange 
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]

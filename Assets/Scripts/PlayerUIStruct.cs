@@ -5,5 +5,6 @@ public class PlayerUIStruct : ScriptableObject
 {
     public string barTitle;
     public string circleTitle;
-
+    public Quaternion globalRotation;
+    public Vector3 globalPosition;
 }

@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0.0.5.05
+  bundleVersion: 1.0.0.5.07
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,14 +155,14 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.ZiomTechStudios.s
+    Android: com.ZiomTechStudios.ForgeExhchange
     Standalone: com.ZiomTech-Studios.Forge-Exchange
   buildNumber:
     Standalone: 0
     iPhone: 0
     tvOS: 0
-  overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 4
+  overrideDefaultApplicationIdentifier: 1
+  AndroidBundleVersionCode: 7
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
@@ -925,7 +925,13 @@ PlayerSettings:
   windowsGamepadBackendHint: 0
   cloudProjectId: 1433a428-11d1-47ff-8bbf-2019b53a111d
   framebufferDepthMemorylessMode: 0
-  qualitySettingsNames: []
+  qualitySettingsNames:
+  - Very Low
+  - Low
+  - Medium
+  - High
+  - Very High
+  - Ultra
   projectName: Forge Exchange
   organizationId: ziomtechstudios
   cloudEnabled: 0
