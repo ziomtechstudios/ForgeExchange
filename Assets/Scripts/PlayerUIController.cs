@@ -105,8 +105,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
                         if (barTransform != null)
                         {
-                            barUI.gameObject.transform.position = playerCam.WorldToScreenPoint(enemyCont.gameObject.transform.Find("barUILOC").position);
-                            barUI.BarValue = enemyCont.HP;
+                            barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(enemyCont.gameObject.transform.Find("barUILOC").position), enemyCont.gameObject.transform.rotation);
+                            barUI.BarValue = enemyCont.HealthBarAmnt;
                             //Toggle UI items visibility  assign Title of UI activated UI items
                             if (!barUI.gameObject.activeInHierarchy)
                             {

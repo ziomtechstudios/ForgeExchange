@@ -1,3 +1,4 @@
+using Com.ZiomtechStudios.ForgeExchange;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,7 +41,9 @@ namespace Com.ZiomtechStudiosZiomtech.ForgeExchange
         {
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
-                healthBarAmnt = ((hp--)/maxHP);
+                //Debug.Log(collision.collider.transform.parent.name);
+                hp -= (collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().m_WeaponStruct.maxBaseDamage);
+                healthBarAmnt = (hp/maxHP);
                 enemyAnimator.SetTrigger(isDamagedHash);
             }
         }
