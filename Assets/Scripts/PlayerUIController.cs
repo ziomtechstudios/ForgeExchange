@@ -57,7 +57,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         itemUiTransform = playerCont.PlayerLOS.transform.Find("productUILOC");
                         if (circleTransform != null)
                         {
-                            circleUI.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("circleUILOC").position);
+                            circleUI.gameObject.transform.position = playerCam.WorldToScreenPoint(circleTransform.position);
                             circleUI.BarValue = workstationCont.CircleAmnt;
                             if (!circleUI.gameObject.activeInHierarchy)
                             {
@@ -67,7 +67,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         if (barTransform != null)
                         {
-                            barUI.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("barUILOC").position);
+                            barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
                             barUI.BarValue = workstationCont.BarAmnt;
                             //Toggle UI items visibility  assign Title of UI activated UI items
                             if (!barUI.gameObject.activeInHierarchy)
@@ -104,7 +104,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
                         if (barTransform != null)
                         {
-                            barUI.gameObject.transform.SetPositionAndRotation(barTransform.position), barTransform.rotation);
+                            barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
                             barUI.BarValue = enemyCont.HealthBarAmnt;
                             //Toggle UI items visibility  assign Title of UI activated UI items
                             if (!barUI.gameObject.activeInHierarchy)
