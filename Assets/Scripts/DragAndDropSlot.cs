@@ -37,7 +37,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public static void DropItem(SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int slotIndex)
         {
-            if (movingSlotCont.SlotPrefab != null) {
+            if (movingSlotCont.SlotPrefab != null)
+            {
                 //SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
                 slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
                 slots[slotIndex].SlotWithItem = true;

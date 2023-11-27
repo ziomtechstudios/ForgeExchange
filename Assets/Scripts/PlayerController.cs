@@ -27,6 +27,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string backPackObjPath;
         [SerializeField] private BackpackController backpackCont;
         [SerializeField] private PlayerAttackController playerAttackCont;
+        [SerializeField] private HealthController playerHealthCont;
         #endregion
         #region Private Fields
         private Animator m_Animator;
@@ -37,12 +38,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void MovePlayer(bool moving)
         {
 
-            if(moving)
+            if (moving)
             {
                 m_Animator.SetBool(isMovingHash, true);
                 m_Animator.SetFloat(moveXHash, moveDir.x);
                 m_Animator.SetFloat(moveYHash, moveDir.y);
-                transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (isMoving?1.00f:0.00f) * moveDir);
+                transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (isMoving ? 1.00f : 0.00f) * moveDir);
             }
             else
             {
@@ -50,9 +51,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 m_Animator.SetFloat(lookXHash, lookDir.x);
                 m_Animator.SetFloat(lookYHash, lookDir.y);
             }
-            if(playerAttackCont.HasWeapon)
+            if (playerAttackCont.HasWeapon)
                 playerAttackCont.UpdateWeaponAnim();
-            }
+        }
 
         #endregion
         #region Public Members
@@ -97,7 +98,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
         public Vector2 LookDir { get { return lookDir; } }
         public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
-        public bool UsingWorkstation { get { return usingWorkstation; } set {  usingWorkstation = value; } }
+        public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
+        public HealthController PlayerHealthCont { get { return playerHealthCont; } }
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -118,6 +120,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backpackCont = backPackObj.GetComponent<BackpackController>();
             playerInput = GetComponent<PlayerInput>();
             playerAttackCont = GetComponent<PlayerAttackController>();
+            playerHealthCont = GetComponent<HealthController>();
         }
         // Update is called once per frame
         void Update()
@@ -136,6 +139,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else if (!isMoving && m_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
+        }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Debug.Log("Enemy hit player!");
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                playerHealthCont.HP -= 1.00f;
+                playerHealthCont.HealthBarAmnt = (playerHealthCont.HP / playerHealthCont.MaxHP);
+            }
         }
     }
 }

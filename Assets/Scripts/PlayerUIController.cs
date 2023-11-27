@@ -11,6 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private ProgressBar barUI;
         [SerializeField] private ProgressBarCircle circleUI;
         [SerializeField] private Image itemUI;
+        [SerializeField] private Image playerHPImage;
         [SerializeField] private TextMeshProUGUI counterText;
         [SerializeField] private GameObject backPackObj;
         [SerializeField] private GameObject inGameQuickSlotObjs;
@@ -25,6 +26,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(!backPackObj.activeInHierarchy);
             backpackController.SyncQuickSlots((backPackObj.activeInHierarchy) ? ("InGameToMenu") : ("MenuToInGame"));
         }
+
         public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
         #endregion
         // Start is called before the first frame update
@@ -38,6 +40,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             counterText = playerCam.transform.Find("Canvas/CounterText").gameObject.GetComponent<TextMeshProUGUI>();
             itemUI = playerCam.transform.Find("Canvas/itemImage").gameObject.GetComponent<Image>();
             backPackObj = transform.Find("Main Camera/Canvas/Inventory/ImageInventory").gameObject;
+            playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/Background/Healthbar").gameObject.GetComponent<Image>();
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
 
@@ -105,7 +108,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (barTransform != null)
                         {
                             barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
-                            barUI.BarValue = enemyCont.HealthBarAmnt;
+                            barUI.BarValue = enemyCont.HealthCont.HealthBarAmnt;
                             //Toggle UI items visibility  assign Title of UI activated UI items
                             if (!barUI.gameObject.activeInHierarchy)
                             {
@@ -125,8 +128,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 barUI.gameObject.SetActive(false);
                 counterText.gameObject.SetActive(false);
                 itemUI.gameObject.SetActive(false);
-
             }
+            playerHPImage.fillAmount = playerCont.PlayerHealthCont.HealthBarAmnt;
+
         }
     }
 }

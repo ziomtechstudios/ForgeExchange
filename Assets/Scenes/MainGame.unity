@@ -1365,6 +1365,7 @@ GameObject:
   - component: {fileID: 120174247}
   - component: {fileID: 120174246}
   - component: {fileID: 120174250}
+  - component: {fileID: 120174251}
   m_Layer: 13
   m_Name: test_dummy
   m_TagString: Enemy
@@ -1499,11 +1500,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b39cba79a9fcd498e2bceb5e0dd221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
   enemyCollider: {fileID: 120174247}
   enemyAnimator: {fileID: 120174246}
   enemyUIStruct: {fileID: 11400000, guid: 24efa3cfe829bc6428cd67137d91138b, type: 2}
-  maxHP: 100
+  healthController: {fileID: 0}
+--- !u!114 &120174251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120174244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7226978d93b9ca4fa6fc61e6b878b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxHealth: 1000
+  objSprite: {fileID: 0}
+  isDamaged: 0
+  damageTime: 1.15
+  damageTimer: 0
+  timerIncrement: 0.1
 --- !u!1 &293479855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,6 +2643,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8734230099395214053, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
   m_PrefabInstance: {fileID: 581365805}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1179592217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2417434155176800262, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+  m_PrefabInstance: {fileID: 2417434154386360278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1179592225 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2417434155176800260, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+  m_PrefabInstance: {fileID: 2417434154386360278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1179592228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179592217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7226978d93b9ca4fa6fc61e6b878b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  maxHealth: 100
+  objSprite: {fileID: 1179592225}
+  isDamaged: 0
+  damageTime: 1.15
+  damageTimer: 0
+  timerIncrement: 0.1
 --- !u!1001 &1239484590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3213,6 +3261,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1503926621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503926622}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1503926622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503926621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.068, y: 0.056, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1515694850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8734230099395214053, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
@@ -3278,14 +3357,14 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 7834ebd8406077443b568deb6becc1f4, type: 3}
   m_Type: 3
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_UseSpriteMesh: 1
+  m_PixelsPerUnitMultiplier: 37.42
 --- !u!222 &1542629515
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4162,7 +4241,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 54b39a07218659843b20f1acc2b9e24b, type: 3}
   m_Type: 3
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1

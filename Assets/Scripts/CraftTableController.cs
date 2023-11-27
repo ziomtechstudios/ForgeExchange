@@ -30,8 +30,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (craftMenuObj.activeInHierarchy)
             {
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
-                craftMenuObj.SetActive(false);       
-                SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.BackPackSlots,craftingMenuController.BackPackSlots);
+                craftMenuObj.SetActive(false);
+                SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.BackPackSlots, craftingMenuController.BackPackSlots);
                 SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, craftingMenuController.QuickSlots);
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
                 playerCont.UsingWorkstation = false;

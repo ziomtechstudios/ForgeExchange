@@ -68,8 +68,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///</summary>
             if (forgeCont.InUse)
             {
+                //Boosting temperature of forge up
                 if (InUse)
                     forgeCont.CurTemp = Mathf.Lerp(forgeCont.MaxTemp, (forgeCont.MaxTemp + maxBoostTemp), boostTimer / timeToBoost);
+                //Forge pump not in use lower temp back to current maximum achievable temperature forge cna have.
                 else
                     forgeCont.CurTemp = Mathf.Lerp(forgeCont.MaxTemp, (forgeCont.MaxTemp + maxBoostTemp), (boostTimer / timeToBoost));
             }
