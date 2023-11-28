@@ -31,7 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region Private Fields
         private Animator m_Animator;
-        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash;
+        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash;
         private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
@@ -53,6 +53,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             if (playerAttackCont.HasWeapon)
                 playerAttackCont.UpdateWeaponAnim();
+        }
+        private void TakeDamage(float amnt)
+        {
+            playerHealthCont.HP -= amnt;
+            playerHealthCont.HealthBarAmnt = (playerHealthCont.HP / playerHealthCont.MaxHP);
+            if (PlayerHealthCont.HP <= 0.0f)
+                m_Animator.SetTrigger(isDeadHash);
         }
 
         #endregion
@@ -112,6 +119,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             lookYHash = Animator.StringToHash("LookY");
             moveXHash = Animator.StringToHash("MoveX");
             moveYHash = Animator.StringToHash("MoveY");
+            isDeadHash = Animator.StringToHash("isDead");
             isMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
             layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")));
@@ -142,12 +150,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Enemy hit player!");
-            if (collision.collider.CompareTag("Enemy"))
-            {
-                playerHealthCont.HP -= 1.00f;
-                playerHealthCont.HealthBarAmnt = (playerHealthCont.HP / playerHealthCont.MaxHP);
-            }
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
+                TakeDamage(1.00f);
+            else
+                TakeDamage(100.0f);
         }
     }
 }

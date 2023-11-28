@@ -59,6 +59,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 damageTimer = 0.0f;
+
         }
         #endregion
         void Start()

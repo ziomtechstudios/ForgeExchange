@@ -13,10 +13,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Animator enemyAnimator;
         [SerializeField] private PlayerUIStruct enemyUIStruct;
         [SerializeField] private HealthController healthController;
+        [SerializeField] private bool isAttacking;
         #endregion
         #region "Getter/Setters"
         public PlayerUIStruct EnemyUIStruct { get { return enemyUIStruct; } set { enemyUIStruct = value; } }
         public HealthController HealthCont { get { return healthController; } }
+        public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
         #endregion
         #region "Private members"
         private int isDamagedHash, layerMask;
@@ -30,6 +32,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             healthController = GetComponent<HealthController>();
             layerMask = (1 << LayerMask.NameToLayer("weapon"));
             healthController.HealthBarAmnt = (healthController.HP / healthController.MaxHP);
+            isAttacking = false;
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
