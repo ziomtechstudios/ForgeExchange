@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Com.ZiomtechStudios.ForgeExchange
+namespace Com.ZiomtechStudios.ForgeExchange   
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class HealthController : MonoBehaviour
@@ -17,7 +17,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Getter/Setter"
         public float HP { get { return hp; } set { hp = value; } }
         public float MaxHP { get { return maxHealth; } }
-        public float DamageTimer { get { return damageTimer; } set { damageTimer = value; } }
         public bool IsDamaged { get { return isDamaged; } set { isDamaged = value; } }
         #endregion
         #region "Private members"
@@ -31,26 +30,23 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // gameObjec to flash red as a secondary indicator of this.
         public void FlashDamage()
         {
-            if (isDamaged)
+            if (isDamaged && (damageTimer < damageTime))
             {
-                //WHenr player is damaged we trigger + increment the timer and
+                //WHen player is damaged we trigger + increment the timer and
                 //have that change in timer linearlly interpolated betweeen white and red
-                if ((damageTimer < damageTime))
-                {
-                    damageTimer += 0.1f;
-                    objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
-                }
-                //gameObject is now fully flashing red.
-                //Let us now decrement the timer and call Color Lerp to back to OG color
-                else if (damageTimer >= damageTime)
-                {
-                    isDamaged = false;
-                    damageTimer -= 0.1f;
-                    objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
-                }
+                damageTimer += 0.1f;
+                objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
+            }
+            //gameObject is now fully flashing red.
+            //Let us now decrement the timer and call Color Lerp to back to OG color
+            else if (damageTimer >= damageTime)
+            {
+                isDamaged = false;
+                damageTimer -= 0.1f;
+                objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
             }
             //Ensuring gameObject goes back to "normal" color
-            //done so this way bc it look s nicer than simply hard setting the color after flash
+            //done so this way bc it looks nicer than simply hard setting the color after flash
             // Does not need to be set in stone it was just a artistic preference
             else if (!isDamaged && (damageTimer > 0.0f))
             {
@@ -59,7 +55,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 damageTimer = 0.0f;
-
         }
         #endregion
         void Start()

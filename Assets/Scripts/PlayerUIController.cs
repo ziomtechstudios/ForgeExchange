@@ -23,7 +23,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Members
         public void ToggleInventory()
         {
-            backPackObj.SetActive(!backPackObj.activeInHierarchy);
+            backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation);
             backpackController.SyncQuickSlots((backPackObj.activeInHierarchy) ? ("InGameToMenu") : ("MenuToInGame"));
         }
 
@@ -52,7 +52,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 switch (playerCont.PlayerLOS.transform.gameObject.layer)
                 {
-                    //Player sees a workstation
+                    //Player sees a workstation.
                     case 8:
                         WorkstationController workstationCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<WorkstationController>();
                         circleTransform = playerCont.PlayerLOS.transform.Find("circleUILOC");
@@ -93,7 +93,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 itemUI.gameObject.SetActive(false);
                         }
                         break;
-                    //Player sees a Stockpile
+                    //Player sees a stockpile.
                     case 10:
                         StockpileController stockpileCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<StockpileController>();
                         //Assign location value and title of coresponding UI Items
@@ -102,6 +102,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (!counterText.gameObject.activeInHierarchy)
                             counterText.gameObject.SetActive(true);
                         break;
+                    //PLayer sees enemy.
                     case 13:
                         EnemyController enemyCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<EnemyController>();
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");

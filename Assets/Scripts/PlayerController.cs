@@ -14,6 +14,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Vector2 moveDir;
         [SerializeField] private float walkSpeed;
         [SerializeField] private float runSpeed;
+        [SerializeField] private float stamina;
+        [SerializeField] private float maxStam;
         [SerializeField] private float interactDist;
         [SerializeField] private bool holdingItem;
         [Header("Player Interaction/Inventory")]
@@ -59,7 +61,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerHealthCont.HP -= amnt;
             playerHealthCont.HealthBarAmnt = (playerHealthCont.HP / playerHealthCont.MaxHP);
             if (PlayerHealthCont.HP <= 0.0f)
+            {
                 m_Animator.SetTrigger(isDeadHash);
+            }
         }
 
         #endregion
@@ -77,10 +81,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             moveDir = context.ReadValue<Vector2>();
             float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f) ? (1.00f) : (-1.00f));
             float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
-            moveDir = new Vector2(moveDirX, moveDirY);
             //Detect if the player is attempting to move diagonal so we can avoid it.
-            bool isMovingDiag = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f));
-            moveDir = (isMovingDiag) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
+            moveDir = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f)) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
             isMoving = (moveDir != Vector2.zero);
             lookDir = (isMoving && !usingWorkstation) ? (moveDir) : (lookDir);
         }
@@ -136,7 +138,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Is the player looking at a interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
-            if (isMoving)
+            if (isMoving && (playerHealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
@@ -147,14 +149,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else if (!isMoving && m_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
+
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
             if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
                 TakeDamage(1.00f);
-            else
-                TakeDamage(100.0f);
         }
     }
 }

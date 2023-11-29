@@ -94,25 +94,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnEndDrag(PointerEventData eventData)
         {
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name);
-            if (eventData.pointerCurrentRaycast.gameObject != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name.Contains("Canvas") && movingSlotCont.SlotWithItem && movingSlotCont.SlotPrefab != null)
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlotCont.SlotWithItem && movingSlotCont.SlotPrefab != null && !(eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem))
             {
-                if (!(eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem))
+
+                switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
-                    switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
-                    {
-                        case ("Backpack"):
-                            DragAndDropSlot.DropItem(movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
-                            break;
-                        case ("QuickSlots"):
-                            DragAndDropSlot.DropItem(movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
-                            break;
-                        default:
-                            ReturnItem(eventData);
-                            break;
-                    }
+                    case ("Backpack"):
+                        DragAndDropSlot.DropItem(movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        break;
+                    case ("QuickSlots"):
+                        DragAndDropSlot.DropItem(movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        break;
+                    default:
+                        ReturnItem(eventData);
+                        break;
                 }
-                else
-                    ReturnItem(eventData);
+
             }
             else
                 ReturnItem(eventData);

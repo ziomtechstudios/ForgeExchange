@@ -27,19 +27,27 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Members
         public override void ToggleUse(PlayerController playerCont)
         {
+            //Craft table is in use and craft menu is open, now we are goping to close it
             if (craftMenuObj.activeInHierarchy)
             {
-                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
+                //Closing crafting menu
                 craftMenuObj.SetActive(false);
+                //Make contents of in game slots match how it was oriented in crafting slot
+                //Doing the same to Backpack slots since we can rearange contents of backpack within crafting table
                 SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.BackPackSlots, craftingMenuController.BackPackSlots);
                 SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, craftingMenuController.QuickSlots);
+                //Reveal in-game quickslots, set status of using workstation flse so we can move
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
                 playerCont.UsingWorkstation = false;
             }
+            //Craft Menu is closed so open it so the player can use it
             else
             {
+                //Hide in-game quick slots
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
+                //open crafting menu
                 craftMenuObj.SetActive(true);
+                //synchronizing backpackslots + quickslots in the crasfting menu to match contents in respective counterparts
                 craftingMenuController.SyncCraftingMenuSlots(playerCont);
                 playerCont.UsingWorkstation = true;
             }
@@ -54,11 +62,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Start is called before the first frame update
         void Awake()
         {
-            //m_Animator = transform.Find("Tools").transform.gameObject.GetComponent<Animator>();
             inUseHash = Animator.StringToHash("InUse");
             craftMenuObj = transform.Find("Canvas/CraftingMenu").gameObject;
-            //Recipes = new string[numRecipes];
-            //craftableItems = new GameObject[numRecipes];
             craftedItemsDict = new Dictionary<string, GameObject>();
             DoingWork = false;
             foreach (string recipe in Recipes)

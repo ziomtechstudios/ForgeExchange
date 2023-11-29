@@ -39,7 +39,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (movingSlotCont.SlotPrefab != null)
             {
-                //SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
+                //Occupying targeted slot
                 slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
                 slots[slotIndex].SlotWithItem = true;
                 slots[slotIndex].ItemCont = movingSlotCont.ItemCont;

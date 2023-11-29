@@ -27,8 +27,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public GameObject ItemPrefab { get { return itemPrefab; } set { itemPrefab = value; } }
         public bool IsEmpty { get { return isEmpty; } }
         #endregion
+
+        //Taking an item from a stockpile
         public void TakeItem(GameObject newItem, ItemController newItemCont)
         {
+
             Sprite newSprite;
             bool canTakeItem = itemTagToSpriteDict.TryGetValue((newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag), out newSprite);
             itemPrefab = (canTakeItem) ? (newItem) : (null);
