@@ -7,15 +7,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         #region Private Serialized Fields
         [SerializeField] private Camera playerCam;
-        [SerializeField] private PlayerController playerCont;
+        [SerializeReference] private PlayerController playerCont;
         [SerializeField] private ProgressBar barUI;
         [SerializeField] private ProgressBarCircle circleUI;
         [SerializeField] private Image itemUI;
         [SerializeField] private Image playerHPImage;
+        [SerializeReference] private Image playerStaminaImage;
         [SerializeField] private TextMeshProUGUI counterText;
         [SerializeField] private GameObject backPackObj;
         [SerializeField] private GameObject inGameQuickSlotObjs;
-        [SerializeField] private BackpackController backpackController;
+        [SerializeReference] private BackpackController backpackController;
         #endregion
         #region Private Fields
         private Transform circleTransform, barTransform, itemUiTransform;
@@ -41,6 +42,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             itemUI = playerCam.transform.Find("Canvas/itemImage").gameObject.GetComponent<Image>();
             backPackObj = transform.Find("Main Camera/Canvas/Inventory/ImageInventory").gameObject;
             playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/Background/Healthbar").gameObject.GetComponent<Image>();
+            playerStaminaImage = transform.Find("Main Camera/Canvas/Combat Attributes/Background/StaminaBar").gameObject.GetComponent<Image>();
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
 
@@ -131,6 +133,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 itemUI.gameObject.SetActive(false);
             }
             playerHPImage.fillAmount = playerCont.PlayerHealthCont.HealthBarAmnt;
+            playerStaminaImage.fillAmount = (playerCont.PlayerStaminaCont.Stamina / playerCont.PlayerStaminaCont.MaxStamina);
 
         }
     }

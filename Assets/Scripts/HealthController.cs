@@ -18,12 +18,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public float HP { get { return hp; } set { hp = value; } }
         public float MaxHP { get { return maxHealth; } }
         public bool IsDamaged { get { return isDamaged; } set { isDamaged = value; } }
+        public float HealthBarAmnt { get { return healthBarAmnt; } set { healthBarAmnt = value; } }
         #endregion
         #region "Private members"
         private float healthBarAmnt;
-        #endregion
-        #region "Getter/Setters"
-        public float HealthBarAmnt { get { return healthBarAmnt; } set { healthBarAmnt = value; } }
         #endregion
         #region "Public members"
         //When the gameObject takes damage we want to have the 

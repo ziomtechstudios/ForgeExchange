@@ -1,3 +1,4 @@
+using Com.ZiomtechStudios.ForgeExchangeP;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,15 +22,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Header("Player Interaction/Inventory")]
         [SerializeField] private bool usingWorkstation;
         [SerializeField] private GameObject holdingPrefab;
-        [SerializeField] private ItemController holdingCont;
-        [SerializeField] private InventoryController m_InventoryCont;
+        [SerializeReference] private ItemController holdingCont;
+        [SerializeReference] private InventoryController m_InventoryCont;
         [SerializeField] private BoxCollider2D m_Collider;
         [SerializeField] private PlayerInput playerInput;
-        [SerializeField] private PlayerUIController playerUIController;
+        [SerializeReference] private PlayerUIController playerUIController;
         [SerializeField] private string backPackObjPath;
-        [SerializeField] private BackpackController backpackCont;
-        [SerializeField] private PlayerAttackController playerAttackCont;
-        [SerializeField] private HealthController playerHealthCont;
+        [SerializeReference] private BackpackController backpackCont;
+        [SerializeReference] private PlayerAttackController playerAttackCont;
+        [Header("Health/Stamina")]
+        [SerializeReference] private HealthController playerHealthCont;
+        [SerializeReference] private StaminaController playerStaminaCont;
         #endregion
         #region Private Fields
         private Animator m_Animator;
@@ -88,7 +91,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void ToggleRun(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.started && (playerStaminaCont.Stamina > 0.0f))
                 isRunning = true;
             else if (context.canceled)
                 isRunning = false;
@@ -108,7 +111,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Vector2 LookDir { get { return lookDir; } }
         public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
+        public bool IsRunning { get { return isRunning; } set { isRunning = value; } }
         public HealthController PlayerHealthCont { get { return playerHealthCont; } }
+        public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -131,6 +136,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInput = GetComponent<PlayerInput>();
             playerAttackCont = GetComponent<PlayerAttackController>();
             playerHealthCont = GetComponent<HealthController>();
+            playerStaminaCont = GetComponent<StaminaController>();
         }
         // Update is called once per frame
         void Update()
