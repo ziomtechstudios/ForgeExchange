@@ -12,7 +12,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private ProgressBarCircle circleUI;
         [SerializeField] private Image itemUI;
         [SerializeField] private Image playerHPImage;
-        [SerializeReference] private Image playerStaminaImage;
+        [SerializeField] private Image playerStaminaImage;
         [SerializeField] private TextMeshProUGUI counterText;
         [SerializeField] private GameObject backPackObj;
         [SerializeField] private GameObject inGameQuickSlotObjs;

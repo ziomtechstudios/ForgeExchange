@@ -55,8 +55,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             weaponAttackHash = Animator.StringToHash("isWAttacking");
             LookXHash = Animator.StringToHash("LookX");
             LookYHash = Animator.StringToHash("LookY");
-
-
         }
     }
 }

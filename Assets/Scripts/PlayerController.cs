@@ -10,7 +10,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Serialized Fields
         [Header("Player Movement")]
         [SerializeField] private bool isMoving;
-        [SerializeField] private bool isRunning;
+        [SerializeField] private bool isRunning, canRun;
         [SerializeField] private Vector2 lookDir;
         [SerializeField] private Vector2 moveDir;
         [SerializeField] private float walkSpeed;
@@ -31,8 +31,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeReference] private BackpackController backpackCont;
         [SerializeReference] private PlayerAttackController playerAttackCont;
         [Header("Health/Stamina")]
-        [SerializeReference] private HealthController playerHealthCont;
-        [SerializeReference] private StaminaController playerStaminaCont;
+        [SerializeField] private HealthController playerHealthCont;
+        [SerializeField] private StaminaController playerStaminaCont;
         #endregion
         #region Private Fields
         private Animator m_Animator;
@@ -48,6 +48,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 m_Animator.SetBool(isMovingHash, true);
                 m_Animator.SetFloat(moveXHash, moveDir.x);
                 m_Animator.SetFloat(moveYHash, moveDir.y);
+                isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (isMoving ? 1.00f : 0.00f) * moveDir);
             }
             else
@@ -64,9 +65,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerHealthCont.HP -= amnt;
             playerHealthCont.HealthBarAmnt = (playerHealthCont.HP / playerHealthCont.MaxHP);
             if (PlayerHealthCont.HP <= 0.0f)
-            {
                 m_Animator.SetTrigger(isDeadHash);
-            }
         }
 
         #endregion
@@ -79,7 +78,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///The last dir the player moves in is the players looking direction.
             ///Rounding the value of the given direction to the nearest integer. Range of -1 to 1 implied since vector is based on joystick interaction.
             ///If the component of the vector is negative make sure to carry that over once the magnitude has been rounded.
-            ///Personal choice: When the direction of movement of diagonal, prevent player movement. Might omit this in future builds.
+            ///Personal choice: When the direction of movement is diagonal, prevent player movement. Might omit this in future builds.
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
             float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f) ? (1.00f) : (-1.00f));
@@ -91,10 +90,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void ToggleRun(InputAction.CallbackContext context)
         {
-            if (context.started && (playerStaminaCont.Stamina > 0.0f))
-                isRunning = true;
+            if (context.started)
+                canRun = true;
             else if (context.canceled)
-                isRunning = false;
+                canRun = false;
         }
         #endregion
         #region "Getter and Setters"
@@ -111,7 +110,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Vector2 LookDir { get { return lookDir; } }
         public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
-        public bool IsRunning { get { return isRunning; } set { isRunning = value; } }
+        public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
         public HealthController PlayerHealthCont { get { return playerHealthCont; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
         #endregion
@@ -120,6 +119,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_InventoryCont = transform.Find("Main Camera/Canvas/InventorySlots").gameObject.GetComponent<InventoryController>();
             playerUIController = gameObject.GetComponent<PlayerUIController>();
+            //When user logs into game I want player sprite to face the screen, personla preference
             lookDir = -transform.up;
             m_Animator = gameObject.GetComponent<Animator>();
             lookXHash = Animator.StringToHash("LookX");
