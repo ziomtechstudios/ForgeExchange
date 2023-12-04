@@ -69,9 +69,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //If so is the player prompting to interact with said item?
             if (playerCont.PlayerLOS.transform != null && (context.started))
             {
+                //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
                 //Diff scenarios based on what the player is interacting with
                 switch (playerCont.PlayerLOS.transform.gameObject.layer)
                 {
+                    //wall, door, blockage
+                    case 11:
+                        //if its a door we are opening or closing it.
+                        if (playerCont.PlayerLOS.transform.gameObject.CompareTag("Door"))
+                        {
+                            playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
+                            Debug.Log("We are opening the door!");
+                        }
+                        break;
                     //Forge, Quelcher, Sandstone, etc...
                     case 8:
                         //If the player is holding an object let them interact with the workstation
