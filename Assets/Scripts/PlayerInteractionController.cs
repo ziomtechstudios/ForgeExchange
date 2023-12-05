@@ -93,7 +93,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         //If the player is not holding an item check that the quickslots are not full
                         //and that the player does not have the backpack open in order to allow them to pick up the desired object
                         //If the player is holding an object allow them to drop the object
-                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? ((playerCont.PlayerInventoryCont.SlotsAreFull) ? (false) : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
+                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
                         break;
                     default:
                         break;

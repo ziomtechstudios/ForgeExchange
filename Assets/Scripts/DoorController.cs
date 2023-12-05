@@ -5,26 +5,29 @@ using UnityEngine;
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    [RequireComponent(typeof(Animation))]
+    [RequireComponent(typeof(Animator))]
     public class DoorController : MonoBehaviour
     {
         #region "Serialized Fields"
-        [SerializeField] private Animation doorAnimation;
+        [SerializeField] private Animator doorAnimator;
         #endregion
         #region "Private Fields"
-        private float isOpen;
+        private int isOpenHash;
         #endregion
         // Start is called before the first frame update
         void Start()
         {
-            doorAnimation = GetComponent<Animation>();
-            isOpen = -1.0f;
+            doorAnimator = GetComponent<Animator>();
+            isOpenHash = Animator.StringToHash("isOpen");
+        }
+        void CloseDoor()
+        {
+            doorAnimator.SetBool(isOpenHash, false);
         }
         public void InteractDoor()
         {
-            isOpen = (isOpen > 0.0f) ? -1.00f : 1.00f;
-            doorAnimation["InteractDoor"].speed = isOpen;
-            doorAnimation.Play("InteractDoor");
+            doorAnimator.SetBool(isOpenHash, true);
+            Invoke("CloseDoor", 5.00f);
         }
     }
 }
