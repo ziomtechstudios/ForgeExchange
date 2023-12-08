@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 
-namespace Com.ZiomtechStudios.ForgeExchangeP
+namespace Com.ZiomtechStudios.ForgeExchange 
 {
     public class StaminaController : MonoBehaviour
     {
