@@ -6,11 +6,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(HealthController))]
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : BeingController
     {
         #region "Private Serialized Fields"
         [SerializeField] private BoxCollider2D enemyCollider;
-        [SerializeField] private Animator enemyAnimator;
         [SerializeField] private PlayerUIStruct enemyUIStruct;
         [SerializeField] private HealthController healthController;
         [SerializeField] private bool isAttacking;
@@ -21,14 +20,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
         #endregion
         #region "Private members"
-        private int isDamagedHash, layerMask;
-        private float healthBarAmnt;
+        private int layerMask;
         #endregion
         void Start()
         {
             enemyCollider = GetComponent<BoxCollider2D>();
-            enemyAnimator = GetComponent<Animator>();
-            isDamagedHash = Animator.StringToHash("isDamaged");
+            M_Animator = GetComponent<Animator>();
+            IsDamagedHash = Animator.StringToHash("isDamaged");
             healthController = GetComponent<HealthController>();
             layerMask = (1 << LayerMask.NameToLayer("weapon"));
             healthController.HealthBarAmnt = (healthController.HP / healthController.MaxHP);
@@ -40,8 +38,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 healthController.HP -= (collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().m_WeaponStruct.maxBaseDamage);
                 healthController.HealthBarAmnt = (healthController.HP / healthController.MaxHP);
-                enemyAnimator.SetTrigger(isDamagedHash);
                 healthController.IsDamaged = true;
+                M_Animator.SetBool(IsDamagedHash, healthController.IsDamaged);
                 healthController.FlashDamage();
             }
         }

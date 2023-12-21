@@ -13,6 +13,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private float damageTime;
         [SerializeField] private float damageTimer;
         [Range(0.01f, 0.25f)][SerializeField] private float timerIncrement;
+        [SerializeField] private BeingController beingCont;
         #endregion
         #region "Getter/Setter"
         public float HP { get { return hp; } set { hp = value; } }
@@ -32,7 +33,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //WHen player is damaged we trigger + increment the timer and
                 //have that change in timer linearlly interpolated betweeen white and red
-                damageTimer += 0.1f;
+                damageTimer += timerIncrement;
                 objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
             }
             //gameObject is now fully flashing red.
@@ -40,7 +41,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else if (damageTimer >= damageTime)
             {
                 isDamaged = false;
-                damageTimer -= 0.1f;
+                damageTimer -= timerIncrement;
                 objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
             }
             //Ensuring gameObject goes back to "normal" color
@@ -48,8 +49,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             // Does not need to be set in stone it was just a artistic preference
             else if (!isDamaged && (damageTimer > 0.0f))
             {
-                damageTimer -= 0.1f;
+                damageTimer -= timerIncrement;
                 objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
+                beingCont.M_Animator.SetBool(beingCont.IsDamagedHash, isDamaged);
             }
             else
                 damageTimer = 0.0f;
@@ -62,6 +64,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isDamaged = false;
             hp = maxHealth;
             healthBarAmnt = hp / maxHealth;
+            beingCont = GetComponent<BeingController>();
         }
         void Awake()
         {
