@@ -132,7 +132,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 counterText.gameObject.SetActive(false);
                 itemUI.gameObject.SetActive(false);
             }
-            playerHPImage.fillAmount = playerCont.PlayerHealthCont.HealthBarAmnt;
+            playerHPImage.fillAmount = playerCont.M_HealthCont.HealthBarAmnt;
             playerStaminaImage.fillAmount = (playerCont.PlayerStaminaCont.Stamina / playerCont.PlayerStaminaCont.MaxStamina);
 
         }

@@ -29,28 +29,23 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // gameObjec to flash red as a secondary indicator of this.
         public void FlashDamage()
         {
+            //WHen player is damaged we trigger + increment the timer and
+            //have that change in timer linearlly interpolated betweeen white and red
             if (isDamaged && (damageTimer < damageTime))
-            {
-                //WHen player is damaged we trigger + increment the timer and
-                //have that change in timer linearlly interpolated betweeen white and red
-                damageTimer += timerIncrement;
-                objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
-            }
+                objSprite.color = Color.Lerp(Color.white, Color.red, ((damageTimer += timerIncrement)/ damageTime));
             //gameObject is now fully flashing red.
             //Let us now decrement the timer and call Color Lerp to back to OG color
             else if (damageTimer >= damageTime)
             {
                 isDamaged = false;
-                damageTimer -= timerIncrement;
-                objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
+                objSprite.color = Color.Lerp(Color.white, Color.red, ((damageTimer -= timerIncrement) / damageTime));
             }
             //Ensuring gameObject goes back to "normal" color
             //done so this way bc it looks nicer than simply hard setting the color after flash
             // Does not need to be set in stone it was just a artistic preference
             else if (!isDamaged && (damageTimer > 0.0f))
             {
-                damageTimer -= timerIncrement;
-                objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer / damageTime));
+                objSprite.color = Color.Lerp(Color.white, Color.red, ((damageTimer -= timerIncrement) / damageTime));
                 beingCont.M_Animator.SetBool(beingCont.IsDamagedHash, isDamaged);
             }
             else

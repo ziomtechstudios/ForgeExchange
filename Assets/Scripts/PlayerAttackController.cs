@@ -42,7 +42,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (context.started && (m_WeaponCont != null))
             {
                 UpdateWeaponAnim();
-                m_PlayerCont.PlayerAnimator.SetTrigger(playerAttackHash);
+                m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
                 m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
             }
         }

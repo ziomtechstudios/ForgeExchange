@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     [RequireComponent(typeof(Animator))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : BeingController
     {
         #region Private Serialized Fields
         [Header("Player Movement")]
@@ -30,11 +30,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeReference] private BackpackController backpackCont;
         [SerializeReference] private PlayerAttackController playerAttackCont;
         [Header("Health/Stamina")]
-        [SerializeField] private HealthController playerHealthCont;
         [SerializeField] private StaminaController playerStaminaCont;
         #endregion
         #region Private Fields
-        private Animator m_Animator;
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash;
         private int layerMask;
         private RaycastHit2D hit;
@@ -44,27 +42,27 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
             if (moving)
             {
-                m_Animator.SetBool(isMovingHash, true);
-                m_Animator.SetFloat(moveXHash, moveDir.x);
-                m_Animator.SetFloat(moveYHash, moveDir.y);
+                M_Animator.SetBool(isMovingHash, true);
+                M_Animator.SetFloat(moveXHash, moveDir.x);
+                M_Animator.SetFloat(moveYHash, moveDir.y);
                 isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (isMoving ? 1.00f : 0.00f) * moveDir);
             }
             else
             {
-                m_Animator.SetBool(isMovingHash, false);
-                m_Animator.SetFloat(lookXHash, lookDir.x);
-                m_Animator.SetFloat(lookYHash, lookDir.y);
+                M_Animator.SetBool(isMovingHash, false);
+                M_Animator.SetFloat(lookXHash, lookDir.x);
+                M_Animator.SetFloat(lookYHash, lookDir.y);
             }
             if (playerAttackCont.HasWeapon)
                 playerAttackCont.UpdateWeaponAnim();
         }
         private void TakeDamage(float amnt)
         {
-            playerHealthCont.HP -= amnt;
-            playerHealthCont.HealthBarAmnt = (playerHealthCont.HP / playerHealthCont.MaxHP);
-            if (PlayerHealthCont.HP <= 0.0f)
-                m_Animator.SetTrigger(isDeadHash);
+            M_HealthCont.HP -= amnt;
+            M_HealthCont.HealthBarAmnt = (M_HealthCont.HP / M_HealthCont.MaxHP);
+            if (M_HealthCont.HP <= 0.0f)
+                M_Animator.SetTrigger(isDeadHash);
         }
 
         #endregion
@@ -94,6 +92,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else if (context.canceled)
                 canRun = false;
         }
+        public void TriggerSoundEffect(){
+            //M_AudioSource.Play
+        }
         #endregion
         #region "Getter and Setters"
         public RaycastHit2D PlayerLOS { get { return hit; } }
@@ -104,13 +105,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public InventoryController PlayerInventoryCont { get { return m_InventoryCont; } }
         public PlayerUIController PlayerUICont { get { return playerUIController; } }
         public PlayerInput PlayerInput { get { return playerInput; } }
-        public Animator PlayerAnimator { get { return m_Animator; } }
         public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
         public Vector2 LookDir { get { return lookDir; } }
         public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
-        public HealthController PlayerHealthCont { get { return playerHealthCont; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
         #endregion
         // Start is called before the first frame update
@@ -120,7 +119,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerUIController = gameObject.GetComponent<PlayerUIController>();
             //When user logs into game I want player sprite to face the screen, personla preference
             lookDir = -transform.up;
-            m_Animator = gameObject.GetComponent<Animator>();
+            M_Animator = gameObject.GetComponent<Animator>();
             lookXHash = Animator.StringToHash("LookX");
             lookYHash = Animator.StringToHash("LookY");
             moveXHash = Animator.StringToHash("MoveX");
@@ -134,8 +133,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backpackCont = backPackObj.GetComponent<BackpackController>();
             playerInput = GetComponent<PlayerInput>();
             playerAttackCont = GetComponent<PlayerAttackController>();
-            playerHealthCont = GetComponent<HealthController>();
+            M_HealthCont = GetComponent<HealthController>();
             playerStaminaCont = GetComponent<StaminaController>();
+            M_AudioSource = GetComponent<AudioSource>();
+            //M_AudioSource = 
         }
         // Update is called once per frame
         void Update()
@@ -143,7 +144,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Is the player looking at a interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
-            if (isMoving && (playerHealthCont.HP > 0.0f))
+            if (isMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
@@ -152,7 +153,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 else
                     MovePlayer(true);
             }
-            else if (!isMoving && m_Animator.GetBool(isMovingHash))
+            else if (!isMoving && M_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
 
         }
