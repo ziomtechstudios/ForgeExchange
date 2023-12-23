@@ -31,6 +31,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeReference] private PlayerAttackController playerAttackCont;
         [Header("Health/Stamina")]
         [SerializeField] private StaminaController playerStaminaCont;
+        [Header("Player Audio")]
+        [SerializeField] private AudioClip playerStoneSteps, playerGrassSteps;
         #endregion
         #region Private Fields
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash;
@@ -47,6 +49,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetFloat(moveYHash, moveDir.y);
                 isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (isMoving ? 1.00f : 0.00f) * moveDir);
+                TriggerSoundEffect();
             }
             else
             {
@@ -93,7 +96,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 canRun = false;
         }
         public void TriggerSoundEffect(){
-            //M_AudioSource.Play
+            if(M_DSpriteLayering.IsInside)
+                M_AudioSource.PlayOneShot(playerStoneSteps, 0.5f);
         }
         #endregion
         #region "Getter and Setters"
@@ -136,7 +140,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_HealthCont = GetComponent<HealthController>();
             playerStaminaCont = GetComponent<StaminaController>();
             M_AudioSource = GetComponent<AudioSource>();
-            //M_AudioSource = 
+            M_DSpriteLayering = GetComponent<DynamicSpriteLayering>();
         }
         // Update is called once per frame
         void Update()

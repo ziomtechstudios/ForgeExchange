@@ -20,23 +20,32 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private Transform m_OrnamentSortPoint;
         [Tooltip("WHen passing a value for transparancy workwithin the range of 0.0f to 255.0f. Take your target value and divide it by 255.0f so that it will result in a nuumber between 0.0f and 1.0f.")][Range(0.0f, 1.0f)] [SerializeField] private float transparancyVal;
         #endregion
-        #region "Private memebers"
+        #region "Getters/Setters"
+        public bool IsInside{get{return isInside;}}
+        public bool IsBehindWall{get{return isBehindWall;}}
+        #endregion
+        #region "Private members"
         private GridLayout m_GridLayout;
+        private bool isInside, isBehindWall;
         private void FadingWall(){
 
         }
         private void SortTargetSprite(Collider2D col){
             //Are we colliding with a building wall?  
             if(col.CompareTag("underwall")){
+                isInside = (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null && ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) == null);
+                isBehindWall = !isInside && (((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) || (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null)) && (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null));
                 //Players feet is on a floor tile so we are in from of the wall
-                if(buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null && ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) == null){
+                if(isInside){
                     m_SpriteRend.sortingOrder = 2;
-                    underwallTileMap.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal/255.0f)), Color.white, 1.00f);
+                    //We want gameobjects that are not the player to be layered in a similar fashion
+                    //What we don't want is AI objects walking behind the walls and triggering the transparency effect.
+                    underwallTileMap.color = (gameObject.CompareTag("Player"))?Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal/255.0f)), Color.white, 1.00f):Color.white;
                 }                
                 //The p[ayer is outside and behind a wall
-                else if(((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) || (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null)) && (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null)){
+                else if(isBehindWall){
                     m_SpriteRend.sortingOrder = 0;
-                    underwallTileMap.color = Color.Lerp(Color.white, new Color(1.0f, 1.0f, 1.0f, transparancyVal), 1.00f);
+                    underwallTileMap.color = gameObject.CompareTag("Player")?Color.Lerp(Color.white, new Color(1.0f, 1.0f, 1.0f, transparancyVal), 1.00f):Color.white;
                 }
                 //we are standing behind something hanging on the walls
                 else if(ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) != null)
