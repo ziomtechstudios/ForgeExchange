@@ -13,11 +13,5 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         {
             beingCont = GetComponent<BeingController>();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
     }
 }

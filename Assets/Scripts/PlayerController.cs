@@ -8,7 +8,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         #region Private Serialized Fields
         [Header("Player Movement")]
-        [SerializeField] private bool isMoving;
         [SerializeField] private bool isRunning, canRun;
         [SerializeField] private Vector2 lookDir;
         [SerializeField] private Vector2 moveDir;
@@ -48,7 +47,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetFloat(moveXHash, moveDir.x);
                 M_Animator.SetFloat(moveYHash, moveDir.y);
                 isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
-                transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (isMoving ? 1.00f : 0.00f) * moveDir);
+                transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (IsMoving ? 1.00f : 0.00f) * moveDir);
                 TriggerSoundEffect();
             }
             else
@@ -85,8 +84,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
             //Detect if the player is attempting to move diagonal so we can avoid it.
             moveDir = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f)) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
-            isMoving = (moveDir != Vector2.zero);
-            lookDir = (isMoving && !usingWorkstation) ? (moveDir) : (lookDir);
+            IsMoving = (moveDir != Vector2.zero);
+            lookDir = (IsMoving && !usingWorkstation) ? (moveDir) : (lookDir);
         }
         public void ToggleRun(InputAction.CallbackContext context)
         {
@@ -96,7 +95,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 canRun = false;
         }
         public void TriggerSoundEffect(){
-            if(M_DSpriteLayering.IsInside)
+            if(M_DSpriteLayering.IsInside && IsMoving)
                 M_AudioSource.PlayOneShot(playerStoneSteps, 0.5f);
         }
         #endregion
@@ -111,7 +110,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public PlayerInput PlayerInput { get { return playerInput; } }
         public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
         public Vector2 LookDir { get { return lookDir; } }
-        public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
@@ -129,7 +127,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             moveXHash = Animator.StringToHash("MoveX");
             moveYHash = Animator.StringToHash("MoveY");
             isDeadHash = Animator.StringToHash("isDead");
-            isMoving = false;
+            IsMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
             layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")));
             m_Collider = GetComponent<BoxCollider2D>();
@@ -148,7 +146,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Is the player looking at a interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
-            if (isMoving && (M_HealthCont.HP > 0.0f))
+            if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
@@ -157,7 +155,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 else
                     MovePlayer(true);
             }
-            else if (!isMoving && M_Animator.GetBool(isMovingHash))
+            else if (!IsMoving && M_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
 
         }

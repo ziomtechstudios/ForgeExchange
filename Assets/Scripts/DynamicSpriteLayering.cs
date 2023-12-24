@@ -27,9 +27,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #region "Private members"
         private GridLayout m_GridLayout;
         private bool isInside, isBehindWall;
-        private void FadingWall(){
-
-        }
         private void SortTargetSprite(Collider2D col){
             //Are we colliding with a building wall?  
             if(col.CompareTag("underwall")){
