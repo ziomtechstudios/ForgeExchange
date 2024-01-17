@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -18,7 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private Tilemap ornamentsTileMap;
         [SerializeField] private Transform m_SpriteSortPoint;
         [SerializeField] private Transform m_OrnamentSortPoint;
-        [Tooltip("WHen passing a value for transparancy workwithin the range of 0.0f to 255.0f. Take your target value and divide it by 255.0f so that it will result in a nuumber between 0.0f and 1.0f.")][Range(0.0f, 1.0f)] [SerializeField] private float transparancyVal;
+        [Tooltip("When passing a value for transparancy work within the range of 0.0f to 255.0f. Take your target value and divide it by 255.0f so that it will result in a nuumber between 0.0f and 1.0f.")][Range(0.0f, 1.0f)] [SerializeField] private float transparancyVal;
         #endregion
         #region "Getters/Setters"
         public bool IsInside{get{return isInside;}}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.MLAgents;
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
@@ -13,6 +14,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerUIStruct enemyUIStruct;
         [SerializeField] private HealthController healthController;
         [SerializeField] private bool isAttacking;
+        
         #endregion
         #region "Getter/Setters"
         public PlayerUIStruct EnemyUIStruct { get { return enemyUIStruct; } set { enemyUIStruct = value; } }

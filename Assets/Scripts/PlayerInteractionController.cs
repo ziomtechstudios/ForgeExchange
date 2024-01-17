@@ -71,10 +71,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
                 //Diff scenarios based on what the player is interacting with
-                switch (playerCont.PlayerLOS.transform.gameObject.layer)
+                switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
                 {
                     //wall, door, blockage
-                    case 11:
+                    case "bounds":
                         //if its a door we are opening or closing it.
                         if (playerCont.PlayerLOS.transform.gameObject.CompareTag("Door"))
                         {
@@ -83,13 +83,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         break;
                     //Forge, Quelcher, Sandstone, etc...
-                    case 8:
+                    case "workstation":
                         //If the player is holding an object let them interact with the workstation
                         //If the player does not have an item them they are going to want to use the workstation
                         playerCont.HoldingItem = (playerCont.HoldingItem) ? InteractWorkstation() : UseWorkstation();
                         break;
                     //Coal pile, wood pile, etc...
-                    case 10:
+                    case "stockpile":
                         //If the player is not holding an item check that the quickslots are not full
                         //and that the player does not have the backpack open in order to allow them to pick up the desired object
                         //If the player is holding an object allow them to drop the object

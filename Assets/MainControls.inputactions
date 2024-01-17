@@ -6,15 +6,6 @@
             "id": "6116406e-02ed-42c9-b015-b4d4233affdf",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "583be730-ec1c-475e-b349-4d2a62114608",
-                    "expectedControlType": "Stick",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "73060057-badc-4a2c-bcdb-73aa6a858ce7",
@@ -112,20 +103,18 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "df7e99bf-a013-4925-861c-910b42316987",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "d9c26599-fcde-46e6-9d32-8e37dd0b14e8",
-                    "path": "<AndroidJoystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "f9c77370-c042-49b5-a42a-7e6f97f6c634",
@@ -246,6 +235,17 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c0b5fe3-79a4-4565-b595-2312327d440c",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -253,15 +253,6 @@
             "name": "CombatControls",
             "id": "5791d309-ecbf-416f-aaf1-5a17da6a0b1f",
             "actions": [
-                {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "351d9adb-f1bf-4cb3-a84a-202eaff279ec",
-                    "expectedControlType": "Stick",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
                 {
                     "name": "Run",
                     "type": "Button",
@@ -360,20 +351,18 @@
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "f0a9e1ca-75ae-496d-b539-1936ece8b166",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "e8d474bd-f4dc-4517-b20e-f2465895a495",
-                    "path": "<AndroidJoystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "911eba7e-c77c-472b-a781-f0c87bd0af3d",
@@ -492,6 +481,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "773b5673-b92a-4a4c-a93e-499159589012",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

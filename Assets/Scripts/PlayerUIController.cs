@@ -52,10 +52,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (playerCont.PlayerLOS.transform != null)
             {
-                switch (playerCont.PlayerLOS.transform.gameObject.layer)
+                switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
                 {
                     //Player sees a workstation.
-                    case 8:
+                    case "workstation":
                         WorkstationController workstationCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<WorkstationController>();
                         circleTransform = playerCont.PlayerLOS.transform.Find("circleUILOC");
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
@@ -96,7 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         break;
                     //Player sees a stockpile.
-                    case 10:
+                    case "stockpile":
                         StockpileController stockpileCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<StockpileController>();
                         //Assign location value and title of coresponding UI Items
                         counterText.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("counterUILOC").position);
@@ -105,7 +105,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             counterText.gameObject.SetActive(true);
                         break;
                     //PLayer sees enemy.
-                    case 13:
+                    case "enemy":
                         EnemyController enemyCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<EnemyController>();
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
                         if (barTransform != null)

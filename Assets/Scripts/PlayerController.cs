@@ -38,6 +38,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
+        private Vector2 dirToWall;
         private void MovePlayer(bool moving)
         {
 
@@ -48,7 +49,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetFloat(moveYHash, moveDir.y);
                 isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (IsMoving ? 1.00f : 0.00f) * moveDir);
-                TriggerSoundEffect();
             }
             else
             {
@@ -75,15 +75,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///Player Movement
             ///Player movement input taken as 2D Vector and is translted to movement of gameObject.
             ///The last dir the player moves in is the players looking direction.
-            ///Rounding the value of the given direction to the nearest integer. Range of -1 to 1 implied since vector is based on joystick interaction.
-            ///If the component of the vector is negative make sure to carry that over once the magnitude has been rounded.
-            ///Personal choice: When the direction of movement is diagonal, prevent player movement. Might omit this in future builds.
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
-            float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f) ? (1.00f) : (-1.00f));
-            float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
-            //Detect if the player is attempting to move diagonal so we can avoid it.
-            moveDir = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f)) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
             IsMoving = (moveDir != Vector2.zero);
             lookDir = (IsMoving && !usingWorkstation) ? (moveDir) : (lookDir);
         }
@@ -119,7 +112,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_InventoryCont = transform.Find("Main Camera/Canvas/InventorySlots").gameObject.GetComponent<InventoryController>();
             playerUIController = gameObject.GetComponent<PlayerUIController>();
-            //When user logs into game I want player sprite to face the screen, personla preference
+            //When user logs into game I want player sprite to face the screen, personal preference
             lookDir = -transform.up;
             M_Animator = gameObject.GetComponent<Animator>();
             lookXHash = Animator.StringToHash("LookX");
@@ -149,8 +142,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
+                if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null /*&& hit.transform.gameObject.CompareTag("underwall")*/) && (moveDir != dirToWall)){
                     MovePlayer(false);
+                    Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
+                }
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else
                     MovePlayer(true);
@@ -161,9 +156,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
-            if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
-                TakeDamage(1.00f);
+            switch(LayerMask.LayerToName(collision.gameObject.layer)){
+                //Player has collided with wall
+                //Find a way to store 2d vector that represents dir player is colliding into wall with
+                //When player is trying to move away from wall they are touching we make sure...
+                //that the player is only allowed to move when that dir is not rtowards the wall.
+                case("bounds"):
+                    dirToWall = (collision.transform.position-transform.position).normalized;
+                    break;
+                case("enemy"):
+                    TakeDamage(collision.gameObject.GetComponent<EnemyController>().IsAttacking?1.00f:0.00f);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

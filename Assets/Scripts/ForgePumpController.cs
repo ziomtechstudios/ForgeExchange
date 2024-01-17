@@ -59,13 +59,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             /// If forge pump is in use and the boost timer has reached maximum allowed time turn off forge pump.
             /// If forge pump is not in use and the timer has not yet reached zero keep decrementing the boost timer.
             /// If forge pump is not in use and the boost timer has reached zero just keep it at 0.
+            /// To prevent Update() from repeatedly seting boost timer to 0, the update() will check to see if the boostTimer is not 0.
+            /// When setting boost timer to a number insignificantly higher than 0 when the forge pump is in use we can trigger the logic and prevent repeated assignments.
             ///</sumary>
             if (boostTimer != 0.0f)
                 boostTimer = (InUse) ? (boostTimer >= timeToBoost ? (TurnOff()) : (boostTimer + Time.deltaTime)) : ((boostTimer >= 0.0f) ? (boostTimer - Time.deltaTime) : (0.0f));
-            ///<summary>
-            /// To prevent Update() from repeatedly seting boost timer to 0, the update() will check to see if the boostTimer is not 0.
-            /// When setting boost timer to a number insignificantly higher than 0 when the forge pump is in use we can trigger the logic and prevent repeated assignments.
-            ///</summary>
             if (forgeCont.InUse)
             {
                 //Boosting temperature of forge up
