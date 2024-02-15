@@ -93,7 +93,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         /// </summary>
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlotCont.SlotWithItem && movingSlotCont.SlotPrefab != null && !(eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem))
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlotCont.SlotWithItem && movingSlotCont.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem)
             {
 
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)

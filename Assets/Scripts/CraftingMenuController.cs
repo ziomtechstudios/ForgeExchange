@@ -8,14 +8,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         #region "Private Serialized Fields"
         [SerializeField] private CraftTableController craftTableCont;
+        [Header("Slots in crafting menu.")]
         [SerializeField] private SlotController[] craftingSlots;
         [SerializeField] private SlotController[] backPackSlots;
         [SerializeField] private SlotController[] quickSlots;
         [SerializeField] private SlotController[] craftedSlot;
         [SerializeField] private SlotController movingSlot;
+        [SerializeField] private int craftedSlotNum, backPackSlotNum, quickSlotsSlotNum;
+        [Header("Members for crafting")]
         [SerializeField] private string currentRecipe;
         [SerializeField] private Sprite noItemSprite;
-        [SerializeField] private int craftedSlotNum, backPackSlotNum, quickSlotsSlotNum;
+        [Header("Current User component(s).")]
         [SerializeField] private PlayerController currentUserController;
         #endregion
         #region "Private Funcs/Members
@@ -74,7 +77,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnBeginDrag(PointerEventData eventData)
         {
             //  Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are draggin from, does it have an item?
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem))
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
                 //Based on the type of slot it is pass relevant parameters
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
@@ -138,7 +141,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
                         { 
                             craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
-                            craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? (craftedSlot[0].ItemCont.ItemIcon) : (noItemSprite);
+                            craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? craftedSlot[0].ItemCont.ItemIcon : noItemSprite;
                             craftedSlot[0].SlotPrefab = potentialItem;
                             craftedSlot[0].SlotWithItem = true;
                             craftTableCont.Work(craftedSlot[0].ItemCont);
@@ -150,9 +153,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ReturnItem(eventData);
                         break;
                 }
-
             }
-            else
+            else 
                 ReturnItem(eventData);
         }
         #endregion

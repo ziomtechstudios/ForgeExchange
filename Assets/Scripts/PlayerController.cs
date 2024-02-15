@@ -144,7 +144,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null /*&& hit.transform.gameObject.CompareTag("underwall")*/) && (moveDir != dirToWall)){
                     MovePlayer(false);
-                    Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
+                    //Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
                 }
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else

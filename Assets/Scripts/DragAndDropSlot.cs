@@ -5,6 +5,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
+        private static void TransferItem(SlotController initSlot, SlotController destSlot, Sprite noItemSprite){
+                //Moving item from initial slot to destination slot
+                destSlot.ItemCont = initSlot.ItemCont;
+                destSlot.ItemImage.sprite = initSlot.ItemCont.ItemIcon;
+                destSlot.SlotWithItem = true;
+                destSlot.SlotPrefab = initSlot.SlotPrefab;
+                //Emptying Selected Slot 
+                initSlot.ItemImage.sprite = noItemSprite;
+                initSlot.SlotWithItem = false;
+                initSlot.ItemCont = null;
+                initSlot.SlotPrefab = null;
+        }
         public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, out int ogSlotIndex, out string ogSlotType)
         {
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name);
@@ -16,16 +28,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Store reference to original slot in case invalid item drop is later made
                 ogSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
                 ogSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
-                //Moving item from Selected Slot to Moving Slot
-                movingSlotCont.ItemCont = slots[ogSlotIndex].ItemCont;
-                movingSlotCont.ItemImage.sprite = movingSlotCont.ItemCont.ItemIcon;
-                movingSlotCont.SlotWithItem = true;
-                movingSlotCont.SlotPrefab = slots[ogSlotIndex].SlotPrefab;
-                //Emptying Selected Slot 
-                slots[ogSlotIndex].ItemImage.sprite = noItemSprite;
-                slots[ogSlotIndex].SlotWithItem = false;
-                slots[ogSlotIndex].ItemCont = null;
-                slots[ogSlotIndex].SlotPrefab = null;
+                TransferItem(slots[ogSlotIndex], movingSlotCont, noItemSprite);
                 //Making moving slot visible
                 movingSlotCont.gameObject.SetActive(true);
             }
@@ -38,19 +41,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public static void DropItem(SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int slotIndex)
         {
             if (movingSlotCont.SlotPrefab != null)
-            {
-                //Occupying targeted slot
-                slots[slotIndex].ItemImage.sprite = movingSlotCont.ItemImage.sprite;
-                slots[slotIndex].SlotWithItem = true;
-                slots[slotIndex].ItemCont = movingSlotCont.ItemCont;
-                slots[slotIndex].SlotPrefab = movingSlotCont.SlotPrefab;
-                //Emptying Moving Slot
-                movingSlotCont.ItemImage.sprite = noItemSprite;
-                movingSlotCont.SlotWithItem = false;
-                movingSlotCont.ItemCont = null;
-                movingSlotCont.SlotPrefab = null;
-                movingSlotCont.gameObject.SetActive(false);
-            }
+                TransferItem(movingSlotCont, slots[slotIndex], noItemSprite);
         }
     }
 }

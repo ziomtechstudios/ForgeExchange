@@ -30,16 +30,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_Animator = GetComponent<Animator>();
             IsDamagedHash = Animator.StringToHash("isDamaged");
             healthController = GetComponent<HealthController>();
-            layerMask = (1 << LayerMask.NameToLayer("weapon"));
-            healthController.HealthBarAmnt = (healthController.HP / healthController.MaxHP);
+            layerMask = 1 << LayerMask.NameToLayer("weapon");
+            healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
             isAttacking = false;
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
-                healthController.HP -= (collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().m_WeaponStruct.maxBaseDamage);
-                healthController.HealthBarAmnt = (healthController.HP / healthController.MaxHP);
+                healthController.HP -= collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().m_WeaponStruct.maxBaseDamage;
+                healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
                 healthController.IsDamaged = true;
                 M_Animator.SetBool(IsDamagedHash, healthController.IsDamaged);
                 healthController.FlashDamage();

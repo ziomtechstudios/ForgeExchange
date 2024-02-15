@@ -6,20 +6,27 @@ namespace Com.ZiomtechStudios.ForgeExchange
     public class PlayerUIController : MonoBehaviour
     {
         #region Private Serialized Fields
-        [SerializeField] private Camera playerCam;
+        [Header("UI Transform Path(s)")]
+        [SerializeField] private string playerCamPath;
+        [SerializeField] private string quickSlotsPath;
+        [SerializeField] private string barUIPath;
+        [SerializeField] private string circleUIPath;
+        [SerializeField] private string counterTextPath;
+        [Header("UI Components")]
         [SerializeReference] private PlayerController playerCont;
-        [SerializeField] private ProgressBar barUI;
-        [SerializeField] private ProgressBarCircle circleUI;
         [SerializeField] private Image itemUI;
         [SerializeField] private Image playerHPImage;
         [SerializeField] private Image playerStaminaImage;
-        [SerializeField] private TextMeshProUGUI counterText;
         [SerializeField] private GameObject backPackObj;
-        [SerializeField] private GameObject inGameQuickSlotObjs;
         [SerializeReference] private BackpackController backpackController;
         #endregion
         #region Private Fields
         private Transform circleTransform, barTransform, itemUiTransform;
+        private Camera playerCam;
+        private GameObject inGameQuickSlotObjs;
+        private ProgressBar barUI;
+        private ProgressBarCircle circleUI;
+        private TextMeshProUGUI counterText;
         #endregion
         #region Public Members
         public void ToggleInventory()
@@ -33,12 +40,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Start is called before the first frame update
         void Awake()
         {
-            playerCam = transform.Find("Main Camera").gameObject.GetComponent<Camera>();
-            inGameQuickSlotObjs = playerCam.transform.Find("Canvas/InventorySlots").gameObject;
+            playerCam = transform.Find(playerCamPath).gameObject.GetComponent<Camera>();
+            inGameQuickSlotObjs = playerCam.transform.Find(quickSlotsPath).gameObject;
             playerCont = GetComponent<PlayerController>();
-            circleUI = playerCam.transform.Find("Canvas/LOSUI/circleUI").gameObject.GetComponent<ProgressBarCircle>();
-            barUI = playerCam.transform.Find("Canvas/LOSUI/barUI").gameObject.GetComponent<ProgressBar>();
-            counterText = playerCam.transform.Find("Canvas/CounterText").gameObject.GetComponent<TextMeshProUGUI>();
+            circleUI = playerCam.transform.Find(circleUIPath).gameObject.GetComponent<ProgressBarCircle>();
+            barUI = playerCam.transform.Find(barUIPath).gameObject.GetComponent<ProgressBar>();
+            counterText = playerCam.transform.Find(counterTextPath).gameObject.GetComponent<TextMeshProUGUI>();
             itemUI = playerCam.transform.Find("Canvas/itemImage").gameObject.GetComponent<Image>();
             backPackObj = transform.Find("Main Camera/Canvas/Inventory/ImageInventory").gameObject;
             playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/Background/Healthbar").gameObject.GetComponent<Image>();

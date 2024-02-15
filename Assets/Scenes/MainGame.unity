@@ -28836,6 +28836,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800270, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: barUIPath
+      value: Canvas/LOSUI/barUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800270, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: circleUIPath
+      value: Canvas/LOSUI/circleUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800270, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: playerCamPath
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800270, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: quickSlotsPath
+      value: Canvas/InventorySlots
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800270, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: counterTextPath
+      value: Canvas/CounterText
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1975200065, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}

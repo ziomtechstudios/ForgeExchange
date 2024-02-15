@@ -8,13 +8,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Serialized Fields
         //[SerializeField] private Animator m_Animator;
         [SerializeField] private GameObject craftMenuObj;
-        [SerializeField] private string[] Recipes;
+        [Tooltip("The array that represents the proper sequences of crafting ingredients to bring about a craftable item.")][SerializeField] private string[] Recipes;
         [SerializeField] private int numRecipes;
-        [SerializeField] private GameObject[] craftableItems;
+        [Tooltip("The array of possible items that can be crafted.")][SerializeField] private GameObject[] craftableItems;
         [SerializeField] private ItemController craftedCont;
         [SerializeField] private CraftingMenuController craftingMenuController;
         [SerializeField] private StockpileController stockpileController;
-        [SerializeField] IDictionary<string, GameObject> craftedItemsDict;
+        [Tooltip("For every craftable item there is coressponding recipe(s).")][SerializeField] IDictionary<string, GameObject> craftedItemsDict;
         #endregion
         #region Private Fields/Members
         private int inUseHash;
@@ -66,6 +66,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftMenuObj = transform.Find("Canvas/CraftingMenu").gameObject;
             craftedItemsDict = new Dictionary<string, GameObject>();
             DoingWork = false;
+            //Occupying Crafting Table Dictionary with recipe(s) and their respective products
             foreach (string recipe in Recipes)
                 craftedItemsDict.Add(recipe, craftableItems[Array.IndexOf(Recipes, recipe)]);
             craftingMenuController = transform.Find("Canvas/CraftingMenu").gameObject.GetComponent<CraftingMenuController>();
