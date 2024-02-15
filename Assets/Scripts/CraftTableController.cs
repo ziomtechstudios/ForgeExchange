@@ -11,7 +11,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Tooltip("The array that represents the proper sequences of crafting ingredients to bring about a craftable item.")][SerializeField] private string[] Recipes;
         [SerializeField] private int numRecipes;
         [Tooltip("The array of possible items that can be crafted.")][SerializeField] private GameObject[] craftableItems;
-        [SerializeField] private ItemController craftedCont;
         [SerializeField] private CraftingMenuController craftingMenuController;
         [SerializeField] private StockpileController stockpileController;
         [Tooltip("For every craftable item there is coressponding recipe(s).")][SerializeField] IDictionary<string, GameObject> craftedItemsDict;
@@ -39,6 +38,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Reveal in-game quickslots, set status of using workstation flse so we can move
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
                 playerCont.UsingWorkstation = false;
+                InUse = false;
             }
             //Craft Menu is closed so open it so the player can use it
             else
@@ -50,12 +50,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //synchronizing backpackslots + quickslots in the crasfting menu to match contents in respective counterparts
                 craftingMenuController.SyncCraftingMenuSlots(playerCont);
                 playerCont.UsingWorkstation = true;
+                InUse = true;
             }
         }
         public override void Work(ItemController itemCont)
         {
-            //InUse = (itemCont != null);
-            stockpileController.Deposit(1, itemCont.gameObject, itemCont);
+            if(InUse){
+                stockpileController.Deposit(1, itemCont.gameObject, itemCont);
+            }
         }
         #endregion
         #region "Event Functions"

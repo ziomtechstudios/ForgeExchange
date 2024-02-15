@@ -1402,6 +1402,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Craft Table
       objectReference: {fileID: 0}
+    - target: {fileID: 610288213, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 610288213, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 610288213, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 610288213, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 610288213, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 622664327, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_TagString
       value: Craft Table
@@ -1518,9 +1538,33 @@ PrefabInstance:
       propertyPath: craftableItems.Array.data[11]
       value: 
       objectReference: {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: emptyStockpileSprite
+      value: 
+      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1101136801, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_TagString
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101136804, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1101136804, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101136804, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101136804, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101136804, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1137353223, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_TagString
@@ -1753,6 +1797,22 @@ PrefabInstance:
     - target: {fileID: 8901441237913683583, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979469551776987811, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979469551776987811, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979469551776987811, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 8979469551776987811, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
@@ -28723,6 +28783,10 @@ PrefabInstance:
     - target: {fileID: 1280522333, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_Name
       value: DPad
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531720977, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2313365618735985567, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: BarColor.a

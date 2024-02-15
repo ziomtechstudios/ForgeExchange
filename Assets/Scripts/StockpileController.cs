@@ -32,11 +32,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void TakeItem(GameObject newItem, ItemController newItemCont)
         {
 
-            Sprite newSprite;
-            bool canTakeItem = itemTagToSpriteDict.TryGetValue((newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag), out newSprite);
-            itemPrefab = (canTakeItem) ? (newItem) : (null);
+            Sprite newSprite = newItemCont.ItemIcon;
+            bool canTakeItem = itemTagToSpriteDict.TryGetValue(newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag, out newSprite);
+            itemPrefab = canTakeItem ? newItem : null;
             isEmpty = !canTakeItem;
-            m_SpriteRenderer.sprite = (!isEmpty) ? (newSprite) : (emptyStockpileSprite);
+            m_SpriteRenderer.sprite = (!isEmpty) ? newSprite : emptyStockpileSprite;
         }
         public bool Deposit(int amount, GameObject newItem, ItemController newItemCont)
         {

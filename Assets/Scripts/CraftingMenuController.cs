@@ -48,14 +48,29 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     break;
             }
         }
-        private void EmptyCraftingSlot()
-        {
-            craftedSlot[0].ItemImage.sprite = noItemSprite;
-            craftedSlot[0].SlotPrefab = null;
-            craftedSlot[0].SlotWithItem = false;
-            craftedSlot[0].ItemCont = null;
-            potentialItem = null;
-            craftTableCont.StockpileCont.Withdraw(1);
+        private void AttemptCrafting(){
+            //This var is nullified here so that when debugging the current Recipe can still be seen via editor.
+            currentRecipe = null;
+            //Reevaluating current ingredients the user has deposited into the crafting table
+            foreach (SlotController ingredient in craftingSlots)
+                currentRecipe += ((ingredient.SlotWithItem) ? (ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag) : ("_"));
+            //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictoinary
+            if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
+            { 
+                craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
+                craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? craftedSlot[0].ItemCont.ItemIcon : noItemSprite;
+                craftedSlot[0].SlotPrefab = potentialItem;
+                craftedSlot[0].SlotWithItem = true;
+                craftTableCont.Work(craftedSlot[0].ItemCont);
+            }
+            else{
+                craftedSlot[0].ItemImage.sprite = noItemSprite;
+                craftedSlot[0].SlotPrefab = null;
+                craftedSlot[0].SlotWithItem = false;
+                craftedSlot[0].ItemCont = null;
+                potentialItem = null;
+                craftTableCont.StockpileCont.Withdraw(1);
+            }
         }
         #endregion
         #region Getters/Setters
@@ -90,6 +105,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             break;
                     case ("CraftingSlots"):
                             DragAndDropSlot.SelectItem(eventData, movingSlot, craftingSlots, noItemSprite, out ogSlotIndex, out ogSlotType);
+                            AttemptCrafting();
                             break;
                     case ("CraftingMenu"):
                         //If we are dragging an item from the crafted slot, the player has chosen to craft the item
@@ -134,20 +150,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         break;
                     case ("CraftingSlots"):
                         DragAndDropSlot.DropItem(movingSlot, craftingSlots, noItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
-                        currentRecipe = null;
-                        foreach (SlotController ingredient in craftingSlots)
-                            currentRecipe += ((ingredient.SlotWithItem) ? (ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag) : ("_"));
-
-                        if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
-                        { 
-                            craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
-                            craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? craftedSlot[0].ItemCont.ItemIcon : noItemSprite;
-                            craftedSlot[0].SlotPrefab = potentialItem;
-                            craftedSlot[0].SlotWithItem = true;
-                            craftTableCont.Work(craftedSlot[0].ItemCont);
-                        }
-                        else
-                            EmptyCraftingSlot();
+                        AttemptCrafting();
                         break;
                     default:
                         ReturnItem(eventData);

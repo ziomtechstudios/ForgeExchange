@@ -2132,11 +2132,11 @@ MonoBehaviour:
   - {fileID: 1696470575}
   craftedSlot: []
   movingSlot: {fileID: 1101136803}
-  currentRecipe: ' '
-  noItemSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   craftedSlotNum: 9
   backPackSlotNum: 12
   quickSlotsSlotNum: 6
+  currentRecipe: ' '
+  noItemSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   currentUserController: {fileID: 0}
 --- !u!1 &1007263108
 GameObject:
@@ -5727,9 +5727,13 @@ MonoBehaviour:
   itemSprites:
   - {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
   - {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+  - {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+  - {fileID: 2051520816, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
   itemTags:
   - CopperShortSword
   - AdamantShortSword
+  - MithrilShortSword
+  - IronShortSword
 --- !u!1001 &8118303528367910550
 PrefabInstance:
   m_ObjectHideFlags: 0
