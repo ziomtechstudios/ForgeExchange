@@ -20,9 +20,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public PlayerUIStruct EnemyUIStruct { get { return enemyUIStruct; } set { enemyUIStruct = value; } }
         public HealthController HealthCont { get { return healthController; } }
         public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
+        public float InstDmg {get{return instDmg;} set{instDmg = value;}}
         #endregion
         #region "Private members"
         private int layerMask;
+        private float instDmg;
         #endregion
         void Start()
         {
@@ -38,11 +40,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
-                float damageToEnemy = (healthController.HP -= collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg());
+                instDmg = (healthController.HP -= collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg());
                 healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
                 healthController.IsDamaged = true;
                 M_Animator.SetBool(IsDamagedHash, healthController.IsDamaged);
-                healthController.FlashDamage();
+                healthController.FlashDamage(); 
             }
         }
 

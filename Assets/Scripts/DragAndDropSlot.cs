@@ -25,11 +25,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ogSlotType = "";
             if (selectedSlotCont != null && selectedSlotCont.SlotWithItem)
             {
-                //Store reference to original slot in case invalid item drop is later made
+                //Store reference to original slot in case invalid item drop is later made.
                 ogSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
                 ogSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
+                //Transfering Item from Initial slot and transfering to moving slot.
                 TransferItem(slots[ogSlotIndex], movingSlotCont, noItemSprite);
-                //Making moving slot visible
+                //Making moving slot visible.
                 movingSlotCont.gameObject.SetActive(true);
             }
         }
@@ -40,6 +41,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public static void DropItem(SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int slotIndex)
         {
+            //If we are actually moving an item drop the item where we have stopped dragging
             if (movingSlotCont.SlotPrefab != null)
                 TransferItem(movingSlotCont, slots[slotIndex], noItemSprite);
         }

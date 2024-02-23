@@ -21,7 +21,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeReference] private BackpackController backpackController;
         #endregion
         #region Private Fields
-        private Transform circleTransform, barTransform, itemUiTransform;
+        private Transform circleTransform, barTransform, itemUiTransform, counterTransform;
         private Camera playerCam;
         private GameObject inGameQuickSlotObjs;
         private ProgressBar barUI;
@@ -115,10 +115,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     case "enemy":
                         EnemyController enemyCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<EnemyController>();
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
-                        if (barTransform != null)
+                        counterTransform = playerCont.PlayerLOS.transform.Find("counterUILOC");
+                        if (barTransform != null && counterTransform != null)
                         {
                             barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
                             barUI.BarValue = enemyCont.HealthCont.HealthBarAmnt;
+                            counterText.gameObject.transform.position = playerCam.WorldToScreenPoint(counterTransform.position);
+                            counterText.gameObject.SetActive(enemyCont.HealthCont.IsDamaged);
+                            counterText.text = (enemyCont.HealthCont.IsDamaged)? $"{enemyCont.InstDmg}":null;
                             //Toggle UI items visibility  assign Title of UI activated UI items
                             if (!barUI.gameObject.activeInHierarchy)
                             {
