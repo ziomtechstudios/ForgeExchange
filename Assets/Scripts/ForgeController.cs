@@ -71,7 +71,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Checking to see if player adding fuel will amount in more fuel than the forge can hold.
         public override void Overflow(float amount)
         {
-            BarFull = ((fuelAmnt + amount) > maxFuelAmnt);
+            BarFull = (fuelAmnt + amount) > maxFuelAmnt;
         }
         #endregion 
         #region Getters/Setters
@@ -117,8 +117,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else if (fuelAmnt <= 0.0f && InUse)
                 SetForge(false, 0.0f);
             //Display current amount of fuel and temperature of forge
-            CircleAmnt = (100.0f * fuelAmnt) / maxFuelAmnt;
-            BarAmnt = (curTemp) / (maxTemp + forgePumpCont.MaxBoostTemp);
+            CircleAmnt = 100.0f * fuelAmnt / maxFuelAmnt;
+            BarAmnt = curTemp / (maxTemp + forgePumpCont.MaxBoostTemp);
         }
     }
 }

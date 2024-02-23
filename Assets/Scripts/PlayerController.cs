@@ -122,7 +122,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isDeadHash = Animator.StringToHash("isDead");
             IsMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
-            layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")));
+            layerMask = (1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy"));
             m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
             backpackCont = backPackObj.GetComponent<BackpackController>();
@@ -142,7 +142,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null /*&& hit.transform.gameObject.CompareTag("underwall")*/) && (moveDir != dirToWall)){
+                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null /*&& hit.transform.gameObject.CompareTag("underwall")*/) && (moveDir != dirToWall)){
                     MovePlayer(false);
                     //Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
                 }
@@ -160,7 +160,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Player has collided with wall
                 //Find a way to store 2d vector that represents dir player is colliding into wall with
                 //When player is trying to move away from wall they are touching we make sure...
-                //that the player is only allowed to move when that dir is not rtowards the wall.
+                //that the player is only allowed to move when that dir is not towards the wall.
                 case("bounds"):
                     dirToWall = (collision.transform.position-transform.position).normalized;
                     break;

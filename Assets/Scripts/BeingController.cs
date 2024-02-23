@@ -1,6 +1,4 @@
 using UnityEngine;
-
-
 namespace Com.ZiomtechStudios.ForgeExchange{
     public class BeingController : MonoBehaviour
     {

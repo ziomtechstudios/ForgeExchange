@@ -12,6 +12,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public WeaponStruct m_WeaponStruct { get { return weaponStruct; } }
         public Animator WeaponAnimator { get { return m_Animator; } }
         public SpriteRenderer WeaponSpriteRenderer { get { return m_SpriteRenderer; } }
+        public float ApplyBaseDmg(){
+            return Random.Range(weaponStruct.minBaseDamage, weaponStruct.maxBaseDamage);
+        }
         #endregion
         private void Start()
         {

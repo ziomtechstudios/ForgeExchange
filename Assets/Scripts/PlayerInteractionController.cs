@@ -1,3 +1,4 @@
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,6 +44,37 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 stockpileCont.Withdraw(1);
             }
             return playerCont.HoldingItem;
+        }
+        private bool ForgeInteraction(){
+            switch (playerCont.HoldingCont.PrefabItemStruct.itemTag)
+            {
+                case "Fuel":
+                    //First we check if this fuel deposit will be more than what the forge can handle
+                    workstationCont.Overflow(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
+                    //If the item can be used as fuel and we are not using workstation that doesnt use fuel and if refueling the workstation wont overflow
+                    //Workstation that dont require fuel such as forgepump will simply have their Fuel Full boolean set to true thereby !true.
+                    if (!(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt == 0.0f) && (!workstationCont.BarFull))
+                    {
+                        workstationCont.Refuel(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
+                        playerCont.PlayerInventoryCont.DroppingItem();
+                        return false;
+                    }
+                    else
+                        return true;
+                case "Ore":
+                    //Make sure that the forge is on and that its not already smelting ore(s)
+                    if (workstationCont.InUse && !workstationCont.DoingWork)
+                    {
+                        workstationCont.Work(playerCont.HoldingCont);
+                        playerCont.PlayerInventoryCont.DroppingItem();
+                        workstationCont.DoingWork = true;
+                        return false;
+                    }
+                    else
+                        return true;
+                default:
+                    return playerCont.HoldingItem;
+            }
         }
         #endregion
         #region "Public Functions"
@@ -109,35 +141,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             switch (playerCont.PlayerLOS.transform.tag)
             {
                 case "Forge":
-                    switch (playerCont.HoldingCont.PrefabItemStruct.itemTag)
-                    {
-                        case "Fuel":
-                            //First we check if this fuel deposit will be more than what the forge can handle
-                            workstationCont.Overflow(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
-                            //If the item can be used as fuel and we are not using workstation that doesnt use fuel and if refueling the workstation wont overflow
-                            //Workstation that dont require fuel such as forgepump will simply have their Fuel Full boolean set to true thereby !true.
-                            if (!(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt == 0.0f) && (!workstationCont.BarFull))
-                            {
-                                workstationCont.Refuel(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
-                                playerCont.PlayerInventoryCont.DroppingItem();
-                                return false;
-                            }
-                            else
-                                return true;
-                        case "Ore":
-                            //Make sure that the forge is on and that its not already smelting ore(s)
-                            if (workstationCont.InUse && !workstationCont.DoingWork)
-                            {
-                                workstationCont.Work(playerCont.HoldingCont);
-                                playerCont.PlayerInventoryCont.DroppingItem();
-                                workstationCont.DoingWork = true;
-                                return false;
-                            }
-                            else
-                                return true;
-                        default:
-                            return playerCont.HoldingItem;
-                    }
+                    return ForgeInteraction();
                 default:
                     return playerCont.HoldingItem;
             }

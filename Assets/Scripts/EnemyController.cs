@@ -38,7 +38,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
-                healthController.HP -= collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().m_WeaponStruct.maxBaseDamage;
+                float damageToEnemy = (healthController.HP -= collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg());
                 healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
                 healthController.IsDamaged = true;
                 M_Animator.SetBool(IsDamagedHash, healthController.IsDamaged);

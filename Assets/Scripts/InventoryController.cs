@@ -17,11 +17,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool ToggleHolding(int index)
         {
             //If the slot selected has an item the player holds the item
-            playerCont.HoldingItem = (slotConts[index].SlotWithItem && !slotConts[index].SlotInUse);
+            playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
-            playerCont.HoldingPrefab = (playerCont.HoldingItem) ? (slotConts[index].SlotPrefab) : (null);
-            playerCont.HoldingCont = (playerCont.HoldingItem) ? (slotConts[index].ItemCont) : (null);
-            return (!slotConts[index].SlotInUse);
+            playerCont.HoldingPrefab = playerCont.HoldingItem ? slotConts[index].SlotPrefab : null;
+            playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
+            return !slotConts[index].SlotInUse;
         }
         //Player selects which slot in their inventory they want to select, makes that obj the one the player is holding
         private void SelectSlot(int slotIndex)
@@ -31,7 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 for (int i = 0; i < inventoryAmnt; i++)
                 {
-                    slotConts[i].SlotInUse = (i == slotIndex) ? ToggleHolding(i) : false;
+                    slotConts[i].SlotInUse = i == slotIndex ? ToggleHolding(i) : false;
                     slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
                 }
             }
@@ -64,7 +64,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 for (int i = 0; i < inventoryAmnt; i++)
                 {
-                    if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && (slotConts[i].SlotInUse))
+                    if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
                     {
                         //desired slot found
                         //Empty players hands
@@ -87,7 +87,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             AreAllSlotsFull();
             //If the player is holding an object and all their slots are not occupied
-            if (playerCont.HoldingItem && !(slotsAreFull))
+            if (playerCont.HoldingItem && !slotsAreFull)
             {
                 //iterating through slots we find the first empty slot
                 for (int i = 0; i < inventoryAmnt; i++)
@@ -123,7 +123,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 if (playerCont.HoldingPrefab != null)
                 {
                     bool isWeapon = playerCont.HoldingPrefab.tag.Contains("Weapon");
-                    playerCont.PlayerInput.SwitchCurrentActionMap(isWeapon ? ("CombatControls") : ("ShopControls"));
+                    playerCont.PlayerInput.SwitchCurrentActionMap(isWeapon ? "CombatControls" : "ShopControls");
                     if (isWeapon)
                         playerCont.PlayerAtkCont.EquipWeapon();
                 }
@@ -148,7 +148,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 slotConts[i].SlotInUse = false;
                 slotConts[i].SlotWithItem = false;
                 slotConts[i].SlotPrefab = null;
-                slotConts[i].SlotImage.fillCenter = !(slotConts[i].SlotInUse);
+                slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
             }
         }
     }
