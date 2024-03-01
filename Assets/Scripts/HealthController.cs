@@ -20,6 +20,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public float MaxHP { get { return maxHealth; } }
         public bool IsDamaged { get { return isDamaged; } set { isDamaged = value; } }
         public float HealthBarAmnt { get { return healthBarAmnt; } set { healthBarAmnt = value; } }
+        public float InstDmg{get{return instDmg;} set{instDmg = value;}}
         #endregion
         #region "Private members"
         private float healthBarAmnt;
@@ -50,8 +51,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 objSprite.color = Color.Lerp(Color.white, Color.red, (damageTimer -= timerIncrement) / damageTime);
                 beingCont.M_Animator.SetBool(beingCont.IsDamagedHash, isDamaged);
             }
-            else
+            else{
                 damageTimer = 0.0f;
+                instDmg = 0.0f;
+            }
         }
         #endregion
         void Start()

@@ -12,7 +12,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Private Fields"
         private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash;
-        private bool hasWeapon;
+        private bool hasWeapon, alreadyAttacking;
         private GameObject playerWeapon;
         #endregion
         #region "Getters/Setters"
@@ -24,6 +24,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerWeapon = Instantiate(m_PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
             m_WeaponCont = playerWeapon.GetComponent<WeaponController>();
             hasWeapon = true;
+        }
+        public void AllowAttack(){
+            alreadyAttacking = false;
         }
         public void UnEquip()
         {
@@ -39,11 +42,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnAttack(InputAction.CallbackContext context)
         {
             //The player is pressing the attakc button and has a weapon
-            if (context.started && (m_WeaponCont != null))
+            if (context.started && (m_WeaponCont != null) && !alreadyAttacking)
             {
                 UpdateWeaponAnim();
                 m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
                 m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
+                alreadyAttacking = true;
             }
         }
         #endregion
@@ -55,6 +59,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             weaponAttackHash = Animator.StringToHash("isWAttacking");
             LookXHash = Animator.StringToHash("LookX");
             LookYHash = Animator.StringToHash("LookY");
+            alreadyAttacking = false;
         }
     }
 }

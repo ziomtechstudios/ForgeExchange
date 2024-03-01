@@ -21,7 +21,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeReference] private BackpackController backpackController;
         #endregion
         #region Private Fields
-        private Transform circleTransform, barTransform, itemUiTransform, counterTransform;
+        private Transform circleTransform, barTransform, itemUiTransform;
         private Camera playerCam;
         private GameObject inGameQuickSlotObjs;
         private ProgressBar barUI;
@@ -114,15 +114,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //PLayer sees enemy.
                     case "enemy":
                         EnemyController enemyCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<EnemyController>();
+                        counterText.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("counterUILOC").position);
+                        counterText.text = (enemyCont.HealthCont.InstDmg==0.0f) ? "": $"{enemyCont.HealthCont.InstDmg}";
+                        if (!counterText.gameObject.activeInHierarchy)
+                            counterText.gameObject.SetActive(true);
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
-                        counterTransform = playerCont.PlayerLOS.transform.Find("counterUILOC");
-                        if (barTransform != null && counterTransform != null)
+                        if (barTransform != null)
                         {
                             barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
                             barUI.BarValue = enemyCont.HealthCont.HealthBarAmnt;
-                            counterText.gameObject.transform.position = playerCam.WorldToScreenPoint(counterTransform.position);
-                            counterText.gameObject.SetActive(enemyCont.HealthCont.IsDamaged);
-                            counterText.text = (enemyCont.HealthCont.IsDamaged)? $"{enemyCont.InstDmg}":null;
                             //Toggle UI items visibility  assign Title of UI activated UI items
                             if (!barUI.gameObject.activeInHierarchy)
                             {
