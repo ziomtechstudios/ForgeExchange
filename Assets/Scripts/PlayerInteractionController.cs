@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -76,6 +77,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     return playerCont.HoldingItem;
             }
         }
+        private void EnvironmentInteraction(){
+            //wall, door, blockage
+            switch(playerCont.PlayerLOS.transform.tag){
+                case "Door":
+                    playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
+                    break;
+                case "water":
+                    //If player is near water but not in water trigger dive animation and transition into swimming animations
+                    //If player is near Water but in water trigger exiting animation to transition into walking/running animation
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
         #region "Public Functions"
         public bool UseWorkstation()
@@ -96,45 +112,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
                 return playerCont.HoldingItem;
         }
-        public void OnInteraction(InputAction.CallbackContext context)
-        {
-            //If so is the player prompting to interact with said item?
-            if (playerCont.PlayerLOS.transform != null && (context.started))
-            {
-                //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
-                //Diff scenarios based on what the player is interacting with
-                switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
-                {
-                    //wall, door, blockage
-                    case "bounds":
-                        //if its a door we are opening or closing it.
-                        if (playerCont.PlayerLOS.transform.gameObject.CompareTag("Door"))
-                        {
-                            playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
-                            Debug.Log("We are opening the door!");
-                        }
-                        break;
-                    //Forge, Quelcher, Sandstone, etc...
-                    case "workstation":
-                        //If the player is holding an object let them interact with the workstation
-                        //If the player does not have an item them they are going to want to use the workstation
-                        playerCont.HoldingItem = (playerCont.HoldingItem) ? InteractWorkstation() : UseWorkstation();
-                        break;
-                    //Coal pile, wood pile, etc...
-                    case "stockpile":
-                        //If the player is not holding an item check that the quickslots are not full
-                        //and that the player does not have the backpack open in order to allow them to pick up the desired object
-                        //If the player is holding an object allow them to drop the object
-                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
-                        break;
-                    default:
-                        break;
-                }
-                return;
-            }
-            else
-                stockpileCont = null;
-        }
         public bool InteractWorkstation()
         {
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
@@ -146,6 +123,45 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     return playerCont.HoldingItem;
             }
         }
+        public void OnInteraction(InputAction.CallbackContext context)
+        {
+            //If so is the player prompting to interact with said item?
+            if (playerCont.PlayerLOS.transform != null && (context.started))
+            {
+                //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
+                //Diff scenarios based on what the player is interacting with
+                switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
+                {
+                    //wall, door, blockage
+                    case "bounds":
+                        EnvironmentInteraction();
+                        break;
+                    //Forge, Quelcher, Sandstone, etc...
+                    case "workstation":
+                        ///<summary>
+                        ///If the player is holding an object let them interact with the workstation
+                        ///If the player does not have an item them they are going to want to use the workstation
+                        ///</summary>
+                        playerCont.HoldingItem = (playerCont.HoldingItem) ? InteractWorkstation() : UseWorkstation();
+                        break;
+                    //Coal pile, wood pile, etc...
+                    case "stockpile":
+                        ///<summary>
+                        ///If the player is not holding an item check that the quickslots are not full
+                        ///and that the player does not have the backpack open in order to allow them to pick up the desired object
+                        ///If the player is holding an object allow them to drop the object
+                        ///
+                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
+                        break;
+                    default:
+                        break;
+                }
+                return;
+            }
+            else
+                stockpileCont = null;
+        }
+
         #endregion
         // Start is called before the first frame update
         void Start()

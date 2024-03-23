@@ -8,7 +8,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
     {
         #region "Private serialized Fields"
         [SerializeField] private SpriteRenderer m_SpriteRend;
-        [SerializeField] private BoxCollider2D m_BoxCollider;
         [SerializeField] private Tilemap buildingTileMap;
         [SerializeField] private Tilemap environmentTileMap;
         [SerializeField] private Tilemap underwallTileMap;
@@ -54,7 +53,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         void Start()
         {
             m_SpriteRend = GetComponent<SpriteRenderer>();
-            m_BoxCollider = GetComponent<BoxCollider2D>();
             m_GridLayout  = GameObject.Find("Grid").GetComponent<GridLayout>();
             buildingTileMap = m_GridLayout.gameObject.transform.Find("tilemap_buildings").gameObject.GetComponent<Tilemap>();
             environmentTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment").gameObject.GetComponent<Tilemap>();
