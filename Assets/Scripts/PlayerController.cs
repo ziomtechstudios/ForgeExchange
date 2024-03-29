@@ -34,7 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private AudioClip playerStoneSteps, playerGrassSteps;
         #endregion
         #region Private Fields
-        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash;
+        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, inWaterHash;
         private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
@@ -106,6 +106,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
+        public int InWaterHash{get{return inWaterHash;}}
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -131,7 +132,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_HealthCont = GetComponent<HealthController>();
             playerStaminaCont = GetComponent<StaminaController>();
             M_AudioSource = GetComponent<AudioSource>();
-            M_DSpriteLayering = GetComponent<DynamicSpriteLayering>();
+            M_DSpriteLayering = GetComponent<DynamicSpriteLayering>(); 
+            inWaterHash = Animator.StringToHash("inWater");
         }
         // Update is called once per frame
         void Update()
@@ -142,7 +144,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null /*&& hit.transform.gameObject.CompareTag("underwall")*/) && (moveDir != dirToWall)){
+                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null ) && (moveDir != dirToWall)){
                     MovePlayer(false);
                     //Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
                 }
@@ -157,12 +159,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void OnCollisionEnter2D(Collision2D collision)
         {
             switch(LayerMask.LayerToName(collision.gameObject.layer)){
-                //Player has collided with wall
-                //Find a way to store 2d vector that represents dir player is colliding into wall with
-                //When player is trying to move away from wall they are touching we make sure...
-                //that the player is only allowed to move when that dir is not towards the wall.
+                ///<summary>
+                ///Player has collided with wall
+                ///Find a way to store 2d vector that represents dir player is colliding into wall with
+                ///When player is trying to move away from wall they are touching we make sure...
+                ///that the player is only allowed to move when that dir is not towards the wall.
+                ///Not working as intended (doesnt do jack shit)
+                ///</summary>
                 case("bounds"):
                     dirToWall = (collision.transform.position-transform.position).normalized;
+                    NearShore = collision.transform.CompareTag("water");
                     break;
                 case("enemy"):
                     TakeDamage(collision.gameObject.GetComponent<EnemyController>().IsAttacking?1.00f:0.00f);
@@ -170,6 +176,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 default:
                     break;
             }
+        }
+        private void OnCollisionExit2D(Collision2D collision){
+            NearShore = (!collision.transform.CompareTag("water"));
         }
     }
 }

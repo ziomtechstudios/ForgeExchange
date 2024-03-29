@@ -12,6 +12,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private Tilemap environmentTileMap;
         [SerializeField] private Tilemap underwallTileMap;
         [SerializeField] private Tilemap ornamentsTileMap;
+        [SerializeField] private Tilemap lakeTileMap;
         [SerializeField] private Transform m_SpriteSortPoint;
         [SerializeField] private Transform m_OrnamentSortPoint;
         [Tooltip("When passing a value for transparancy work within the range of 0.0f to 255.0f. Take your target value and divide it by 255.0f so that it will result in a nuumber between 0.0f and 1.0f.")][Range(0.0f, 1.0f)] [SerializeField] private float transparancyVal;
@@ -48,7 +49,11 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                     //
             }
         }
+
         #endregion
+        public bool IsObjInWater(){
+            return lakeTileMap.GetTile(m_GridLayout.WorldToCell(transform.position));
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -58,6 +63,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             environmentTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment").gameObject.GetComponent<Tilemap>();
             underwallTileMap = m_GridLayout.gameObject.transform.Find("tilemap_underwall").gameObject.GetComponent<Tilemap>();
             ornamentsTileMap  = m_GridLayout.gameObject.transform.Find("tilemap_underwall/tilemap_ornaments").gameObject.GetComponent<Tilemap>();
+            lakeTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment/tilemap_lakes").gameObject.GetComponent<Tilemap>();
             m_SpriteSortPoint = transform.Find("SpriteSortPos");
             m_OrnamentSortPoint = transform.Find("ornamentSortPoint");
         }

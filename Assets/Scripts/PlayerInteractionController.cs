@@ -10,6 +10,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Private Serialized Fields"
         [SerializeField] private PlayerController playerCont;
         [SerializeField] private WorkstationController workstationCont;
+        [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
         #endregion
         #region "Private Members"
         private StockpileController stockpileCont;
@@ -84,9 +85,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
                     break;
                 case "water":
-                    //If player is near water but not in water trigger dive animation and transition into swimming animations
-                    //If player is near Water but in water trigger exiting animation to transition into walking/running animation
-                    
+                    //
+                    if(playerCont.NearShore)
+                        playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
                     break;
                 default:
                     break;
