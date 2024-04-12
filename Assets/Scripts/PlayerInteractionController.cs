@@ -16,6 +16,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private StockpileController stockpileCont;
         #endregion
         #region "Private Fields"
+        private bool GoFishing(){
+            playerCont.M_Animator.SetBool(playerCont.HoldingItemHash, true);
+            return true;
+        }
+        private bool GoSwimming() {
+            playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
+            return false;
+        }
         private bool DropObj()
         {
             //Make sure we have reference to component in players LOS.
@@ -85,9 +93,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
                     break;
                 case "water":
-                    //
+                    
                     if(playerCont.NearShore)
-                        playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
+                        Debug.Log("We are touching the shoreline.");
+                        ///<summary>
+                        ///If we are holding an item and that item is a fishing pool we assume player wants to fish, if the player is empty handed we assume they want to swim
+                        ///In future consider if player has item that is not fishing pool as acceptable condition for swimming as well.
+                        ///If we choiose to implement ^ make sure we unequipt the 
+                        ///</summary>
+                        playerCont.HoldingItem = playerCont.HoldingItem?GoFishing():false;
+                        
                     break;
                 default:
                     break;
@@ -104,8 +119,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 playerCont.PlayerBackPackCont.gameObject.SetActive(true);
                 workstationCont.ToggleUse(playerCont);
-                //If the player is sing the caft table then disable to in-game quickslots so that the only ones available are the copy in the crafting menu.
-                //playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(!playerCont.PlayerLOS.transform.tag.Contains("Craft Table"));
                 return false;
             }
             else if (stockpileCont.Quantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
@@ -143,7 +156,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///If the player is holding an object let them interact with the workstation
                         ///If the player does not have an item them they are going to want to use the workstation
                         ///</summary>
-                        playerCont.HoldingItem = (playerCont.HoldingItem) ? InteractWorkstation() : UseWorkstation();
+                        playerCont.HoldingItem = playerCont.HoldingItem ? InteractWorkstation() : UseWorkstation();
                         break;
                     //Coal pile, wood pile, etc...
                     case "stockpile":
@@ -152,7 +165,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object
                         ///If the player is holding an object allow them to drop the object
                         ///
-                        playerCont.HoldingItem = (!playerCont.HoldingItem) ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
+                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
                         break;
                     default:
                         break;
@@ -168,6 +181,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void Start()
         {
             playerCont = GetComponent<PlayerController>();
+            dynamicSpriteLayering = GetComponent<DynamicSpriteLayering>();
         }
+            
     }
 }

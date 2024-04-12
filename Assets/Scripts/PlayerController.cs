@@ -34,7 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private AudioClip playerStoneSteps, playerGrassSteps;
         #endregion
         #region Private Fields
-        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, inWaterHash;
+        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, inWaterHash, holdingItemHash;
         private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
@@ -107,6 +107,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
         public int InWaterHash{get{return inWaterHash;}}
+        public int HoldingItemHash{get{return holdingItemHash;}}
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -134,7 +135,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_AudioSource = GetComponent<AudioSource>();
             M_DSpriteLayering = GetComponent<DynamicSpriteLayering>(); 
             inWaterHash = Animator.StringToHash("inWater");
+            holdingItemHash = Animator.StringToHash("holdingItem");
         }
+        
         // Update is called once per frame
         void Update()
         {
@@ -178,7 +181,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
         }
         private void OnCollisionExit2D(Collision2D collision){
-            NearShore = (!collision.transform.CompareTag("water"));
+            NearShore = !collision.transform.CompareTag("water");
         }
     }
 }
