@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -163,7 +163,847 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 208
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b73b323986ee281f0b55af0f74e1f483
+      internalID: -208992552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 208
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ac976b7538e605fb909127d5c94e23
+      internalID: 823599271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 208
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b87ba4f5dc7ee6d836f04d5ab0f12c
+      internalID: 1120723530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 208
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c55043ac2e8d46792f06bcdba8811f
+      internalID: 76731980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 208
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ec22efe66d4f8c4aacf1b08323c9c5b
+      internalID: 42489389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c62bb492cf06d738909327c7c02198
+      internalID: -1820671986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6518a1158eeb1eb268ddc2193f254488
+      internalID: 270859947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9261dd003b81eb27a5a0dcd447a9a67
+      internalID: 449544395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8eeae0f9a34577ddbb33de842e3b75b
+      internalID: -868777225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29022421871475f6cb59a487f4e0ca41
+      internalID: -791462383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 144
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8faf9e71cf52062c9b9adaee55c170a9
+      internalID: 1744155420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 144
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db0162c2a99de107881e8287f959c02
+      internalID: 1982542973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 144
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81dc3ae6e561778fa91fc570c0f3af1
+      internalID: -599131713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 144
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32cf131febcd4f188da442107a71621
+      internalID: -2000431964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 144
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93c428ff592f1ee8ca22af9b91d7150a
+      internalID: -1772524299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae0f5d4ac82bacc1bc9c24a8948ebf8
+      internalID: 433201185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1c12a3943595fa78b905f613841b41
+      internalID: -326385536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12f59a026638f0543a0ac6eaf5582003
+      internalID: 822737827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924883a5bb825136283f1b8a633bdbc8
+      internalID: 590572274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4477a321845d0a8ddb40eaffd7c3bee9
+      internalID: -1068010496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8faaf5b9c6e7185ab1a7e0386c5b9c
+      internalID: 1801063142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660d2d1c3766ab3b296e1cd6734b72a0
+      internalID: -1207108840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f4012d5cd878cd318efd5f511f7ce86
+      internalID: -218031431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 80
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558dfbd36a94fc348ac14d3f471ebc8f
+      internalID: -573366989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 80
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843f57b39ff0ec204906ea1541be9c6f
+      internalID: -511877919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 80
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639a2b26e53d170148fbdf2348365db8
+      internalID: -373759728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d099dc77375ca2e9b5d27d30185b9d1
+      internalID: -503017137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c147dac13f1ed248233968ed1af014
+      internalID: -1413982300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2759c44411ece6b8b04d17ef559ed4
+      internalID: -484874768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025ed0aa4158754b68e48056c71a9426
+      internalID: 135788102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 16
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc68a7a4322fdfa7b534888a1729e7a
+      internalID: -912118979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 16
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf012c345345a5514a6fedcb257c1e25
+      internalID: 460872636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 16
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3047f10ac74bc6c1a6efed895b7861d
+      internalID: 527520327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 16
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef352a6870dc46feb8f66408d9f6469
+      internalID: 729649339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 16
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c60fd5d513c08543906016703fd937d
+      internalID: 924492780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72a1dfaf606f629b98903cc4e3f9a155
+      internalID: -1285844178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b94274cb3cc39c39615ed9ef9878c1
+      internalID: -40795643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da92c1f71d422105e85f2f5e7785a15c
+      internalID: -1347321655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83055db5f33c02a90bd0a08e62924cff
+      internalID: -700993367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Idle-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 672f16e0eb1f4c29b990b1a27a89844f
+      internalID: 315650104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -174,7 +1014,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Charlie-Fishing-Idle-Sheet_0: -208992552
+      Charlie-Fishing-Idle-Sheet_1: 823599271
+      Charlie-Fishing-Idle-Sheet_10: 1744155420
+      Charlie-Fishing-Idle-Sheet_11: 1982542973
+      Charlie-Fishing-Idle-Sheet_12: -599131713
+      Charlie-Fishing-Idle-Sheet_13: -2000431964
+      Charlie-Fishing-Idle-Sheet_14: -1772524299
+      Charlie-Fishing-Idle-Sheet_15: 433201185
+      Charlie-Fishing-Idle-Sheet_16: -326385536
+      Charlie-Fishing-Idle-Sheet_17: 822737827
+      Charlie-Fishing-Idle-Sheet_18: 590572274
+      Charlie-Fishing-Idle-Sheet_19: -1068010496
+      Charlie-Fishing-Idle-Sheet_2: 1120723530
+      Charlie-Fishing-Idle-Sheet_20: 1801063142
+      Charlie-Fishing-Idle-Sheet_21: -1207108840
+      Charlie-Fishing-Idle-Sheet_22: -218031431
+      Charlie-Fishing-Idle-Sheet_23: -573366989
+      Charlie-Fishing-Idle-Sheet_24: -511877919
+      Charlie-Fishing-Idle-Sheet_25: -373759728
+      Charlie-Fishing-Idle-Sheet_26: -503017137
+      Charlie-Fishing-Idle-Sheet_27: -1413982300
+      Charlie-Fishing-Idle-Sheet_28: -484874768
+      Charlie-Fishing-Idle-Sheet_29: 135788102
+      Charlie-Fishing-Idle-Sheet_3: 76731980
+      Charlie-Fishing-Idle-Sheet_30: -912118979
+      Charlie-Fishing-Idle-Sheet_31: 460872636
+      Charlie-Fishing-Idle-Sheet_32: 527520327
+      Charlie-Fishing-Idle-Sheet_33: 729649339
+      Charlie-Fishing-Idle-Sheet_34: 924492780
+      Charlie-Fishing-Idle-Sheet_35: -1285844178
+      Charlie-Fishing-Idle-Sheet_36: -40795643
+      Charlie-Fishing-Idle-Sheet_37: -1347321655
+      Charlie-Fishing-Idle-Sheet_38: -700993367
+      Charlie-Fishing-Idle-Sheet_39: 315650104
+      Charlie-Fishing-Idle-Sheet_4: 42489389
+      Charlie-Fishing-Idle-Sheet_5: -1820671986
+      Charlie-Fishing-Idle-Sheet_6: 270859947
+      Charlie-Fishing-Idle-Sheet_7: 449544395
+      Charlie-Fishing-Idle-Sheet_8: -868777225
+      Charlie-Fishing-Idle-Sheet_9: -791462383
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -92,6 +92,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 case "Door":
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
                     break;
+                /*
                 case "water":
                     
                     if(playerCont.NearShore)
@@ -104,6 +105,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         playerCont.HoldingItem = playerCont.HoldingItem?GoFishing():false;
                         
                     break;
+                */
                 default:
                     break;
             }

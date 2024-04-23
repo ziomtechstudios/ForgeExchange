@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -163,7 +163,1267 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723ac308521a983aeb63a212244aa8b4
+      internalID: -944982182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 208
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f831ace2aff14a0c69c5940b9265ffea
+      internalID: 1967972862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 208
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e77d0dd30fc603a85b93aca7cf32e9
+      internalID: -2074479721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 208
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2462f65facdc5d2afbda345a18552042
+      internalID: -1829129694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 208
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a33d8a8390464ae9064fc1cd09c6a2
+      internalID: -1239411469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 208
+        width: 14
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6770d5b1ce0e4ff9c939bb027ad0f1e6
+      internalID: -938440615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 208
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1da8d9871b145afb5fe995e19ba7fc
+      internalID: -1547021396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dae56b40235e4dcaa9ec942040531e81
+      internalID: -780476059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 383441ea60ed2e5aebde799ed9cafc8f
+      internalID: -857304726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50ebc4fd220a6743ade6c1128008e49
+      internalID: 1130406484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 208
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34bda8f35fdc6e82fb09d6e002d655ad
+      internalID: 311286001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5ec63b71f1bfdafbc877fcc14ca3eb
+      internalID: -1920594966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4852daa616c8bdf1199eabc6efad8c40
+      internalID: -593529538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee5a470ae26134cc9bea7f7761d72d3
+      internalID: 944556207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 208
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b450fc86a8c16a729a33e2f8247618c8
+      internalID: -2114566070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cec47c9c83d12b8abe0865722cc452f
+      internalID: -1631587048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e3c68c079245d4eb3ec787f450d1c2
+      internalID: 1538079651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a0ba258cd619d96a896726fcbd34d23
+      internalID: -132247502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 144
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f42ba2e981a563469df5ce8f280f6d1
+      internalID: -1309665962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e31856ab478f58cb9af7d96ef9ac9c0
+      internalID: -1310520230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c7d3a6d4bcc6e59b1e9b8898a73816
+      internalID: 137876215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 144
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba32bd0ee5aa5d8d498222f9b0e5f05e
+      internalID: -1788320482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ff0fcd0e93209ac94cce72ce93c88b
+      internalID: 402849874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa0cd3ea02e9ab5781042a16b81eb3c
+      internalID: 260259919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 323c430cd90d994d0bddd8eefb315cdd
+      internalID: -1885062523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffefe8bbb2cc981a7b3ef612e4452c4d
+      internalID: -1755066547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2137781e9e4077fc9d7859ad5c2eff6
+      internalID: 1638832220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c691aec03530dbbb8f0a01d37d480f4
+      internalID: 1275044224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5eddd8ed83e97b1bd0b663addb50b3
+      internalID: 211415921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 144
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbda5995b963b8f1e96b3e175de3e176
+      internalID: -1114437173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf92139bcc5b65deb15659b718382f2
+      internalID: 202921302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ea3c8268221c7a1aa471ca4b73192c
+      internalID: 1034537170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 80
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 198b517f7e16e6959aa6a3f4de8dd540
+      internalID: -1568151054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 80
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c936de53aa0d947bbd4a68eb6a7a120
+      internalID: -1310268436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee36dede2e4a9b17bbc300bc25ec81a1
+      internalID: 507209089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cec2c6c97351e4021a6176ae1ef31d63
+      internalID: 1813120375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 80
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e772bc56d209b98a2f0994c42e106f
+      internalID: 695504862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 80
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b98226051773cc1793c802d81842eb2
+      internalID: -1418261557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d32f993d2083ee3d98e36aa1c7d8f39
+      internalID: -1843888663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7c9b35b57c97179aaefe4caeb6cf19
+      internalID: 226469369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b077ec0b6d2b13b3852c18011cbdca7
+      internalID: 331666834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319389d4eb5328720be395ece5e3369d
+      internalID: 113257887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4dfb55c0436a366ba2d0467697c54a
+      internalID: -597712763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f0aeef0d53fabd568c39e05d30e9371
+      internalID: -958517530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 80
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b6aad61bd5007eb94401efcab60f62
+      internalID: 1362207176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b44ee38182fd63df98e687181c8d0742
+      internalID: 1875360075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 16
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc738bcf75370080990f42c8477b506
+      internalID: -6345177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741ade0b8e6d8f90e895543b9599f180
+      internalID: -1790313636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 486e525de5525aa1da083b3831412977
+      internalID: 527763344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 16
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3adc97d878685ceba99ca61a8636fb64
+      internalID: 1753217658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9caa8e50d45eb879fbac8506f31414dd
+      internalID: 764185412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb60fbd9bc936d55cba0b73f5d5e4e42
+      internalID: 1633979182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d8b01489cf7f5a0b826fe86bebf3d8
+      internalID: 639584193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719d1409bb4e84a8aace6c5baae3c75c
+      internalID: -489043048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ecb6b59949bc696999ae41f0c77403
+      internalID: -1645348497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2243a553c410ffffc871f9fb433a334b
+      internalID: 1591061374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba6c205c94fed75c98a8b01cf38bb93
+      internalID: 550651400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b731fa03685b2aa2bbf00f7dc3314a9
+      internalID: -1387992075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3fe891db85699e693f33196e56f720
+      internalID: -1892217226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Charlie-Fishing-Casting-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 16
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8df20c60031a0734bffda9327df400c
+      internalID: -211287073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -174,7 +1434,67 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Charlie-Fishing-Casting-Sheet_0: -944982182
+      Charlie-Fishing-Casting-Sheet_1: 1967972862
+      Charlie-Fishing-Casting-Sheet_10: 311286001
+      Charlie-Fishing-Casting-Sheet_11: -1920594966
+      Charlie-Fishing-Casting-Sheet_12: -593529538
+      Charlie-Fishing-Casting-Sheet_13: 944556207
+      Charlie-Fishing-Casting-Sheet_14: -2114566070
+      Charlie-Fishing-Casting-Sheet_15: -1631587048
+      Charlie-Fishing-Casting-Sheet_16: 1538079651
+      Charlie-Fishing-Casting-Sheet_17: -132247502
+      Charlie-Fishing-Casting-Sheet_18: -1309665962
+      Charlie-Fishing-Casting-Sheet_19: -1310520230
+      Charlie-Fishing-Casting-Sheet_2: -2074479721
+      Charlie-Fishing-Casting-Sheet_20: 137876215
+      Charlie-Fishing-Casting-Sheet_21: -1788320482
+      Charlie-Fishing-Casting-Sheet_22: 402849874
+      Charlie-Fishing-Casting-Sheet_23: 260259919
+      Charlie-Fishing-Casting-Sheet_24: -1885062523
+      Charlie-Fishing-Casting-Sheet_25: -1755066547
+      Charlie-Fishing-Casting-Sheet_26: 1638832220
+      Charlie-Fishing-Casting-Sheet_27: 1275044224
+      Charlie-Fishing-Casting-Sheet_28: 211415921
+      Charlie-Fishing-Casting-Sheet_29: -1114437173
+      Charlie-Fishing-Casting-Sheet_3: -1829129694
+      Charlie-Fishing-Casting-Sheet_30: 202921302
+      Charlie-Fishing-Casting-Sheet_31: 1034537170
+      Charlie-Fishing-Casting-Sheet_32: -1568151054
+      Charlie-Fishing-Casting-Sheet_33: -1310268436
+      Charlie-Fishing-Casting-Sheet_34: 507209089
+      Charlie-Fishing-Casting-Sheet_35: 1813120375
+      Charlie-Fishing-Casting-Sheet_36: 695504862
+      Charlie-Fishing-Casting-Sheet_37: -1418261557
+      Charlie-Fishing-Casting-Sheet_38: -1843888663
+      Charlie-Fishing-Casting-Sheet_39: 226469369
+      Charlie-Fishing-Casting-Sheet_4: -1239411469
+      Charlie-Fishing-Casting-Sheet_40: 331666834
+      Charlie-Fishing-Casting-Sheet_41: 113257887
+      Charlie-Fishing-Casting-Sheet_42: -597712763
+      Charlie-Fishing-Casting-Sheet_43: -958517530
+      Charlie-Fishing-Casting-Sheet_44: 1362207176
+      Charlie-Fishing-Casting-Sheet_45: 1875360075
+      Charlie-Fishing-Casting-Sheet_46: -6345177
+      Charlie-Fishing-Casting-Sheet_47: -1790313636
+      Charlie-Fishing-Casting-Sheet_48: 527763344
+      Charlie-Fishing-Casting-Sheet_49: 1753217658
+      Charlie-Fishing-Casting-Sheet_5: -938440615
+      Charlie-Fishing-Casting-Sheet_50: 764185412
+      Charlie-Fishing-Casting-Sheet_51: 1633979182
+      Charlie-Fishing-Casting-Sheet_52: 639584193
+      Charlie-Fishing-Casting-Sheet_53: -489043048
+      Charlie-Fishing-Casting-Sheet_54: -1645348497
+      Charlie-Fishing-Casting-Sheet_55: 1591061374
+      Charlie-Fishing-Casting-Sheet_56: 550651400
+      Charlie-Fishing-Casting-Sheet_57: -1387992075
+      Charlie-Fishing-Casting-Sheet_58: -1892217226
+      Charlie-Fishing-Casting-Sheet_59: -211287073
+      Charlie-Fishing-Casting-Sheet_6: -1547021396
+      Charlie-Fishing-Casting-Sheet_7: -780476059
+      Charlie-Fishing-Casting-Sheet_8: -857304726
+      Charlie-Fishing-Casting-Sheet_9: 1130406484
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
