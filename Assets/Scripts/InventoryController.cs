@@ -60,25 +60,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void DroppingItem()
         {
             //If the player is holding item we look for coresponding slot holding said item
-            if (playerCont.HoldingItem)
+            for (int i = 0; i < inventoryAmnt; i++)
             {
-                for (int i = 0; i < inventoryAmnt; i++)
+                if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
                 {
-                    if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
-                    {
-                        //desired slot found
-                        //Empty players hands
-                        //Empty slot
-                        playerCont.HoldingPrefab = null;
-                        playerCont.HoldingCont = null;
-                        playerCont.HoldingItem = false;
-                        slotConts[i].ItemImage.sprite = noItemSprite;
-                        slotConts[i].SlotWithItem = false;
-                        slotConts[i].ItemCont = null;
-                        slotConts[i].SlotPrefab = null;
-                        SelectSlot(-1);
-                        break;
-                    }
+                     //desired slot found
+                    //Empty players hands
+                    //Empty slot
+                    playerCont.HoldingPrefab = null;
+                    playerCont.HoldingCont = null;
+                    playerCont.HoldingItem = false;
+                    slotConts[i].ItemImage.sprite = noItemSprite;
+                    slotConts[i].SlotWithItem = false;
+                    slotConts[i].ItemCont = null;
+                    slotConts[i].SlotPrefab = null;
+                    SelectSlot(-1);
+                    break;
                 }
             }
             AreAllSlotsFull();
@@ -87,7 +84,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             AreAllSlotsFull();
             //If the player is holding an object and all their slots are not occupied
-            if (playerCont.HoldingItem && !slotsAreFull)
+            if (!slotsAreFull)
             {
                 //iterating through slots we find the first empty slot
                 for (int i = 0; i < inventoryAmnt; i++)

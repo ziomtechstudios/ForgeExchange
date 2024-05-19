@@ -11,19 +11,25 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerController playerCont;
         [SerializeField] private WorkstationController workstationCont;
         [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
+
+
         #endregion
         #region "Private Members"
         private StockpileController stockpileCont;
+
+
+
         #endregion
         #region "Private Fields"
         private bool GoFishing(){
-            playerCont.M_Animator.SetBool(playerCont.HoldingItemHash, true);
-            return true;
+            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, !dynamicSpriteLayering.IsObjInWater() && playerCont.NearShore);
+            return (!dynamicSpriteLayering.IsObjInWater() && playerCont.NearShore);
         }
-        private bool GoSwimming() {
+        //TODO
+        /*private bool GoSwimming() {
             playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
             return false;
-        }
+        }*/
         private bool DropObj()
         {
             //Make sure we have reference to component in players LOS.
@@ -92,7 +98,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 case "Door":
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
                     break;
-                /*
+                
                 case "water":
                     
                     if(playerCont.NearShore)
@@ -102,10 +108,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///In future consider if player has item that is not fishing pool as acceptable condition for swimming as well.
                         ///If we choiose to implement ^ make sure we unequipt the 
                         ///</summary>
-                        playerCont.HoldingItem = playerCont.HoldingItem?GoFishing():false;
-                        
+                        //playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingPrefab?:):false;
                     break;
-                */
+                
                 default:
                     break;
             }
@@ -142,7 +147,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnInteraction(InputAction.CallbackContext context)
         {
             //If so is the player prompting to interact with said item?
-            if (playerCont.PlayerLOS.transform != null && (context.started))
+            if (playerCont.PlayerLOS.transform != null && (context.started) && !(playerCont.PlayerBackPackCont.gameObject.activeInHierarchy))
             {
                 //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
                 //Diff scenarios based on what the player is interacting with
@@ -167,7 +172,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object
                         ///If the player is holding an object allow them to drop the object
                         ///
-                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : (playerCont.PlayerBackPackCont.gameObject.activeInHierarchy) ? (false) : (PickUpObj())) : (DropObj());
+                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : (DropObj());
                         break;
                     default:
                         break;
@@ -177,7 +182,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
                 stockpileCont = null;
         }
-
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -185,6 +189,5 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont = GetComponent<PlayerController>();
             dynamicSpriteLayering = GetComponent<DynamicSpriteLayering>();
         }
-            
     }
 }

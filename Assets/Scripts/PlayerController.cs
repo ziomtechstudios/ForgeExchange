@@ -34,7 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private AudioClip playerStoneSteps, playerGrassSteps;
         #endregion
         #region Private Fields
-        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, inWaterHash, holdingItemHash;
+        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, inWaterHash, holdingItemHash, isFishingHash;
         private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
@@ -47,7 +47,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetBool(isMovingHash, true);
                 M_Animator.SetFloat(moveXHash, moveDir.x);
                 M_Animator.SetFloat(moveYHash, moveDir.y);
-                isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
+                isRunning = (canRun && (playerStaminaCont.Stamina > 0.0f)) ? true : false;
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (IsMoving ? 1.00f : 0.00f) * moveDir);
             }
             else
@@ -108,6 +108,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
         public int InWaterHash{get{return inWaterHash;}}
         public int HoldingItemHash{get{return holdingItemHash;}}
+        public int IsFishingHash{get{return isFishingHash;}}
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -136,6 +137,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_DSpriteLayering = GetComponent<DynamicSpriteLayering>(); 
             inWaterHash = Animator.StringToHash("inWater");
             holdingItemHash = Animator.StringToHash("holdingItem");
+            isFishingHash = Animator.StringToHash("isFishing");
         }
         
         // Update is called once per frame
@@ -144,13 +146,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Is the player looking at a interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
-            if (IsMoving && (M_HealthCont.HP > 0.0f))
+            if (IsMoving && (M_HealthCont.HP > 0.0f) && !backpackCont.gameObject.activeInHierarchy)
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null ) && (moveDir != dirToWall)){
+                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null ) && (moveDir != dirToWall))
                     MovePlayer(false);
                     //Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
-                }
+                
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else
                     MovePlayer(true);
@@ -172,6 +174,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 case("bounds"):
                     dirToWall = (collision.transform.position-transform.position).normalized;
                     NearShore = collision.transform.CompareTag("water");
+                    
                     break;
                 case("enemy"):
                     TakeDamage(collision.gameObject.GetComponent<EnemyController>().IsAttacking?1.00f:0.00f);

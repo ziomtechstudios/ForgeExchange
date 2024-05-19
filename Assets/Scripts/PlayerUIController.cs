@@ -34,7 +34,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation);
             backpackController.SyncQuickSlots((backPackObj.activeInHierarchy) ? ("InGameToMenu") : ("MenuToInGame"));
         }
-
         public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
         #endregion
         // Start is called before the first frame update
