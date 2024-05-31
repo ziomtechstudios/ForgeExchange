@@ -146,7 +146,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Is the player looking at a interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
-            if (IsMoving && (M_HealthCont.HP > 0.0f) && !backpackCont.gameObject.activeInHierarchy)
+            if (IsMoving && (M_HealthCont.HP > 0.0f) && !backpackCont.gameObject.activeInHierarchy && !IsFishing)
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null ) && (moveDir != dirToWall))

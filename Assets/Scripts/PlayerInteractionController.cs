@@ -22,8 +22,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Private Fields"
         private bool GoFishing(){
-            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, !dynamicSpriteLayering.IsObjInWater() && playerCont.NearShore);
-            return (!dynamicSpriteLayering.IsObjInWater() && playerCont.NearShore);
+            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
+            playerCont.IsFishing = true;
+            return true;
+        }
+        private void ReelingRod(){
+            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, false);
+            playerCont.IsFishing = false;
         }
         //TODO
         /*private bool GoSwimming() {
@@ -100,15 +105,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     break;
                 
                 case "water":
-                    
-                    if(playerCont.NearShore)
+                    if(playerCont.NearShore && !dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing){
                         Debug.Log("We are touching the shoreline.");
                         ///<summary>
-                        ///If we are holding an item and that item is a fishing pool we assume player wants to fish, if the player is empty handed we assume they want to swim
-                        ///In future consider if player has item that is not fishing pool as acceptable condition for swimming as well.
-                        ///If we choiose to implement ^ make sure we unequipt the 
+                        ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
+                        ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
                         ///</summary>
-                        //playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingPrefab?:):false;
+                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemSubTag.Contains("fishing rod")?GoFishing():true):false;
+                    }
                     break;
                 
                 default:
@@ -147,7 +151,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnInteraction(InputAction.CallbackContext context)
         {
             //If so is the player prompting to interact with said item?
-            if (playerCont.PlayerLOS.transform != null && (context.started) && !(playerCont.PlayerBackPackCont.gameObject.activeInHierarchy))
+            if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
             {
                 //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
                 //Diff scenarios based on what the player is interacting with
@@ -172,7 +176,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object
                         ///If the player is holding an object allow them to drop the object
                         ///
-                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : (DropObj());
+                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DropObj();
                         break;
                     default:
                         break;
