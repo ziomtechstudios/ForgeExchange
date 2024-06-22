@@ -16,15 +16,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         #endregion
         #region "Private Funcs"
-        #endregion
+
         private void ReelingRod(){
             playerInteractionCont.PlayerCont.M_Animator.SetBool(playerInteractionCont.PlayerCont.IsFishingHash, false);
             playerInteractionCont.PlayerCont.IsFishing = false;
         }
+        #endregion
         // Start is called before the first frame update
         void Start()
         {
-            
+            playerInteractionCont = GetComponent<PlayerInteractionController>();
         }
 
         // Update is called once per frame

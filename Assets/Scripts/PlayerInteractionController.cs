@@ -11,14 +11,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerController playerCont;
         [SerializeField] private WorkstationController workstationCont;
         [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
-
-
         #endregion
         #region "Private Members"
         private StockpileController stockpileCont;
-
-
-
+        #endregion
+        #region Getters/Setters"
+        public PlayerController PlayerCont{get {return playerCont;}}
         #endregion
         #region "Private Fields"
         private bool GoFishing(){
@@ -26,10 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.IsFishing = true;
             return true;
         }
-        private void ReelingRod(){
-            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, false);
-            playerCont.IsFishing = false;
-        }
+
         //TODO
         /*private bool GoSwimming() {
             playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
