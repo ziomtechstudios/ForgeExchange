@@ -11,6 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerController playerCont;
         [SerializeField] private WorkstationController workstationCont;
         [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
+        [SerializeField] private PlayerFishingController playerFishingCont;
         #endregion
         #region "Private Members"
         private StockpileController stockpileCont;
@@ -121,13 +122,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Make sure we have reference to component in players LOS
             stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
-            if (stockpileCont.Quantity == 0)
+            if (stockpileCont.CurQuantity == 0)
             {
                 playerCont.PlayerBackPackCont.gameObject.SetActive(true);
                 workstationCont.ToggleUse(playerCont);
                 return false;
             }
-            else if (stockpileCont.Quantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
+            else if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
                 return PickUpObj();
             else
                 return playerCont.HoldingItem;
@@ -187,6 +188,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             playerCont = GetComponent<PlayerController>();
             dynamicSpriteLayering = GetComponent<DynamicSpriteLayering>();
+            playerFishingCont = GetComponent<PlayerFishingController>();
         }
     }
 }

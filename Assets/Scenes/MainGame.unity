@@ -143,6 +143,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2541162681544386626, guid: 8dfde1c4310465a4fa4b95b328df5036, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 10
       objectReference: {fileID: 0}
@@ -1509,6 +1513,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8861168423362456300, guid: 8bacc4916a6920eab83847253d70398d, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 10
       objectReference: {fileID: 0}
@@ -1695,6 +1703,10 @@ PrefabInstance:
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 6523370096078143492, guid: c8748494eea8ad409ad06f9b781e5964, type: 3}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 10
@@ -2871,6 +2883,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 293479856}
     m_Modifications:
+    - target: {fileID: 2003661638, guid: 9a7d2b9205dce33ff9814fae28cb8789, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003661638, guid: 9a7d2b9205dce33ff9814fae28cb8789, type: 3}
+      propertyPath: emptyStockpileSprite
+      value: 
+      objectReference: {fileID: -1728404970, guid: 33c8be615514ce4579c410babd97a29b, type: 3}
     - target: {fileID: 214322800974835693, guid: 9a7d2b9205dce33ff9814fae28cb8789, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4608727
@@ -3011,6 +3031,10 @@ PrefabInstance:
     - target: {fileID: 127495314456390431, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: m_Name
       value: metalBarStockPile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3676626079402623555, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: m_SortingLayer
@@ -24458,6 +24482,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6576258240568586645, guid: afddbc4c0aa6283c1a2687796c1bdd4f, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 10
       objectReference: {fileID: 0}
@@ -24774,6 +24802,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7055797447627000057, guid: c6093b62279225147bdeb22d0f9ca843, type: 3}
+      propertyPath: curQuantity
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055797447627000057, guid: c6093b62279225147bdeb22d0f9ca843, type: 3}
       propertyPath: emptyStockpileSprite
       value: 
       objectReference: {fileID: -456048127, guid: 140a35c7a21c5c6229752641e2e0065e, type: 3}
@@ -24810,6 +24842,10 @@ PrefabInstance:
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 8270811349214939455, guid: 943a766fd6ce97340b45090be25ad7f1, type: 3}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 10
@@ -24997,6 +25033,10 @@ PrefabInstance:
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 1560987628691976045, guid: bba2232027d72170d82c47614425b453, type: 3}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: curQuantity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
       value: 10
@@ -26694,6 +26734,10 @@ PrefabInstance:
     - target: {fileID: 6268943539048037213, guid: 83e0c6f7c22e52240822421b29a54853, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400380837280584065, guid: 83e0c6f7c22e52240822421b29a54853, type: 3}
+      propertyPath: curQuantity
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6400380837280584065, guid: 83e0c6f7c22e52240822421b29a54853, type: 3}
       propertyPath: emptyStockpileSprite
@@ -30092,6 +30136,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -809670857
       objectReference: {fileID: 0}
+    - target: {fileID: 6001479004233925187, guid: ed908d067836a27448afb9964e27649c, type: 3}
+      propertyPath: emptyStockpileSprite
+      value: 
+      objectReference: {fileID: 1944098048, guid: 33c8be615514ce4579c410babd97a29b, type: 3}
     - target: {fileID: 8359663826730359675, guid: ed908d067836a27448afb9964e27649c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.17

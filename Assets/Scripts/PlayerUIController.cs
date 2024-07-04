@@ -91,13 +91,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (itemUiTransform != null)
                         {
                             StockpileController stockPileCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<StockpileController>();
-                            if (stockPileCont != null && (stockPileCont.Quantity != 0))
+                            if (stockPileCont != null && (stockPileCont.CurQuantity != 0))
                             {
                                 itemUI.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("productUILOC").position);
                                 itemUI.gameObject.SetActive(true);
                                 itemUI.sprite = stockPileCont.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
                             }
-                            else if (stockPileCont.Quantity == 0 && itemUI.gameObject.activeInHierarchy)
+                            else if (stockPileCont.CurQuantity == 0 && itemUI.gameObject.activeInHierarchy)
                                 itemUI.gameObject.SetActive(false);
                         }
                         break;
@@ -106,7 +106,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         StockpileController stockpileCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<StockpileController>();
                         //Assign location value and title of coresponding UI Items
                         counterText.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("counterUILOC").position);
-                        counterText.text = $"{stockpileCont.Quantity}/{stockpileCont.MaxQuantity}";
+                        counterText.text = $"{stockpileCont.CurQuantity}/{stockpileCont.MaxQuantity}";
                         if (!counterText.gameObject.activeInHierarchy)
                             counterText.gameObject.SetActive(true);
                         break;

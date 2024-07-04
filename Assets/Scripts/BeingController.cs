@@ -1,6 +1,6 @@
 using UnityEngine;
 namespace Com.ZiomtechStudios.ForgeExchange{
-    public class BeingController : MonoBehaviour
+    public abstract class BeingController : MonoBehaviour
     {
         [SerializeField] private Animator m_Animator;
         [SerializeField] private HealthController m_healthCont;

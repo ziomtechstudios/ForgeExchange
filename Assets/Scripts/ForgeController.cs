@@ -55,7 +55,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public override void Work(ItemController itemController)
         {
             //Check to see if the forge is on, its not already smelting and that it is not holding a smelted bar
-            if (InUse && !DoingWork && (forgeStockPileCont.Quantity == 0))
+            if (InUse && !DoingWork && (forgeStockPileCont.CurQuantity == 0))
             {
                 smeltedController = itemController;
                 //Calculate quickest time this forge could smelt given ore

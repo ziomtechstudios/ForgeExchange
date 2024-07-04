@@ -5,15 +5,10 @@ using UnityEngine;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class StockpileController : MonoBehaviour
+    public class StockpileController : StorageController
     {
         #region Private Serialized Fields
-        [Header("Stockpile Components")]
-        [SerializeField] private SpriteRenderer m_SpriteRenderer;
-        [Header("Stockpile Metrics")]
-        [SerializeField] private int quantity;
-        [SerializeField] private int maxQuantity;
-        [SerializeField] private bool isEmpty;
+
         [Header("Item data")]
         [SerializeField] private GameObject itemPrefab;
         [Tooltip("Sprite that represents when this stockpile is empty")][SerializeField] private Sprite emptyStockpileSprite;
@@ -22,10 +17,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private IDictionary<string, Sprite> itemTagToSpriteDict;
         #endregion
         #region Getters/Setter
-        public int Quantity { get { return quantity; } }
-        public int MaxQuantity { get { return maxQuantity; } set { maxQuantity = value; } }
+
         public GameObject ItemPrefab { get { return itemPrefab; } set { itemPrefab = value; } }
-        public bool IsEmpty { get { return isEmpty; } }
+
         #endregion
 
         //Taking an item from a stockpile
@@ -35,17 +29,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             Sprite newSprite = newItemCont.ItemIcon;
             bool canTakeItem = itemTagToSpriteDict.TryGetValue(newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag, out newSprite);
             itemPrefab = canTakeItem ? newItem : null;
-            isEmpty = !canTakeItem;
-            m_SpriteRenderer.sprite = (!isEmpty) ? newSprite : emptyStockpileSprite;
+            IsEmpty = !canTakeItem;
+            M_SpriteRend.sprite = (!IsEmpty) ? newSprite : emptyStockpileSprite;
         }
         public bool Deposit(int amount, GameObject newItem, ItemController newItemCont)
         {
             //if player can deposit item to stockpile update current quantity and return outcome
-            if (isEmpty && itemTagToSpriteDict.ContainsKey(newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag))
+            if (IsEmpty && itemTagToSpriteDict.ContainsKey(newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag))
                 TakeItem(newItem, newItemCont);
-            if (((quantity + amount) <= maxQuantity) && (newItem == itemPrefab))
+            if (((CurQuantity + amount) <= MaxQuantity) && (newItem == itemPrefab))
             {
-                quantity += amount;
+                CurQuantity += amount;
                 return true;
             }
             else
@@ -55,24 +49,25 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void Withdraw(int amount)
         {
             //Check to make sure amount withdraw does not result in negative stock, if it does fail withdraw
-            quantity -= (((quantity - amount) >= 0) ? (amount) : (0));
+            CurQuantity -= (((CurQuantity - amount) >= 0) ? (amount) : (0));
             //if empty get rid of 
-            isEmpty = (quantity == 0);
+            IsEmpty = (CurQuantity == 0);
             //If the stockpile is empty replace prefab sprite to empty one so that playerts now stockpile can be repopulated with an item
-            m_SpriteRenderer.sprite = (isEmpty) ? (emptyStockpileSprite) : (m_SpriteRenderer.sprite);
-            itemPrefab = (isEmpty) ? (null) : (itemPrefab);
+            M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (M_SpriteRend.sprite);
+            itemPrefab = (IsEmpty) ? (null) : (itemPrefab);
         }
         public void Start()
         {
             if (gameObject.tag.Contains("Stockpile"))
-                m_SpriteRenderer = GetComponent<SpriteRenderer>();
+                M_SpriteRend = GetComponent<SpriteRenderer>();
             else
-                m_SpriteRenderer = transform.Find("productUILOC").gameObject.GetComponent<SpriteRenderer>();
-            isEmpty = (quantity == 0);
+                M_SpriteRend= transform.Find("productUILOC").gameObject.GetComponent<SpriteRenderer>();
+            //CurQuantity = MaxQuantity;
+            IsEmpty = (CurQuantity == 0);
             itemTagToSpriteDict = new Dictionary<string, Sprite>();
             foreach (string itemTag in itemTags)
                 itemTagToSpriteDict.Add(itemTag, itemSprites[Array.IndexOf(itemTags, itemTag)]);
-            m_SpriteRenderer.sprite = (isEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[itemPrefab.GetComponent<ItemController>().PrefabItemStruct.itemSubTag + itemPrefab.GetComponent<ItemController>().PrefabItemStruct.itemTag]);
+            M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[itemPrefab.GetComponent<ItemController>().PrefabItemStruct.itemSubTag + itemPrefab.GetComponent<ItemController>().PrefabItemStruct.itemTag]);
         }
     }
 }

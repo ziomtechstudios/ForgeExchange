@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public class BackpackController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class BackpackController : StorageController,  IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         #region Private Serialized Fields
         [SerializeField] private int numSlots;
@@ -16,19 +16,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerUIController m_PlayerUIController;
         #endregion
         #region Private Functions + Members
-        private string ogSlotType;
-        private int ogSlotIndex;
         private RectTransform movingSlotRectTransform;
         private RectTransform backPackRectTransform;
         private void ReturnItem(PointerEventData eventData)
         {
-            switch (ogSlotType)
+            switch (OgSlotType)
             {
                 case ("Backpack"):
-                    DragAndDropSlot.DropItem(movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, ogSlotIndex);
+                    DragAndDropSlot.DropItem(movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
                     break;
                 case ("QuickSlots"):
-                    DragAndDropSlot.DropItem(movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, ogSlotIndex);
+                    DragAndDropSlot.DropItem(movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
                     break;
                 default:
                     break;
@@ -36,8 +34,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         #region Getters/Setters
-        public string OGSlotType { get { return ogSlotType; } }
-        public int OGSlotIndex { get { return ogSlotIndex; } }
         public SlotController[] BackPackSlots { get { return backPackSlots; } }
         #endregion
         #region Public Funcs
@@ -70,10 +66,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.SelectItem(eventData, movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, out ogSlotIndex, out ogSlotType);
+                        DragAndDropSlot.SelectItem(eventData, movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, OgSlotIndex, OgSlotType);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.SelectItem(eventData, movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, out ogSlotIndex, out ogSlotType);
+                        DragAndDropSlot.SelectItem(eventData, movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, OgSlotIndex, OgSlotType);
                         break;
                     default:
                         break;
@@ -112,6 +108,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 ReturnItem(eventData);
+            Debug.Log($"The item dropped has an initial index of {OgSlotIndex} and was in the {OgSlotType} group of slots.");
+            
         }
         #endregion
         // Start is called before the first frame update
@@ -119,7 +117,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
             m_PlayerUIController = m_InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
-            movingSlot = transform.Find("Slot13").gameObject;
             movingSlotCont = movingSlot.GetComponent<SlotController>();
             movingSlotRectTransform = movingSlot.GetComponent<RectTransform>();
             backPackSlots = new SlotController[numSlots];
