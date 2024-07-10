@@ -33,7 +33,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 craftMenuObj.SetActive(false);
                 //Make contents of in game slots match how it was oriented in crafting slot
                 //Doing the same to Backpack slots since we can rearange contents of backpack within crafting table
-                SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.BackPackSlots, craftingMenuController.backPackSlots);
+                SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.backPackSlots, craftingMenuController.backPackSlots);
                 SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, craftingMenuController.quickSlots);
                 //Reveal in-game quickslots, set status of using workstation flse so we can move
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
@@ -43,13 +43,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Craft Menu is closed so open it so the player can use it
             else
             {
-                //Hide in-game quick slots
-                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
                 //open crafting menu
                 craftMenuObj.SetActive(true);
                 //synchronizing backpackslots + quickslots in the crasfting menu to match contents in respective counterparts
                 craftingMenuController.SyncCraftingMenuSlots(playerCont);
                 playerCont.UsingWorkstation = true;
+                //Hide in-game quick slots
+                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
                 InUse = true;
             }
         }

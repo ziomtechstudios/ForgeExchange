@@ -47,16 +47,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         #region Getters/Setters
-        public void AreAllSlotsFull()
-        {
-            slotsAreFull = Array.TrueForAll(slotConts, slotCont => slotCont.SlotWithItem == true);
-        }
         public bool SlotsAreFull { get { return slotsAreFull; } }
         public SlotController[] SlotConts { get { return slotConts; } }
         public int InventoryAmnt { get { return inventoryAmnt; } }
         public Sprite NoItemSprite { get { return noItemSprite; } }
         #endregion
         #region Public funcs
+        public void AreAllSlotsFull()
+        {
+            slotsAreFull = Array.TrueForAll(slotConts, slotCont => slotCont.SlotWithItem == true);
+        }
         public void DroppingItem()
         {
             //If the player is holding item we look for coresponding slot holding said item

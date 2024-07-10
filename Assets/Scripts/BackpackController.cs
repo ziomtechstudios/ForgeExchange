@@ -3,44 +3,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public class BackpackController : StorageController,  IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class BackpackController : SlotsController
     {
         #region Private Serialized Fields
-        [SerializeField] private int numSlots;
         [SerializeField] private InventoryController m_InventoryCont;
-        [SerializeField] private SlotController[] backPackSlots;
-        [SerializeField] private SlotController[] quickSlots;
-        [SerializeField] private GameObject movingSlot;
-        [SerializeField] private SlotController movingSlotCont;
         [SerializeField] private Canvas m_Canvas;
         [SerializeField] private PlayerUIController m_PlayerUIController;
         #endregion
         #region Private Functions + Members
         private RectTransform movingSlotRectTransform;
         private RectTransform backPackRectTransform;
-        private void ReturnItem(PointerEventData eventData)
+        #endregion
+        #region Public Funcs
+        public override void ReturnItem(PointerEventData eventData)
         {
             switch (OgSlotType)
             {
                 case ("Backpack"):
-                    DragAndDropSlot.DropItem(movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(movingSlot, backPackSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
                     break;
                 case ("QuickSlots"):
-                    DragAndDropSlot.DropItem(movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(movingSlot, quickSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
                     break;
                 default:
                     break;
             }
-        }
-        #endregion
-        #region Getters/Setters
-        public SlotController[] BackPackSlots { get { return backPackSlots; } }
-        #endregion
-        #region Public Funcs
-        public void FindBackpackSlots()
-        {
-            for (int i = 0; i < numSlots; i++)
-                backPackSlots[i] = transform.Find($"Slot{i}").gameObject.GetComponent<SlotController>();
         }
         public void SyncQuickSlots(string order)
         {
@@ -59,25 +46,26 @@ namespace Com.ZiomtechStudios.ForgeExchange
             m_InventoryCont.AreAllSlotsFull();
         }
         //Store info of original item is contained in and move the item to the moving slot
-        public void OnBeginDrag(PointerEventData eventData)
+        public override void OnBeginDrag(PointerEventData eventData)
         {
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.SelectItem(eventData, movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, OgSlotIndex, OgSlotType);
+                        DragAndDropSlot.SelectItem(eventData, movingSlot, backPackSlots, m_InventoryCont.NoItemSprite, this);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.SelectItem(eventData, movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, OgSlotIndex, OgSlotType);
+                        DragAndDropSlot.SelectItem(eventData, movingSlot, quickSlots, m_InventoryCont.NoItemSprite, this);
                         break;
                     default:
                         break;
                 }
+                //Debug.Log($"The item selected has an initial index of {OgSlotIndex} and was in the {OgSlotType} group of slots.");
             }
         }
         //Move moving slot to coressponding current touch position
-        public void OnDrag(PointerEventData eventData)
+        public override void OnDrag(PointerEventData eventData)
         {
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, movingSlotRectTransform);
         }
@@ -87,18 +75,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
         /// If there is an empty slot remove item from moving slot and insert into destination slot
         /// if no empty slot send the item back into its original slot
         /// </summary>
-        public void OnEndDrag(PointerEventData eventData)
+        public override void OnEndDrag(PointerEventData eventData)
         {
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlotCont.SlotWithItem && movingSlotCont.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem)
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem)
             {
 
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.DropItem(movingSlotCont, backPackSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(movingSlot, backPackSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(movingSlotCont, quickSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(movingSlot, quickSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         break;
                     default:
                         ReturnItem(eventData);
@@ -108,7 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 ReturnItem(eventData);
-            Debug.Log($"The item dropped has an initial index of {OgSlotIndex} and was in the {OgSlotType} group of slots.");
+            //Debug.Log($"The item dropped has an initial index of {OgSlotIndex} and was in the {OgSlotType} group of slots.");
             
         }
         #endregion
@@ -117,23 +105,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
             m_PlayerUIController = m_InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
-            movingSlotCont = movingSlot.GetComponent<SlotController>();
-            movingSlotRectTransform = movingSlot.GetComponent<RectTransform>();
-            backPackSlots = new SlotController[numSlots];
+            movingSlot = MovingSlot.gameObject.GetComponent<SlotController>();
+            movingSlotRectTransform = MovingSlot.gameObject.GetComponent<RectTransform>();
             backPackRectTransform = GetComponent<RectTransform>();
-            FindBackpackSlots();
-            quickSlots = new SlotController[m_InventoryCont.InventoryAmnt];
-            for (int i = 0; i < m_InventoryCont.InventoryAmnt; i++)
-                quickSlots[i] = transform.Find($"QuickSlots/Slot{i}").gameObject.GetComponent<SlotController>();
+
         }
         void OnEnable()
         {
-            FindBackpackSlots();
+            //FindBackpackSlots();
             //Disable in-game quickslots, I didnt like having both references to quickslots enabled
+            SyncQuickSlots("InGameToMenu");
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
         }
         void OnDisable()
         {
+            SyncQuickSlots("MenuToInGame");
             //Re-enable in-game quickslots since backpack is closed
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
         }

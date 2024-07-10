@@ -18,10 +18,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Sprite noItemSprite;
         [Header("Current User component(s).")]
         [SerializeField] private PlayerController currentUserController;
+        [SerializeField] private GameObject potentialItem;
         #endregion
         #region "Private Funcs/Members
         private RectTransform craftMenuRectTrans;
-        private GameObject potentialItem;
         private void AttemptCrafting(){
             //This var is nullified here so that when debugging the current Recipe can still be seen via editor.
             currentRecipe = null;
@@ -53,7 +53,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Public Functions/Members"
         public override void ReturnItem(PointerEventData eventData)
         {
-            Debug.Log($"Returning the item back to {OgSlotType} slots at index {OgSlotIndex}.");
+            //Debug.Log($"Returning the item back to {OgSlotType} slots at index {OgSlotIndex}.");
             switch (OgSlotType)
             {
                 case ("BackpackSlots"):
@@ -74,13 +74,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
         }
 
-        public override void CloseMenu()
+        public void CloseMenu()
         {
             craftTableCont.ToggleUse(currentUserController);
         }
         public void SyncCraftingMenuSlots(PlayerController playerCont)
         {
-            SynchronizeSlots.SyncSlots(backPackSlots, playerCont.PlayerBackPackCont.BackPackSlots);
+            SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
             currentUserController = playerCont;
         }
@@ -93,13 +93,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, noItemSprite, OgSlotIndex, OgSlotType);
+                            DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, noItemSprite, this);
                             break;
                     case ("QuickSlots"):
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, noItemSprite, OgSlotIndex, OgSlotType);
+                            DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, noItemSprite, this);
                             break;
                     case ("CraftingSlots"):
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, craftingSlots, noItemSprite, OgSlotIndex, OgSlotType);
+                            DragAndDropSlot.SelectItem(eventData, MovingSlot, craftingSlots, noItemSprite, this);
                             AttemptCrafting();
                             break;
                     case ("CraftingMenu"):
@@ -115,7 +115,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 ingredient.ItemCont = null;
                             }
                         }
-                        DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, noItemSprite, OgSlotIndex, OgSlotType);
+                        DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, noItemSprite, this);
                         craftTableCont.StockpileCont.Withdraw(1);
                         break;
                     default:
@@ -163,12 +163,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftingSlots = new SlotController[craftedSlotNum];
             for (int i = 0; i < craftingSlots.Length; i++)
                 craftingSlots[i] = transform.Find($"CraftingSlots/Slot{i}").gameObject.GetComponent<SlotController>();
-            backPackSlots = new SlotController[BackPackSlotNum];
-            for (int i = 0; i < backPackSlots.Length; i++)
-                backPackSlots[i] = transform.Find($"BackpackSlots/Slot{i}").gameObject.GetComponent<SlotController>();
-            quickSlots = new SlotController[QuickSlotsSlotNum];
-            for (int i = 0; i < quickSlots.Length; i++)
-                quickSlots[i] = transform.Find($"QuickSlots/Slot{i}").gameObject.GetComponent<SlotController>();
             craftedSlot = new SlotController[1];
             craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();

@@ -17,18 +17,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 initSlot.ItemCont = null;
                 initSlot.SlotPrefab = null;
         }
-        public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int ogSlotIndex, string ogSlotType)
+        public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, SlotsController container)
         {
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name);
             SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
             if (selectedSlotCont != null && selectedSlotCont.SlotWithItem)
             {
                 //Store reference to original slot in case invalid item drop is later made.
-                ogSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
-                ogSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
-                Debug.Log($"The item selected has an initial index of {ogSlotIndex} and was in the {ogSlotType} group of slots.");
+                container.OgSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
+                container.OgSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
                 //Transfering Item from Initial slot and transfering to moving slot.
-                TransferItem(slots[ogSlotIndex], movingSlotCont, noItemSprite);
+                TransferItem(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
                 //Making moving slot visible.
                 movingSlotCont.gameObject.SetActive(true);
             }

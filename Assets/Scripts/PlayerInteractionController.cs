@@ -124,7 +124,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
             if (stockpileCont.CurQuantity == 0)
             {
-                playerCont.PlayerBackPackCont.gameObject.SetActive(true);
+                //playerCont.PlayerBackPackCont.gameObject.SetActive(true);
                 workstationCont.ToggleUse(playerCont);
                 return false;
             }
@@ -184,7 +184,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             playerCont = GetComponent<PlayerController>();
             dynamicSpriteLayering = GetComponent<DynamicSpriteLayering>();
