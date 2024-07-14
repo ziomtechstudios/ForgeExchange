@@ -1,7 +1,717 @@
 fileFormatVersion: 2
 guid: 649349c18ff5f776db4ac3b91cb34c72
-DefaultImporter:
+ScriptedImporter:
+  internalIDToNameTable: []
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Base Hammer_Frame_0
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.12355212}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 162
+      y: 4
+      width: 34
+      height: 259
+    spriteID: 8db26e095b37bc33585c349edae72e52
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 162, y: 4}
+  - name: Base Hammer_Frame_1
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.11969111}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 252
+      width: 32
+      height: 259
+    spriteID: 2292bf483d4b5cce3a92f5b13bb2e7d2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 252}
+  - name: Base Hammer_Frame_2
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.12015504}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 162
+      y: 271
+      width: 34
+      height: 258
+    spriteID: 705a1907ae4e331be97d5c356ed4a3f8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 162, y: 271}
+  - name: Base Hammer_Frame_3
+    originalName: 
+    pivot: {x: 0.48571432, y: -0.12109375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 116
+      y: 499
+      width: 35
+      height: 256
+    spriteID: b987e727a86d44c5bb38041280fa84c7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 116, y: 499}
+  - name: Base Hammer_Frame_4
+    originalName: 
+    pivot: {x: 0.48648646, y: -0.12062256}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 534
+      width: 37
+      height: 257
+    spriteID: abab37df813d9f78785c182a0be088b9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 64, y: 534}
+  - name: Base Hammer_Frame_5
+    originalName: 
+    pivot: {x: 0.48571432, y: -0.12350597}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 116
+      y: 763
+      width: 35
+      height: 251
+    spriteID: 111de4bf37cb662b58ef36e173e8545c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 116, y: 763}
+  - name: Base Hammer_Frame_6
+    originalName: 
+    pivot: {x: 0.48484847, y: -0.12757201}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 288
+      y: 4
+      width: 33
+      height: 243
+    spriteID: 7d90e084181ac0fc3bbf89ec1a0e5472
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 288, y: 4}
+  - name: Base Hammer_Frame_7
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.13333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 768
+      width: 34
+      height: 240
+    spriteID: f251d3f10efb795b2898ddcb0963594b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 768}
+  - name: Base Hammer_Frame_8
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.13389121}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 116
+      y: 252
+      width: 38
+      height: 239
+    spriteID: 049d6f34166069b4881015b14859d660
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 116, y: 252}
+  - name: Base Hammer_Frame_9
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.12916666}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 116
+      y: 4
+      width: 38
+      height: 240
+    spriteID: 0d074a3fbc5caf80d9ad63b9a0dbd91f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 116, y: 4}
+  - name: Base Hammer_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: -0.13333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 4
+      width: 36
+      height: 240
+    spriteID: 9117f61226c356ff1a5fca2d35775cec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 4}
+  - name: Base Hammer_Frame_11
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.13278009}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 519
+      width: 34
+      height: 241
+    spriteID: b2038749ae8882243be7e97fcf0f4021
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 519}
+  - name: Base Hammer_Frame_12
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.14344262}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 162
+      y: 537
+      width: 34
+      height: 244
+    spriteID: ff368a7483cd1c145995ea54c02c8107
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 162, y: 537}
+  - name: Base Hammer_Frame_13
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.15953307}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 248
+      y: 266
+      width: 28
+      height: 257
+    spriteID: b60eba47ad2d4cb3680479c0a3be92ab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 248, y: 266}
+  - name: Base Hammer_Frame_14
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.14173228}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 248
+      y: 4
+      width: 32
+      height: 254
+    spriteID: caceaa1914ea5ec8ba854ca32f4114fc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 248, y: 4}
+  - name: Base Hammer_Frame_15
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.11320755}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 556
+      width: 46
+      height: 265
+    spriteID: a3e484904fe7e78a09a6760ba2e16477
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 556}
+  - name: Base Hammer_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: -0.111940295}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 280
+      width: 50
+      height: 268
+    spriteID: 667b43c3ac7e6e76c84385ce360d8aba
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 280}
+  - name: Base Hammer_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: -0.115671635}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 52
+      height: 268
+    spriteID: 7fdceb23dd4a632638007ef441ae122a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Base Hammer_Frame_18
+    originalName: 
+    pivot: {x: 0.5, y: -0.12451362}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 4
+      width: 44
+      height: 257
+    spriteID: 2da5436658a03f1b0a1e166c272cdbb6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 64, y: 4}
+  - name: Base Hammer_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: -0.12840466}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 269
+      width: 44
+      height: 257
+    spriteID: d17eb9fa94775168a88e2bf4c5d199ac
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 64, y: 269}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1960883779
+    name: Base Hammer
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Base Hammer_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 32
+        width: 34
+        height: 259
+      spriteId: 8db26e095b37bc33585c349edae72e52
+    - name: Base Hammer_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 24
+        y: 31
+        width: 32
+        height: 259
+      spriteId: 2292bf483d4b5cce3a92f5b13bb2e7d2
+    - name: Base Hammer_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 31
+        width: 34
+        height: 258
+      spriteId: 705a1907ae4e331be97d5c356ed4a3f8
+    - name: Base Hammer_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 31
+        width: 35
+        height: 256
+      spriteId: b987e727a86d44c5bb38041280fa84c7
+    - name: Base Hammer_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 22
+        y: 31
+        width: 37
+        height: 257
+      spriteId: abab37df813d9f78785c182a0be088b9
+    - name: Base Hammer_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 31
+        width: 35
+        height: 251
+      spriteId: 111de4bf37cb662b58ef36e173e8545c
+    - name: Base Hammer_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 24
+        y: 31
+        width: 33
+        height: 243
+      spriteId: 7d90e084181ac0fc3bbf89ec1a0e5472
+    - name: Base Hammer_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 32
+        width: 34
+        height: 240
+      spriteId: f251d3f10efb795b2898ddcb0963594b
+    - name: Base Hammer_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 21
+        y: 32
+        width: 38
+        height: 239
+      spriteId: 049d6f34166069b4881015b14859d660
+    - name: Base Hammer_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 21
+        y: 31
+        width: 38
+        height: 240
+      spriteId: 0d074a3fbc5caf80d9ad63b9a0dbd91f
+    - name: Base Hammer_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 22
+        y: 32
+        width: 36
+        height: 240
+      spriteId: 9117f61226c356ff1a5fca2d35775cec
+    - name: Base Hammer_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 32
+        width: 34
+        height: 241
+      spriteId: b2038749ae8882243be7e97fcf0f4021
+    - name: Base Hammer_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 23
+        y: 35
+        width: 34
+        height: 244
+      spriteId: ff368a7483cd1c145995ea54c02c8107
+    - name: Base Hammer_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 26
+        y: 41
+        width: 28
+        height: 257
+      spriteId: b60eba47ad2d4cb3680479c0a3be92ab
+    - name: Base Hammer_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 24
+        y: 36
+        width: 32
+        height: 254
+      spriteId: caceaa1914ea5ec8ba854ca32f4114fc
+    - name: Base Hammer_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 17
+        y: 30
+        width: 46
+        height: 265
+      spriteId: a3e484904fe7e78a09a6760ba2e16477
+    - name: Base Hammer_Frame_16
+      frameIndex: 16
+      additiveSortOrder: 0
+      cellRect:
+        x: 15
+        y: 30
+        width: 50
+        height: 268
+      spriteId: 667b43c3ac7e6e76c84385ce360d8aba
+    - name: Base Hammer_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 14
+        y: 31
+        width: 52
+        height: 268
+      spriteId: 7fdceb23dd4a632638007ef441ae122a
+    - name: Base Hammer_Frame_18
+      frameIndex: 18
+      additiveSortOrder: 0
+      cellRect:
+        x: 18
+        y: 32
+        width: 44
+        height: 257
+      spriteId: 2da5436658a03f1b0a1e166c272cdbb6
+    - name: Base Hammer_Frame_19
+      frameIndex: 19
+      additiveSortOrder: 0
+      cellRect:
+        x: 18
+        y: 33
+        width: 44
+        height: 257
+      spriteId: d17eb9fa94775168a88e2bf4c5d199ac
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 80, y: 320}

@@ -6,7 +6,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
     [RequireComponent(typeof(Animator))]
     public class PlayerController : BeingController
     {
-        #region Private Serialized Fields
+        #region Private Serialized Fields  
         [Header("Player Movement")]
         [SerializeField] private bool isRunning, canRun;
         [SerializeField] private Vector2 lookDir;
@@ -34,21 +34,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private AudioClip playerStoneSteps, playerGrassSteps;
         #endregion
         #region Private Fields
-        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, inWaterHash, holdingItemHash, isFishingHash;
+        private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, isFishingHash;
         private int layerMask;
         private RaycastHit2D hit;
         private GameObject backPackObj;
-        private Vector2 dirToWall;
+        //Parametric bool for moving represents object desire to move, IsMoving represents if obj meets conditions in order to move
         private void MovePlayer(bool moving)
         {
 
-            if (moving)
+            if(moving)
             {
                 M_Animator.SetBool(isMovingHash, true);
                 M_Animator.SetFloat(moveXHash, moveDir.x);
                 M_Animator.SetFloat(moveYHash, moveDir.y);
-                isRunning = (canRun && (playerStaminaCont.Stamina > 0.0f)) ? true : false;
+                isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (IsMoving ? 1.00f : 0.00f) * moveDir);
+                TriggerSoundEffect();
             }
             else
             {
@@ -75,8 +76,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///Player Movement
             ///Player movement input taken as 2D Vector and is translted to movement of gameObject.
             ///The last dir the player moves in is the players looking direction.
+            ///Rounding the value of the given direction to the nearest integer. Range of -1 to 1 implied since vector is based on joystick interaction.
+            ///If the component of the vector is negative make sure to carry that over once the magnitude has been rounded.
+            ///Personal choice: When the direction of movement is diagonal, prevent player movement. Might omit this in future builds.
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
+            //float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f) ? (1.00f) : (-1.00f));
+            //float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
+            //Detect if the player is attempting to move diagonal so we can avoid it.
+            //moveDir = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f)) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
             IsMoving = (moveDir != Vector2.zero);
             lookDir = (IsMoving && !usingWorkstation) ? (moveDir) : (lookDir);
         }
@@ -88,7 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 canRun = false;
         }
         public void TriggerSoundEffect(){
-            if(M_DSpriteLayering.IsInside && IsMoving)
+            if(M_DSpriteLayering.IsInside)
                 M_AudioSource.PlayOneShot(playerStoneSteps, 0.5f);
         }
         #endregion
@@ -106,16 +114,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
-        public int InWaterHash{get{return inWaterHash;}}
-        public int HoldingItemHash{get{return holdingItemHash;}}
-        public int IsFishingHash{get{return isFishingHash;}}
+        public int IsFishingHash { get { return isFishingHash;} set{isFishingHash = value;}} 
         #endregion
         // Start is called before the first frame update
         void Start()
         {
             m_InventoryCont = transform.Find("Main Camera/Canvas/InventorySlots").gameObject.GetComponent<InventoryController>();
             playerUIController = gameObject.GetComponent<PlayerUIController>();
-            //When user logs into game I want player sprite to face the screen, personal preference
+            //When user logs into game I want player sprite to face the screen, personla preference
             lookDir = -transform.up;
             M_Animator = gameObject.GetComponent<Animator>();
             lookXHash = Animator.StringToHash("LookX");
@@ -123,9 +129,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             moveXHash = Animator.StringToHash("MoveX");
             moveYHash = Animator.StringToHash("MoveY");
             isDeadHash = Animator.StringToHash("isDead");
+            isFishingHash = Animator.StringToHash("isFishing");
             IsMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
-            layerMask = (1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy"));
+            layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")));
             m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
             backpackCont = backPackObj.GetComponent<BackpackController>();
@@ -134,25 +141,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_HealthCont = GetComponent<HealthController>();
             playerStaminaCont = GetComponent<StaminaController>();
             M_AudioSource = GetComponent<AudioSource>();
-            M_DSpriteLayering = GetComponent<DynamicSpriteLayering>(); 
-            inWaterHash = Animator.StringToHash("inWater");
-            holdingItemHash = Animator.StringToHash("holdingItem");
-            isFishingHash = Animator.StringToHash("isFishing");
+            M_DSpriteLayering = GetComponent<DynamicSpriteLayering>();
         }
-        
         // Update is called once per frame
         void Update()
         {
             //Is the player looking at a interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
-            if (IsMoving && (M_HealthCont.HP > 0.0f) && !backpackCont.gameObject.activeInHierarchy && !IsFishing)
+            if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null ) && (moveDir != dirToWall))
+                if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
                     MovePlayer(false);
-                    //Debug.Log($"Touching the wall:{m_Collider.IsTouchingLayers(layerMask)}. Not looking at wall: {hit.transform != null} vector: {dirToWall}. Not moving toward wall: {moveDir != dirToWall}.");
-                
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else
                     MovePlayer(true);
@@ -163,28 +164,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            switch(LayerMask.LayerToName(collision.gameObject.layer)){
-                ///<summary>
-                ///Player has collided with wall
-                ///Find a way to store 2d vector that represents dir player is colliding into wall with
-                ///When player is trying to move away from wall they are touching we make sure...
-                ///that the player is only allowed to move when that dir is not towards the wall.
-                ///Not working as intended (doesnt do jack shit)
-                ///</summary>
-                case("bounds"):
-                    dirToWall = (collision.transform.position-transform.position).normalized;
-                    NearShore = collision.transform.CompareTag("water");
-                    
-                    break;
-                case("enemy"):
-                    TakeDamage(collision.gameObject.GetComponent<EnemyController>().IsAttacking?1.00f:0.00f);
-                    break;
-                default:
-                    break;
-            }
-        }
-        private void OnCollisionExit2D(Collision2D collision){
-            NearShore = !collision.transform.CompareTag("water");
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
+                TakeDamage(1.00f);
         }
     }
 }

@@ -1,7 +1,659 @@
 fileFormatVersion: 2
 guid: 64c30ee289e0fc9e0923aa2b7d5d6de4
-DefaultImporter:
+ScriptedImporter:
+  internalIDToNameTable: []
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Odderf New Hoe_Frame_0
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.12260536}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 279
+      y: 541
+      width: 18
+      height: 261
+    spriteID: 251ea089db1efee4b934247eeeb7d0fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 279, y: 541}
+  - name: Odderf New Hoe_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.12075472}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 279
+      y: 268
+      width: 20
+      height: 265
+    spriteID: c2112c01088f11122a93ab4d0dafcd06
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 279, y: 268}
+  - name: Odderf New Hoe_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.12355212}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 181
+      y: 533
+      width: 40
+      height: 259
+    spriteID: 69cc7906cfdeceecaaaae9bc373c31c4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 181, y: 533}
+  - name: Odderf New Hoe_Frame_3
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.12403101}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 127
+      y: 270
+      width: 42
+      height: 258
+    spriteID: b154e329da9d41b3f9fe1e50b0cbb37d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 127, y: 270}
+  - name: Odderf New Hoe_Frame_4
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 181
+      y: 269
+      width: 42
+      height: 256
+    spriteID: a6d2d47bf93590a269cde902aa7ef4a2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 181, y: 269}
+  - name: Odderf New Hoe_Frame_5
+    originalName: 
+    pivot: {x: 0.50000006, y: -0.12260536}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 231
+      y: 268
+      width: 38
+      height: 261
+    spriteID: 4f9b7b4f659924494ab98e244a65fc71
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 231, y: 268}
+  - name: Odderf New Hoe_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.11494252}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 65
+      y: 277
+      width: 48
+      height: 261
+    spriteID: 0b53efe501f96fed19807c8db5f10d5b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 65, y: 277}
+  - name: Odderf New Hoe_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.11363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 300
+      width: 52
+      height: 264
+    spriteID: 4efec2a1eadf84076b0fb209f2f0435a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 300}
+  - name: Odderf New Hoe_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: -0.11320755}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 65
+      y: 4
+      width: 54
+      height: 265
+    spriteID: 2a78a18d284b88fe58749e020c971a52
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 65, y: 4}
+  - name: Odderf New Hoe_Frame_9
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.1124031}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 127
+      y: 4
+      width: 46
+      height: 258
+    spriteID: 14dca8926504c038d9ae3b9e251e2f7c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 127, y: 4}
+  - name: Odderf New Hoe_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: -0.1081081}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 65
+      y: 546
+      width: 48
+      height: 259
+    spriteID: 82cdd68b38532895ca9d11f2da559bf7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 65, y: 546}
+  - name: Odderf New Hoe_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: -0.1081081}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 572
+      width: 50
+      height: 259
+    spriteID: eea43e9ac7c5581e9932ef046120f55f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 572}
+  - name: Odderf New Hoe_Frame_12
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.11673151}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 127
+      y: 536
+      width: 42
+      height: 257
+    spriteID: 9629856426045fd8ea856ac3e92a4e13
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 127, y: 536}
+  - name: Odderf New Hoe_Frame_13
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.11673151}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 181
+      y: 4
+      width: 42
+      height: 257
+    spriteID: 115bda3b6550c749f9c511a91dde5fe8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 181, y: 4}
+  - name: Odderf New Hoe_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: -0.1171875}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 231
+      y: 4
+      width: 40
+      height: 256
+    spriteID: 324ce2055cd2c042fbe7fe4369685551
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 231, y: 4}
+  - name: Odderf New Hoe_Frame_15
+    originalName: 
+    pivot: {x: 0.5, y: -0.11764707}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 231
+      y: 537
+      width: 36
+      height: 255
+    spriteID: 3c75c733c663b567e94ae093f14f6d08
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 231, y: 537}
+  - name: Odderf New Hoe_Frame_16
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.1171875}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 279
+      y: 4
+      width: 32
+      height: 256
+    spriteID: 98965c15b8dd28ef19cb4e2bed0d5a58
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 279, y: 4}
+  - name: Odderf New Hoe_Frame_17
+    originalName: 
+    pivot: {x: 0.754717, y: -0.11111112}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 53
+      height: 288
+    spriteID: 2c8665ff62c90d719baa7408f89bfcb2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -1073856204
+    name: Odderf New Hoe
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Odderf New Hoe_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 31
+        y: 32
+        width: 18
+        height: 261
+      spriteId: 251ea089db1efee4b934247eeeb7d0fd
+    - name: Odderf New Hoe_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 30
+        y: 32
+        width: 20
+        height: 265
+      spriteId: c2112c01088f11122a93ab4d0dafcd06
+    - name: Odderf New Hoe_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 20
+        y: 32
+        width: 40
+        height: 259
+      spriteId: 69cc7906cfdeceecaaaae9bc373c31c4
+    - name: Odderf New Hoe_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 32
+        width: 42
+        height: 258
+      spriteId: b154e329da9d41b3f9fe1e50b0cbb37d
+    - name: Odderf New Hoe_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 32
+        width: 42
+        height: 256
+      spriteId: a6d2d47bf93590a269cde902aa7ef4a2
+    - name: Odderf New Hoe_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 21
+        y: 32
+        width: 38
+        height: 261
+      spriteId: 4f9b7b4f659924494ab98e244a65fc71
+    - name: Odderf New Hoe_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 30
+        width: 48
+        height: 261
+      spriteId: 0b53efe501f96fed19807c8db5f10d5b
+    - name: Odderf New Hoe_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 14
+        y: 30
+        width: 52
+        height: 264
+      spriteId: 4efec2a1eadf84076b0fb209f2f0435a
+    - name: Odderf New Hoe_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 13
+        y: 30
+        width: 54
+        height: 265
+      spriteId: 2a78a18d284b88fe58749e020c971a52
+    - name: Odderf New Hoe_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 17
+        y: 29
+        width: 46
+        height: 258
+      spriteId: 14dca8926504c038d9ae3b9e251e2f7c
+    - name: Odderf New Hoe_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 28
+        width: 48
+        height: 259
+      spriteId: 82cdd68b38532895ca9d11f2da559bf7
+    - name: Odderf New Hoe_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 15
+        y: 28
+        width: 50
+        height: 259
+      spriteId: eea43e9ac7c5581e9932ef046120f55f
+    - name: Odderf New Hoe_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 30
+        width: 42
+        height: 257
+      spriteId: 9629856426045fd8ea856ac3e92a4e13
+    - name: Odderf New Hoe_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 19
+        y: 30
+        width: 42
+        height: 257
+      spriteId: 115bda3b6550c749f9c511a91dde5fe8
+    - name: Odderf New Hoe_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 20
+        y: 30
+        width: 40
+        height: 256
+      spriteId: 324ce2055cd2c042fbe7fe4369685551
+    - name: Odderf New Hoe_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 22
+        y: 30
+        width: 36
+        height: 255
+      spriteId: 3c75c733c663b567e94ae093f14f6d08
+    - name: Odderf New Hoe_Frame_16
+      frameIndex: 16
+      additiveSortOrder: 0
+      cellRect:
+        x: 24
+        y: 30
+        width: 32
+        height: 256
+      spriteId: 98965c15b8dd28ef19cb4e2bed0d5a58
+    - name: Odderf New Hoe_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 32
+        width: 53
+        height: 288
+      spriteId: 2c8665ff62c90d719baa7408f89bfcb2
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 80, y: 320}
