@@ -15,7 +15,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private int craftedSlotNum;
         [Header("Members for crafting")]
         [SerializeField] private string currentRecipe;
-        [SerializeField] private Sprite noItemSprite;
         [Header("Current User component(s).")]
         [SerializeField] private PlayerController currentUserController;
         [SerializeField] private GameObject potentialItem;
@@ -32,13 +31,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
             { 
                 craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
-                craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? craftedSlot[0].ItemCont.ItemIcon : noItemSprite;
+                craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? craftedSlot[0].ItemCont.ItemIcon : NoItemSprite;
                 craftedSlot[0].SlotPrefab = potentialItem;
                 craftedSlot[0].SlotWithItem = true;
                 craftTableCont.Work(craftedSlot[0].ItemCont);
             }
             else{
-                craftedSlot[0].ItemImage.sprite = noItemSprite;
+                craftedSlot[0].ItemImage.sprite = NoItemSprite;
                 craftedSlot[0].SlotPrefab = null;
                 craftedSlot[0].SlotWithItem = false;
                 craftedSlot[0].ItemCont = null;
@@ -57,17 +56,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             switch (OgSlotType)
             {
                 case ("BackpackSlots"):
-                    DragAndDropSlot.DropItem(MovingSlot, backPackSlots, noItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, OgSlotIndex);
                     break;
                 case ("QuickSlots"):
-                    DragAndDropSlot.DropItem(MovingSlot, quickSlots, noItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, OgSlotIndex);
                     break;
                 case ("CraftingSlots"):
-                    DragAndDropSlot.DropItem(MovingSlot, craftingSlots, noItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(MovingSlot, craftingSlots, NoItemSprite, OgSlotIndex);
                     break;
                 //CraftedItemSlot
                 case ("CraftingMenu"):
-                    DragAndDropSlot.DropItem(MovingSlot, craftedSlot, noItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(MovingSlot, craftedSlot, NoItemSprite, OgSlotIndex);
                     break;
                 default:
                     break;
@@ -93,13 +92,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, noItemSprite, this);
+                            DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, NoItemSprite, this);
                             break;
                     case ("QuickSlots"):
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, noItemSprite, this);
+                            DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, NoItemSprite, this);
                             break;
                     case ("CraftingSlots"):
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, craftingSlots, noItemSprite, this);
+                            DragAndDropSlot.SelectItem(eventData, MovingSlot, craftingSlots, NoItemSprite, this);
                             AttemptCrafting();
                             break;
                     case ("CraftingMenu"):
@@ -109,13 +108,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         {
                             foreach (SlotController ingredient in craftingSlots)
                             {
-                                ingredient.ItemImage.sprite = noItemSprite;
+                                ingredient.ItemImage.sprite = NoItemSprite;
                                 ingredient.SlotPrefab = null;
                                 ingredient.SlotWithItem = false;
                                 ingredient.ItemCont = null;
                             }
                         }
-                        DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, noItemSprite, this);
+                        DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
                         craftTableCont.StockpileCont.Withdraw(1);
                         break;
                     default:
@@ -138,13 +137,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, backPackSlots, noItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, quickSlots, noItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         break;
                     case ("CraftingSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, craftingSlots, noItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(MovingSlot, craftingSlots, NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         AttemptCrafting();
                         break;
                     default:

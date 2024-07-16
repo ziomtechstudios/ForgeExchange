@@ -6,12 +6,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
     public class BackpackController : SlotsController
     {
         #region Private Serialized Fields
-        [SerializeField] private InventoryController m_InventoryCont;
-        [SerializeField] private Canvas m_Canvas;
+
         [SerializeField] private PlayerUIController m_PlayerUIController;
         #endregion
         #region Private Functions + Members
-        private RectTransform movingSlotRectTransform;
         private RectTransform backPackRectTransform;
         #endregion
         #region Public Funcs
@@ -20,10 +18,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             switch (OgSlotType)
             {
                 case ("Backpack"):
-                    DragAndDropSlot.DropItem(movingSlot, backPackSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(movingSlot, backPackSlots, NoItemSprite, OgSlotIndex);
                     break;
                 case ("QuickSlots"):
-                    DragAndDropSlot.DropItem(movingSlot, quickSlots, m_InventoryCont.NoItemSprite, OgSlotIndex);
+                    DragAndDropSlot.DropItem(movingSlot, quickSlots, NoItemSprite, OgSlotIndex);
                     break;
                 default:
                     break;
@@ -35,15 +33,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //Make Quick Slots in menu match the ones in-game
                 case "InGameToMenu":
-                    SynchronizeSlots.SyncSlots(quickSlots, m_InventoryCont.SlotConts);
+                    SynchronizeSlots.SyncSlots(quickSlots, InventoryCont.SlotConts);
                     break;
                 //Make the quick slots in the in-game UI to match the ones in the inventory menu
                 case "MenuToInGame":
-                    SynchronizeSlots.SyncSlots(m_InventoryCont.SlotConts, quickSlots);
+                    SynchronizeSlots.SyncSlots(InventoryCont.SlotConts, quickSlots);
                     break;
             }
             //Update status of if all quick slots are full
-            m_InventoryCont.AreAllSlotsFull();
+            InventoryCont.AreAllSlotsFull();
         }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
@@ -53,10 +51,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.SelectItem(eventData, movingSlot, backPackSlots, m_InventoryCont.NoItemSprite, this);
+                        DragAndDropSlot.SelectItem(eventData, movingSlot, backPackSlots, InventoryCont.NoItemSprite, this);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.SelectItem(eventData, movingSlot, quickSlots, m_InventoryCont.NoItemSprite, this);
+                        DragAndDropSlot.SelectItem(eventData, movingSlot, quickSlots, InventoryCont.NoItemSprite, this);
                         break;
                     default:
                         break;
@@ -67,7 +65,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Move moving slot to coressponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
-            DragAndDropSlot.MoveItem(eventData, backPackRectTransform, movingSlotRectTransform);
+            DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
         }
         /// <summary>
         /// Moving slot is at destination
@@ -83,10 +81,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.DropItem(movingSlot, backPackSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(movingSlot, quickSlots, m_InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
                         break;
                     default:
                         ReturnItem(eventData);
@@ -103,12 +101,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Start is called before the first frame update
         void Awake()
         {
-            m_InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
-            m_PlayerUIController = m_InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
+            InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
+            m_PlayerUIController = InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
             movingSlot = MovingSlot.gameObject.GetComponent<SlotController>();
-            movingSlotRectTransform = MovingSlot.gameObject.GetComponent<RectTransform>();
+            MovingSlotRectTrans = MovingSlot.gameObject.GetComponent<RectTransform>();
             backPackRectTransform = GetComponent<RectTransform>();
-
         }
         void OnEnable()
         {

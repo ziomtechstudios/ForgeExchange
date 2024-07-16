@@ -25,7 +25,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.IsFishing = true;
             return true;
         }
-
+        private void UnEquipItem(){
+            playerCont.HoldingItem = false;
+            playerCont.HoldingCont = null;
+            playerCont.HoldingPrefab = null;
+        }
         //TODO
         /*private bool GoSwimming() {
             playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
@@ -173,6 +177,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///If the player is holding an object allow them to drop the object
                         ///
                         playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DropObj();
+                        break;
+                    case "chest":
+                        UnEquipItem();
+                        ChestController chestCont = playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject.GetComponent<ChestController>();
+                        chestCont.SyncChestSlots(playerCont);
+                        chestCont = null;
                         break;
                     default:
                         break;
