@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 namespace Com.ZiomtechStudios.ForgeExchange{
     public class ChestController : SlotsController
     {
-        #region "Priave serialized fields."
+        #region "Private serialized fields."
         [SerializeField] private SlotController[] chestSlots;
         [SerializeField] private int chestSlotNum;
         #endregion
@@ -35,17 +35,18 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 gameObject.SetActive(false);
             }
             else{
+                gameObject.SetActive(true);
                 SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
                 SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
                 curUserCont = playerCont;
-                gameObject.SetActive(true);
+                
             }
             
         }
         public override void ReturnItem(PointerEventData eventData)
         {
-                        //Debug.Log($"Returning the item back to {OgSlotType} slots at index {OgSlotIndex}.");
+            //Debug.Log($"Slots type: {OgSlotType} and position {OgSlotIndex}.");            //Debug.Log($"Returning the item back to {OgSlotType} slots at index {OgSlotIndex}.");
             switch (OgSlotType)
             {
                 case ("BackpackSlots"):
@@ -90,7 +91,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void OnEndDrag(PointerEventData eventData)
         {
-                        
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name);
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
             //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination          //Making sure moving slot has an item                          //making sure destination slot has no item                                                                   //Checking to see that the destination slot holds no prefab 
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
             {
