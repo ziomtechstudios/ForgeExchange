@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -537862599, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1320,9 +1320,9 @@ MonoBehaviour:
   slotImage: {fileID: 249376057}
   itemImage: {fileID: 983510356}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
+  slotWithItem: 1
+  slotPrefab: {fileID: 1024181155318742764, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
+  itemCont: {fileID: -3415474686000253241, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
   slotType: 
   curQuantity: 0
   maxQuantity: 0
@@ -3059,7 +3059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3183,7 +3183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8}
+  m_AnchoredPosition: {x: -92, y: 4}
   m_SizeDelta: {x: 1250, y: 1250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489743565
@@ -4814,6 +4814,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1004073336, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 1004073338, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: NoItemSprite
       value: 
@@ -4856,11 +4860,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: numRecipes
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: Recipes.Array.size
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: Recipes.Array.data[4]
@@ -4895,8 +4899,24 @@ PrefabInstance:
       value: __IronBar__IronBar__WoodStick
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[12]
+      value: _WoodStickStringSingle_WoodStickHookSingle_WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[13]
+      value: StringSingleWoodStick_HookSingleWoodStick__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[14]
+      value: __WoodStick_WoodStickStringSingleWoodStick_HookSingle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[15]
+      value: WoodStick__StringSingleWoodStick_HookSingle_WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftableItems.Array.size
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftableItems.Array.data[6]
@@ -4922,6 +4942,22 @@ PrefabInstance:
       propertyPath: craftableItems.Array.data[11]
       value: 
       objectReference: {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[12]
+      value: 
+      objectReference: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[13]
+      value: 
+      objectReference: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[14]
+      value: 
+      objectReference: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[15]
+      value: 
+      objectReference: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
     - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: emptyStockpileSprite
       value: 
@@ -6418,7 +6454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -426648271, guid: cd30eb863cab75d47aebde64da24f3be, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25219,9 +25255,9 @@ MonoBehaviour:
   slotImage: {fileID: 1175999298}
   itemImage: {fileID: 20795359}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
+  slotWithItem: 1
+  slotPrefab: {fileID: 5316755668338559058, guid: 8c9980b0e73723b62abc64809082d78c, type: 3}
+  itemCont: {fileID: -2683803410697654982, guid: 8c9980b0e73723b62abc64809082d78c, type: 3}
   slotType: 
   curQuantity: 0
   maxQuantity: 0
@@ -30067,9 +30103,9 @@ MonoBehaviour:
   slotImage: {fileID: 1533541758}
   itemImage: {fileID: 466588167}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
+  slotWithItem: 1
+  slotPrefab: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
+  itemCont: {fileID: 6158149337921398732, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
   slotType: 
   curQuantity: 0
   maxQuantity: 0
@@ -30868,7 +30904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -426648271, guid: cd30eb863cab75d47aebde64da24f3be, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33247,9 +33283,9 @@ MonoBehaviour:
   slotImage: {fileID: 1980163605}
   itemImage: {fileID: 1675355260}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
+  slotWithItem: 1
+  slotPrefab: {fileID: 1024181155318742764, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
+  itemCont: {fileID: -3415474686000253241, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
   slotType: 
   curQuantity: 0
   maxQuantity: 0
@@ -33463,7 +33499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a49ed3c44a2800459209a1fe6fe5b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotImage: {fileID: 0}
+  slotImage: {fileID: 2062302041}
   itemImage: {fileID: 0}
   slotInUse: 0
   slotWithItem: 0
@@ -33609,6 +33645,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060215167}
   m_CullTransparentMesh: 1
+--- !u!114 &2062302041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 649436004, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+  m_PrefabInstance: {fileID: 2417434154386360278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2063220164
 PrefabInstance:
   m_ObjectHideFlags: 0

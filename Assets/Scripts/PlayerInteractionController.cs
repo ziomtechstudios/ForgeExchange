@@ -105,13 +105,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     break;
                 
                 case "water":
-                    if(playerCont.NearShore && !dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing){
+                    if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing){
                         Debug.Log("We are touching the shoreline.");
                         ///<summary>
                         ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
                         ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
                         ///</summary>
-                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemSubTag.Contains("fishing rod")?GoFishing():true):false;
+                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("fishing rod")?GoFishing():true):false;
                     }
                     break;
                 
@@ -180,9 +180,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         break;
                     case "chest":
                         UnEquipItem();
-                        ChestController chestCont = playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject.GetComponent<ChestController>();
-                        chestCont.SyncChestSlots(playerCont);
-                        chestCont = null;
+                        playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject.GetComponent<ChestController>().SyncChestSlots(playerCont);
                         break;
                     default:
                         break;

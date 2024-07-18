@@ -13,13 +13,13 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private int chestSlotNum;
         #endregion
         private RectTransform chestRectTransform;
-        private PlayerController curUserCont;
+        //private PlayerController curUserCont;
         // Start is called before the first frame update
         void Awake()
         {
             chestSlots = new SlotController[chestSlotNum];
             for(int i = 0; i < chestSlots.Length; i++)
-                chestSlots[i] = transform.Find($"ChestSlots/Slot{i}").gameObject.AddComponent<SlotController>();
+                chestSlots[i] = transform.Find($"ChestSlots/Slot{i}").gameObject.GetComponent<SlotController>();
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             chestRectTransform = GetComponent<RectTransform>();
@@ -31,7 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.backPackSlots, backPackSlots);
                 SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, quickSlots);
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
-                curUserCont = null;
+                //curUserCont = null;
                 gameObject.SetActive(false);
             }
             else{
@@ -39,7 +39,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
                 SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
-                curUserCont = playerCont;
+                //curUserCont = playerCont;
                 
             }
             
@@ -91,8 +91,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void OnEndDrag(PointerEventData eventData)
         {
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name);
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
             //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination          //Making sure moving slot has an item                          //making sure destination slot has no item                                                                   //Checking to see that the destination slot holds no prefab 
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
             {

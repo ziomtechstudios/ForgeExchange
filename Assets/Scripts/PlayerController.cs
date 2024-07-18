@@ -81,10 +81,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///Personal choice: When the direction of movement is diagonal, prevent player movement. Might omit this in future builds.
             ///</summary>
             moveDir = context.ReadValue<Vector2>();
-            //float moveDirX = ((Mathf.Abs(moveDir.x) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.x > 0.0f) ? (1.00f) : (-1.00f));
-            //float moveDirY = ((Mathf.Abs(moveDir.y) >= 0.5f) ? (1.00f) : (0.0f)) * ((moveDir.y > 0.0f) ? (1.00f) : (-1.00f));
-            //Detect if the player is attempting to move diagonal so we can avoid it.
-            //moveDir = ((Mathf.Abs(moveDirX) == 1.00f) && (Mathf.Abs(moveDirY) == 1.00f)) ? (Vector2.zero) : (new Vector2(moveDirX, moveDirY));
             IsMoving = (moveDir != Vector2.zero);
             lookDir = (IsMoving && !usingWorkstation) ? (moveDir) : (lookDir);
         }

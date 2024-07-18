@@ -249,6 +249,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &155712808
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +348,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &193261599
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +483,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -696,6 +701,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &360646569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1028,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &488198597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1127,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &605032738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,96 +1226,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
---- !u!1 &607477731
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 607477732}
-  - component: {fileID: 607477734}
-  - component: {fileID: 607477733}
-  - component: {fileID: 607477735}
-  m_Layer: 8
-  m_Name: CloseButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &607477732
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607477731}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1004073335}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 574, y: 573}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &607477734
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607477731}
-  m_CullTransparentMesh: 1
---- !u!114 &607477733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607477731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &607477735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607477731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ControlPath: <Touchscreen>/touch8/tap
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &610288211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,6 +1477,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &748889967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,6 +1728,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &830821698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,7 +1967,6 @@ RectTransform:
   - {fileID: 2094091630}
   - {fileID: 1101136802}
   - {fileID: 360646570}
-  - {fileID: 607477732}
   m_Father: {fileID: 213639623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2099,17 +2025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539518e3b063c124982c7d61f1c91ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftTableCont: {fileID: 1038668128}
-  craftingSlots:
-  - {fileID: 1672496148}
-  - {fileID: 1632101126}
-  - {fileID: 1981555883}
-  - {fileID: 1621943319}
-  - {fileID: 605032740}
-  - {fileID: 1630412812}
-  - {fileID: 1823841079}
-  - {fileID: 152801380}
-  - {fileID: 468412323}
   backPackSlots:
   - {fileID: 1376080345}
   - {fileID: 821949038}
@@ -2130,14 +2045,24 @@ MonoBehaviour:
   - {fileID: 1860374677}
   - {fileID: 312745686}
   - {fileID: 1696470575}
-  craftedSlot: []
   movingSlot: {fileID: 1101136803}
+  NoItemSprite: {fileID: 0}
+  craftTableCont: {fileID: 1038668128}
+  craftingSlots:
+  - {fileID: 1672496148}
+  - {fileID: 1632101126}
+  - {fileID: 1981555883}
+  - {fileID: 1621943319}
+  - {fileID: 605032740}
+  - {fileID: 1630412812}
+  - {fileID: 1823841079}
+  - {fileID: 152801380}
+  - {fileID: 468412323}
+  craftedSlot: []
   craftedSlotNum: 9
-  backPackSlotNum: 12
-  quickSlotsSlotNum: 6
   currentRecipe: ' '
-  noItemSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   currentUserController: {fileID: 0}
+  potentialItem: {fileID: 0}
 --- !u!1 &1007263108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,6 +2160,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1014859655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,6 +2259,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1101136801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,6 +2358,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1137353223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,6 +2609,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1376080343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,6 +2708,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1531985699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,6 +2807,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1561850492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,6 +3134,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1630412810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,6 +3233,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1632101124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3332,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1660748397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3431,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1672496146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3585,6 +3530,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1691684354
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +3705,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1775173208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,6 +3804,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1785767135
 GameObject:
   m_ObjectHideFlags: 0
@@ -4073,6 +4024,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1823841077
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,6 +4123,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1843423538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4343,6 +4298,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1868169719
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4701,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1931636973
 GameObject:
   m_ObjectHideFlags: 0
@@ -4959,6 +4918,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1981555881
 GameObject:
   m_ObjectHideFlags: 0
@@ -5056,6 +5017,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &1993019028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5153,6 +5116,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &2016370130
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,6 +5443,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
   slotType: 
+  curQuantity: 0
+  maxQuantity: 0
 --- !u!1 &2136350169
 GameObject:
   m_ObjectHideFlags: 0
@@ -5703,7 +5670,6 @@ MonoBehaviour:
   - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
   - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
   - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  craftedCont: {fileID: 0}
   craftingMenuController: {fileID: 1004073338}
   stockpileController: {fileID: 1038668129}
 --- !u!114 &1038668129
@@ -5718,10 +5684,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac3f8be7d42cb3408893a3fdc8d63c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpriteRenderer: {fileID: 583378844944101580}
-  quantity: 0
+  m_SpriteRend: {fileID: 0}
+  curQuantity: 0
   maxQuantity: 1
   isEmpty: 0
+  storageSlots: []
   itemPrefab: {fileID: 0}
   emptyStockpileSprite: {fileID: 0}
   itemSprites:
