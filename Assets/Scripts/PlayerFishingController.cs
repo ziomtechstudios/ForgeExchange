@@ -15,6 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Private Members"
 
         private int isReelingHash, isFullyReeledHash;
+        private int isCastingHash;
         #endregion
         #region "Private Funcs"
 
@@ -26,6 +27,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Getters/Setters"
         public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
         public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
+        public int IsCasting{get{return isCastingHash;} set{isCastingHash = value;}}
         #endregion
 
         // Start is called before the first frame update
@@ -34,6 +36,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont = GetComponent<PlayerInteractionController>();
             isFullyReeledHash = Animator.StringToHash("isFullyReeled");
             isReelingHash = Animator.StringToHash("isReeling");
+            isCastingHash = Animator.StringToHash("isCasting");
         }
 
         // Update is called once per frame
