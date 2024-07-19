@@ -23,6 +23,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool GoFishing(){
             playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
             playerCont.IsFishing = true;
+            playerCont.M_Animator.SetBool(playerFishingCont.IsReelingHash, false);
+            playerCont.M_Animator.SetBool(playerFishingCont.IsFullyReeledHash, false);
             return true;
         }
         private void UnEquipItem(){
@@ -74,7 +76,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     workstationCont.Overflow(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
                     //If the item can be used as fuel and we are not using workstation that doesnt use fuel and if refueling the workstation wont overflow
                     //Workstation that dont require fuel such as forgepump will simply have their Fuel Full boolean set to true thereby !true.
-                    if (!(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt == 0.0f) && (!workstationCont.BarFull))
+                    if ((playerCont.HoldingCont.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
                     {
                         workstationCont.Refuel(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
                         playerCont.PlayerInventoryCont.DroppingItem();
@@ -98,21 +100,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
         }
         private void EnvironmentInteraction(){
-            //wall, door, blockage
+            //wall, door, blockage, cliff, shore, etc...
             switch(playerCont.PlayerLOS.transform.tag){
                 case "Door":
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
                     break;
                 
                 case "water":
-                    if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing){
-                        Debug.Log("We are touching the shoreline.");
-                        ///<summary>
-                        ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
-                        ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
-                        ///</summary>
+                    ///<summary>
+                    ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
+                    ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
+                    ///</summary>
+                    if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing)
                         playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("fishing rod")?GoFishing():true):false;
-                    }
                     break;
                 
                 default:

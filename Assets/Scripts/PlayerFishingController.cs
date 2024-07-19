@@ -9,11 +9,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         #region "Private Serialized Fields"
         [SerializeField] private PlayerInteractionController playerInteractionCont;
+
                 
         #endregion
         #region "Private Members"
 
-
+        private int isReelingHash, isFullyReeledHash;
         #endregion
         #region "Private Funcs"
 
@@ -22,10 +23,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont.PlayerCont.IsFishing = false;
         }
         #endregion
+        #region "Getters/Setters"
+        public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
+        public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
+        #endregion
+
         // Start is called before the first frame update
         void Start()
         {
             playerInteractionCont = GetComponent<PlayerInteractionController>();
+            isFullyReeledHash = Animator.StringToHash("isFullyReeled");
+            isReelingHash = Animator.StringToHash("isReeling");
         }
 
         // Update is called once per frame
