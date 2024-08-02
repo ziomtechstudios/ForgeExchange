@@ -36,7 +36,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void Start()
         {
             playerInteractionCont = GetComponent<PlayerInteractionController>();
-            isFullyReeledHash = Animator.StringToHash("isFullyReeled");
+            isFullyReeledHash = Animator.StringToHash("fullyReeled");
             isReelingHash = Animator.StringToHash("isReeling");
             isCastingHash = Animator.StringToHash("isCasting");
         }

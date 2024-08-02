@@ -68,7 +68,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isRodReeling
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isRodFulltReeled
+    m_ConditionEvent: isRodFullyReeled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2506249536232867315}
@@ -96,7 +96,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isRodReeling
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: isRodFulltReeled
+    m_ConditionEvent: isRodFullyReeled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4375205665540866353}
@@ -151,7 +151,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isRodReeling
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isRodFulltReeled
+    m_ConditionEvent: isRodFullyReeled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5172524677539195681}
@@ -256,7 +256,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isRodReeling
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isRodFulltReeled
+    m_ConditionEvent: isRodFullyReeled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2506249536232867315}
@@ -293,7 +293,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: isRodFulltReeled
+  - m_Name: isRodFullyReeled
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -457,7 +457,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isRodReeling
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isRodFulltReeled
+    m_ConditionEvent: isRodFullyReeled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5172524677539195681}

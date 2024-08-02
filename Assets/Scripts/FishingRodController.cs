@@ -7,7 +7,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
     {
         [SerializeField] Animator m_Animator;
         // Start is called before the first frame update
-        private int isRodCastingHash, isRodReelingHash, isRodFullyReeledHash;
+        private int isRodCastingHash, isRodReelingHash, isRodFullyReeledHash, lookDirXHash, lookDirYHash;
 
         public int IsRodReelingHash { get { return isRodReelingHash;} set { isRodReelingHash = value;}}
         public int IsRodCastingHash { get { return isRodCastingHash;} set { isRodCastingHash =value;}}
@@ -17,14 +17,18 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             m_Animator.SetTrigger(isRodCastingHash);
             m_Animator.SetBool(isRodReelingHash, false);
             m_Animator.SetBool(isRodFullyReeledHash, false);
+            m_Animator.SetFloat(lookDirXHash, playerCont.LookDir.x);
+            m_Animator.SetFloat(lookDirYHash, playerCont.LookDir.y);
         }
 
-        void Start()
+        void Awake()
         {
             m_Animator = GetComponent<Animator>();
             isRodCastingHash = Animator.StringToHash("isRodCasting");
             isRodReelingHash = Animator.StringToHash("isRodReeling");
             isRodFullyReeledHash = Animator.StringToHash("isRodFullyReeled");
+            lookDirXHash = Animator.StringToHash("LookX");
+            lookDirYHash = Animator.StringToHash("LookY");
         }
 
         // Update is called once per frame
