@@ -170,7 +170,7 @@ AnimatorStateMachine:
     m_Position: {x: 510, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1767602843271897253}
-    m_Position: {x: 770, y: 260, z: 0}
+    m_Position: {x: 750, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6003719606335807529}
     m_Position: {x: 890, y: 0, z: 0}
@@ -221,7 +221,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 6b1769cb103427e1fa74e1680bbb0990, type: 2}
+    m_Motion: {fileID: 7400000, guid: a7f5618ba04daa3569eb5ff0f4aa701b, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -229,7 +229,7 @@ BlendTree:
     m_DirectBlendParameter: LookX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 5c0054ba6eeb3f222a08502e616c13bc, type: 2}
+    m_Motion: {fileID: 7400000, guid: 723b22b95d0f44a4a91e32c14021dd03, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -237,7 +237,7 @@ BlendTree:
     m_DirectBlendParameter: LookX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 9ee07c0c4a433a53f90216cecb2e2e62, type: 2}
+    m_Motion: {fileID: 7400000, guid: 91f69663ea20d3dcda828abd5ba222f5, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -245,7 +245,7 @@ BlendTree:
     m_DirectBlendParameter: LookX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 01b96b39c013c869d95b372ab8900b5e, type: 2}
+    m_Motion: {fileID: 7400000, guid: 03c04c34e39cdbd24be23154d7a5dfd0, type: 2}
     m_Threshold: 1
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -408,7 +408,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Reeling
+  m_Name: Idling
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 4246e701fdfb9a9cca90ed0241d895ab, type: 2}

@@ -21,10 +21,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Private Fields"
         private bool GoFishing(){
-            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
+            playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, true);
             playerCont.IsFishing = true;
             playerCont.M_Animator.SetBool(playerFishingCont.IsReelingHash, false);
             playerCont.M_Animator.SetBool(playerFishingCont.IsFullyReeledHash, false);
+            playerFishingCont.CastingRod();
             return true;
         }
         private void UnEquipItem(){

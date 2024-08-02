@@ -18,10 +18,22 @@ PrefabInstance:
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_SortingOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -809670857
+      objectReference: {fileID: 0}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 906800896134731824, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: itemIcon
@@ -39,6 +51,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wooden_fishing_rod
       objectReference: {fileID: 0}
+    - target: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c75d98ee034d6286e8eeb901a1067825, type: 2}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -86,12 +102,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 906800896134731824, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+--- !u!95 &6955425095479100634 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+  m_PrefabInstance: {fileID: 8741588463170813750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8638431706442511446 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
   m_PrefabInstance: {fileID: 8741588463170813750}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6158149337921398732
+--- !u!114 &5133880784068991708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,9 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8638431706442511446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d732067b798dbe5b4d425a52a76476, type: 3}
+  m_Script: {fileID: 11500000, guid: 520f1297b4f86f24d993a3e05ab93bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   refinement: 1
   prefabItemStruct: {fileID: 11400000, guid: 4a2b997a4c0bf283f99dda37cac1f76a, type: 2}
   itemIcon: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+  m_Animator: {fileID: 6955425095479100634}

@@ -9,6 +9,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         #region "Private Serialized Fields"
         [SerializeField] private PlayerInteractionController playerInteractionCont;
+        [SerializeField] private FishingRodController fishingRodCont;
 
                 
         #endregion
@@ -16,6 +17,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         private int isReelingHash, isFullyReeledHash;
         private int isCastingHash;
+        private GameObject fishingRod;
         #endregion
         #region "Private Funcs"
 
@@ -27,7 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Getters/Setters"
         public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
         public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
-        public int IsCasting{get{return isCastingHash;} set{isCastingHash = value;}}
+        public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
         #endregion
 
         // Start is called before the first frame update
@@ -39,10 +41,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isCastingHash = Animator.StringToHash("isCasting");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        public void CastingRod(){
+            if(fishingRod == null){
+                fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
+                fishingRodCont = fishingRod.GetComponent<FishingRodController>();
+            }
+            fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
             
-        }
+        }   
     }
 }

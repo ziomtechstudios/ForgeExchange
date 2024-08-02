@@ -31,7 +31,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Header("Health/Stamina")]
         [SerializeField] private StaminaController playerStaminaCont;
         [Header("Player Audio")]
-        [SerializeField] private AudioClip playerStoneSteps, playerGrassSteps;
+        [SerializeField] private AudioClip playerStoneSteps;
+        [SerializeField] private AudioClip playerGrassSteps;
         #endregion
         #region Private Fields
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, isFishingHash;
@@ -128,7 +129,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isFishingHash = Animator.StringToHash("isFishing");
             IsMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
-            layerMask = ((1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")) | (1 << LayerMask.NameToLayer("chest")));
+            layerMask = (1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")) | (1 << LayerMask.NameToLayer("chest"));
             m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
             backpackCont = backPackObj.GetComponent<BackpackController>();
@@ -148,7 +149,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if ((m_Collider.IsTouchingLayers(layerMask)) && (hit.transform != null))
+                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null))
                     MovePlayer(false);
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else
