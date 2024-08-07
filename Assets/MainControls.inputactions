@@ -496,6 +496,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "FishingControls",
+            "id": "34b84c42-0db1-4351-a21a-0abe20a45698",
+            "actions": [
+                {
+                    "name": "Reeling",
+                    "type": "Button",
+                    "id": "0a76d394-07d1-41e8-8e18-6069cd5f8bc2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "122029b8-436d-4062-8cf7-17242da10e75",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reeling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

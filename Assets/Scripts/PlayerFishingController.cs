@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
@@ -19,12 +19,35 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int isCastingHash;
         private GameObject fishingRod;
         #endregion
-        #region "Private Funcs"
-
-        private void ReelingRod(){
-            playerInteractionCont.PlayerCont.M_Animator.SetBool(playerInteractionCont.PlayerCont.IsFishingHash, false);
-            playerInteractionCont.PlayerCont.IsFishing = false;
+        #region "Public Funcs"
+        public void IsFullyReeled(){
+            playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, !((fishingRodCont.CurReeledAmnt+=0.1f) <= fishingRodCont.MaxReelAmnt));
+            fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, playerInteractionCont.PlayerCont.M_Animator.GetBool(IsFullyReeledHash));
         }
+
+        public void ReelingRod(InputAction.CallbackContext context){
+            if(!playerInteractionCont.PlayerCont.M_Animator.GetBool(IsFullyReeledHash))
+            {
+                if(context.started){
+                    fishingRodCont.RodReeling(true);
+                    playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, true);
+                }
+                else if(context.canceled){
+                    fishingRodCont.RodReeling(false);
+                    playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, false);
+                }
+                IsFullyReeled();
+            }
+            else
+                fishingRodCont.RodReeling(false);
+        }
+        public void CastingRod(){
+            if(fishingRod == null){
+                fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
+                fishingRodCont = fishingRod.GetComponent<FishingRodController>();
+            }
+            fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
+        }   
         #endregion
         #region "Getters/Setters"
         public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
@@ -41,13 +64,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isCastingHash = Animator.StringToHash("isCasting");
         }
 
-        public void CastingRod(){
-            if(fishingRod == null){
-                fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
-                fishingRodCont = fishingRod.GetComponent<FishingRodController>();
-            }
-            fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
-            
-        }   
+
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -26,7 +25,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             currentRecipe = null;
             //Reevaluating current ingredients the user has deposited into the crafting table
             foreach (SlotController ingredient in craftingSlots)
-                currentRecipe += ((ingredient.SlotWithItem) ? (ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag) : ("_"));
+                currentRecipe += ingredient.SlotWithItem ? ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag : "_";
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictoinary
             if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
             { 

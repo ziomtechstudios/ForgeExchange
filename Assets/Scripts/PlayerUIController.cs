@@ -32,7 +32,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void ToggleInventory()
         {
             backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation);
-            backpackController.SyncQuickSlots((backPackObj.activeInHierarchy) ? ("InGameToMenu") : ("MenuToInGame"));
+            backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
         }
         public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
         #endregion
@@ -143,7 +143,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 itemUI.gameObject.SetActive(false);
             }
             playerHPImage.fillAmount = playerCont.M_HealthCont.HealthBarAmnt;
-            playerStaminaImage.fillAmount = (playerCont.PlayerStaminaCont.Stamina / playerCont.PlayerStaminaCont.MaxStamina);
+            playerStaminaImage.fillAmount = playerCont.PlayerStaminaCont.Stamina / playerCont.PlayerStaminaCont.MaxStamina;
 
         }
     }

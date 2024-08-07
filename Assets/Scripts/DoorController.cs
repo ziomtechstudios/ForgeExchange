@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     [RequireComponent(typeof(Animator))]

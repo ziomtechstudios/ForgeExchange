@@ -1,6 +1,7 @@
- using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class CraftTableController : WorkstationController

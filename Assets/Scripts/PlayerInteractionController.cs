@@ -1,5 +1,3 @@
-using System;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.M_Animator.SetBool(playerFishingCont.IsReelingHash, false);
             playerCont.M_Animator.SetBool(playerFishingCont.IsFullyReeledHash, false);
             playerFishingCont.CastingRod();
+            playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
             return true;
         }
         private void UnEquipItem(){

@@ -118,18 +118,29 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //If the plaer is holding a weapon change the control scheme to combat controls,
                 //if the player is holding an non-wepon or empty handed revert to shop controls
                 if (playerCont.HoldingPrefab != null)
-                {
-                    bool isWeapon = playerCont.HoldingPrefab.tag.Contains("Weapon");
-                    playerCont.PlayerInput.SwitchCurrentActionMap(isWeapon ? "CombatControls" : "ShopControls");
-                    if (isWeapon)
-                        playerCont.PlayerAtkCont.EquipWeapon();
-                }
-                else if (playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)
-                    playerCont.PlayerAtkCont.UnEquip();
+                    SwappingPlayerControlMap();
                 //Debug.Log($"{playerCont.PlayerInput.currentActionMap.name} is the current control scheme.");
             }
             //Helps avoid non-needed work  
             AreAllSlotsFull();
+        }
+        private void SwappingPlayerControlMap(){
+            switch(playerCont.HoldingPrefab.tag){
+                case "Weapon":
+                    if(playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)
+                        playerCont.PlayerAtkCont.UnEquip();
+                    else{
+                        playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
+                        playerCont.PlayerAtkCont.EquipWeapon();
+                    }
+                    break;
+                case "Item":
+                    playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
+                    break;
+                default:
+                    playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+                    break;
+            }
         }
         #endregion
         // Start is called before the first frame update

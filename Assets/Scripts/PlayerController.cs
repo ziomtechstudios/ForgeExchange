@@ -68,7 +68,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (M_HealthCont.HP <= 0.0f)
                 M_Animator.SetTrigger(isDeadHash);
         }
-
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
+                TakeDamage(1.00f);
+        }
         #endregion
         #region Public Members
         public void OnMove(InputAction.CallbackContext context)
@@ -158,12 +163,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else if (!IsMoving && M_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
 
-        }
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
-            if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
-                TakeDamage(1.00f);
         }
     }
 }
