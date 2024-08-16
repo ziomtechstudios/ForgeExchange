@@ -11,7 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerInteractionController playerInteractionCont;
         [SerializeField] private FishingRodController fishingRodCont;
 
-                
+
         #endregion
         #region "Private Members"
 
@@ -21,8 +21,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Public Funcs"
         public void IsFullyReeled(){
-            playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, !((fishingRodCont.CurReeledAmnt+=0.1f) <= fishingRodCont.MaxReelAmnt));
+            playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, (fishingRodCont.CurReeledAmnt+=0.1f) >= fishingRodCont.MaxReelAmnt);
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, playerInteractionCont.PlayerCont.M_Animator.GetBool(IsFullyReeledHash));
+            fishingRodCont.CurReeledAmnt = fishingRodCont.M_Animator.GetBool(fishingRodCont.IsRodFullyReeledHash) ? 0.0f: fishingRodCont.CurReeledAmnt;
+            fishingRodCont.RodReeling(fishingRodCont.CurReeledAmnt != 0.0f);
         }
 
         public void ReelingRod(InputAction.CallbackContext context){
@@ -32,11 +34,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     fishingRodCont.RodReeling(true);
                     playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, true);
                 }
-                else if(context.canceled){
+                else if(context.canceled || playerInteractionCont.PlayerCont.M_Animator.GetBool(isFullyReeledHash)){
                     fishingRodCont.RodReeling(false);
-                    playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, false);
+                    playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
                 }
-                IsFullyReeled();
             }
             else
                 fishingRodCont.RodReeling(false);
@@ -63,7 +64,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isReelingHash = Animator.StringToHash("isReeling");
             isCastingHash = Animator.StringToHash("isCasting");
         }
-
+        void FixedUpdate(){
+            if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash))
+                IsFullyReeled();
+        }
 
     }
 }
