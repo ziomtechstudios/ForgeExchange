@@ -10,6 +10,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Private Serialized Fields"
         [SerializeField] private PlayerInteractionController playerInteractionCont;
         [SerializeField] private FishingRodController fishingRodCont;
+        [SerializeField] private float reelingIncrmt;
+
 
 
         #endregion
@@ -22,7 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Public Funcs"
         public void IsFullyReeled(){
-            isFullyReeled = ((fishingRodCont.CurReeledAmnt+=0.1f) >= fishingRodCont.MaxReelAmnt);
+            isFullyReeled = ((fishingRodCont.CurReeledAmnt+=reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
             playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, isFullyReeled);
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
             fishingRodCont.RodReeling(!isFullyReeled);
@@ -60,6 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
         public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
         public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
+        public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
         #endregion
 
         // Start is called before the first frame update
@@ -71,7 +74,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isCastingHash = Animator.StringToHash("isCasting");
             isFullyReeled = false;
         }
-        void Update(){
+        void FixedUpdate(){
             if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
                 IsFullyReeled();
         }

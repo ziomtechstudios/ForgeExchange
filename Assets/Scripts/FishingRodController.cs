@@ -26,7 +26,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public void RodReeling(bool isReeling){
             m_Animator.SetBool(IsRodReelingHash, isReeling);
-            m_Animator.SetBool(IsRodFullyReeledHash, false);
         }
         void Awake()
         {
