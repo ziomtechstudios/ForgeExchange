@@ -24,7 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return !slotConts[index].SlotInUse;
         }
         //Player selects which slot in their inventory they want to select, makes that obj the one the player is holding
-        private void SelectSlot(int slotIndex)
+        public void SelectSlot(int slotIndex)
         {
             //Makes it so that no slot is selected
             if (slotIndex != (-1))

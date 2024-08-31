@@ -27,6 +27,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public void RodReeling(bool isReeling){
             m_Animator.SetBool(IsRodReelingHash, isReeling);
         }
+        
         void Awake()
         {
             m_Animator = GetComponent<Animator>();
@@ -35,12 +36,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             isRodFullyReeledHash = Animator.StringToHash("isRodFullyReeled");
             lookDirXHash = Animator.StringToHash("LookX");
             lookDirYHash = Animator.StringToHash("LookY");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
         }
     }
 }

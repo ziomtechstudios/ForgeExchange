@@ -28,10 +28,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
             return true;
         }
-        private void UnEquipItem(){
-            playerCont.HoldingItem = false;
-            playerCont.HoldingCont = null;
-            playerCont.HoldingPrefab = null;
+        public void UnEquipItem(){
+
         }
         //TODO
         /*private bool GoSwimming() {

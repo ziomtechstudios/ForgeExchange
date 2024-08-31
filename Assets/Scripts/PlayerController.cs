@@ -42,7 +42,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Parametric bool for moving represents object desire to move, IsMoving represents if obj meets conditions in order to move
         private void MovePlayer(bool moving)
         {
-
             if(moving)
             {
                 M_Animator.SetBool(isMovingHash, true);

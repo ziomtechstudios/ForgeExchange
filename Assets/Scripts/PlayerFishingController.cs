@@ -55,8 +55,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 fishingRodCont = fishingRod.GetComponent<FishingRodController>();
                 fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
             }
-            
         }   
+        /// <summary>
+        /// This function is intended to be called when the last frame of the player's catching animation is played.
+        /// This player's fishing status is set to false and the player's will unequip their fishing pole.
+        /// This way if the player wants to engage in fishing they just have to re-equip the fishing rod and press the interaction button.
+        /// </summary>
+        public void ReelInRod(){
+            playerInteractionCont.PlayerCont.IsFishing = false;
+            playerInteractionCont.PlayerCont.M_Animator.SetBool(playerInteractionCont.PlayerCont.IsFishingHash, false);
+            playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
+            playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+            fishingRod = null;
+
+        }
         #endregion
         #region "Getters/Setters"
         public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
