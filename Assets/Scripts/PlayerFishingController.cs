@@ -64,10 +64,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void ReelInRod(){
             playerInteractionCont.PlayerCont.IsFishing = false;
             playerInteractionCont.PlayerCont.M_Animator.SetBool(playerInteractionCont.PlayerCont.IsFishingHash, false);
+            playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, false);
+            fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, false);
+            fishingRodCont.RodReeling(false);
             playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
             playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+            Destroy(fishingRod);
             fishingRod = null;
-
         }
         #endregion
         #region "Getters/Setters"
