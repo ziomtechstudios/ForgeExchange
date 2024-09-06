@@ -71,6 +71,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
             Destroy(fishingRod);
             fishingRod = null;
+            isFullyReeled = false;
         }
         #endregion
         #region "Getters/Setters"
