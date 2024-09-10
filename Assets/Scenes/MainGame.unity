@@ -25767,6 +25767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInteractionCont: {fileID: 0}
   fishingRodCont: {fileID: 0}
+  reelingIncrmt: 0.5
 --- !u!1 &1219244799
 GameObject:
   m_ObjectHideFlags: 0
@@ -37108,6 +37109,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.29803923
       objectReference: {fileID: 0}
+    - target: {fileID: 1045622047, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1160338721, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -37171,6 +37176,14 @@ PrefabInstance:
     - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_LocalPosition.x

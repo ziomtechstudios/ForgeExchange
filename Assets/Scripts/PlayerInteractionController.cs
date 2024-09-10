@@ -29,7 +29,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return true;
         }
         public void UnEquipItem(){
-
+            playerCont.HoldingItem = false;
+            playerCont.HoldingCont = null;
+            playerCont.HoldingPrefab = null;
         }
         //TODO
         /*private bool GoSwimming() {
@@ -102,7 +104,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //wall, door, blockage, cliff, shore, etc...
             switch(playerCont.PlayerLOS.transform.tag){
                 case "Door":
-                    playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor();
+                    Debug.Log("We are in arms reach of a door.");
+                    playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor(5.0f);
                     break;
                 
                 case "water":
@@ -152,10 +155,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //If so is the player prompting to interact with said item?
             if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
             {
+                Debug.Log(playerCont.PlayerLOS.transform.tag);
                 //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
                 //Diff scenarios based on what the player is interacting with
                 switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
                 {
+                    
                     //wall, door, blockage
                     case "bounds":
                         EnvironmentInteraction();

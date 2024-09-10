@@ -69,6 +69,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             fishingRodCont.RodReeling(false);
             playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
             playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+            playerInteractionCont.UnEquipItem();
             Destroy(fishingRod);
             fishingRod = null;
             isFullyReeled = false;

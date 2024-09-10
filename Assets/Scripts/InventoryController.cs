@@ -16,6 +16,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Funcs
         private bool ToggleHolding(int index)
         {
+            Debug.Log($"Does slot have an item? {slotConts[index].SlotWithItem }. Is the slot currently not in use? {!slotConts[index].SlotInUse}");
             //If the slot selected has an item the player holds the item
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
@@ -26,12 +27,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Player selects which slot in their inventory they want to select, makes that obj the one the player is holding
         public void SelectSlot(int slotIndex)
         {
+            Debug.Log($"Slot index: {slotIndex}, slot in use: {slotConts[slotIndex].SlotInUse}");
             //Makes it so that no slot is selected
             if (slotIndex != (-1))
             {
                 for (int i = 0; i < inventoryAmnt; i++)
                 {
-                    slotConts[i].SlotInUse = i == slotIndex ? ToggleHolding(i) : false;
+                    slotConts[i].SlotInUse = (i == slotIndex ? ToggleHolding(i) : false);
                     slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
                 }
             }
@@ -127,12 +129,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void SwappingPlayerControlMap(){
             switch(playerCont.HoldingPrefab.tag){
                 case "Weapon":
+                /*
                     if(playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)
                         playerCont.PlayerAtkCont.UnEquip();
                     else{
                         playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
                         playerCont.PlayerAtkCont.EquipWeapon();
                     }
+                    */
+                    playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
+                    playerCont.PlayerAtkCont.EquipWeapon();
                     break;
                 case "Item":
                     playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");

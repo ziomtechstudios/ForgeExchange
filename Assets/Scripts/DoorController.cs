@@ -21,10 +21,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             doorAnimator.SetBool(isOpenHash, false);
         }
-        public void InteractDoor()
+        public void InteractDoor(float timeToClose)
         {
             doorAnimator.SetBool(isOpenHash, true);
-            Invoke("CloseDoor", 5.00f);
+            Invoke("CloseDoor", timeToClose);
         }
     }
 }

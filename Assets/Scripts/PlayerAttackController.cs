@@ -14,6 +14,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash;
         private bool hasWeapon, alreadyAttacking;
         private GameObject playerWeapon;
+        private PlayerInteractionController playerInteractionCont;
         #endregion
         #region "Getters/Setters"
         public bool HasWeapon { get { return hasWeapon; } }
@@ -30,6 +31,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void UnEquip()
         {
+            Debug.Log("Unequiping weapon via player attack controller.");
+            playerInteractionCont.UnEquipItem();
             Destroy(playerWeapon);
             hasWeapon = false;
             m_PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
@@ -55,6 +58,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void Start()
         {
             m_PlayerCont = GetComponent<PlayerController>();
+            playerInteractionCont = GetComponent<PlayerInteractionController>();
             playerAttackHash = Animator.StringToHash("isAttacking");
             weaponAttackHash = Animator.StringToHash("isWAttacking");
             LookXHash = Animator.StringToHash("LookX");
