@@ -104,10 +104,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //wall, door, blockage, cliff, shore, etc...
             switch(playerCont.PlayerLOS.transform.tag){
                 case "Door":
-                    Debug.Log("We are in arms reach of a door.");
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor(5.0f);
                     break;
-                
                 case "water":
                     ///<summary>
                     ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
@@ -128,12 +126,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Make sure we have reference to component in players LOS
             stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
+            //If th eworkstation like a forge does not have any item to give to the interacting player, toggle use of workstation.
             if (stockpileCont.CurQuantity == 0)
             {
-                //playerCont.PlayerBackPackCont.gameObject.SetActive(true);
                 workstationCont.ToggleUse(playerCont);
                 return false;
             }
+            //If the stockpile has an item to give and th eplayer has at least one free quikslot
             else if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
                 return PickUpObj();
             else
@@ -141,6 +140,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public bool InteractWorkstation()
         {
+            ///<summary>
+            ///The player is interacting with a workstation while equiping the item for a special use case like refueling forge or by accident.
+            ///If it is a special use case we simply add it to the switch case and create a function that if successfull sets player holding item bool to false.
+            ///If this was an accident we want the player to keep holding  the item and simply reassign playerHoldingItem to its current value, presummably true.
+            ///</summary>
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
             switch (playerCont.PlayerLOS.transform.tag)
             {
@@ -152,15 +156,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void OnInteraction(InputAction.CallbackContext context)
         {
-            //If so is the player prompting to interact with said item?
+                //Is the player looking at an object? && Are they pressing the interact button && Is their a backpack closed?
             if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
             {
-                Debug.Log(playerCont.PlayerLOS.transform.tag);
-                //Debug.Log(playerCont.PlayerLOS.transform.gameObject.layer);
                 //Diff scenarios based on what the player is interacting with
                 switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
                 {
-                    
                     //wall, door, blockage
                     case "bounds":
                         EnvironmentInteraction();
@@ -168,16 +169,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //Forge, Quelcher, Sandstone, etc...
                     case "workstation":
                         ///<summary>
-                        ///If the player is holding an object let them interact with the workstation
-                        ///If the player does not have an item them they are going to want to use the workstation
+                        ///If the player is holding an object let them interact with the workstation.
+                        ///If the player does not have an item them they are going to want to use the workstation.
                         ///</summary>
                         playerCont.HoldingItem = playerCont.HoldingItem ? InteractWorkstation() : UseWorkstation();
                         break;
                     //Coal pile, wood pile, etc...
                     case "stockpile":
                         ///<summary>
-                        ///If the player is not holding an item check that the quickslots are not full
-                        ///and that the player does not have the backpack open in order to allow them to pick up the desired object
+                        ///If the player is not holding an item check that the quickslots are not full.
+                        ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
                         ///If the player is holding an object allow them to drop the object
                         ///
                         playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DropObj();
