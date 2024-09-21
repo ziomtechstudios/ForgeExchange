@@ -24,6 +24,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Public Funcs"
         public void IsFullyReeled(){
+            ///<summary>
+            ///We check to see if the player has fully reeled in the line.
+            ///First increment ammount the line has currently reeled and then check to see if this reaches or exceeds the maximum.
+            ///Pass the boolean result into the animation controller of both the player and the fishing rod.
+            ///If the line is fuly reeled reset the reeled amount to zero
+            ///</summary>
             isFullyReeled = ((fishingRodCont.CurReeledAmnt+=reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
             playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, isFullyReeled);
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
@@ -44,6 +50,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
                 }
             }
+
             else{
                 fishingRodCont.RodReeling(false);
                 playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
@@ -67,9 +74,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, false);
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, false);
             fishingRodCont.RodReeling(false);
+            // Unequip the fishing rod within the quickslot it resides it.
             playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
+            // In case player no longer wants to fish they can now revert to other activities
             playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
-            playerInteractionCont.UnEquipItem();
+            ///<summary>
+            /// Satisfies condition for casting rod if fishing is done consecutively.
+            /// This also ensures that if the player where to equip another item it will be the only gameObject held within the scene @ runtime.
+            //.</summary>
             Destroy(fishingRod);
             fishingRod = null;
             isFullyReeled = false;

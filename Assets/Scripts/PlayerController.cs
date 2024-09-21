@@ -28,6 +28,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string backPackObjPath;
         [SerializeReference] private BackpackController backpackCont;
         [SerializeReference] private PlayerAttackController playerAttackCont;
+        [SerializeReference] private PlayerInteractionController playerInteractionCont;
         [Header("Health/Stamina")]
         [SerializeField] private StaminaController playerStaminaCont;
         [Header("Player Audio")]
@@ -111,6 +112,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public PlayerUIController PlayerUICont { get { return playerUIController; } }
         public PlayerInput PlayerInput { get { return playerInput; } }
         public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
+        public PlayerInteractionController PlayerInteractionCont{get{return playerInteractionCont;}}
         public Vector2 LookDir { get { return lookDir; } }
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
@@ -141,6 +143,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerAttackCont = GetComponent<PlayerAttackController>();
             M_HealthCont = GetComponent<HealthController>();
             playerStaminaCont = GetComponent<StaminaController>();
+            playerInteractionCont = GetComponent<PlayerInteractionController>();
             M_AudioSource = GetComponent<AudioSource>();
             M_DSpriteLayering = GetComponent<DynamicSpriteLayering>();
         }

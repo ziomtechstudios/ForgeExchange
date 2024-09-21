@@ -22,8 +22,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, !playerCont.M_Animator.GetBool(playerCont.IsFishingHash));
             playerCont.IsFishing = true;
             playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
-            //playerCont.M_Animator.SetBool(playerFishingCont.IsReelingHash, false);
-            //playerCont.M_Animator.SetBool(playerFishingCont.IsFullyReeledHash, false);
             playerFishingCont.CastingRod();
             playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
             return true;
@@ -31,6 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void UnEquipItem(){
             playerCont.HoldingItem = false;
             playerCont.HoldingCont = null;
+            Destroy(playerCont.HoldingPrefab);
             playerCont.HoldingPrefab = null;
         }
         //TODO

@@ -16,19 +16,24 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Funcs
         private bool ToggleHolding(int index)
         {
-            Debug.Log($"Does slot have an item? {slotConts[index].SlotWithItem }. Is the slot currently not in use? {!slotConts[index].SlotInUse}");
             //If the slot selected has an item the player holds the item
+            //Debug.Log($"slotConts[index].SlotWithItem : {slotConts[index].SlotWithItem}, !slotConts[index].SlotInUse: {!slotConts[index].SlotInUse}.");
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
-            playerCont.HoldingPrefab = playerCont.HoldingItem ? slotConts[index].SlotPrefab : null;
+            //playerCont.HoldingPrefab = playerCont.HoldingItem ? slotConts[index].SlotPrefab : null;
             playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
-            return !slotConts[index].SlotInUse;
+            if(!playerCont.HoldingItem){
+                DestroyImmediate(playerCont.gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
+                playerCont.HoldingPrefab = null;
+            }
+            else
+                playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
+            return playerCont.HoldingItem;
         }
-        //Player selects which slot in their inventory they want to select, makes that obj the one the player is holding
+        //Player selects which slot in their inventory the!slotConts[index].SlotInUsey want to select, makes that obj the one the player is holding
         public void SelectSlot(int slotIndex)
         {
-            Debug.Log($"Slot index: {slotIndex}, slot in use: {slotConts[slotIndex].SlotInUse}");
-            //Makes it so that no slot is selected
+            //selected slot is highlighted
             if (slotIndex != (-1))
             {
                 for (int i = 0; i < inventoryAmnt; i++)
@@ -37,7 +42,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
                 }
             }
-            //selected slot is highlighted
+            //Makes it so that no slot is selected
             else
             {
                 for (int i = 0; i < inventoryAmnt; i++)
@@ -116,37 +121,32 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (context.started)
             {
                 int slot = int.Parse(context.action.name) - 1;
+                //Debug.Log($"We are selecting slot number: {slot}.");
                 SelectSlot(slot);
-                //If the plaer is holding a weapon change the control scheme to combat controls,
-                //if the player is holding an non-wepon or empty handed revert to shop controls
-                if (playerCont.HoldingPrefab != null)
-                    SwappingPlayerControlMap();
+                //Update players control scheme to match the current conditions of if they are holding an item and what it is.
+                SwappingPlayerControlMap();
                 //Debug.Log($"{playerCont.PlayerInput.currentActionMap.name} is the current control scheme.");
             }
             //Helps avoid non-needed work  
             AreAllSlotsFull();
         }
         private void SwappingPlayerControlMap(){
-            switch(playerCont.HoldingPrefab.tag){
-                case "Weapon":
-                /*
-                    if(playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)
-                        playerCont.PlayerAtkCont.UnEquip();
-                    else{
+            if(playerCont.HoldingItem){
+                switch(playerCont.HoldingPrefab.tag){
+                    case "Weapon":
                         playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
                         playerCont.PlayerAtkCont.EquipWeapon();
-                    }
-                    */
-                    playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
-                    playerCont.PlayerAtkCont.EquipWeapon();
-                    break;
-                case "Item":
-                    playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
-                    break;
-                default:
-                    playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
-                    break;
+                        break;
+                    case "Item":
+                        playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
+                        break;
+                    default:
+                        playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+                        break;
+                }
             }
+            else
+                playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
         }
         #endregion
         // Start is called before the first frame update
