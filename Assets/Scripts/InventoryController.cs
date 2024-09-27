@@ -17,17 +17,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool ToggleHolding(int index)
         {
             //If the slot selected has an item the player holds the item
-            //Debug.Log($"slotConts[index].SlotWithItem : {slotConts[index].SlotWithItem}, !slotConts[index].SlotInUse: {!slotConts[index].SlotInUse}.");
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
-            //playerCont.HoldingPrefab = playerCont.HoldingItem ? slotConts[index].SlotPrefab : null;
             playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
-            if(!playerCont.HoldingItem){
-                DestroyImmediate(playerCont.gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
-                playerCont.HoldingPrefab = null;
+            //WHen we are unequiping an item within our quickslots
+            if(playerCont.HoldingPrefab != null){
+                playerCont.PlayerInteractionCont.UnEquipItem();
+                if(playerCont.HoldingItem)
+                    playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
+                else
+                    playerCont.PlayerAtkCont.UnEquip();
             }
-            else
-                playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
+            //equipping item
+            else 
+                playerCont.HoldingPrefab = slotConts[index].SlotPrefab;   
             return playerCont.HoldingItem;
         }
         //Player selects which slot in their inventory the!slotConts[index].SlotInUsey want to select, makes that obj the one the player is holding

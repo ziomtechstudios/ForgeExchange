@@ -27,9 +27,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return true;
         }
         public void UnEquipItem(){
-            playerCont.HoldingItem = false;
-            playerCont.HoldingCont = null;
-            Destroy(playerCont.HoldingPrefab);
+            DestroyImmediate(gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
             playerCont.HoldingPrefab = null;
         }
         //TODO

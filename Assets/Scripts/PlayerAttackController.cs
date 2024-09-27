@@ -31,11 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void UnEquip()
         {
-            Debug.Log("Unequiping weapon via player attack controller.");
-            playerInteractionCont.UnEquipItem();
-            Destroy(playerWeapon);
             hasWeapon = false;
-            m_PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
         }
         public void UpdateWeaponAnim()
         {
