@@ -31,7 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void UnEquip()
         {
-            hasWeapon = false;
+            hasWeapon = false;  
         }
         public void UpdateWeaponAnim()
         {

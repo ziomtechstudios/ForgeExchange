@@ -7,7 +7,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
     public class InventoryController : MonoBehaviour
     {
         #region Serialized Fields
-        [Tooltip("Amount of inventory slots.")][SerializeField] private int inventoryAmnt;
+        [Tooltip("Amount of inventory slots.")][SerializeField] private int inventoryAmnt;  
         [SerializeField] private SlotController[] slotConts;
         [SerializeField] private PlayerController playerCont;
         [Tooltip("Are all of the items equiped with an item?")][SerializeField] private bool slotsAreFull;
@@ -16,12 +16,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Funcs
         private bool ToggleHolding(int index)
         {
-            //If the slot selected has an item the player holds the item
+            //If the slot selected has an item that the player wants to hold
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
             playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
             //WHen we are unequiping an item within our quickslots
-            if(playerCont.HoldingPrefab != null){
+            if(playerCont.HoldingPrefab != null && (playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)){
                 playerCont.PlayerInteractionCont.UnEquipItem();
                 if(playerCont.HoldingItem)
                     playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
@@ -128,7 +128,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 SelectSlot(slot);
                 //Update players control scheme to match the current conditions of if they are holding an item and what it is.
                 SwappingPlayerControlMap();
-                //Debug.Log($"{playerCont.PlayerInput.currentActionMap.name} is the current control scheme.");
             }
             //Helps avoid non-needed work  
             AreAllSlotsFull();

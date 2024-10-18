@@ -29,6 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void UnEquipItem(){
             DestroyImmediate(gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
             playerCont.HoldingPrefab = null;
+            playerCont.PlayerInventoryCont.SelectSlot(-1);
         }
         //TODO
         /*private bool GoSwimming() {
@@ -181,7 +182,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DropObj();
                         break;
                     case "chest":
-                        UnEquipItem();
+                        if(playerCont.HoldingItem){
+                            playerCont.HoldingItem = false;
+                            UnEquipItem();
+                        }
                         playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject.GetComponent<ChestController>().SyncChestSlots(playerCont);
                         break;
                     default:
