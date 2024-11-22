@@ -17,7 +17,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private PlayerInteractionController playerInteractionCont;
         #endregion
         #region "Getters/Setters"
-        public bool HasWeapon { get { return hasWeapon; } }
+        public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
         #endregion
         #region "Public Fields"
         public void EquipWeapon()
@@ -28,10 +28,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void AllowAttack(){
             alreadyAttacking = false;
-        }
-        public void UnEquip()
-        {
-            hasWeapon = false;  
         }
         public void UpdateWeaponAnim()
         {

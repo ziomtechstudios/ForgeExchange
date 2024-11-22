@@ -10,7 +10,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Tooltip("Amount of inventory slots.")][SerializeField] private int inventoryAmnt;  
         [SerializeField] private SlotController[] slotConts;
         [SerializeField] private PlayerController playerCont;
-        [Tooltip("Are all of the items equiped with an item?")][SerializeField] private bool slotsAreFull;
+        [Tooltip("Are all of the items equipped with an item?")][SerializeField] private bool slotsAreFull;
         [Tooltip("Sprite used by slot to indicate there is no item.")][SerializeField] private Sprite noItemSprite;
         #endregion
         #region Private Funcs
@@ -20,20 +20,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
             playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
-            //WHen we are unequiping an item within our quickslots
+            //WHen we are un-equipped an item within our quick slots
             if(playerCont.HoldingPrefab != null && (playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)){
                 playerCont.PlayerInteractionCont.UnEquipItem();
                 if(playerCont.HoldingItem)
                     playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
                 else
-                    playerCont.PlayerAtkCont.UnEquip();
+                    playerCont.PlayerAtkCont.HasWeapon = false;
             }
             //equipping item
             else 
                 playerCont.HoldingPrefab = slotConts[index].SlotPrefab;   
             return playerCont.HoldingItem;
         }
-        //Player selects which slot in their inventory the!slotConts[index].SlotInUsey want to select, makes that obj the one the player is holding
+        //Player selects which slot in their inventory the!slotConts[index].SlotInUse want to select, makes that obj the one the player is holding
         public void SelectSlot(int slotIndex)
         {
             //selected slot is highlighted
@@ -69,7 +69,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void DroppingItem()
         {
-            //If the player is holding item we look for coresponding slot holding said item
+            //If the player is holding item we look for corresponding slot holding said item
             for (int i = 0; i < inventoryAmnt; i++)
             {
                 if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
@@ -106,7 +106,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         slotConts[i].SlotPrefab = playerCont.HoldingPrefab;
                         slotConts[i].ItemCont = playerCont.HoldingCont;
                         slotConts[i].ItemImage.sprite = playerCont.HoldingPrefab.GetComponent<ItemController>().ItemIcon;
-                        //Empty players hands only if the player isnt selecting the slot the item was just slotted into
+                        //Empty players hands only if the player isn't selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {
                             playerCont.HoldingItem = false;

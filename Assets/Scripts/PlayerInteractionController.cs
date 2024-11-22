@@ -15,7 +15,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private StockpileController stockpileCont;
         #endregion
         #region Getters/Setters"
-        public PlayerController PlayerCont{get {return playerCont;}}
+        public PlayerController PlayerCont => playerCont;
+
         #endregion
         #region "Private Fields"
         private bool GoFishing(){
@@ -30,6 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             DestroyImmediate(gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
             playerCont.HoldingPrefab = null;
             playerCont.PlayerInventoryCont.SelectSlot(-1);
+            playerCont.PlayerAtkCont.HasWeapon = false;
         }
         //TODO
         /*private bool GoSwimming() {
@@ -55,7 +57,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Make sure we have reference to component in players LOS.
             if (stockpileCont == null)
                 stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-            //Make sure that the stickpile is not empty.
+            //Make sure that the stockpile is not empty.
             if (!stockpileCont.IsEmpty)
             {
                 //Occupy the objects in the players hands and have them slot it into first available slot.
@@ -73,8 +75,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 case "Fuel":
                     //First we check if this fuel deposit will be more than what the forge can handle
                     workstationCont.Overflow(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
-                    //If the item can be used as fuel and we are not using workstation that doesnt use fuel and if refueling the workstation wont overflow
-                    //Workstation that dont require fuel such as forgepump will simply have their Fuel Full boolean set to true thereby !true.
+                    //If the item can be used as fuel, and we are not using workstation that doesn't use fuel and if refueling the workstation won't overflow
+                    //Workstation that dont require fuel such as forge-pump will simply have their Fuel Full boolean set to true thereby !true.
                     if ((playerCont.HoldingCont.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
                     {
                         workstationCont.Refuel(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
@@ -124,13 +126,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Make sure we have reference to component in players LOS
             stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
-            //If th eworkstation like a forge does not have any item to give to the interacting player, toggle use of workstation.
+            //If the workstation like a forge does not have any item to give to the interacting player, toggle use of workstation.
             if (stockpileCont.CurQuantity == 0)
             {
                 workstationCont.ToggleUse(playerCont);
                 return false;
             }
-            //If the stockpile has an item to give and th eplayer has at least one free quikslot
+            //If the stockpile has an item to give and the player has at least one free quick slot
             else if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
                 return PickUpObj();
             else
@@ -154,7 +156,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void OnInteraction(InputAction.CallbackContext context)
         {
-                //Is the player looking at an object? && Are they pressing the interact button && Is their a backpack closed?
+                //Is the player looking at an object? && Are they pressing the interact button && Is there a backpack closed?
             if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
             {
                 //Diff scenarios based on what the player is interacting with
@@ -164,7 +166,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     case "bounds":
                         EnvironmentInteraction();
                         break;
-                    //Forge, Quelcher, Sandstone, etc...
+                    //Forge, Quencher, Sandstone, etc...
                     case "workstation":
                         ///<summary>
                         ///If the player is holding an object let them interact with the workstation.
