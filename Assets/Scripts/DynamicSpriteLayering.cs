@@ -29,7 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             if(col.CompareTag("underwall")){
                 isInside = (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null && ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) == null);
                 isBehindWall = !isInside && (((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) || (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null)) && (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null));
-                //Players feet is on a floor tile so we are in from of the wall
+                //Players feet is on a floor tile so we up against the wall from the inside
                 if(isInside){
                     m_SpriteRend.sortingOrder = 2;
                     //We want gameobjects that are not the player to be layered in a similar fashion

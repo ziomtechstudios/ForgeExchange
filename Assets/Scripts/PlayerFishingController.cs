@@ -35,7 +35,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
             fishingRodCont.RodReeling(!isFullyReeled);
             fishingRodCont.CurReeledAmnt = isFullyReeled ? 0.0f: fishingRodCont.CurReeledAmnt;
-            Debug.Log($"The player is reeling the rod: {fishingRodCont.M_Animator.GetBool(fishingRodCont.IsRodReelingHash)}. The player's rod is fully reeled: {isFullyReeled}.");
+            //Debug.Log($"The player is reeling the rod: {fishingRodCont.M_Animator.GetBool(fishingRodCont.IsRodReelingHash)}. The player's rod is fully reeled: {isFullyReeled}.");
         }
 
         public void ReelingRod(InputAction.CallbackContext context){
