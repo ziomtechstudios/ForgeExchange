@@ -102,11 +102,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Burn fuel
                 fuelAmnt -= (burnRate * Time.deltaTime + (forgePumpCont.InUse ? (burnRate * Time.deltaTime) : (0.0f)));
                 //If forge is not on there is no point in seeing if its smelting
-                if (DoingWork && (CurTemp >= smeltedController.PrefabItemStruct.meltingTemp))
-                {
+                if (DoingWork && (curTemp >= smeltedController.PrefabItemStruct.meltingTemp))
+                {              
                     ttsTimer += ((((curTemp - smeltedController.PrefabItemStruct.meltingTemp) / smeltedController.PrefabItemStruct.meltingTemp) * smeltedController.Refinement) * Time.deltaTime);
-                    //Forge has s meltted ore return to player appropriate bar
-                    if (ttsTimer >= idealTTS)
+                    //Forge has smelted the ore, return to player appropriate bar
+                    if (ttsTimer >= idealTTS) 
                     {
                         DoingWork = !forgeStockPileCont.Deposit(1, forgeStockPileCont.ItemPrefab, forgeStockPileCont.ItemPrefab.GetComponent<ItemController>());
                         ttsTimer = 0.0f;
