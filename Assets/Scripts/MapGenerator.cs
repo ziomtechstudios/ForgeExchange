@@ -17,8 +17,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Tooltip("Storing references to tiles based on 2-D Cartesian coordinates, stored in 1D array.")][SerializeField] private int[] tiles;
         private Dictionary<int, Tile> tileTypeDict;
         [SerializeField] private TileType[] TileTypes;
-        [Header("Size attributes for game map.")]
-        [SerializeField] private int length, width, tileSize;
+        [SerializeField] private AlgorithmBase[] _algorithms;
+        [Header("Size attributes for game map.")] 
+        [SerializeField] private int length;
+        [SerializeField] private int width;
+        [SerializeField] private int tileSize;
   
  
         private bool InBounds(int x, int y)
@@ -29,7 +32,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void Awake()
         {
             gameMap = gameObject.transform.Find("GameMap").gameObject.GetComponent<Tilemap>();
-            tiles = new int[length + width];
+            tiles = new int[length * width];
             tileTypeDict = new Dictionary<int, Tile>();
             foreach (TileType tileType in TileTypes)
             {
@@ -39,7 +42,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 tile.sprite = Sprite.Create(new Texture2D(tileSize, tileSize), new Rect(0, 0, tileSize, tileSize), new Vector2(0.5f, 0.5f), tileSize);
                 tileTypeDict.Add((int)tileType.GroundTile, tile);
             }
-            Generate(new RandomDataGen());
+            foreach (var algorithm in _algorithms)
+                Generate(algorithm);
+            RenderTilemap();
         }
         #endregion
         #region "Getters/Setters"
@@ -56,6 +61,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Public fields"
         public int GetTile(int x, int y)
         {
+            //If position passed in is not InBounds return 0.
             return InBounds(x, y) ? tiles[y * width + x] : 0;
         }
         public void SetTile(int x, int y, int val)
@@ -72,16 +78,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 for (int y = 0; y < length; y++)
                 {
-                    positionsArray[x*width * y] = new Vector3Int(x, y, 0);
+                    positionsArray[x*width + y] = new Vector3Int(x, y, 0);
                     int typeofTile = GetTile(x, y);
-                    
+                    tileArray[x * width + y] = tileTypeDict[typeofTile];
                 }
             }
 
+            gameMap.SetTiles(positionsArray, tileArray);
+            gameMap.RefreshAllTiles();
         }
-        public void Generate(WorldGenerator generator)
+        public void Generate(AlgorithmBase algorithm)
         {
-            generator.Apply(this);
+            algorithm.Apply(this);
         }
         #endregion
     }

@@ -1,9 +1,12 @@
 using System;
+using UnityEngine;
+
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public class RandomDataGen : WorldGenerator
+    [CreateAssetMenu(fileName = "RandomGeneration", menuName = "ForgeExchange/Algorithms/RandomGeneration")]
+    public class RandomGenAlgorithm : AlgorithmBase
     {
-        public void Apply(MapGenerator gameMapGenerator){
+        public override void Apply(MapGenerator gameMapGenerator){
             var validEnumVals = (GroundTileType[])Enum.GetValues(typeof(GroundTileType));
             for (int i = 0; i < gameMapGenerator.Width; i++)
             {

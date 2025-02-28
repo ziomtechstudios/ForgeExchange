@@ -324,11 +324,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d316684cf2586cc61b2c37042a700bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMap: {fileID: 0}
+  gameMap: {fileID: 273774892}
   tiles: 
-  length: 0
-  width: 0
-  TileTypes: []
+  TileTypes:
+  - GroundTile: 0
+    GroundColor: {r: 0.039649326, g: 0.071409844, b: 0.9339623, a: 0}
+  - GroundTile: 1
+    GroundColor: {r: 0.1745283, g: 0.9210421, b: 1, a: 0}
+  - GroundTile: 2
+    GroundColor: {r: 0.9811321, g: 0.7777933, b: 0.19900322, a: 0}
+  - GroundTile: 3
+    GroundColor: {r: 0.6615326, g: 1, b: 0.36320752, a: 0}
+  - GroundTile: 4
+    GroundColor: {r: 0.5754717, g: 0.24372931, b: 0.16015486, a: 0}
+  - GroundTile: 5
+    GroundColor: {r: 0.5471698, g: 0.498131, b: 0.498131, a: 0}
+  - GroundTile: 6
+    GroundColor: {r: 1, g: 1, b: 1, a: 0}
+  _algorithms:
+  - {fileID: 11400000, guid: 9004786e03560f6d98526e08882de5db, type: 2}
+  length: 100
+  width: 100
+  tileSize: 7
 --- !u!1 &2117580956
 GameObject:
   m_ObjectHideFlags: 0
