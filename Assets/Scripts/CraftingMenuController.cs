@@ -132,17 +132,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination          //Making sure moving slot has an item                          //making sure destination slot has no item                                                                   //Checking to see that the destination slot holds no prefab 
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Craft Table") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
             {
-
+                // Position of the targeted slot
+                int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, slotNum);
                         break;
                     case ("CraftingSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, craftingSlots, NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(MovingSlot, craftingSlots, NoItemSprite, slotNum);
                         AttemptCrafting();
                         break;
                     default:

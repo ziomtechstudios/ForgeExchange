@@ -46,7 +46,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //open crafting menu
                 craftMenuObj.SetActive(true);
-                //synchronizing backpackslots + quickslots in the crasfting menu to match contents in respective counterparts
+                //synchronizing backpackslots + quickslots in the crafting menu to match contents in respective counterparts
                 craftingMenuController.SyncCraftingMenuSlots(playerCont);
                 playerCont.UsingWorkstation = true;
                 //Hide in-game quick slots

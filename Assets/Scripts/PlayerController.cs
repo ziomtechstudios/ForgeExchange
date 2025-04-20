@@ -124,7 +124,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_InventoryCont = transform.Find("Main Camera/Canvas/InventorySlots").gameObject.GetComponent<InventoryController>();
             playerUIController = gameObject.GetComponent<PlayerUIController>();
-            //When user logs into game I want player sprite to face the screen, personla preference
+            //When user logs into game I want player sprite to face the screen, personal preference
             lookDir = -transform.up;
             M_Animator = gameObject.GetComponent<Animator>();
             lookXHash = Animator.StringToHash("LookX");
@@ -164,6 +164,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else if (!IsMoving && M_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
+            
+            
 
         }
     }

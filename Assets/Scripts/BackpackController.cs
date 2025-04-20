@@ -59,7 +59,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     default:
                         break;
                 }
-                //Debug.Log($"The item selected has an initial index of {OgSlotIndex} and was in the {OgSlotType} group of slots.");
             }
         }
         //Move moving slot to coressponding current touch position
@@ -75,16 +74,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
         /// </summary>
         public override void OnEndDrag(PointerEventData eventData)
         {
+               //Finger released over UI element                         //finger currently over UI element that is part of Backpack UI                   Player was moving an item                          Making sure the slot we are slotting an item into does not have an item into it already.
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem)
             {
-
+                //THe position of the slot the player has dragged an item to.
+                int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.DropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, slotNum);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)));
+                        DragAndDropSlot.DropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, slotNum);
                         break;
                     default:
                         ReturnItem(eventData);
