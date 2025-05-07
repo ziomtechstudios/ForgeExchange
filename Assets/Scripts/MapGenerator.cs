@@ -59,6 +59,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         #region "Public fields"
+
+        public int Seed;
         public int GetTile(int x, int y)
         {
             //If position passed in is not InBounds return 0.

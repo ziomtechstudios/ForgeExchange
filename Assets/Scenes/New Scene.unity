@@ -342,10 +342,11 @@ MonoBehaviour:
   - GroundTile: 6
     GroundColor: {r: 1, g: 1, b: 1, a: 0}
   _algorithms:
-  - {fileID: 11400000, guid: 9004786e03560f6d98526e08882de5db, type: 2}
+  - {fileID: 11400000, guid: 671bdb753d013de388e9c01ef37c26e0, type: 2}
   length: 100
   width: 100
-  tileSize: 7
+  tileSize: 1
+  Seed: 0
 --- !u!1 &2117580956
 GameObject:
   m_ObjectHideFlags: 0
