@@ -10,5 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdf1d6d5410340bd2a6a654aed68b7c1, type: 3}
-  m_Name: RandomGeneration
+  m_Name: TreeGeneration
   m_EditorClassIdentifier: 
+  TreeSelection:
+  - Tree: 0
+    SpawnOnGrounds: 
+    SpawnChancePerCell: 0
+  - Tree: 2001
+    SpawnOnGrounds: 04000000
+    SpawnChancePerCell: 10

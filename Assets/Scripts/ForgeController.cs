@@ -54,13 +54,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Smelting Ore to Metal Bar
         public override void Work(ItemController itemController)
         {
-            //Check to see if the forge is on, its not already smelting and that it is not holding a smelted bar
+            //Check to see if the forge is on, it's not already smelting and that it is not holding a smelted bar
             if (InUse && !DoingWork && (forgeStockPileCont.CurQuantity == 0))
             {
                 smeltedController = itemController;
-                //Calculate quickest time this forge could smelt given ore
+                //Calculate the quickest time this forge could smelt given ore
                 idealTTS = (((MaxTemp + forgePumpCont.MaxBoostTemp) - smeltedController.PrefabItemStruct.meltingTemp) / smeltedController.PrefabItemStruct.meltingTemp) * ttsScaler;
-                //Pass the proper data about the  soon to be bar to the forge so that it will gie it to th eplayer later on
+                //Pass the proper data about the  soon-to-be bar to the forge so that it will gie it to the player later on
                 forgeStockPileCont.ItemPrefab = oresToBarsDict[smeltedController.PrefabItemStruct.itemSubTag];
             }
         }
@@ -108,7 +108,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //Forge has smelted the ore, return to player appropriate bar
                     if (ttsTimer >= idealTTS) 
                     {
-                        DoingWork = !forgeStockPileCont.Deposit(1, forgeStockPileCont.ItemPrefab, forgeStockPileCont.ItemPrefab.GetComponent<ItemController>());
+                        DoingWork = !forgeStockPileCont.Deposit(1, forgeStockPileCont.ItemPrefab, forgeStockPileCont.ItemCont);
                         ttsTimer = 0.0f;
                     }
                 }

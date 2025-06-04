@@ -11,6 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         [Header("Item data")]
         [SerializeField] private GameObject itemPrefab;
+        [SerializeField] private ItemController itemCont;
         [Tooltip("Sprite that represents when this stockpile is empty")][SerializeField] private Sprite emptyStockpileSprite;
         [Tooltip("Sprite of what corresponding items that can fill the stockpile.")][SerializeField] private Sprite[] itemSprites;
         [Tooltip("Tag of corresponding items that can fill the stockpile.")][SerializeField] private string[] itemTags;
@@ -19,18 +20,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Getters/Setter
 
         public GameObject ItemPrefab { get { return itemPrefab; } set { itemPrefab = value; } }
-
+        public ItemController ItemCont { get { return itemCont; } }
         #endregion
 
         //Taking an item from a stockpile
         public void TakeItem(GameObject newItem, ItemController newItemCont)
         {
-
-            Sprite newSprite = newItemCont.ItemIcon;
-            bool canTakeItem = itemTagToSpriteDict.TryGetValue(newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag, out newSprite);
+            bool canTakeItem = itemTagToSpriteDict.TryGetValue(newItemCont.PrefabItemStruct.itemSubTag + newItemCont.PrefabItemStruct.itemTag, out var newSprite);
             itemPrefab = canTakeItem ? newItem : null;
+            itemCont = canTakeItem ? newItemCont : null;
             IsEmpty = !canTakeItem;
-            M_SpriteRend.sprite = (!IsEmpty) ? newSprite : emptyStockpileSprite;
+            M_SpriteRend.sprite = (!IsEmpty) ? newSprite: emptyStockpileSprite;
         }
         public bool Deposit(int amount, GameObject newItem, ItemController newItemCont)
         {

@@ -16,51 +16,26 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Tooltip("Reference to Tilemap object in use.")][SerializeField] private Tilemap gameMap;
         [Tooltip("Storing references to tiles based on 2-D Cartesian coordinates, stored in 1D array.")][SerializeField] private int[] tiles;
         private Dictionary<int, Tile> tileTypeDict;
-        [SerializeField] private TileType[] TileTypes;
         [SerializeField] private AlgorithmBase[] _algorithms;
         [Header("Size attributes for game map.")] 
         [SerializeField] private int length;
         [SerializeField] private int width;
-        [SerializeField] private int tileSize;
-  
- 
+        [SerializeField] private TilemapType _type;
         private bool InBounds(int x, int y)
         {
             return (x>=0 && x<width && y>=0 && y < length);
         }
-        // Start is called before the first frame update
-        private void Awake()
-        {
-            gameMap = gameObject.transform.Find("GameMap").gameObject.GetComponent<Tilemap>();
-            tiles = new int[length * width];
-            tileTypeDict = new Dictionary<int, Tile>();
-            foreach (TileType tileType in TileTypes)
-            {
-                Tile tile = ScriptableObject.CreateInstance<Tile>();
-                tileType.GroundColor.a = 1;
-                tile.color = tileType.GroundColor;
-                tile.sprite = Sprite.Create(new Texture2D(tileSize, tileSize), new Rect(0, 0, tileSize, tileSize), new Vector2(0.5f, 0.5f), tileSize);
-                tileTypeDict.Add((int)tileType.GroundTile, tile);
-            }
-            foreach (var algorithm in _algorithms)
-                Generate(algorithm);
-            RenderTilemap();
-        }
+
         #endregion
         #region "Getters/Setters"
         public int Width{get{return width;}}
         public int Length{get{return length;}}
-        #endregion
-        #region "Internal classes/data structures"
-        [Serializable] class TileType
-        {
-            public GroundTileType GroundTile;
-            public Color GroundColor;
-        }
+        public TilemapType Type{get{return _type;}}
         #endregion
         #region "Public fields"
 
-        public int Seed;
+
+        [HideInInspector] public TileGrid Grid;
         public int GetTile(int x, int y)
         {
             //If position passed in is not InBounds return 0.
@@ -71,7 +46,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (InBounds(x, y))
                 tiles[y * width + x] = val;
         }
-
         public void RenderTilemap()
         {
             Vector3Int[] positionsArray = new Vector3Int[width * length];
@@ -81,17 +55,36 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 for (int y = 0; y < length; y++)
                 {
                     positionsArray[x*width + y] = new Vector3Int(x, y, 0);
-                    int typeofTile = GetTile(x, y);
-                    tileArray[x * width + y] = tileTypeDict[typeofTile];
+                    int typeOfTile = GetTile(x, y);
+                    if (!Grid.Tiles.TryGetValue(typeOfTile, out Tile tile))
+                    {
+                        if(typeOfTile != 0)
+                            Debug.Log("Tile not defined for id: " + typeOfTile);
+                        tileArray[y * width + x] = null;
+                        continue;
+                    }
+
+                    tileArray[x * width + y] = tile;
                 }
             }
-
             gameMap.SetTiles(positionsArray, tileArray);
             gameMap.RefreshAllTiles();
         }
         public void Generate(AlgorithmBase algorithm)
         {
             algorithm.Apply(this);
+        }
+        public void Initialize()
+        {
+            gameMap = GetComponent<Tilemap>();
+            Grid = transform.parent.GetComponent<TileGrid>();
+            width = Grid.Width;
+            length = Grid.Length;
+            //Initialize Array containing tiles in TileMapm as one-dimensional array
+            tiles = new int[length * width];
+            foreach (var algorithm in _algorithms)
+                Generate(algorithm);
+            RenderTilemap();
         }
         #endregion
     }

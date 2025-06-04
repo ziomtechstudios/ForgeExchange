@@ -30,7 +30,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Order TileTypes for small to large
             TileTypes = TileTypes.OrderBy(a => a.Height).ToArray();
             //Passing other PARAMS to generate noise
-            var noiseMap = Noise.GenerateNoise(gameMap.Width, gameMap.Length, gameMap.Seed, NoiseScale, Octaves,
+            var noiseMap = Noise.GenerateNoise(gameMap.Width, gameMap.Length, gameMap.Grid.Seed, NoiseScale, Octaves,
                 Persistance, Lacunarity, Offset);
             if (ApplyIslandGradient)
             {
