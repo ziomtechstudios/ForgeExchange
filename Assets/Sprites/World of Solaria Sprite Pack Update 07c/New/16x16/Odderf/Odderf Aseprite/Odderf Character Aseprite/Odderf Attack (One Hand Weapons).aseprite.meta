@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -302,13 +305,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1271045095
+    uuid:
+      value0: 2052324285
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 2052324285
     name: Odderf Attack (One Hand Weapons)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Attack (One Hand Weapons)_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -317,7 +325,7 @@ ScriptedImporter:
         width: 14
         height: 254
       spriteId: e25f9570c2768c2c09c51033f7c3277a
-    - name: Odderf Attack (One Hand Weapons)_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -326,7 +334,7 @@ ScriptedImporter:
         width: 14
         height: 254
       spriteId: a3d5a4f68f6aa3ee3b682e7d4b9c541e
-    - name: Odderf Attack (One Hand Weapons)_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -335,7 +343,7 @@ ScriptedImporter:
         width: 14
         height: 253
       spriteId: b2bfbdcde2b8de7eebc5bf42c793c3be
-    - name: Odderf Attack (One Hand Weapons)_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -344,7 +352,7 @@ ScriptedImporter:
         width: 22
         height: 258
       spriteId: 3958d38e147d20363bd66ed9aa05b179
-    - name: Odderf Attack (One Hand Weapons)_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -353,7 +361,7 @@ ScriptedImporter:
         width: 18
         height: 258
       spriteId: 7ce4e03983b33c6e6a956e8401ec5350
-    - name: Odderf Attack (One Hand Weapons)_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -362,7 +370,7 @@ ScriptedImporter:
         width: 18
         height: 258
       spriteId: 700cca4e15d394b17bc78116a8b76fac
-    - name: Odderf Attack (One Hand Weapons)_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -371,7 +379,7 @@ ScriptedImporter:
         width: 16
         height: 256
       spriteId: b2638d844d9292a12a11478bd070721c
-    - name: Odderf Attack (One Hand Weapons)_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -380,7 +388,7 @@ ScriptedImporter:
         width: 16
         height: 255
       spriteId: c6817c8492ff3fb14b4021304f474faf
-    - name: Odderf Attack (One Hand Weapons)_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -396,3 +404,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

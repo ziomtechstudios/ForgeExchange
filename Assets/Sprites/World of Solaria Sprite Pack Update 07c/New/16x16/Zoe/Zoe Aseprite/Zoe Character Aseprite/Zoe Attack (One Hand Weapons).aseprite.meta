@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -302,13 +305,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -990241081
+    uuid:
+      value0: 2107124387
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 2107124387
     name: Zoe Attack (One Hand Weapons)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Attack (One Hand Weapons)_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -317,7 +325,7 @@ ScriptedImporter:
         width: 419
         height: 256
       spriteId: 7bc48582ad05a71a1b8651b76bea5fea
-    - name: Zoe Attack (One Hand Weapons)_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -326,7 +334,7 @@ ScriptedImporter:
         width: 36
         height: 256
       spriteId: b22722445f60da73196bb27ecd438a4e
-    - name: Zoe Attack (One Hand Weapons)_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -335,7 +343,7 @@ ScriptedImporter:
         width: 36
         height: 255
       spriteId: 841bc43ba73998ce48f2ca6599ff703f
-    - name: Zoe Attack (One Hand Weapons)_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -344,7 +352,7 @@ ScriptedImporter:
         width: 46
         height: 280
       spriteId: 046d7152bd385a584aa4442b2c0937e7
-    - name: Zoe Attack (One Hand Weapons)_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -353,7 +361,7 @@ ScriptedImporter:
         width: 42
         height: 281
       spriteId: a9ced45e3b01f5c46b66adcdfa80dce3
-    - name: Zoe Attack (One Hand Weapons)_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -362,7 +370,7 @@ ScriptedImporter:
         width: 44
         height: 273
       spriteId: 0da1e64b66e5000068166ef05e898395
-    - name: Zoe Attack (One Hand Weapons)_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -371,7 +379,7 @@ ScriptedImporter:
         width: 32
         height: 274
       spriteId: 881b44d982f35bf99859163a07ec30e3
-    - name: Zoe Attack (One Hand Weapons)_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -380,7 +388,7 @@ ScriptedImporter:
         width: 26
         height: 273
       spriteId: 9c0f3768053d900b583dd6f161eed3f3
-    - name: Zoe Attack (One Hand Weapons)_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -396,3 +404,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 706580139
+    uuid:
+      value0: 1343280919
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1343280919
     name: Odderf New Fishing Rod Idle
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Fishing Rod Idle_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: d3ec636106653f9c7b62bb9775ba51f7
-    - name: Odderf New Fishing Rod Idle_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: ea5c2ffd668c1ec839bcdcc2e42905ef
-    - name: Odderf New Fishing Rod Idle_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: f97e6c7b9fba6e5358f65377fc14d8d0
-    - name: Odderf New Fishing Rod Idle_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: ef5a7fd8ade6e4d81b17bd15c71cf363
-    - name: Odderf New Fishing Rod Idle_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 01a47d60eacc118f4ac7dc270e7613ab
-    - name: Odderf New Fishing Rod Idle_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: c7d3a060fa5f800769d8b3966b9e4085
-    - name: Odderf New Fishing Rod Idle_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 71ed2bf03c7f0283cae96cd8bbf90f2f
-    - name: Odderf New Fishing Rod Idle_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 495ab2b6dd9da845e9c120de20b497b9
-    - name: Odderf New Fishing Rod Idle_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: cfa584da9ba3e0faaa3231251f353630
-    - name: Odderf New Fishing Rod Idle_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

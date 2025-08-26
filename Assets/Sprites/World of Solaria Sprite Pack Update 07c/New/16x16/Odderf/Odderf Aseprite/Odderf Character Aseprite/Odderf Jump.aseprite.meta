@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -282,13 +285,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 211841802
+    uuid:
+      value0: 757832626
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 757832626
     name: Odderf Jump
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Jump_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -297,7 +305,7 @@ ScriptedImporter:
         width: 12
         height: 257
       spriteId: 6555304029b1027a3a3c52ab2fb96ff4
-    - name: Odderf Jump_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -306,7 +314,7 @@ ScriptedImporter:
         width: 12
         height: 259
       spriteId: fbed1415e83aa16f5b850b26a5672699
-    - name: Odderf Jump_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -315,7 +323,7 @@ ScriptedImporter:
         width: 12
         height: 256
       spriteId: fe7f986c36a3ca5e391ab350887d16f8
-    - name: Odderf Jump_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -324,7 +332,7 @@ ScriptedImporter:
         width: 18
         height: 252
       spriteId: 40f7ed60e92252280be38ca567f749bd
-    - name: Odderf Jump_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -333,7 +341,7 @@ ScriptedImporter:
         width: 18
         height: 253
       spriteId: f5d174e2bdbfdd58eac6ffe988fd8e6e
-    - name: Odderf Jump_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -342,7 +350,7 @@ ScriptedImporter:
         width: 18
         height: 254
       spriteId: feb8350fd15ba3a98a227cff746b37f5
-    - name: Odderf Jump_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -351,7 +359,7 @@ ScriptedImporter:
         width: 14
         height: 254
       spriteId: 5b24313379b8ecc74843adab65c69d87
-    - name: Odderf Jump_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -367,3 +375,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

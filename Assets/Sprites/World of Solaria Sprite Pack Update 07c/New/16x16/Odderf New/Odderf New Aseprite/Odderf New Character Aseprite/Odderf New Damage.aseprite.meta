@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -282,13 +285,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 299782945
+    uuid:
+      value0: 855421157
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 855421157
     name: Odderf New Damage
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Damage_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -297,7 +305,7 @@ ScriptedImporter:
         width: 12
         height: 254
       spriteId: a134c941dc7bf25c4b7945deff3ea6ef
-    - name: Odderf New Damage_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -306,7 +314,7 @@ ScriptedImporter:
         width: 14
         height: 253
       spriteId: bbbe8180aa4a130bfae6399f9bf1f405
-    - name: Odderf New Damage_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -315,7 +323,7 @@ ScriptedImporter:
         width: 16
         height: 253
       spriteId: 83365cf9e909ce2aab27e60c9df04f8e
-    - name: Odderf New Damage_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -324,7 +332,7 @@ ScriptedImporter:
         width: 16
         height: 253
       spriteId: c5d6c9c513e623a9fa42a792e5c68b16
-    - name: Odderf New Damage_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -333,7 +341,7 @@ ScriptedImporter:
         width: 14
         height: 253
       spriteId: 8bb11fed1b5abb7d5baba1f2459f26d8
-    - name: Odderf New Damage_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -342,7 +350,7 @@ ScriptedImporter:
         width: 12
         height: 253
       spriteId: b9f181bd46fb481d3be77bb284a8581b
-    - name: Odderf New Damage_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -351,7 +359,7 @@ ScriptedImporter:
         width: 12
         height: 254
       spriteId: 42fba7aa09a41fe5b91e72ecdd5ed635
-    - name: Odderf New Damage_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -367,3 +375,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

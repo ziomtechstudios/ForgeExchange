@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -781626772
+    uuid:
+      value0: 2291565340
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -2003401956
     name: Base Pickaxe
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Pickaxe_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 14
         height: 253
       spriteId: 90b735cc9e7585a0b831cb8f19df9b24
-    - name: Base Pickaxe_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 26
         height: 258
       spriteId: cfd456516a7ba4ddf83c675c50bfea84
-    - name: Base Pickaxe_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 40
         height: 259
       spriteId: 1455b97739b24effb93ebfc82d752b3b
-    - name: Base Pickaxe_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 42
         height: 263
       spriteId: 8bd2e2e1d552840c4b1ecf39e9831d2b
-    - name: Base Pickaxe_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 42
         height: 262
       spriteId: 1908dfddeb43e1c588d89982dc557b31
-    - name: Base Pickaxe_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 36
         height: 264
       spriteId: 226af72271dd96f8fb4f87b602dd8c2c
-    - name: Base Pickaxe_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 44
         height: 268
       spriteId: ded395d143ad91cd480186074f2edc4f
-    - name: Base Pickaxe_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 49
         height: 263
       spriteId: 5df1fa02e89a57234b77da2071fece99
-    - name: Base Pickaxe_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 51
         height: 265
       spriteId: 84a15e1c322e34e588c28373f69e259c
-    - name: Base Pickaxe_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 512}

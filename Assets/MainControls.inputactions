@@ -9,16 +9,16 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "73060057-badc-4a2c-bcdb-73aa6a858ce7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Run",
                     "type": "Button",
                     "id": "66d2d56c-ba28-4b6d-8ba3-92bdcd3b1f68",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -72,7 +72,7 @@
                     "name": "6",
                     "type": "Button",
                     "id": "7a9e337d-e1fb-402d-bdb6-bb9c4442a32b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -90,7 +90,7 @@
                     "name": "CraftMenuExit",
                     "type": "Button",
                     "id": "dd7d33e5-3650-44a1-9f58-93c800b6ce4c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -99,7 +99,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "54061b6a-0fe9-4689-bb6c-aea95b152169",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -112,6 +112,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Up",
+                    "type": "Value",
+                    "id": "ab95dd30-838e-4f69-9333-35085375f765",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "9319c0b4-801f-46ad-9abd-16d562aea9f3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "01bbd4b9-af8b-4fa6-a575-182215a8b354",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "e972f13b-6108-409c-817e-452036a2d7f9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -130,7 +166,7 @@
                     "name": "",
                     "id": "7af2b54f-98cd-4c48-ade2-1b3196613451",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Press,Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Run",
@@ -239,11 +275,55 @@
                 {
                     "name": "",
                     "id": "5c0b5fe3-79a4-4565-b595-2312327d440c",
-                    "path": "<Gamepad>/dpad",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04559462-196e-4dd6-ae76-fef6e98915bf",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4924710-5121-40b1-917f-1d7f087202fb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e38525b5-792d-40e2-9821-e7f1e73088d0",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "30c55c3b-1e53-46e7-a004-26142391793d",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -257,7 +337,7 @@
                     "name": "Run",
                     "type": "Button",
                     "id": "da38c97b-a185-4b12-a7e1-1c677c127415",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -505,7 +585,7 @@
                     "name": "Reeling",
                     "type": "Button",
                     "id": "0a76d394-07d1-41e8-8e18-6069cd5f8bc2",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold(duration=10)",
                     "initialStateCheck": false

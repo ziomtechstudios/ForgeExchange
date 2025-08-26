@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -382,13 +385,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -275984986
+    uuid:
+      value0: 778240958
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 778240958
     name: Base Shovel
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Shovel_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -397,7 +405,7 @@ ScriptedImporter:
         width: 24
         height: 245
       spriteId: fb569682b08e02eea85d37fa888cca9f
-    - name: Base Shovel_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -406,7 +414,7 @@ ScriptedImporter:
         width: 20
         height: 245
       spriteId: f9e0b8a957dc2037a9f9ae24787fd9dd
-    - name: Base Shovel_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -415,7 +423,7 @@ ScriptedImporter:
         width: 31
         height: 163
       spriteId: d55e0af19baecaa79bebeac64ad5dbe5
-    - name: Base Shovel_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -424,7 +432,7 @@ ScriptedImporter:
         width: 35
         height: 257
       spriteId: 321df264d720bcb5b822f8243870b66f
-    - name: Base Shovel_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -433,7 +441,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 4a675fecded5e2dc9b1aa86f477f3785
-    - name: Base Shovel_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -442,7 +450,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 88ae65d3af918228fa3e8012de87706e
-    - name: Base Shovel_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -451,7 +459,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: f0ccf8c6dafeaaeac867bd8caefb6c51
-    - name: Base Shovel_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -460,7 +468,7 @@ ScriptedImporter:
         width: 34
         height: 256
       spriteId: 9e6eb370426b51efcb4dd6de45f147dc
-    - name: Base Shovel_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -469,7 +477,7 @@ ScriptedImporter:
         width: 26
         height: 257
       spriteId: db4a0a51bb4975649b26e15c1fb4df8a
-    - name: Base Shovel_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -478,7 +486,7 @@ ScriptedImporter:
         width: 20
         height: 253
       spriteId: f179868b5ee30624ab79d547308fdb63
-    - name: Base Shovel_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -487,7 +495,7 @@ ScriptedImporter:
         width: 23
         height: 250
       spriteId: 4a1419ac509d549809f6d311410f998c
-    - name: Base Shovel_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -496,7 +504,7 @@ ScriptedImporter:
         width: 27
         height: 255
       spriteId: 2c415488e397f6f2ca0d6d5d21388c2d
-    - name: Base Shovel_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -512,3 +520,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 512}

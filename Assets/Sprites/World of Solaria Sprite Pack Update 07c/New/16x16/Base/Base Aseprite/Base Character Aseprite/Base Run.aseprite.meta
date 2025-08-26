@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -602,13 +605,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -95112918
+    uuid:
+      value0: 1957919314
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1957919314
     name: Base Run
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Run_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -617,7 +625,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: c101bda232f532252afb72fb65265181
-    - name: Base Run_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -626,7 +634,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 8baccbaeb8a4e22a38924702908f0c39
-    - name: Base Run_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -635,7 +643,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 3c9052f9eb27f8f4db2763ec28bd2aa5
-    - name: Base Run_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -644,7 +652,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 40aae7de79f2059da9f0c84a20eaeb8e
-    - name: Base Run_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -653,7 +661,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: b971880fa82bcf8a09a8acc65b7f9117
-    - name: Base Run_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -662,7 +670,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 2c20d91c99098bc84951e14bdf8f40a0
-    - name: Base Run_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -671,7 +679,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: d6066a328d002db638a042f2a8cdac20
-    - name: Base Run_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -680,7 +688,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 6b17f7211e76059ea981f26e996a552b
-    - name: Base Run_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -689,7 +697,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 4a38e4b53488b4138bba83fa8e1b640b
-    - name: Base Run_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -698,7 +706,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 7e75a3f93ddde52fb8fc3589814ef1d1
-    - name: Base Run_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -707,7 +715,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 33d07d05fb2f3645fa44e425ad55390b
-    - name: Base Run_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -716,7 +724,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: e6865c853cf98731fbac333360474291
-    - name: Base Run_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -725,7 +733,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 459e1da6a45e08db7b2af401cb061fa2
-    - name: Base Run_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -734,7 +742,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: ff7bf8fc1f1bf957fadfaa8168a8ff9b
-    - name: Base Run_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -743,7 +751,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 902ed7b0eaac5e388b81decc95013098
-    - name: Base Run_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -752,7 +760,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: ad6ca8d6f71c790cd8b29146f4e7905f
-    - name: Base Run_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -761,7 +769,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 22ace8ec5b67c60b6b0628d1f4e97c3a
-    - name: Base Run_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -770,7 +778,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: fcf80ab10db8aa8c3a5c326cece09895
-    - name: Base Run_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -779,7 +787,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 7cc284645dbd02adfa316f2010298131
-    - name: Base Run_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -788,7 +796,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 1baa13411952318c79e38ca75d3279da
-    - name: Base Run_Frame_20
+    - name: Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -797,7 +805,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: 4f07a643544e40564b6570e5aef5a9a4
-    - name: Base Run_Frame_21
+    - name: Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -806,7 +814,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: d9b601d26b4847f6a9bc4ab0b40a9539
-    - name: Base Run_Frame_22
+    - name: Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -815,7 +823,7 @@ ScriptedImporter:
         width: 48
         height: 48
       spriteId: e3d7bbd3b0f1126fe80e6fbd3c853f58
-    - name: Base Run_Frame_23
+    - name: Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -831,3 +839,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}
+  previousTextureSize: {x: 256, y: 512}

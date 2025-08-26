@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1155441539
+    uuid:
+      value0: 3832679759
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -462287537
     name: Odderf New Fishing Catching
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Fishing Catching_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 1318b71c78ab309a9a4a19f3f5f8ac37
-    - name: Odderf New Fishing Catching_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: e1af5ae6fc2a6cad295e4c8626f235f4
-    - name: Odderf New Fishing Catching_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: c99576e05425851e985d9feabc7d7087
-    - name: Odderf New Fishing Catching_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: eeac89c4243717f68b0b24f04d78db94
-    - name: Odderf New Fishing Catching_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 68
         height: 283
       spriteId: 7bbf8f3c9eb67f72f9edc2d394d7a089
-    - name: Odderf New Fishing Catching_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 70
         height: 287
       spriteId: cb80b2c93f09f10098a689b56c4b3b09
-    - name: Odderf New Fishing Catching_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 72
         height: 280
       spriteId: 48029145cfabd78a8934b203f54d33d3
-    - name: Odderf New Fishing Catching_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 74
         height: 277
       spriteId: d7ec3b0adca2c55edb6850f8e6a273c2
-    - name: Odderf New Fishing Catching_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 22
         height: 263
       spriteId: 3b9c9c2156387c61eadd655b0b5f7a02
-    - name: Odderf New Fishing Catching_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

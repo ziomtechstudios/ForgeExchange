@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1614763788
+    uuid:
+      value0: 2029821380
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 2029821380
     name: Zoe Fishing Rod Catching
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Fishing Rod Catching_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 125d9164c070a4a64a224bbced5d10e8
-    - name: Zoe Fishing Rod Catching_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 2e9a9360e4cb17c36ac1eb65acc9196d
-    - name: Zoe Fishing Rod Catching_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 3494c2d14651e0cafa571fa077fccd05
-    - name: Zoe Fishing Rod Catching_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: e72f5cf27d76cb3f28c25627ec2f474c
-    - name: Zoe Fishing Rod Catching_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 68
         height: 283
       spriteId: c3eb224c0bbf0b4d89cdaef892dab6ce
-    - name: Zoe Fishing Rod Catching_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 70
         height: 287
       spriteId: 6cd396d30ac275e6ea33087b2d2c3360
-    - name: Zoe Fishing Rod Catching_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 72
         height: 280
       spriteId: fd840c27b085525a2801c8313f5613b8
-    - name: Zoe Fishing Rod Catching_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 74
         height: 277
       spriteId: af247cbf988bda47e9ab2d70ae95cc70
-    - name: Zoe Fishing Rod Catching_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 22
         height: 257
       spriteId: b7b1dd6c9da9dafd8b9cd3d4c3acb582
-    - name: Zoe Fishing Rod Catching_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

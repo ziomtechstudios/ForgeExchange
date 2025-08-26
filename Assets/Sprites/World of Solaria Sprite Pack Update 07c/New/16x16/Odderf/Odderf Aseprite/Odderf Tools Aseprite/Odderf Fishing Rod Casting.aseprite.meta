@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -422,13 +425,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1384274444
+    uuid:
+      value0: 3465425212
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -829542084
     name: Odderf Fishing Rod Casting
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Fishing Rod Casting_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -437,7 +445,7 @@ ScriptedImporter:
         width: 44
         height: 254
       spriteId: 0026f54c24d9ef9b280ef67f0ce121cd
-    - name: Odderf Fishing Rod Casting_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -446,7 +454,7 @@ ScriptedImporter:
         width: 26
         height: 252
       spriteId: 0282263e38dab3ea6b328d6233dd07a6
-    - name: Odderf Fishing Rod Casting_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -455,7 +463,7 @@ ScriptedImporter:
         width: 20
         height: 254
       spriteId: 57bd1a8975a258be28563ac0068b6d0e
-    - name: Odderf Fishing Rod Casting_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -464,7 +472,7 @@ ScriptedImporter:
         width: 24
         height: 256
       spriteId: c7daa367e76ef24bc8a07b3a2a3b7f6f
-    - name: Odderf Fishing Rod Casting_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -473,7 +481,7 @@ ScriptedImporter:
         width: 42
         height: 261
       spriteId: d41b5055581b2de99bf2e258d96ff0ec
-    - name: Odderf Fishing Rod Casting_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -482,7 +490,7 @@ ScriptedImporter:
         width: 30
         height: 277
       spriteId: 8c9b8f6bb086dadb0afce0942c36408f
-    - name: Odderf Fishing Rod Casting_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -491,7 +499,7 @@ ScriptedImporter:
         width: 42
         height: 272
       spriteId: 3f3b14b80af7a7d50aec032675ba1f9b
-    - name: Odderf Fishing Rod Casting_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -500,7 +508,7 @@ ScriptedImporter:
         width: 58
         height: 268
       spriteId: 1b949af3b96b0a1b18b210555299e916
-    - name: Odderf Fishing Rod Casting_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -509,7 +517,7 @@ ScriptedImporter:
         width: 64
         height: 267
       spriteId: 660bf041218cfa0a5a0acacf4e95e696
-    - name: Odderf Fishing Rod Casting_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -518,7 +526,7 @@ ScriptedImporter:
         width: 68
         height: 275
       spriteId: f285b80047feabede87d88742a7023c5
-    - name: Odderf Fishing Rod Casting_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -527,7 +535,7 @@ ScriptedImporter:
         width: 70
         height: 281
       spriteId: b26622604d8eaef00887dde0e216e12c
-    - name: Odderf Fishing Rod Casting_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -536,7 +544,7 @@ ScriptedImporter:
         width: 70
         height: 281
       spriteId: 8745817d70aacef828cd61a6fb7d03b5
-    - name: Odderf Fishing Rod Casting_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -545,7 +553,7 @@ ScriptedImporter:
         width: 70
         height: 280
       spriteId: 533fe9e4374d8c4a4acf4e8786154b5a
-    - name: Odderf Fishing Rod Casting_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -554,7 +562,7 @@ ScriptedImporter:
         width: 64
         height: 275
       spriteId: 0b91a0c1e0d338ef6adffd1a4a7c7e6a
-    - name: Odderf Fishing Rod Casting_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -570,3 +578,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

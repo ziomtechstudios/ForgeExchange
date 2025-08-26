@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -202,13 +205,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1831776559
+    uuid:
+      value0: 1120515925
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1120515925
     name: Odderf Minecart
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Minecart_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -217,7 +225,7 @@ ScriptedImporter:
         width: 16
         height: 255
       spriteId: 6bafc7738684e111e94ca1d85b30be80
-    - name: Odderf Minecart_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -226,7 +234,7 @@ ScriptedImporter:
         width: 16
         height: 254
       spriteId: 451e298d62fac2b39a0ab406eb1fde03
-    - name: Odderf Minecart_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -235,7 +243,7 @@ ScriptedImporter:
         width: 16
         height: 254
       spriteId: 6be2a3f78ebe1312f89424c18bb2d734
-    - name: Odderf Minecart_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -251,3 +259,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -242,13 +245,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -918185495
+    uuid:
+      value0: 841534669
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 841534669
     name: Odderf New Item Get
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Item Get_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -257,7 +265,7 @@ ScriptedImporter:
         width: 12
         height: 14
       spriteId: bfd2a7af62df43b8fb83115368af710a
-    - name: Odderf New Item Get_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -266,7 +274,7 @@ ScriptedImporter:
         width: 12
         height: 14
       spriteId: a8e092b840f08d7a08b04bb1a3108640
-    - name: Odderf New Item Get_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -275,7 +283,7 @@ ScriptedImporter:
         width: 12
         height: 14
       spriteId: 36206f7c6b59130abb6666b1c35d34f5
-    - name: Odderf New Item Get_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -284,7 +292,7 @@ ScriptedImporter:
         width: 14
         height: 14
       spriteId: da121d8242d91640da07a1c272aa1bd6
-    - name: Odderf New Item Get_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -293,7 +301,7 @@ ScriptedImporter:
         width: 14
         height: 14
       spriteId: 5723cccc57e1c44c9818c2b3994fc2bd
-    - name: Odderf New Item Get_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -309,3 +317,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 80}
+  previousTextureSize: {x: 64, y: 64}

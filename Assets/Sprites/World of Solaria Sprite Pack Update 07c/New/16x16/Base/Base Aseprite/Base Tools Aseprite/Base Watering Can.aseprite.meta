@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -222,13 +225,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -560652522
+    uuid:
+      value0: 615245550
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 615245550
     name: Base Watering Can
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Watering Can_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -237,7 +245,7 @@ ScriptedImporter:
         width: 28
         height: 267
       spriteId: 20e4d46e08e07d99cbfccf8f95b91322
-    - name: Base Watering Can_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +254,7 @@ ScriptedImporter:
         width: 32
         height: 268
       spriteId: 34cf08ead14420f8ea9ff9197135adf3
-    - name: Base Watering Can_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -255,7 +263,7 @@ ScriptedImporter:
         width: 34
         height: 269
       spriteId: b42d116983e4eab0aa0969564a539388
-    - name: Base Watering Can_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -264,7 +272,7 @@ ScriptedImporter:
         width: 36
         height: 269
       spriteId: 26d22a090ce6409ea82a4c8336421197
-    - name: Base Watering Can_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -280,3 +288,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

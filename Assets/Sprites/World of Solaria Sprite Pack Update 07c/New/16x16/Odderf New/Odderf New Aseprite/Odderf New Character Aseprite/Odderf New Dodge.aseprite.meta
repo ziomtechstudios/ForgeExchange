@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -302,13 +305,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 2060279963
+    uuid:
+      value0: 3423853767
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -871113529
     name: Odderf New Dodge
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Dodge_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -317,7 +325,7 @@ ScriptedImporter:
         width: 12
         height: 254
       spriteId: d08f46ff3c0c317eda71520ef0ce6c9d
-    - name: Odderf New Dodge_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -326,7 +334,7 @@ ScriptedImporter:
         width: 14
         height: 256
       spriteId: aa3cab1068e06d87e86e680b5c2cece5
-    - name: Odderf New Dodge_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -335,7 +343,7 @@ ScriptedImporter:
         width: 20
         height: 255
       spriteId: 52dfeb98aa074d1488a57e6cbb0771ee
-    - name: Odderf New Dodge_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -344,7 +352,7 @@ ScriptedImporter:
         width: 22
         height: 250
       spriteId: 98fee30940c8d82778da44e8cd6838bd
-    - name: Odderf New Dodge_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -353,7 +361,7 @@ ScriptedImporter:
         width: 22
         height: 252
       spriteId: 28876acbebe2552a6a382d906e150aec
-    - name: Odderf New Dodge_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -362,7 +370,7 @@ ScriptedImporter:
         width: 22
         height: 250
       spriteId: 8d24d414194b66a4887c237d96391db1
-    - name: Odderf New Dodge_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -371,7 +379,7 @@ ScriptedImporter:
         width: 16
         height: 250
       spriteId: 94941a030f1bc1f4c95375e04e5aa899
-    - name: Odderf New Dodge_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -380,7 +388,7 @@ ScriptedImporter:
         width: 16
         height: 252
       spriteId: d9c5b53a73ae2690295ce2eb6f2f7427
-    - name: Odderf New Dodge_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -396,3 +404,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

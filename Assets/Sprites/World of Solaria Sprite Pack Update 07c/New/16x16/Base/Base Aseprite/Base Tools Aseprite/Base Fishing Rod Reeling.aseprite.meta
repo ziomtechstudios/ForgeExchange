@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1739118580
+    uuid:
+      value0: 904378172
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 904378172
     name: Base Fishing Rod Reeling
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Fishing Rod Reeling_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 792
         height: 304
       spriteId: 46b4a68b73343b15fa16d1f8a204f330
-    - name: Base Fishing Rod Reeling_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 24a14e9e2b65582249953f640ff743fb
-    - name: Base Fishing Rod Reeling_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: e545bc673fca3fe70816412ad8143ceb
-    - name: Base Fishing Rod Reeling_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 64
         height: 278
       spriteId: fab9682983921f177ac5ae07e14b184d
-    - name: Base Fishing Rod Reeling_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 66
         height: 279
       spriteId: 2c61c727c594c3a88933118a08349e17
-    - name: Base Fishing Rod Reeling_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 68
         height: 280
       spriteId: 97181b3eaf24fab84af210aa72c8fc19
-    - name: Base Fishing Rod Reeling_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 68
         height: 281
       spriteId: e2d6a1ef588535f048a2c8ca6c52fc14
-    - name: Base Fishing Rod Reeling_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 68
         height: 281
       spriteId: cc3419c6ba9a399f796648434149d5c0
-    - name: Base Fishing Rod Reeling_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 64
         height: 280
       spriteId: 079343aec6b0e8e84b27f299138a2397
-    - name: Base Fishing Rod Reeling_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 1024, y: 1024}

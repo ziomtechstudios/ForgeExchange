@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -522,13 +525,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 19630214
+    uuid:
+      value0: 3256435230
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1038532066
     name: Zoe Hammer
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Hammer_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -537,7 +545,7 @@ ScriptedImporter:
         width: 34
         height: 259
       spriteId: e41da9fcae54715d2a685c904df89ba9
-    - name: Zoe Hammer_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -546,7 +554,7 @@ ScriptedImporter:
         width: 32
         height: 259
       spriteId: c6d20b385e017eced8d6439c05c95af9
-    - name: Zoe Hammer_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -555,7 +563,7 @@ ScriptedImporter:
         width: 34
         height: 258
       spriteId: 5891c7d97f258c946860af325795e009
-    - name: Zoe Hammer_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -564,7 +572,7 @@ ScriptedImporter:
         width: 35
         height: 256
       spriteId: 0cac3cde5626796e7808ca516f6bb87f
-    - name: Zoe Hammer_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -573,7 +581,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: d07fde40fb9343956a02fe82b0f19728
-    - name: Zoe Hammer_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -582,7 +590,7 @@ ScriptedImporter:
         width: 35
         height: 251
       spriteId: 6d5c749e080e6411e9a1ff04d04d43a0
-    - name: Zoe Hammer_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -591,7 +599,7 @@ ScriptedImporter:
         width: 33
         height: 243
       spriteId: 8e9ca8dd9307eebf0b8ab734e28834fe
-    - name: Zoe Hammer_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -600,7 +608,7 @@ ScriptedImporter:
         width: 34
         height: 240
       spriteId: 7a9dd0467a20aece2ab08427d7ff9b18
-    - name: Zoe Hammer_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -609,7 +617,7 @@ ScriptedImporter:
         width: 38
         height: 239
       spriteId: c0ec37b8ffa103730a015150825491b4
-    - name: Zoe Hammer_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -618,7 +626,7 @@ ScriptedImporter:
         width: 38
         height: 240
       spriteId: 9e1ef0e553fef59eea070644f4d41d5c
-    - name: Zoe Hammer_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -627,7 +635,7 @@ ScriptedImporter:
         width: 36
         height: 240
       spriteId: 5bcf0f4e95180c2ffa87065b930e49af
-    - name: Zoe Hammer_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -636,7 +644,7 @@ ScriptedImporter:
         width: 34
         height: 241
       spriteId: a8eb2e996ae2edf62b48fc9da9227048
-    - name: Zoe Hammer_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -645,7 +653,7 @@ ScriptedImporter:
         width: 34
         height: 244
       spriteId: e7acd9805de78a696a297e332b5794e8
-    - name: Zoe Hammer_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -654,7 +662,7 @@ ScriptedImporter:
         width: 28
         height: 257
       spriteId: f30916860351aedb982d792bc85c6b77
-    - name: Zoe Hammer_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -663,7 +671,7 @@ ScriptedImporter:
         width: 32
         height: 254
       spriteId: d2342331ee79c9efea11392f55038c33
-    - name: Zoe Hammer_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -672,7 +680,7 @@ ScriptedImporter:
         width: 46
         height: 265
       spriteId: a263262bf64eb58abaa8b22c3a04310b
-    - name: Zoe Hammer_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -681,7 +689,7 @@ ScriptedImporter:
         width: 50
         height: 268
       spriteId: de3e36312750c646681a88afca0f4b0d
-    - name: Zoe Hammer_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -690,7 +698,7 @@ ScriptedImporter:
         width: 52
         height: 268
       spriteId: cdd14ccd3a4d788d4aed8b76fe37ef01
-    - name: Zoe Hammer_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -699,7 +707,7 @@ ScriptedImporter:
         width: 44
         height: 257
       spriteId: 1d6a82ceb355cea0cb3e40ba83c96884
-    - name: Zoe Hammer_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -715,3 +723,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

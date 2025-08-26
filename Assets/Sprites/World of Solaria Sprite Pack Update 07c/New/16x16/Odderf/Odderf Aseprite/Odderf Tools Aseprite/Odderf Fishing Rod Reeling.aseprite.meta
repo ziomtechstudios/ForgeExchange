@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1456541653
+    uuid:
+      value0: 2275565929
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -2019401367
     name: Odderf Fishing Rod Reeling
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Fishing Rod Reeling_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 792
         height: 304
       spriteId: 9c20a2b56cfae71798249babdbe41502
-    - name: Odderf Fishing Rod Reeling_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: 43c366b2106a2efaeb61d3fd2cf83b57
-    - name: Odderf Fishing Rod Reeling_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 64
         height: 276
       spriteId: cda9e2f669be645d6ab9df2e4e5d9db0
-    - name: Odderf Fishing Rod Reeling_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 64
         height: 278
       spriteId: 9365a3013f512c2f6a28eecfa6e1d593
-    - name: Odderf Fishing Rod Reeling_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 66
         height: 279
       spriteId: 6ec041bfaf3fb991d9bbae1948945904
-    - name: Odderf Fishing Rod Reeling_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 68
         height: 280
       spriteId: c4e0dbb12ea2f7dd3845d891f57eeb3f
-    - name: Odderf Fishing Rod Reeling_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 68
         height: 281
       spriteId: a08528002ca4e842c9b24d7562ab4535
-    - name: Odderf Fishing Rod Reeling_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 68
         height: 281
       spriteId: e4af40146f07a87109134f1e2c227871
-    - name: Odderf Fishing Rod Reeling_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 64
         height: 280
       spriteId: 6fc773176efbe7538a6704570fbdffb5
-    - name: Odderf Fishing Rod Reeling_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 1024, y: 1024}

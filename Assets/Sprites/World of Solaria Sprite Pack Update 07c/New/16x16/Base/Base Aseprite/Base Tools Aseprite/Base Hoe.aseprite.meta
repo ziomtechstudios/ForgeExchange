@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -482,13 +485,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1457601291
+    uuid:
+      value0: 1063890167
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1063890167
     name: Base Hoe
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Hoe_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -497,7 +505,7 @@ ScriptedImporter:
         width: 18
         height: 254
       spriteId: 984dfd43daac30c47ba91d2595eec698
-    - name: Base Hoe_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -506,7 +514,7 @@ ScriptedImporter:
         width: 20
         height: 258
       spriteId: 1681dd34514e9d11bb4c70fc4a5e7f12
-    - name: Base Hoe_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -515,7 +523,7 @@ ScriptedImporter:
         width: 40
         height: 253
       spriteId: befe24a8afb4564519b72b5a68076fb3
-    - name: Base Hoe_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -524,7 +532,7 @@ ScriptedImporter:
         width: 42
         height: 256
       spriteId: 4adf656af084218dfa8cc4ee0a7e6b66
-    - name: Base Hoe_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -533,7 +541,7 @@ ScriptedImporter:
         width: 42
         height: 255
       spriteId: f0d8c1773d1e40d3caf5585bb952fd46
-    - name: Base Hoe_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -542,7 +550,7 @@ ScriptedImporter:
         width: 38
         height: 255
       spriteId: af8a837f7b5c82de18999c27e7997afe
-    - name: Base Hoe_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -551,7 +559,7 @@ ScriptedImporter:
         width: 48
         height: 261
       spriteId: 8038aeddf70e44677ac79784f7076cb9
-    - name: Base Hoe_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -560,7 +568,7 @@ ScriptedImporter:
         width: 52
         height: 264
       spriteId: cc25db21cff0ba34aa9d2b0cb4c0f586
-    - name: Base Hoe_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -569,7 +577,7 @@ ScriptedImporter:
         width: 54
         height: 265
       spriteId: eb81c809cb1334b87b6da6dd544a7cd4
-    - name: Base Hoe_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -578,7 +586,7 @@ ScriptedImporter:
         width: 46
         height: 258
       spriteId: bac0e7db964022f2492b474a35fc1e4d
-    - name: Base Hoe_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -587,7 +595,7 @@ ScriptedImporter:
         width: 48
         height: 259
       spriteId: 03a97b99324c986a4b62c67ad1efd2d7
-    - name: Base Hoe_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -596,7 +604,7 @@ ScriptedImporter:
         width: 50
         height: 259
       spriteId: 29d8e685062fe20b79933b67accfc746
-    - name: Base Hoe_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -605,7 +613,7 @@ ScriptedImporter:
         width: 42
         height: 257
       spriteId: acfe2584259a82f81a24cb0605875a3e
-    - name: Base Hoe_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -614,7 +622,7 @@ ScriptedImporter:
         width: 42
         height: 257
       spriteId: 157f65c30bbaef6f48251d47633ce7cb
-    - name: Base Hoe_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -623,7 +631,7 @@ ScriptedImporter:
         width: 40
         height: 256
       spriteId: 79749173fe9c9b43e8cf60acb01fb208
-    - name: Base Hoe_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -632,7 +640,7 @@ ScriptedImporter:
         width: 36
         height: 250
       spriteId: 66b33fd76837ff78bb904ea750c0895a
-    - name: Base Hoe_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -641,7 +649,7 @@ ScriptedImporter:
         width: 32
         height: 250
       spriteId: bdb345144331b4d37be6ab7616eb7220
-    - name: Base Hoe_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -657,3 +665,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

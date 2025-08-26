@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -522,13 +525,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1960883779
+    uuid:
+      value0: 3120683791
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1174283505
     name: Base Hammer
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Base Hammer_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -537,7 +545,7 @@ ScriptedImporter:
         width: 34
         height: 259
       spriteId: 8db26e095b37bc33585c349edae72e52
-    - name: Base Hammer_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -546,7 +554,7 @@ ScriptedImporter:
         width: 32
         height: 259
       spriteId: 2292bf483d4b5cce3a92f5b13bb2e7d2
-    - name: Base Hammer_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -555,7 +563,7 @@ ScriptedImporter:
         width: 34
         height: 258
       spriteId: 705a1907ae4e331be97d5c356ed4a3f8
-    - name: Base Hammer_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -564,7 +572,7 @@ ScriptedImporter:
         width: 35
         height: 256
       spriteId: b987e727a86d44c5bb38041280fa84c7
-    - name: Base Hammer_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -573,7 +581,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: abab37df813d9f78785c182a0be088b9
-    - name: Base Hammer_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -582,7 +590,7 @@ ScriptedImporter:
         width: 35
         height: 251
       spriteId: 111de4bf37cb662b58ef36e173e8545c
-    - name: Base Hammer_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -591,7 +599,7 @@ ScriptedImporter:
         width: 33
         height: 243
       spriteId: 7d90e084181ac0fc3bbf89ec1a0e5472
-    - name: Base Hammer_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -600,7 +608,7 @@ ScriptedImporter:
         width: 34
         height: 240
       spriteId: f251d3f10efb795b2898ddcb0963594b
-    - name: Base Hammer_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -609,7 +617,7 @@ ScriptedImporter:
         width: 38
         height: 239
       spriteId: 049d6f34166069b4881015b14859d660
-    - name: Base Hammer_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -618,7 +626,7 @@ ScriptedImporter:
         width: 38
         height: 240
       spriteId: 0d074a3fbc5caf80d9ad63b9a0dbd91f
-    - name: Base Hammer_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -627,7 +635,7 @@ ScriptedImporter:
         width: 36
         height: 240
       spriteId: 9117f61226c356ff1a5fca2d35775cec
-    - name: Base Hammer_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -636,7 +644,7 @@ ScriptedImporter:
         width: 34
         height: 241
       spriteId: b2038749ae8882243be7e97fcf0f4021
-    - name: Base Hammer_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -645,7 +653,7 @@ ScriptedImporter:
         width: 34
         height: 244
       spriteId: ff368a7483cd1c145995ea54c02c8107
-    - name: Base Hammer_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -654,7 +662,7 @@ ScriptedImporter:
         width: 28
         height: 257
       spriteId: b60eba47ad2d4cb3680479c0a3be92ab
-    - name: Base Hammer_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -663,7 +671,7 @@ ScriptedImporter:
         width: 32
         height: 254
       spriteId: caceaa1914ea5ec8ba854ca32f4114fc
-    - name: Base Hammer_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -672,7 +680,7 @@ ScriptedImporter:
         width: 46
         height: 265
       spriteId: a3e484904fe7e78a09a6760ba2e16477
-    - name: Base Hammer_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -681,7 +689,7 @@ ScriptedImporter:
         width: 50
         height: 268
       spriteId: 667b43c3ac7e6e76c84385ce360d8aba
-    - name: Base Hammer_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -690,7 +698,7 @@ ScriptedImporter:
         width: 52
         height: 268
       spriteId: 7fdceb23dd4a632638007ef441ae122a
-    - name: Base Hammer_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -699,7 +707,7 @@ ScriptedImporter:
         width: 44
         height: 257
       spriteId: 2da5436658a03f1b0a1e166c272cdbb6
-    - name: Base Hammer_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -715,3 +723,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

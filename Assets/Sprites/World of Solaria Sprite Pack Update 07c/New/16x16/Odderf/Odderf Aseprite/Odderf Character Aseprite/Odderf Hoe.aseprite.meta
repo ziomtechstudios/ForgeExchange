@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -482,13 +485,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1509561798
+    uuid:
+      value0: 912561246
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 912561246
     name: Odderf Hoe
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Hoe_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -497,7 +505,7 @@ ScriptedImporter:
         width: 18
         height: 261
       spriteId: 83a08da865bc52143bf17192992d2236
-    - name: Odderf Hoe_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -506,7 +514,7 @@ ScriptedImporter:
         width: 20
         height: 265
       spriteId: f0d91e92e1c91f644bdfe87d60b4d42a
-    - name: Odderf Hoe_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -515,7 +523,7 @@ ScriptedImporter:
         width: 40
         height: 259
       spriteId: 5a3b1678b3edabd45afef7de77c92a52
-    - name: Odderf Hoe_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -524,7 +532,7 @@ ScriptedImporter:
         width: 42
         height: 258
       spriteId: dfff4dfaa37a40438946416294504671
-    - name: Odderf Hoe_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -533,7 +541,7 @@ ScriptedImporter:
         width: 42
         height: 256
       spriteId: f4b374f1ae27b6e0b95ecdb8427f5acb
-    - name: Odderf Hoe_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -542,7 +550,7 @@ ScriptedImporter:
         width: 38
         height: 261
       spriteId: cbe3e1a9733f7bfc7a12d23a13ef2a03
-    - name: Odderf Hoe_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -551,7 +559,7 @@ ScriptedImporter:
         width: 48
         height: 261
       spriteId: 74dc22b5f53ac7b2e8f9691ebf6a2e6c
-    - name: Odderf Hoe_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -560,7 +568,7 @@ ScriptedImporter:
         width: 52
         height: 264
       spriteId: 59307eb8def2f4545a2a0701eab0673c
-    - name: Odderf Hoe_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -569,7 +577,7 @@ ScriptedImporter:
         width: 54
         height: 265
       spriteId: ef34e30735a323c4ab8d6c9d7939e9aa
-    - name: Odderf Hoe_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -578,7 +586,7 @@ ScriptedImporter:
         width: 46
         height: 258
       spriteId: 9841d382f735005fda04aea1c4a66b44
-    - name: Odderf Hoe_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -587,7 +595,7 @@ ScriptedImporter:
         width: 48
         height: 259
       spriteId: f07afe48647838373be442b3197a73cc
-    - name: Odderf Hoe_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -596,7 +604,7 @@ ScriptedImporter:
         width: 50
         height: 259
       spriteId: 7c6b915359ebfca59a23783476e1df23
-    - name: Odderf Hoe_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -605,7 +613,7 @@ ScriptedImporter:
         width: 42
         height: 257
       spriteId: 1793aaac7ad06bde2887ed798724a0d4
-    - name: Odderf Hoe_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -614,7 +622,7 @@ ScriptedImporter:
         width: 42
         height: 257
       spriteId: 91b90f6d55f667b819e0a0fea888c00f
-    - name: Odderf Hoe_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -623,7 +631,7 @@ ScriptedImporter:
         width: 40
         height: 257
       spriteId: 1cde672ad12324a9289d38520ad4f51b
-    - name: Odderf Hoe_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -632,7 +640,7 @@ ScriptedImporter:
         width: 36
         height: 257
       spriteId: fa6a254a2eabb0f288f39741ae2400f5
-    - name: Odderf Hoe_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -641,7 +649,7 @@ ScriptedImporter:
         width: 32
         height: 256
       spriteId: b70f65e69fb88fc119270a1cd5f6aec9
-    - name: Odderf Hoe_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -657,3 +665,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

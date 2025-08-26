@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -342,13 +345,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -440152055
+    uuid:
+      value0: 1859683181
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1859683181
     name: Zoe Yawn
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Yawn_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -357,7 +365,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: 46a4dd632befe090db9c98cbf5f37c89
-    - name: Zoe Yawn_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -366,7 +374,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: 948c5944705501a3993b228c5c05eb96
-    - name: Zoe Yawn_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -375,7 +383,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: b3a0383812fc38b33bb06e6e217554d7
-    - name: Zoe Yawn_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -384,7 +392,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: 3585c06e47973d3ceaf48b51c8772124
-    - name: Zoe Yawn_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -393,7 +401,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: d517856cb38a81e99a348094393f7789
-    - name: Zoe Yawn_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -402,7 +410,7 @@ ScriptedImporter:
         width: 12
         height: 15
       spriteId: 95ba0ad96a192a6c09398bdcf1a047ae
-    - name: Zoe Yawn_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -411,7 +419,7 @@ ScriptedImporter:
         width: 12
         height: 15
       spriteId: b6e86127e2e0be0a0bb20c9a5a8eea3e
-    - name: Zoe Yawn_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -420,7 +428,7 @@ ScriptedImporter:
         width: 12
         height: 15
       spriteId: d674d052c97af6ddaac8c557429a321e
-    - name: Zoe Yawn_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -429,7 +437,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: 24caa5ea25da9ae01bb430f9cfbb5936
-    - name: Zoe Yawn_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -438,7 +446,7 @@ ScriptedImporter:
         width: 12
         height: 16
       spriteId: 07336d8150ec65b5d985d8edb6259001
-    - name: Zoe Yawn_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -454,3 +462,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 80}
+  previousTextureSize: {x: 64, y: 128}

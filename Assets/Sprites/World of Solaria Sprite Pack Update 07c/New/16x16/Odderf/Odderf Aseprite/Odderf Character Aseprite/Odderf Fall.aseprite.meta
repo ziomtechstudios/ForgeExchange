@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -362,13 +365,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 729741701
+    uuid:
+      value0: 2565836249
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1729131047
     name: Odderf Fall
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Fall_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -377,7 +385,7 @@ ScriptedImporter:
         width: 15
         height: 15
       spriteId: 5dd6534cee0164c4d9bf9da73428a400
-    - name: Odderf Fall_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -386,7 +394,7 @@ ScriptedImporter:
         width: 12
         height: 12
       spriteId: a5c1e7f6b30b3c31d82a576aa147972f
-    - name: Odderf Fall_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -395,7 +403,7 @@ ScriptedImporter:
         width: 10
         height: 10
       spriteId: 3ca3a7d6f3d16336e9eb8586b2ec8b15
-    - name: Odderf Fall_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -404,7 +412,7 @@ ScriptedImporter:
         width: 6
         height: 6
       spriteId: dfa48ade29d64ae369885a39f55cbf40
-    - name: Odderf Fall_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -413,7 +421,7 @@ ScriptedImporter:
         width: 3
         height: 3
       spriteId: f989baba588be76b4a7702902aa9b23d
-    - name: Odderf Fall_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -422,7 +430,7 @@ ScriptedImporter:
         width: 7
         height: 7
       spriteId: 83f83b42bb1aa4761a56fdd627c1ea2e
-    - name: Odderf Fall_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -431,7 +439,7 @@ ScriptedImporter:
         width: 11
         height: 11
       spriteId: 0558cda59c0b9a860902fcef77ef01c6
-    - name: Odderf Fall_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -440,7 +448,7 @@ ScriptedImporter:
         width: 9
         height: 9
       spriteId: 0a00852daddc257f08eb81072f5101b9
-    - name: Odderf Fall_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -449,7 +457,7 @@ ScriptedImporter:
         width: 7
         height: 7
       spriteId: 03b5f598cdb6208e2a6295d5e771df64
-    - name: Odderf Fall_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -458,7 +466,7 @@ ScriptedImporter:
         width: 5
         height: 5
       spriteId: a4248053cb39faecdb0d75a5e2a7fb4f
-    - name: Odderf Fall_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -467,7 +475,7 @@ ScriptedImporter:
         width: 3
         height: 3
       spriteId: 1ec62d3845d32513bb3d665d33da70ad
-    - name: Odderf Fall_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -483,3 +491,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 80}
+  previousTextureSize: {x: 64, y: 64}

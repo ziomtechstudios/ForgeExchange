@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -382,13 +385,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -334398159
+    uuid:
+      value0: 2692978485
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1601988811
     name: Odderf New Shovel
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Shovel_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -397,7 +405,7 @@ ScriptedImporter:
         width: 24
         height: 254
       spriteId: aaf7f4feb9c7a29ce8f09720dae07a0b
-    - name: Odderf New Shovel_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -406,7 +414,7 @@ ScriptedImporter:
         width: 20
         height: 255
       spriteId: c358184239be5deb8b28e147078344cf
-    - name: Odderf New Shovel_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -415,7 +423,7 @@ ScriptedImporter:
         width: 31
         height: 256
       spriteId: 1aae4c4d9da0c55c88f53d54a7869889
-    - name: Odderf New Shovel_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -424,7 +432,7 @@ ScriptedImporter:
         width: 35
         height: 257
       spriteId: 8280beb6e4dc4ce4180f031956099224
-    - name: Odderf New Shovel_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -433,7 +441,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 04a70b175876679129824df05fb30710
-    - name: Odderf New Shovel_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -442,7 +450,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 1e320e3f75830095d991c37fc9b33177
-    - name: Odderf New Shovel_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -451,7 +459,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 4b1ee1580c3b48ddc9da76ac790a6442
-    - name: Odderf New Shovel_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -460,7 +468,7 @@ ScriptedImporter:
         width: 34
         height: 260
       spriteId: ae6f7265d5555cea49609395cf75a684
-    - name: Odderf New Shovel_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -469,7 +477,7 @@ ScriptedImporter:
         width: 26
         height: 266
       spriteId: db863912f6eb875a2b702e435e36d2e2
-    - name: Odderf New Shovel_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -478,7 +486,7 @@ ScriptedImporter:
         width: 20
         height: 263
       spriteId: d1031449c3f6aa4fc8d3550d8ae52259
-    - name: Odderf New Shovel_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -487,7 +495,7 @@ ScriptedImporter:
         width: 23
         height: 259
       spriteId: 9c55e7805780a0fa58dfec6daae2e915
-    - name: Odderf New Shovel_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -496,7 +504,7 @@ ScriptedImporter:
         width: 27
         height: 260
       spriteId: d49e4bbaee512045ebae385fa1168c55
-    - name: Odderf New Shovel_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -512,3 +520,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 512}

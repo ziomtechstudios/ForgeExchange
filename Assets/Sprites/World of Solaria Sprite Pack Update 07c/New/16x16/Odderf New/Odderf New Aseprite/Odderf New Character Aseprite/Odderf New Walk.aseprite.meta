@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -242,13 +245,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1528191561
+    uuid:
+      value0: 2311321939
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1983645357
     name: Odderf New Walk
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Walk_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -257,7 +265,7 @@ ScriptedImporter:
         width: 12
         height: 254
       spriteId: d987d98e6fc9f41d991384c93770d523
-    - name: Odderf New Walk_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -266,7 +274,7 @@ ScriptedImporter:
         width: 12
         height: 253
       spriteId: 538c7013fca420c9fa26d11402391ab9
-    - name: Odderf New Walk_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -275,7 +283,7 @@ ScriptedImporter:
         width: 12
         height: 253
       spriteId: 106a8e49162d23a1291c290b37c7d372
-    - name: Odderf New Walk_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -284,7 +292,7 @@ ScriptedImporter:
         width: 12
         height: 254
       spriteId: b3e0436f64b691a7689a3ac558891b09
-    - name: Odderf New Walk_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -293,7 +301,7 @@ ScriptedImporter:
         width: 12
         height: 253
       spriteId: e7912a6c7b9105772816ef638a2a79a2
-    - name: Odderf New Walk_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -309,3 +317,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

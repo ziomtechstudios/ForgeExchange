@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -242,13 +245,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -440187522
+    uuid:
+      value0: 4131580150
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -163387146
     name: Zoe Idle
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Idle_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -257,7 +265,7 @@ ScriptedImporter:
         width: 16
         height: 256
       spriteId: 966bd9d9a64586d7f81f9d18d0aa5777
-    - name: Zoe Idle_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -266,7 +274,7 @@ ScriptedImporter:
         width: 16
         height: 256
       spriteId: 4747b270ffbbfd832a064c675f98b3ca
-    - name: Zoe Idle_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -275,7 +283,7 @@ ScriptedImporter:
         width: 16
         height: 256
       spriteId: 2d0cfe0f37d9a2534882cb0678178b01
-    - name: Zoe Idle_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -284,7 +292,7 @@ ScriptedImporter:
         width: 16
         height: 257
       spriteId: 21acfde9fbd1f7ffc94f00e721687eda
-    - name: Zoe Idle_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -293,7 +301,7 @@ ScriptedImporter:
         width: 16
         height: 257
       spriteId: 6e6480dcd182d9ac6858443ba2252022
-    - name: Zoe Idle_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -309,3 +317,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

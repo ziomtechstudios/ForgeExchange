@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -202,13 +205,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -523568021
+    uuid:
+      value0: 593701847
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 593701847
     name: Odderf New Swimming Idle
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Swimming Idle_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -217,7 +225,7 @@ ScriptedImporter:
         width: 16
         height: 253
       spriteId: c8a32fa23140b64d2860836bddd20a8f
-    - name: Odderf New Swimming Idle_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -226,7 +234,7 @@ ScriptedImporter:
         width: 16
         height: 252
       spriteId: f1e4d3347f19affcc949689b47881b04
-    - name: Odderf New Swimming Idle_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -235,7 +243,7 @@ ScriptedImporter:
         width: 16
         height: 252
       spriteId: bcb7559ef3a3b32f094729f7ef1aca3b
-    - name: Odderf New Swimming Idle_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -251,3 +259,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 256, y: 512}

@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -322,13 +325,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 213163192
+    uuid:
+      value0: 4089951640
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -205015656
     name: Zoe Axe
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Axe_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -337,7 +345,7 @@ ScriptedImporter:
         width: 16
         height: 260
       spriteId: 41b8e2551a2ba57bcbf5e0577f200cda
-    - name: Zoe Axe_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -346,7 +354,7 @@ ScriptedImporter:
         width: 18
         height: 264
       spriteId: 07a479c89fe2a3eedbd7cc9e90d06b44
-    - name: Zoe Axe_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -355,7 +363,7 @@ ScriptedImporter:
         width: 40
         height: 263
       spriteId: 52b0442727ea63d4cb51b97c38691b33
-    - name: Zoe Axe_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -364,7 +372,7 @@ ScriptedImporter:
         width: 42
         height: 261
       spriteId: 3feaef16089d34991ad0e6681a694d93
-    - name: Zoe Axe_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -373,7 +381,7 @@ ScriptedImporter:
         width: 42
         height: 259
       spriteId: e5e29cdaebd61ca2288623cdb3c8ec14
-    - name: Zoe Axe_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -382,7 +390,7 @@ ScriptedImporter:
         width: 38
         height: 270
       spriteId: 281e195a314cc148aaad52bc1683fbef
-    - name: Zoe Axe_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +399,7 @@ ScriptedImporter:
         width: 48
         height: 268
       spriteId: 5cb4804db013656b1ab5543581d1e345
-    - name: Zoe Axe_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -400,7 +408,7 @@ ScriptedImporter:
         width: 52
         height: 262
       spriteId: 9322ef2c40d8725c29a52ccbf8640b81
-    - name: Zoe Axe_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -409,7 +417,7 @@ ScriptedImporter:
         width: 54
         height: 263
       spriteId: a404c6b2e87aad2dd83606c70f6de76e
-    - name: Zoe Axe_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -425,3 +433,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 512}

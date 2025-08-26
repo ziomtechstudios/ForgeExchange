@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,21 +75,32 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
                 TakeDamage(1.00f);
         }
-        #endregion
-        #region Public Members
-        public void OnMove(InputAction.CallbackContext context)
+
+        private void ApplyMovement(InputAction.CallbackContext context)
         {
-            ///<summary>
-            ///Player Movement
-            ///Player movement input taken as 2D Vector and is translted to movement of gameObject.
-            ///The last dir the player moves in is the players looking direction.
-            ///Rounding the value of the given direction to the nearest integer. Range of -1 to 1 implied since vector is based on joystick interaction.
-            ///If the component of the vector is negative make sure to carry that over once the magnitude has been rounded.
-            ///Personal choice: When the direction of movement is diagonal, prevent player movement. Might omit this in future builds.
-            ///</summary>
-            moveDir = context.ReadValue<Vector2>();
             IsMoving = (moveDir != Vector2.zero);
             lookDir = (IsMoving && !usingWorkstation) ? (moveDir) : (lookDir);
+        }
+        #endregion
+        #region Public Members
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            moveDir = context.ReadValue<Vector2>();
+            ApplyMovement(context);
+        }
+
+        public void OnDPadMove(InputAction.CallbackContext context)
+        {
+            Debug.Log(InputActionType.Value);
+            if (context.action.type == InputActionType.Value)
+            {
+                if (context.started && !context.canceled)
+                    moveDir = context.ReadValue<Vector2>();
+                else
+                    moveDir = Vector2.zero;
+                ApplyMovement(context);
+            }
         }
         public void ToggleRun(InputAction.CallbackContext context)
         {
@@ -150,13 +162,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Update is called once per frame
         void Update()
         {
-            //Is the player looking at a interactable object + within an interactable distance?
+            //Is the player looking at an interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
             //If player wants to move
             if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if (m_Collider.IsTouchingLayers(layerMask) && (hit.transform != null))
+                if (m_Collider.IsTouchingLayers(layerMask) && hit.transform != null)
                     MovePlayer(false);
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else

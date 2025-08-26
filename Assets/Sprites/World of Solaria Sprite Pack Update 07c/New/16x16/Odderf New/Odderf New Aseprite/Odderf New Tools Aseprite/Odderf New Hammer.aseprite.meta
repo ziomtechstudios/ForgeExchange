@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -522,13 +525,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1752153642
+    uuid:
+      value0: 3370976430
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -923990866
     name: Odderf New Hammer
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf New Hammer_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -537,7 +545,7 @@ ScriptedImporter:
         width: 34
         height: 259
       spriteId: 4ba6ba9c3e6aedfc190beb87f2a4e74a
-    - name: Odderf New Hammer_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -546,7 +554,7 @@ ScriptedImporter:
         width: 32
         height: 259
       spriteId: eda6216314b31cc00bc327183c13b07d
-    - name: Odderf New Hammer_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -555,7 +563,7 @@ ScriptedImporter:
         width: 34
         height: 258
       spriteId: 665fae27943d4f77bb4f1776ff45a79e
-    - name: Odderf New Hammer_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -564,7 +572,7 @@ ScriptedImporter:
         width: 35
         height: 256
       spriteId: 37dce1cc22121ad1188df95f1a7b97ec
-    - name: Odderf New Hammer_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -573,7 +581,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 84e8634fdd90a80ed989cdbe83efb18e
-    - name: Odderf New Hammer_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -582,7 +590,7 @@ ScriptedImporter:
         width: 35
         height: 251
       spriteId: db96f18a2895b6812a43a771b42e7a02
-    - name: Odderf New Hammer_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -591,7 +599,7 @@ ScriptedImporter:
         width: 33
         height: 243
       spriteId: 36536a37cd5d34132b82a57f86930f8e
-    - name: Odderf New Hammer_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -600,7 +608,7 @@ ScriptedImporter:
         width: 34
         height: 240
       spriteId: 8340fbaa689cd7583a87243aa9e201ac
-    - name: Odderf New Hammer_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -609,7 +617,7 @@ ScriptedImporter:
         width: 38
         height: 239
       spriteId: 42d6cd89046b683f3bd43b341afdc980
-    - name: Odderf New Hammer_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -618,7 +626,7 @@ ScriptedImporter:
         width: 38
         height: 240
       spriteId: bd62253774aa0a5b597b7ac677c08228
-    - name: Odderf New Hammer_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -627,7 +635,7 @@ ScriptedImporter:
         width: 36
         height: 240
       spriteId: 7168ea067daece0d084f6a187bb1f234
-    - name: Odderf New Hammer_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -636,7 +644,7 @@ ScriptedImporter:
         width: 34
         height: 241
       spriteId: bf3b5a75a8158a0ebadba165cf6e3dd6
-    - name: Odderf New Hammer_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -645,7 +653,7 @@ ScriptedImporter:
         width: 34
         height: 244
       spriteId: 6dab3971fad9515b38d956635f97374c
-    - name: Odderf New Hammer_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -654,7 +662,7 @@ ScriptedImporter:
         width: 28
         height: 257
       spriteId: 7ae2cbe4a3a3d57579e3ccd4a0a5f221
-    - name: Odderf New Hammer_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -663,7 +671,7 @@ ScriptedImporter:
         width: 32
         height: 254
       spriteId: ef7894db786fb7309b84f6f2418b8f74
-    - name: Odderf New Hammer_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -672,7 +680,7 @@ ScriptedImporter:
         width: 46
         height: 265
       spriteId: 261bf76b4e6ac6a6093011f3e342badb
-    - name: Odderf New Hammer_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -681,7 +689,7 @@ ScriptedImporter:
         width: 50
         height: 268
       spriteId: 8466416f8e5a049f39638fe46a1669aa
-    - name: Odderf New Hammer_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -690,7 +698,7 @@ ScriptedImporter:
         width: 52
         height: 268
       spriteId: a9475effb61e67308b305bc8958d7359
-    - name: Odderf New Hammer_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -699,7 +707,7 @@ ScriptedImporter:
         width: 44
         height: 257
       spriteId: 1cf22a14723eb65f1b293e1d40d6d3af
-    - name: Odderf New Hammer_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -715,3 +723,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 1024}

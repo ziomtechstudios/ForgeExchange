@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -382,13 +385,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -542774145
+    uuid:
+      value0: 2346259771
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1948707525
     name: Zoe Shovel
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Shovel_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -397,7 +405,7 @@ ScriptedImporter:
         width: 24
         height: 256
       spriteId: 38541046688a3fb4692061a9423cbecc
-    - name: Zoe Shovel_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -406,7 +414,7 @@ ScriptedImporter:
         width: 20
         height: 257
       spriteId: 76aa8a2ac2199c4719b25ee5a01358cc
-    - name: Zoe Shovel_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -415,7 +423,7 @@ ScriptedImporter:
         width: 31
         height: 258
       spriteId: f61499b21c5f1e31f89eb2461e983c18
-    - name: Zoe Shovel_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -424,7 +432,7 @@ ScriptedImporter:
         width: 35
         height: 257
       spriteId: f8230b065ac83ec77a17bb740347aaad
-    - name: Zoe Shovel_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -433,7 +441,7 @@ ScriptedImporter:
         width: 37
         height: 257
       spriteId: 0a10f6b3cc4298b53905327c377b1ae4
-    - name: Zoe Shovel_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -442,7 +450,7 @@ ScriptedImporter:
         width: 37
         height: 258
       spriteId: 60dd08d0e373d3f128d5142c65078118
-    - name: Zoe Shovel_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -451,7 +459,7 @@ ScriptedImporter:
         width: 37
         height: 258
       spriteId: e95eb7a8827b90c76ae5a64bdb212b6f
-    - name: Zoe Shovel_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -460,7 +468,7 @@ ScriptedImporter:
         width: 34
         height: 260
       spriteId: 0ee40b3a94d1132978ef844790d29021
-    - name: Zoe Shovel_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -469,7 +477,7 @@ ScriptedImporter:
         width: 26
         height: 266
       spriteId: 6e6afe3378e2e2923a353aa1b9459914
-    - name: Zoe Shovel_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -478,7 +486,7 @@ ScriptedImporter:
         width: 20
         height: 263
       spriteId: 8d21f0f08af5d0751a02337505b958cd
-    - name: Zoe Shovel_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -487,7 +495,7 @@ ScriptedImporter:
         width: 23
         height: 259
       spriteId: acbcb6ba01136a69d8d3e585d0271f8a
-    - name: Zoe Shovel_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -496,7 +504,7 @@ ScriptedImporter:
         width: 27
         height: 260
       spriteId: 249c13d554d58bafa83a5a35962d7e07
-    - name: Zoe Shovel_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -512,3 +520,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 512, y: 512}

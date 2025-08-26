@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -402,13 +405,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1749528568
+    uuid:
+      value0: 545334744
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 545334744
     name: Odderf Death
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Odderf Death_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -417,7 +425,7 @@ ScriptedImporter:
         width: 12
         height: 14
       spriteId: ec8cdda99afc4ededa357dbb5584c363
-    - name: Odderf Death_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -426,7 +434,7 @@ ScriptedImporter:
         width: 10
         height: 14
       spriteId: 4ed63d2409b718986bb1ac88a94906c5
-    - name: Odderf Death_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -435,7 +443,7 @@ ScriptedImporter:
         width: 11
         height: 14
       spriteId: fbe65058478dad70290611fde2bfd878
-    - name: Odderf Death_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -444,7 +452,7 @@ ScriptedImporter:
         width: 10
         height: 14
       spriteId: 6fd035920d96b98f1a79edcaf1d52644
-    - name: Odderf Death_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -453,7 +461,7 @@ ScriptedImporter:
         width: 12
         height: 14
       spriteId: 8d4dfe5fc56f916d1a4162e8f5a2af8d
-    - name: Odderf Death_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -462,7 +470,7 @@ ScriptedImporter:
         width: 10
         height: 14
       spriteId: c8c683351abda8a4d8943b4f6dd221df
-    - name: Odderf Death_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -471,7 +479,7 @@ ScriptedImporter:
         width: 11
         height: 14
       spriteId: 4f26edd6d3be59173a9360f184bd6137
-    - name: Odderf Death_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -480,7 +488,7 @@ ScriptedImporter:
         width: 11
         height: 14
       spriteId: c1ed14dea8c035332a2e4bd1746bdb8d
-    - name: Odderf Death_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -489,7 +497,7 @@ ScriptedImporter:
         width: 11
         height: 14
       spriteId: 2722feb39de4370978b0c6a238f865f1
-    - name: Odderf Death_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -498,7 +506,7 @@ ScriptedImporter:
         width: 11
         height: 14
       spriteId: 9a2c8ed5b4a47e75387499d1429f816b
-    - name: Odderf Death_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -507,7 +515,7 @@ ScriptedImporter:
         width: 11
         height: 14
       spriteId: 4c89efda22a2620cab8c4571de2c4f66
-    - name: Odderf Death_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -516,7 +524,7 @@ ScriptedImporter:
         width: 14
         height: 11
       spriteId: f4e459f35a4031ec58611bf7430529fb
-    - name: Odderf Death_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -525,7 +533,7 @@ ScriptedImporter:
         width: 14
         height: 10
       spriteId: fb690ea2a69808c718db27b8bef4c46a
-    - name: Odderf Death_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -541,3 +549,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 80}
+  previousTextureSize: {x: 64, y: 128}

@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -21,11 +22,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -482,13 +485,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 782201424
+    uuid:
+      value0: 910729104
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 910729104
     name: Zoe Hoe
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Zoe Hoe_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -497,7 +505,7 @@ ScriptedImporter:
         width: 1382
         height: 269
       spriteId: 26af585f42180e8d889bb2cf00685fb7
-    - name: Zoe Hoe_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -506,7 +514,7 @@ ScriptedImporter:
         width: 18
         height: 258
       spriteId: 6f53971ac596c4d748a780cd3c22a1b0
-    - name: Zoe Hoe_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -515,7 +523,7 @@ ScriptedImporter:
         width: 40
         height: 253
       spriteId: 3d074a36273fcbd7b987df2edf25b283
-    - name: Zoe Hoe_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -524,7 +532,7 @@ ScriptedImporter:
         width: 42
         height: 256
       spriteId: 3cf99487bd4d4f2eeb752cbe14c4c198
-    - name: Zoe Hoe_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -533,7 +541,7 @@ ScriptedImporter:
         width: 42
         height: 255
       spriteId: 62d6f9db2442989faa5e9000eafdc1b6
-    - name: Zoe Hoe_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -542,7 +550,7 @@ ScriptedImporter:
         width: 38
         height: 255
       spriteId: 6b97cad2573e7bd9c916cd2d68530bf5
-    - name: Zoe Hoe_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -551,7 +559,7 @@ ScriptedImporter:
         width: 48
         height: 261
       spriteId: f069f91120371133db622f200ef303cd
-    - name: Zoe Hoe_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -560,7 +568,7 @@ ScriptedImporter:
         width: 52
         height: 264
       spriteId: 785e2f138d903c98395139a1e96e1074
-    - name: Zoe Hoe_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -569,7 +577,7 @@ ScriptedImporter:
         width: 54
         height: 265
       spriteId: 42de971ea15b560788d0cd2fb5031aab
-    - name: Zoe Hoe_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -578,7 +586,7 @@ ScriptedImporter:
         width: 46
         height: 258
       spriteId: 6eaff949a004f09cea4adabd8247d386
-    - name: Zoe Hoe_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -587,7 +595,7 @@ ScriptedImporter:
         width: 48
         height: 259
       spriteId: 30bfe130a74e2a0b49cae960b9401858
-    - name: Zoe Hoe_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -596,7 +604,7 @@ ScriptedImporter:
         width: 50
         height: 259
       spriteId: bc133b173ba8596d9b06a952dcd12b8a
-    - name: Zoe Hoe_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -605,7 +613,7 @@ ScriptedImporter:
         width: 42
         height: 256
       spriteId: 97c576044d68dda3e92b0bcc03284d4f
-    - name: Zoe Hoe_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -614,7 +622,7 @@ ScriptedImporter:
         width: 42
         height: 256
       spriteId: 74c8a2e807057185ea93e71133cfbe14
-    - name: Zoe Hoe_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -623,7 +631,7 @@ ScriptedImporter:
         width: 40
         height: 251
       spriteId: df8097b923f5f0974bea8599803dc478
-    - name: Zoe Hoe_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -632,7 +640,7 @@ ScriptedImporter:
         width: 36
         height: 251
       spriteId: cfd1124d58e34d7d58103ab8ae7569a6
-    - name: Zoe Hoe_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -641,7 +649,7 @@ ScriptedImporter:
         width: 32
         height: 250
       spriteId: 9b96486baf942d0cc83dae35c57fb1b8
-    - name: Zoe Hoe_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -657,3 +665,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 320}
+  previousTextureSize: {x: 2048, y: 1024}
