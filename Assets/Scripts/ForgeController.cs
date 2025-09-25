@@ -62,6 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 idealTTS = (((MaxTemp + forgePumpCont.MaxBoostTemp) - smeltedController.PrefabItemStruct.meltingTemp) / smeltedController.PrefabItemStruct.meltingTemp) * ttsScaler;
                 //Pass the proper data about the  soon-to-be bar to the forge so that it will gie it to the player later on
                 forgeStockPileCont.ItemPrefab = oresToBarsDict[smeltedController.PrefabItemStruct.itemSubTag];
+                forgeStockPileCont.ItemCont = forgeStockPileCont.ItemPrefab.GetComponent<ItemController>();
             }
         }
         public override void Refuel(float fuel)

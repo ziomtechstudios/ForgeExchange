@@ -11,7 +11,7 @@
                     "id": "73060057-badc-4a2c-bcdb-73aa6a858ce7",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -81,7 +81,7 @@
                     "name": "Inventory",
                     "type": "Button",
                     "id": "160e12b2-3490-46dc-a788-16300a55f625",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -427,7 +427,7 @@
                     "name": "Block",
                     "type": "Button",
                     "id": "04dd5d1b-e66e-4a17-9afc-ded44cfbce85",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -567,7 +567,7 @@
                 {
                     "name": "",
                     "id": "773b5673-b92a-4a4c-a93e-499159589012",
-                    "path": "<Gamepad>/dpad",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

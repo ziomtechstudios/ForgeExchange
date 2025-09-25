@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     [RequireComponent(typeof(Animator))]
-    public class PlayerController : BeingController
+    public class PlayerController : HumanoidController
     {
         #region Private Serialized Fields  
         [Header("Player Movement")]

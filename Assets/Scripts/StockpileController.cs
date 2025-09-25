@@ -20,7 +20,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Getters/Setter
 
         public GameObject ItemPrefab { get { return itemPrefab; } set { itemPrefab = value; } }
-        public ItemController ItemCont { get { return itemCont; } }
+        public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
         #endregion
 
         //Taking an item from a stockpile

@@ -189,7 +189,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.36",
+      "version": "3.0.38",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -348,6 +348,16 @@
     },
     "com.unity.toolchain.linux-x86_64": {
       "version": "2.0.10",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10",
+        "com.unity.sysroot.linux-x86_64": "2.0.9"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.toolchain.macos-arm64-linux-x86_64": {
+      "version": "2.0.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {

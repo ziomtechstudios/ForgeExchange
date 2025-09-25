@@ -95,7 +95,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             {
                                 itemUI.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("productUILOC").position);
                                 itemUI.gameObject.SetActive(true);
-                                itemUI.sprite = stockPileCont.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+                                itemUI.sprite = stockPileCont.ItemPrefab.GetComponent<ItemController>().ItemIcon;
                             }
                             else if (stockPileCont.CurQuantity == 0 && itemUI.gameObject.activeInHierarchy)
                                 itemUI.gameObject.SetActive(false);
