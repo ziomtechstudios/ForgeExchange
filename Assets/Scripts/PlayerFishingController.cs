@@ -11,12 +11,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerInteractionController playerInteractionCont;
         [SerializeField] private FishingRodController fishingRodCont;
         [SerializeField] private float reelingIncrmt;
-
-
-
         #endregion
         #region "Private Members"
- 
         private int isReelingHash, isFullyReeledHash;
         private int isCastingHash;
         private GameObject fishingRod;
@@ -50,7 +46,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
                 }
             }
-
             else{
                 fishingRodCont.RodReeling(false);
                 playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
