@@ -3,7 +3,7 @@ guid: 061eba14561dd7741aff82b390adb7e5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -47,9 +48,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -123,6 +129,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -135,6 +142,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -446,7 +454,27 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 0, y: 16.25}
+        - {x: 0, y: 19.25}
+        - {x: -1, y: 19.25}
+        - {x: -1, y: 20.25}
+        - {x: -2, y: 21.25}
+        - {x: -2, y: 22.25}
+        - {x: 0, y: 22.25}
+        - {x: 0, y: 23.25}
+        - {x: -1, y: 23.25}
+        - {x: 0, y: 25.25}
+        - {x: 2, y: 25.25}
+        - {x: 3, y: 23.25}
+        - {x: 2, y: 23.25}
+        - {x: 2, y: 22.25}
+        - {x: 4, y: 22.25}
+        - {x: 4, y: 21.25}
+        - {x: 3, y: 20.25}
+        - {x: 3, y: 19.25}
+        - {x: 1, y: 18.25}
+        - {x: 1, y: 16.25}
       tessellationDetail: 0
       bones: []
       spriteID: 4921e7a471142f22fa35535791d9e6cd
@@ -761,7 +789,26 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -2, y: -15.75}
+        - {x: -3, y: -14.75}
+        - {x: -3, y: -12.75}
+        - {x: -2, y: -11.75}
+        - {x: -1, y: -10.75}
+        - {x: -1, y: 0.25}
+        - {x: -3, y: 1.25}
+        - {x: -3, y: 3.25}
+        - {x: -2, y: 3.25}
+        - {x: -2, y: 9.25}
+        - {x: 1, y: 9.25}
+        - {x: 1, y: 4.25}
+        - {x: 2, y: 3.25}
+        - {x: 2.0769043, y: 1.7893829}
+        - {x: 0, y: 1.25}
+        - {x: 0, y: -11.75}
+        - {x: 1.0559082, y: -13.1579895}
+        - {x: 1, y: -14.75}
+        - {x: 0, y: -15.75}
       tessellationDetail: 0
       bones: []
       spriteID: 71c899ebfcff55ab58d815d27ee944b4
@@ -1076,7 +1123,33 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -31, y: -17.75}
+        - {x: -32, y: -16.75}
+        - {x: -32, y: -14.75}
+        - {x: -30, y: -12.75}
+        - {x: -27, y: -9.75}
+        - {x: -25, y: -5.75}
+        - {x: -24, y: -2.75}
+        - {x: -23, y: 0.25}
+        - {x: -22, y: 2.25}
+        - {x: -21, y: 2.25}
+        - {x: -21, y: 0.25}
+        - {x: -22, y: -0.75}
+        - {x: -22, y: -2.75}
+        - {x: -23, y: -3.75}
+        - {x: -23, y: -5.75}
+        - {x: -24, y: -6.75}
+        - {x: -24, y: -7.75}
+        - {x: -25, y: -8.75}
+        - {x: -25, y: -9.75}
+        - {x: -26, y: -10.75}
+        - {x: -26, y: -11.75}
+        - {x: -27, y: -12.75}
+        - {x: -28, y: -13.75}
+        - {x: -29, y: -14.75}
+        - {x: -28, y: -15.75}
+        - {x: -29, y: -17.75}
       tessellationDetail: 0
       bones: []
       spriteID: 15f42a54e5de500f4aedada89892b19f
@@ -1391,7 +1464,39 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 31, y: -19.75}
+        - {x: 29, y: -19.75}
+        - {x: 29, y: -18.75}
+        - {x: 28, y: -18.75}
+        - {x: 28, y: -16.75}
+        - {x: 29, y: -16.75}
+        - {x: 28, y: -15.75}
+        - {x: 27, y: -14.75}
+        - {x: 26, y: -13.75}
+        - {x: 21, y: -1.75}
+        - {x: 21, y: 0.25}
+        - {x: 22, y: 0.25}
+        - {x: 22, y: -1.75}
+        - {x: 23, y: -1.75}
+        - {x: 23, y: -4.75}
+        - {x: 24, y: -4.75}
+        - {x: 24, y: -7.75}
+        - {x: 25, y: -7.75}
+        - {x: 25, y: -9.75}
+        - {x: 26, y: -9.75}
+        - {x: 26, y: -11.75}
+        - {x: 27, y: -11.75}
+        - {x: 27, y: -13.75}
+        - {x: 28, y: -13.75}
+        - {x: 28, y: -13.75}
+        - {x: 28, y: -14.75}
+        - {x: 29, y: -14.75}
+        - {x: 29, y: -15.75}
+        - {x: 31, y: -15.75}
+        - {x: 32, y: -16.75}
+        - {x: 32, y: -18.75}
+        - {x: 31, y: -18.75}
       tessellationDetail: 0
       bones: []
       spriteID: be9012ebccf368cbab4d9ba122a4038c
@@ -1471,9 +1576,8 @@ TextureImporter:
       Charlie Wood Rod Casting_7: 2145109412
       Charlie Wood Rod Casting_8: -1028620968
       Charlie Wood Rod Casting_9: -1686017126
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

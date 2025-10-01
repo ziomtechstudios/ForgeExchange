@@ -1,5 +1,8 @@
 
+using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+
 namespace Com.ZiomtechStudios.ForgeExchange{
     public class FishingRodController : ItemController
     {
@@ -36,6 +39,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             isRodFullyReeledHash = Animator.StringToHash("isRodFullyReeled");
             lookDirXHash = Animator.StringToHash("LookX");
             lookDirYHash = Animator.StringToHash("LookY");
+        }
+
+        public void OnCollisionEnter2D(Collision2D other)
+        {
+            if(other.gameObject.CompareTag("Spawner") && LayerMask.LayerToName(other.gameObject.layer) == "Water")
+                Debug.Log("The player's fishing line is contacting a fish spawner.");
         }
     }
 }
