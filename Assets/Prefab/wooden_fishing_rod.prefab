@@ -65,7 +65,7 @@ PrefabInstance:
       addedObject: {fileID: -2246339533323770569}
     - targetCorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3899316863568003358}
+      addedObject: {fileID: 6301679963031161387}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
 --- !u!95 &6955425095479100634 stripped
 Animator:
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Animator: {fileID: 6955425095479100634}
   curReeledAmnt: 0
   maxReelAmnt: 100
---- !u!60 &-3899316863568003358
+--- !u!60 &6301679963031161387
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,18 +130,24 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 4.90625}
+    newSize: {x: 5, y: 4.90625}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -0.95105654, y: 0.30901697}
-      - {x: -0.5877852, y: -0.80901706}
-      - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
+    - - {x: 0.3125, y: -0.25}
+      - {x: 0.5, y: -0.4375}
+      - {x: 0.625, y: -0.4375}
+      - {x: 1.625, y: -1.3125}
+      - {x: 2.0625, y: -1.3125}
+      - {x: 2.125, y: -1.25}
+      - {x: 2.125, y: -0.875}
+      - {x: 1.625, y: 0.25}
+      - {x: 1.25, y: 0.3125}
+      - {x: 0.625, y: 0.3125}
+      - {x: 0.3125, y: 0.0625}
   m_UseDelaunayMesh: 0
