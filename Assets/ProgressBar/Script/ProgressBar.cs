@@ -13,11 +13,13 @@ public class ProgressBar : MonoBehaviour
     public Font TitleFont;
     public int TitleFontSize = 10;
     public bool showPercent;
+    
 
     [Header("Bar Setting")]
     public Color BarColor;
     public Color BarBackGroundColor;
     public Sprite BarBackGroundSprite;
+    public GradientColorKey[] BarColorGradient;
     [Range(1f, 100f)]
     public int Alert = 20;
     public Color BarAlertColor;
@@ -54,6 +56,7 @@ public class ProgressBar : MonoBehaviour
         txtTitle = transform.Find("Text").GetComponent<Text>();
         barBackground = transform.Find("BarBackground").GetComponent<Image>();
         audiosource = GetComponent<AudioSource>();
+        BarColorGradient = new GradientColorKey[4];
     }
 
     private void Start()
@@ -62,7 +65,6 @@ public class ProgressBar : MonoBehaviour
         txtTitle.color = TitleColor;
         txtTitle.font = TitleFont;
         txtTitle.fontSize = TitleFontSize;
-
         bar.color = BarColor;
         barBackground.color = BarBackGroundColor;
         barBackground.sprite = BarBackGroundSprite;

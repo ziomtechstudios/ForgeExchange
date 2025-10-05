@@ -14,7 +14,7 @@ public class ProgressBarCircle : MonoBehaviour
     [Header("Bar Setting")]
     public Color BarColor;
     public Color BarBackGroundColor;
-    public Color MaskColor;
+    //public Color MaskColor;
     public Sprite BarBackGroundSprite;
     [Range(1f, 100f)]
     public int Alert = 20;
@@ -50,7 +50,7 @@ public class ProgressBarCircle : MonoBehaviour
         barBackground = transform.Find("BarBackgroundCircle").GetComponent<Image>();
         bar = transform.Find("BarCircle").GetComponent<Image>();
         audiosource = GetComponent<AudioSource>();
-        Mask = transform.Find("Mask").GetComponent<Image>();
+        //Mask = transform.Find("Mask").GetComponent<Image>();
     }
 
     private void Start()
@@ -61,7 +61,7 @@ public class ProgressBarCircle : MonoBehaviour
 
 
         bar.color = BarColor;
-        Mask.color = MaskColor;
+        //Mask.color = MaskColor;
         barBackground.color = BarBackGroundColor;
         barBackground.sprite = BarBackGroundSprite;
 
@@ -98,7 +98,7 @@ public class ProgressBarCircle : MonoBehaviour
             UpdateValue(50);
             txtTitle.color = TitleColor;
             txtTitle.font = TitleFont;
-            Mask.color = MaskColor;
+            //Mask.color = MaskColor;
             bar.color = BarColor;
             barBackground.color = BarBackGroundColor;
             barBackground.sprite = BarBackGroundSprite;
