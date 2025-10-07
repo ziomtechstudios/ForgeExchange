@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public class WorkstationController : MonoBehaviour
+    public abstract class WorkstationController : MonoBehaviour
     {
         [SerializeField] private PlayerUIStruct workstationUIStruct;
         [SerializeField] private bool inUse;

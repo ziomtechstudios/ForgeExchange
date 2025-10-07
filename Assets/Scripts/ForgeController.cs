@@ -118,7 +118,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else if (fuelAmnt <= 0.0f && InUse)
                 SetForge(false, 0.0f);
             //Display current amount of fuel and temperature of forge
-            CircleAmnt = 100.0f * fuelAmnt / maxFuelAmnt;
+            CircleAmnt = fuelAmnt / maxFuelAmnt;
             BarAmnt = curTemp / (maxTemp + forgePumpCont.MaxBoostTemp);
         }
     }

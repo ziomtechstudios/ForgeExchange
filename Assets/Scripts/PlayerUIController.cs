@@ -24,8 +24,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private Transform circleTransform, barTransform, itemUiTransform;
         private Camera playerCam;
         private GameObject inGameQuickSlotObjs;
-        private ProgressBar barUI;
-        private ProgressBarCircle circleUI;
+        private Image barImage;
+        private Image circleImage;
+        private Text circleText;
+        private Text barText;
         private TextMeshProUGUI counterText;
         #endregion
         #region Public Members
@@ -42,13 +44,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCam = transform.Find(playerCamPath).gameObject.GetComponent<Camera>();
             inGameQuickSlotObjs = playerCam.transform.Find(quickSlotsPath).gameObject;
             playerCont = GetComponent<PlayerController>();
-            circleUI = playerCam.transform.Find(circleUIPath).gameObject.GetComponent<ProgressBarCircle>();
-            barUI = playerCam.transform.Find(barUIPath).gameObject.GetComponent<ProgressBar>();
+            circleImage = playerCam.transform.Find(circleUIPath).gameObject.GetComponent<Image>();
+            barImage = playerCam.transform.Find(barUIPath).gameObject.GetComponent<Image>();
             counterText = playerCam.transform.Find(counterTextPath).gameObject.GetComponent<TextMeshProUGUI>();
+            barText = playerCam.transform.Find(barUIPath).transform.parent.Find("Text").GetComponent<Text>();
+            circleText = playerCam.transform.Find(circleUIPath).transform.parent.Find("Text").GetComponent<Text>();
             itemUI = playerCam.transform.Find("Canvas/itemImage").gameObject.GetComponent<Image>();
             backPackObj = transform.Find("Main Camera/Canvas/Inventory/ImageInventory").gameObject;
-            playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/Background/Healthbar").gameObject.GetComponent<Image>();
-            playerStaminaImage = transform.Find("Main Camera/Canvas/Combat Attributes/Background/StaminaBar").gameObject.GetComponent<Image>();
+            playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/HPBack/Healthbar").gameObject.GetComponent<Image>();
+            playerStaminaImage = transform.Find("Main Camera/Canvas/Combat Attributes/SPBack/StaminaBar").gameObject.GetComponent<Image>();
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
 
@@ -68,23 +72,23 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         itemUiTransform = playerCont.PlayerLOS.transform.Find("productUILOC");
                         if (circleTransform != null)
                         {
-                            circleUI.gameObject.transform.position = playerCam.WorldToScreenPoint(circleTransform.position);
-                            circleUI.BarValue = workstationCont.CircleAmnt;
-                            if (!circleUI.gameObject.activeInHierarchy)
+                            circleImage.gameObject.transform.parent.transform.position = playerCam.WorldToScreenPoint(circleTransform.position);
+                            circleImage.fillAmount = workstationCont.CircleAmnt;
+                            if (!circleImage.gameObject.transform.parent.gameObject.activeInHierarchy)
                             {
-                                circleUI.gameObject.SetActive(true);
-                                circleUI.Title = workstationCont.WorkstationUIStruct.circleTitle;
+                                circleImage.gameObject.transform.parent.gameObject.SetActive(true);
+                                circleText.text = workstationCont.WorkstationUIStruct.circleTitle;
                             }
                         }
                         if (barTransform != null)
                         {
-                            barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
-                            barUI.BarValue = workstationCont.BarAmnt;
+                            barImage.gameObject.transform.parent.transform.position = playerCam.WorldToScreenPoint(barTransform.position);
+                            barImage.fillAmount = workstationCont.BarAmnt;
                             //Toggle UI items visibility  assign Title of UI activated UI items
-                            if (!barUI.gameObject.activeInHierarchy)
+                            if (!barImage.gameObject.transform.parent.gameObject.activeInHierarchy)
                             {
-                                barUI.gameObject.SetActive(true);
-                                barUI.Title = workstationCont.WorkstationUIStruct.barTitle;
+                                barImage.gameObject.transform.parent.gameObject.SetActive(true);
+                                barText.text = workstationCont.WorkstationUIStruct.barTitle;
                             }
                         }
 
@@ -120,13 +124,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
                         if (barTransform != null)
                         {
-                            barUI.gameObject.transform.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
-                            barUI.BarValue = enemyCont.HealthCont.HealthBarAmnt;
+                            barImage.gameObject.transform.parent.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
+                            barImage.fillAmount = enemyCont.HealthCont.HealthBarAmnt;
                             //Toggle UI items visibility  assign Title of UI activated UI items
-                            if (!barUI.gameObject.activeInHierarchy)
+                            if (!barImage.gameObject.transform.parent.gameObject.activeInHierarchy)
                             {
-                                barUI.gameObject.SetActive(true);
-                                barUI.Title = enemyCont.EnemyUIStruct.barTitle;
+                                barImage.gameObject.transform.parent.gameObject.SetActive(true);
+                                barText.text = enemyCont.EnemyUIStruct.barTitle;
                             }
                         }
                         break;
@@ -137,8 +141,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
             {
                 //player sees nothing that is giving us UI prompts so make UI elements not needed invisible
-                circleUI.gameObject.SetActive(false);
-                barUI.gameObject.SetActive(false);
+                circleImage.gameObject.transform.parent.gameObject.SetActive(false);
+                barImage.gameObject.transform.parent.gameObject.SetActive(false);
                 counterText.gameObject.SetActive(false);
                 itemUI.gameObject.SetActive(false);
             }
