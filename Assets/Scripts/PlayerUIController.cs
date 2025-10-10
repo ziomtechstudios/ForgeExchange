@@ -12,6 +12,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string barUIPath;
         [SerializeField] private string circleUIPath;
         [SerializeField] private string counterTextPath;
+        [SerializeField] private string itemUIPath;
+        [SerializeField] private string mainZoneImagePath;
+        [SerializeField] private string goodZoneImagePath;
+        [SerializeField] private string curZoneImagePath;
         [Header("UI Components")]
         [SerializeReference] private PlayerController playerCont;
         [SerializeField] private Image itemUI;
@@ -19,6 +23,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Image playerStaminaImage;
         [SerializeField] private GameObject backPackObj;
         [SerializeReference] private BackpackController backpackController;
+        [Header("Fishing Mini-Game UI elements")] 
+        [SerializeField] private Image mainZoneImage;
+        [SerializeField] private Image goodZoneImage;
+        [SerializeField] private Image curZoneImage;
         #endregion
         #region Private Fields
         private Transform circleTransform, barTransform, itemUiTransform;
@@ -49,12 +57,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             counterText = playerCam.transform.Find(counterTextPath).gameObject.GetComponent<TextMeshProUGUI>();
             barText = playerCam.transform.Find(barUIPath).transform.parent.Find("Text").GetComponent<Text>();
             circleText = playerCam.transform.Find(circleUIPath).transform.parent.Find("Text").GetComponent<Text>();
-            itemUI = playerCam.transform.Find("Canvas/itemImage").gameObject.GetComponent<Image>();
+            itemUI = playerCam.transform.Find(itemUIPath).gameObject.GetComponent<Image>();
             backPackObj = transform.Find("Main Camera/Canvas/Inventory/ImageInventory").gameObject;
             playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/HPBack/Healthbar").gameObject.GetComponent<Image>();
             playerStaminaImage = transform.Find("Main Camera/Canvas/Combat Attributes/SPBack/StaminaBar").gameObject.GetComponent<Image>();
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
+            mainZoneImage = transform.Find(mainZoneImagePath).gameObject.GetComponent<Image>();
+            goodZoneImage = transform.Find(goodZoneImagePath).gameObject.GetComponent<Image>();
+            curZoneImage = transform.Find(curZoneImagePath).gameObject.GetComponent<Image>();
 
         }
         // Update is called once per frame
@@ -132,6 +143,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 barImage.gameObject.transform.parent.gameObject.SetActive(true);
                                 barText.text = enemyCont.EnemyUIStruct.barTitle;
                             }
+                        }
+                        break;
+                    case "water":
+                        if (playerCont.IsFishing) {
+                            mainZoneImage.gameObject.SetActive(true);
+                            goodZoneImage.gameObject.SetActive(true);
+                            curZoneImage.gameObject.SetActive(true);
+                            
                         }
                         break;
                     default:

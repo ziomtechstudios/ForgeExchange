@@ -11,6 +11,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerInteractionController playerInteractionCont;
         [SerializeField] private FishingRodController fishingRodCont;
         [SerializeField] private float reelingIncrmt;
+        [SerializeField] private RectTransform leftBound;
+        [SerializeField] private RectTransform rightBound;
         #endregion
         #region "Private Members"
         private int isReelingHash, isFullyReeledHash;
@@ -88,7 +90,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
         public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
         #endregion
-
         // Start is called before the first frame update
         void Start()
         {
