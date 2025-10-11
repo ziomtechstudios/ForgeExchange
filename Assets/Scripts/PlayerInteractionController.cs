@@ -16,7 +16,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region Getters/Setters"
         public PlayerController PlayerCont => playerCont;
-
+        public PlayerFishingController PlayerFishingCont => playerFishingCont;
+        
         #endregion
         #region "Private Fields"
         private bool GoFishing(){

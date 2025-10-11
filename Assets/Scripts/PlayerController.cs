@@ -114,7 +114,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_AudioSource.PlayOneShot(playerStoneSteps, 0.5f);
         }
         #endregion
-        #region "Getter and Setters"
+        #region Getter and Setters
         public RaycastHit2D PlayerLOS { get { return hit; } }
         public bool HoldingItem { get { return holdingItem; } set { holdingItem = value; } }
         public GameObject HoldingPrefab { get { return holdingPrefab; } set { holdingPrefab = value; } }

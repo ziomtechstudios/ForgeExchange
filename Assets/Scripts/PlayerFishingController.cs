@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,31 +12,32 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerInteractionController playerInteractionCont;
         [SerializeField] private FishingRodController fishingRodCont;
         [SerializeField] private float reelingIncrmt;
-        [SerializeField] private RectTransform leftBound;
-        [SerializeField] private RectTransform rightBound;
+        [SerializeField] [Range(0.0f, 1.0f)] private float lineDurability;
+        #endregion 
+        #region "Getters/Setters"
+        public FishingRodController FishingRodCont{get{return fishingRodCont;}}
         #endregion
-        #region "Private Members"
+        #region"Private Members"
         private int isReelingHash, isFullyReeledHash;
         private int isCastingHash;
         private GameObject fishingRod;
         private bool isFullyReeled;
         #endregion
         #region "Public Funcs"
-        public void IsFullyReeled(){
+        public void IsFullyReeled()
+        {
             ///<summary>
             ///We check to see if the player has fully reeled in the line.
             ///First increment ammount the line has currently reeled and then check to see if this reaches or exceeds the maximum.
             ///Pass the boolean result into the animation controller of both the player and the fishing rod.
             ///If the line is fuly reeled reset the reeled amount to zero
             ///</summary>
-            isFullyReeled = ((fishingRodCont.CurReeledAmnt+=reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
+            isFullyReeled = ((fishingRodCont.CurReeledAmnt += reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
             playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, isFullyReeled);
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
             fishingRodCont.RodReeling(!isFullyReeled);
-            fishingRodCont.CurReeledAmnt = isFullyReeled ? 0.0f: fishingRodCont.CurReeledAmnt;
-            //Debug.Log($"The player is reeling the rod: {fishingRodCont.M_Animator.GetBool(fishingRodCont.IsRodReelingHash)}. The player's rod is fully reeled: {isFullyReeled}.");
+            fishingRodCont.CurReeledAmnt = isFullyReeled ? 0.0f : fishingRodCont.CurReeledAmnt;
         }
-
         public void ReelingRod(InputAction.CallbackContext context){
             if(!isFullyReeled)
             {
@@ -53,11 +55,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
             }
         }
+        public void KeepingTheBite(InputAction.CallbackContext context) {
+            Vector2 inputVector = context.ReadValue<Vector2>();
+            playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(new Vector3(inputVector.x + playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.localPosition.x, 0.0f, 0.0f));
+            //TODO Find appropriate and simple calculation for degradation of Rod when reeling in a Bite Based on player input and statisfying conditions.
+            //lineDurability -=  Convert.ToSingle(!(playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.rect.Overlaps(playerInteractionCont.PlayerCont.PlayerUICont.GoodZoneRectTransform.rect,true)) * inputVector.x);
+        }
         public void CastingRod(){
             if(fishingRod == null){
                 fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
                 fishingRodCont = fishingRod.GetComponent<FishingRodController>();
                 fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
+                lineDurability = 1.0f;
             }
         }   
         /// <summary>

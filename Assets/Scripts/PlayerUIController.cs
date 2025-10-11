@@ -16,6 +16,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string mainZoneImagePath;
         [SerializeField] private string goodZoneImagePath;
         [SerializeField] private string curZoneImagePath;
+        [SerializeField] private RectTransform curZoneRectTransform;
+        [SerializeField] private RectTransform goodZoneRectTransform;
         [Header("UI Components")]
         [SerializeReference] private PlayerController playerCont;
         [SerializeField] private Image itemUI;
@@ -27,6 +29,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Image mainZoneImage;
         [SerializeField] private Image goodZoneImage;
         [SerializeField] private Image curZoneImage;
+        #endregion
+        #region Getters/Setters
+        public Image CurZoneImage => curZoneImage;
+        public RectTransform CurZoneRectTransform => curZoneRectTransform;
+        public RectTransform GoodZoneRectTransform => goodZoneRectTransform;
         #endregion
         #region Private Fields
         private Transform circleTransform, barTransform, itemUiTransform;
@@ -46,6 +53,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
         #endregion
+        #region Private Functions
+        private void OscilateGoodZone()
+        {
+            
+        }
+
+        private void ClearUnwantedUI()
+        {
+            //player sees nothing that is giving us UI prompts so make UI elements not needed invisible
+            circleImage.gameObject.transform.parent.gameObject.SetActive(false);
+            barImage.gameObject.transform.parent.gameObject.SetActive(false);
+            counterText.gameObject.SetActive(false);
+            itemUI.gameObject.SetActive(false);
+        }
+        #endregion
         // Start is called before the first frame update
         void Awake()
         {
@@ -64,9 +86,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
             mainZoneImage = transform.Find(mainZoneImagePath).gameObject.GetComponent<Image>();
+            curZoneRectTransform = transform.Find(curZoneImagePath).gameObject.GetComponent<RectTransform>();
             goodZoneImage = transform.Find(goodZoneImagePath).gameObject.GetComponent<Image>();
+            goodZoneRectTransform = transform.Find(goodZoneImagePath).gameObject.GetComponent<RectTransform>();
             curZoneImage = transform.Find(curZoneImagePath).gameObject.GetComponent<Image>();
-
+            mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
         }
         // Update is called once per frame
         void Update()
@@ -91,6 +115,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 circleText.text = workstationCont.WorkstationUIStruct.circleTitle;
                             }
                         }
+
                         if (barTransform != null)
                         {
                             barImage.gameObject.transform.parent.transform.position = playerCam.WorldToScreenPoint(barTransform.position);
@@ -115,6 +140,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             else if (stockPileCont.CurQuantity == 0 && itemUI.gameObject.activeInHierarchy)
                                 itemUI.gameObject.SetActive(false);
                         }
+
                         break;
                     //Player sees a stockpile.
                     case "stockpile":
@@ -129,7 +155,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     case "enemy":
                         EnemyController enemyCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<EnemyController>();
                         counterText.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("counterUILOC").position);
-                        counterText.text = (enemyCont.HealthCont.InstDmg==0.0f) ? "": $"{enemyCont.HealthCont.InstDmg}";
+                        counterText.text = (enemyCont.HealthCont.InstDmg == 0.0f) ? "" : $"{enemyCont.HealthCont.InstDmg}";
                         if (!counterText.gameObject.activeInHierarchy)
                             counterText.gameObject.SetActive(true);
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
@@ -145,12 +171,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             }
                         }
                         break;
-                    case "water":
-                        if (playerCont.IsFishing) {
-                            mainZoneImage.gameObject.SetActive(true);
-                            goodZoneImage.gameObject.SetActive(true);
-                            curZoneImage.gameObject.SetActive(true);
-                            
+                    case "Water":
+                        if (playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite && playerCont.PlayerLOS.transform.CompareTag("Spawner"))
+                        {
+                            mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
+                            mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("FishingUILOC").position);
                         }
                         break;
                     default:
@@ -158,16 +183,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 }
             }
             else
-            {
-                //player sees nothing that is giving us UI prompts so make UI elements not needed invisible
-                circleImage.gameObject.transform.parent.gameObject.SetActive(false);
-                barImage.gameObject.transform.parent.gameObject.SetActive(false);
-                counterText.gameObject.SetActive(false);
-                itemUI.gameObject.SetActive(false);
-            }
+                ClearUnwantedUI();
             playerHPImage.fillAmount = playerCont.M_HealthCont.HealthBarAmnt;
             playerStaminaImage.fillAmount = playerCont.PlayerStaminaCont.Stamina / playerCont.PlayerStaminaCont.MaxStamina;
-
         }
     }
 }
