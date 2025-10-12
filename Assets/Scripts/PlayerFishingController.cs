@@ -55,11 +55,27 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
             }
         }
-        public void KeepingTheBite(InputAction.CallbackContext context) {
+
+        public void KeepingTheBite(InputAction.CallbackContext context)
+        {
             Vector2 inputVector = context.ReadValue<Vector2>();
-            playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(new Vector3(inputVector.x + playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.localPosition.x, 0.0f, 0.0f));
-            //TODO Find appropriate and simple calculation for degradation of Rod when reeling in a Bite Based on player input and statisfying conditions.
-            //lineDurability -=  Convert.ToSingle(!(playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.rect.Overlaps(playerInteractionCont.PlayerCont.PlayerUICont.GoodZoneRectTransform.rect,true)) * inputVector.x);
+            playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(
+                new Vector3(
+                    inputVector.x + playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.localPosition.x,
+                    0.0f, 0.0f));
+            //TODO Find appropriate and simple calculation for degradation of Rod when reeling inplayer a Bite Based on player input and statisfying conditions.
+            ///<summary>
+            /// If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
+            /// We then apply minimal wear to durability of the line.
+            /// If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
+            /// If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
+            /// If not the player looses the fish.
+            /// Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
+            /// </summary> 
+            bool isProperTension =
+                playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.rect.Overlaps(
+                    playerInteractionCont.PlayerCont.PlayerUICont.GoodZoneRectTransform.rect, true);
+            lineDurability -= ((!isProperTension ? 2.00f : 0.00f) + 0.01f);
         }
         public void CastingRod(){
             if(fishingRod == null){
@@ -91,6 +107,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             Destroy(fishingRod);
             fishingRod = null;
             isFullyReeled = false;
+            if (lineDurability > 0.0f && fishingRodCont.HasBite)
+            {
+                Debug.Log("The Player has successfully reeled in a fish!");
+                fishingRodCont.HasBite = false;
+            }
         }
         #endregion
         #region "Getters/Setters"

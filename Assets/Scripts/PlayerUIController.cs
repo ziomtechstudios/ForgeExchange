@@ -172,10 +172,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         break;
                     case "Water":
-                        if (playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite && playerCont.PlayerLOS.transform.CompareTag("Spawner"))
+                        Debug.Log("An object within an interactable distance is in the water layer");
+                        if (playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite)
                         {
+                            
+                            Debug.Log(mainZoneImage.transform.parent.gameObject.name);
                             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
-                            mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("FishingUILOC").position);
+                            mainZoneImage.gameObject.transform.position =
+                                playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("FishingUILOC")
+                                    .position);
                         }
                         break;
                     default:
