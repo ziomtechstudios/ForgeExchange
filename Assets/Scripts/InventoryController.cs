@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -119,6 +120,36 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             AreAllSlotsFull();
         }
+        public void SlotItem(GameObject itemObj)
+        {
+            AreAllSlotsFull();
+            //If the player is holding an object and all their slots are not occupied
+            if (!slotsAreFull)
+            {
+                //iterating through slots we find the first empty slot
+                for (int i = 0; i < inventoryAmnt; i++)
+                {
+                    if (!slotConts[i].SlotWithItem)
+                    {
+                        //Fill slot with item
+                        slotConts[i].SlotWithItem = true;
+                        slotConts[i].SlotPrefab = itemObj;
+                        slotConts[i].ItemCont = itemObj.GetComponent<ItemController>();
+                        slotConts[i].ItemImage.sprite = slotConts[i].ItemCont.ItemIcon;
+                        //Empty players hands only if the player isn't selecting the slot the item was just slotted into
+                        if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
+                        {
+                            playerCont.HoldingItem = false;
+                            playerCont.HoldingPrefab = null;
+                            playerCont.HoldingCont = null;
+                        }
+                        break;
+                    }
+                }
+            }
+            AreAllSlotsFull();
+        }
+        
         public void OnSelect(InputAction.CallbackContext context)
         {
             if (context.started)

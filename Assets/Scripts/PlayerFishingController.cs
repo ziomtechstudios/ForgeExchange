@@ -13,6 +13,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private FishingRodController fishingRodCont;
         [SerializeField] private float reelingIncrmt;
         [SerializeField] [Range(0.0f, 1.0f)] private float lineDurability;
+        
+
         #endregion 
         #region "Getters/Setters"
         public FishingRodController FishingRodCont{get{return fishingRodCont;}}
@@ -104,14 +106,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             /// Satisfies condition for casting rod if fishing is done consecutively.
             /// This also ensures that if the player where to equip another item it will be the only gameObject held within the scene @ runtime.
             //.</summary>
-            Destroy(fishingRod);
-            fishingRod = null;
-            isFullyReeled = false;
             if (lineDurability > 0.0f && fishingRodCont.HasBite)
             {
                 Debug.Log("The Player has successfully reeled in a fish!");
                 fishingRodCont.HasBite = false;
+                playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem(fishingRodCont.CurFishSpawnerCont.SpawnMob(fishingRodCont.PrefabItemStruct.itemSubTag+"_"+fishingRodCont.PrefabItemStruct.itemTag));
             }
+            Destroy(fishingRod);
+            fishingRod = null;
+            isFullyReeled = false;
+            fishingRodCont.CurFishSpawnerCont = null;
+
         }
         #endregion
         #region "Getters/Setters"
@@ -129,7 +134,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isCastingHash = Animator.StringToHash("isCasting");
             isFullyReeled = false;
         }
-        void FixedUpdate(){
+        void Update(){
             if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
                 IsFullyReeled();
         }

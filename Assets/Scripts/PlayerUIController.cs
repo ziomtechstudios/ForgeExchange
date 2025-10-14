@@ -36,7 +36,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public RectTransform GoodZoneRectTransform => goodZoneRectTransform;
         #endregion
         #region Private Fields
-        private Transform circleTransform, barTransform, itemUiTransform;
+        private Transform circleTransform, barTransform, itemUiTransform, fishingUITransform;
         private Camera playerCam;
         private GameObject inGameQuickSlotObjs;
         private Image barImage;
@@ -66,6 +66,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             barImage.gameObject.transform.parent.gameObject.SetActive(false);
             counterText.gameObject.SetActive(false);
             itemUI.gameObject.SetActive(false);
+            
         }
         #endregion
         // Start is called before the first frame update
@@ -171,16 +172,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             }
                         }
                         break;
-                    case "Water":
-                        Debug.Log("An object within an interactable distance is in the water layer");
-                        if (playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite)
-                        {
-                            
-                            Debug.Log(mainZoneImage.transform.parent.gameObject.name);
+                    case "bounds":
+                        if (playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite && playerCont.PlayerLOS.transform.CompareTag(("water")))
+                        { 
+                            fishingUITransform = playerCont.HoldingPrefab.transform.Find("FishingUILOC");
+                            mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(fishingUITransform.localPosition);
                             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
-                            mainZoneImage.gameObject.transform.position =
-                                playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("FishingUILOC")
-                                    .position);
                         }
                         break;
                     default:

@@ -19,6 +19,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private float interactDist;
         [SerializeField] private bool holdingItem;
         [Header("Player Interaction/Inventory")]
+        [SerializeField] private RaycastHit2D hit;
         [SerializeField] private bool usingWorkstation;
         [SerializeField] private GameObject holdingPrefab;
         [SerializeReference] private ItemController holdingCont;
@@ -39,7 +40,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Fields
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, isFishingHash;
         private int layerMask;
-        private RaycastHit2D hit;
         private GameObject backPackObj;
         //Parametric bool for moving represents object desire to move, IsMoving represents if obj meets conditions in order to move
         private void MovePlayer(bool moving)

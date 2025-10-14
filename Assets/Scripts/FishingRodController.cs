@@ -7,6 +7,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private float curReeledAmnt;
         [SerializeField] private float maxReelAmnt;
         [SerializeField] private bool hasBite;
+        [SerializeField] private SpawnerController curFishSpawnerCont;
         // Start is called before the first frame update
         private int isRodCastingHash, isRodReelingHash, isRodFullyReeledHash, lookDirXHash, lookDirYHash;
         #endregion
@@ -18,6 +19,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public float CurReeledAmnt{ get { return curReeledAmnt;} set{curReeledAmnt = value;}}
         public Animator M_Animator{set{m_Animator = value;}get{return m_Animator;}}
         public bool HasBite { get { return hasBite;} set{hasBite = value;}}
+
+        public SpawnerController CurFishSpawnerCont
+        {
+            get => curFishSpawnerCont;
+            set => curFishSpawnerCont = value;
+        }
         #endregion
         public void CastRod(PlayerController playerCont){
             m_Animator.SetTrigger(isRodCastingHash);
@@ -41,7 +48,10 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Spawner") && LayerMask.LayerToName(other.gameObject.layer) == "Water")
+            {
                 hasBite = true;
+                curFishSpawnerCont = other.gameObject.GetComponent<SpawnerController>();
+            }
 
         }
     }
