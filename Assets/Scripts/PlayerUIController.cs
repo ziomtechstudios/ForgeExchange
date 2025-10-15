@@ -59,7 +59,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             
         }
-
         private void ClearUnwantedUI()
         {
             //player sees nothing that is giving us UI prompts so make UI elements not needed invisible

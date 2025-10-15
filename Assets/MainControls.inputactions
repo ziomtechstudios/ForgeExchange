@@ -589,6 +589,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=10)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Tension",
+                    "type": "Value",
+                    "id": "fd11d61f-b13a-40f4-bc92-36a1cae78d76",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -600,6 +609,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reeling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd9b0b94-ce42-460e-9e73-2e03a9da5735",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tension",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -62,9 +62,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             Vector2 inputVector = context.ReadValue<Vector2>();
             playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(
-                new Vector3(
-                    inputVector.x + playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.localPosition.x,
-                    0.0f, 0.0f));
+                new Vector2(
+                    (inputVector.x + playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.localPosition.x),
+                    0.0f));
             //TODO Find appropriate and simple calculation for degradation of Rod when reeling inplayer a Bite Based on player input and statisfying conditions.
             ///<summary>
             /// If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
@@ -133,7 +133,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isCastingHash = Animator.StringToHash("isCasting");
             isFullyReeled = false;
         }
-        void Update(){
+        void FixedUpdate(){
             if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
                 IsFullyReeled();
         }
