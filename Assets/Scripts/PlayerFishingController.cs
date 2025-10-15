@@ -112,11 +112,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 fishingRodCont.HasBite = false;
                 playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem(fishingRodCont.CurFishSpawnerCont.SpawnMob(fishingRodCont.PrefabItemStruct.itemSubTag+"_"+fishingRodCont.PrefabItemStruct.itemTag));
             }
-            Destroy(fishingRod);
-            fishingRod = null;
             isFullyReeled = false;
             fishingRodCont.CurFishSpawnerCont = null;
-
+            Destroy(fishingRod);
+            fishingRod = null;
         }
         #endregion
         #region "Getters/Setters"

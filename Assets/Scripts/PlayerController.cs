@@ -147,7 +147,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isFishingHash = Animator.StringToHash("isFishing");
             IsMoving = false;
             isMovingHash = Animator.StringToHash("isMoving");
-            layerMask = (1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")) | (1 << LayerMask.NameToLayer("chest"));
+            layerMask = (1 << LayerMask.NameToLayer("workstation")) | (1 << LayerMask.NameToLayer("stockpile")) | (1 << LayerMask.NameToLayer("bounds")) | (1 << LayerMask.NameToLayer("enemy")) | (1 << LayerMask.NameToLayer("chest")) | (1 << LayerMask.NameToLayer("shore"));
             m_Collider = GetComponent<BoxCollider2D>();
             backPackObj = transform.Find(backPackObjPath).gameObject;
             backpackCont = backPackObj.GetComponent<BackpackController>();

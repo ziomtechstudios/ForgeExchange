@@ -29,6 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Image mainZoneImage;
         [SerializeField] private Image goodZoneImage;
         [SerializeField] private Image curZoneImage;
+        [SerializeField] private PlayerUIStruct fishingUIStruct;
         #endregion
         #region Getters/Setters
         public Image CurZoneImage => curZoneImage;
@@ -66,7 +67,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             barImage.gameObject.transform.parent.gameObject.SetActive(false);
             counterText.gameObject.SetActive(false);
             itemUI.gameObject.SetActive(false);
-            
+            mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
         }
         #endregion
         // Start is called before the first frame update
@@ -173,12 +174,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         break;
                     case "bounds":
-                        if (playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite && playerCont.PlayerLOS.transform.CompareTag(("water")))
-                        { 
-                            fishingUITransform = playerCont.HoldingPrefab.transform.Find("FishingUILOC");
-                            mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(fishingUITransform.localPosition);
+                        bool isReelingFish = playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite && playerCont.PlayerLOS.transform.CompareTag(("water"));
+                        if (isReelingFish && !mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
+                        {
+                            fishingUITransform = playerCont.transform.Find("HoldingItem").GetChild(0).Find("FishingUILOC");
+                            mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(fishingUITransform.position);
                             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
                         }
+                        else if(isReelingFish)
+                            OscilateGoodZone();
+                        else
+                            mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
                         break;
                     default:
                         break;

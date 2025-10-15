@@ -29651,7 +29651,7 @@ GameObject:
   - component: {fileID: 1453538891}
   m_Layer: 4
   m_Name: tilemap_water
-  m_TagString: water
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32514,7 +32514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 296, y: 199}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1635748429
@@ -33114,7 +33114,7 @@ GameObject:
   - component: {fileID: 1769448057}
   - component: {fileID: 1769448059}
   - component: {fileID: 1769448058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tilemap_roads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39375,7 +39375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154635181993, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 65495
+      value: 131031
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800258, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: runSpeed
@@ -39403,11 +39403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.69
+      value: -3.72
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800263, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_LocalPosition.z
