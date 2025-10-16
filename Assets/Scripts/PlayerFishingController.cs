@@ -13,6 +13,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private FishingRodController fishingRodCont;
         [SerializeField] private float reelingIncrmt;
         [SerializeField] [Range(0.0f, 1.0f)] private float lineDurability;
+        [SerializeField] private float oscillationSpeed;
         
 
         #endregion 
@@ -24,6 +25,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int isCastingHash;
         private GameObject fishingRod;
         private bool isFullyReeled;
+        private Vector2 inputVector;
         #endregion
         #region "Public Funcs"
         public void IsFullyReeled()
@@ -60,24 +62,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public void KeepingTheBite(InputAction.CallbackContext context)
         {
-            Vector2 inputVector = context.ReadValue<Vector2>();
-            playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(
-                new Vector2(
-                    (inputVector.x + playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.localPosition.x),
-                    0.0f));
+            inputVector = context.ReadValue<Vector2>();
             //TODO Find appropriate and simple calculation for degradation of Rod when reeling inplayer a Bite Based on player input and statisfying conditions.
-            ///<summary>
-            /// If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
-            /// We then apply minimal wear to durability of the line.
-            /// If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
-            /// If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
-            /// If not the player looses the fish.
-            /// Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
-            /// </summary> 
-            bool isProperTension =
-                playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.rect.Overlaps(
-                    playerInteractionCont.PlayerCont.PlayerUICont.GoodZoneRectTransform.rect, true);
-            lineDurability -= ((!isProperTension ? 2.00f : 0.00f) + 0.01f);
         }
         public void CastingRod(){
             if(fishingRod == null){
@@ -134,8 +120,25 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isFullyReeled = false;
         }
         void FixedUpdate(){
-            if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
-                IsFullyReeled();
+            if (playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
+                    IsFullyReeled();
+            if (fishingRod != null && fishingRodCont.HasBite && inputVector.magnitude != 0.0f)
+            {
+
+                ///<summary>
+                /// If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
+                /// We then apply minimal wear to durability of the line.
+                /// If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
+                /// If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
+                /// If not the player looses the fish.
+                /// Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
+                /// </summary>
+                playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(new Vector2((inputVector.x), 0.0f));
+                bool isProperTension = playerInteractionCont.PlayerCont.PlayerUICont.GoodZoneRectTransform.rect.Overlaps(playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.rect, true);
+                Debug.Log($"isProperTension:  {isProperTension}.");
+                lineDurability -= ((isProperTension ? 0.00f : 2.00f) * 0.01f);
+
+            }
         }
 
     }
