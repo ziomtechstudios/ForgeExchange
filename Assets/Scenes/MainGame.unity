@@ -39608,6 +39608,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.39999962
       objectReference: {fileID: 0}
+    - target: {fileID: 8892634002129242897, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: lineDurability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892634002129242897, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: lineDegradation
+      value: 0.04
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2416371707574200303, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}

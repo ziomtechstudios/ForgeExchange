@@ -96,7 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Update is called once per frame
         void Update()
         {
-            if (playerCont.PlayerLOS.transform != null)
+            if (playerCont.PlayerLOS.transform)
             {
                 switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
                 {
