@@ -145,7 +145,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
                     //If proper tension is applied from player input the fishing line experiences minimal degredation.
                     //If improper tension is applied from player input the rate of the fishing line's degredation is increased;
-                    lineDurability -= ((isProperTension ? 1.00f : 3.00f) * lineDegradation * Time.deltaTime);
+                    lineDurability -= ((isProperTension ? 1.00f : 5.00f) * lineDegradation * Time.deltaTime);
                 }
             }
         }

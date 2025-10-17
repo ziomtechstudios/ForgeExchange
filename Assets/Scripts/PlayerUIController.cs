@@ -18,6 +18,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string curZoneImagePath;
         [SerializeField] private RectTransform curZoneRectTransform;
         [SerializeField] private RectTransform goodZoneRectTransform;
+        [SerializeField] private RectTransform mainZoneRectTransform;
         [Header("UI Components")]
         [SerializeReference] private PlayerController playerCont;
         [SerializeField] private Image itemUI;
@@ -57,7 +58,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Functions
         private void OscilateGoodZone()
         {
-            
+            //TODO Implementing Challenge for the player's fishing mini-game.
+            ///<Summary>
+            /// Oscilate the zone of good tension back and forth across the RectZone of the parent gameobject (background).
+            ///Rect Transform of the curZone at all times must be such that the corners of CurZon Rect Transform are Contained by
+            ///the RectTransform of the background.
+            /// </summary>
+            bool isAcceptableOscillation = OverlappingUI.Overlapping(mainZoneRectTransform, GoodZoneRectTransform);
+            Debug.Log($"isAcceptableOscillation: {isAcceptableOscillation}");
+            //GoodZoneRectTransform.Translate();
         }
         private void ClearUnwantedUI()
         {
@@ -87,10 +96,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
             mainZoneImage = transform.Find(mainZoneImagePath).gameObject.GetComponent<Image>();
+            mainZoneRectTransform = mainZoneImage.gameObject.GetComponent<RectTransform>();
             curZoneRectTransform = transform.Find(curZoneImagePath).gameObject.GetComponent<RectTransform>();
             goodZoneImage = transform.Find(goodZoneImagePath).gameObject.GetComponent<Image>();
-            goodZoneRectTransform = transform.Find(goodZoneImagePath).gameObject.GetComponent<RectTransform>();
-            curZoneImage = transform.Find(curZoneImagePath).gameObject.GetComponent<Image>();
+            goodZoneRectTransform = goodZoneImage.gameObject.GetComponent<RectTransform>();
+            curZoneImage = curZoneRectTransform.gameObject.GetComponent<Image>();
             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
         }
         // Update is called once per frame
