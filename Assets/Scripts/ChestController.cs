@@ -35,8 +35,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
                 SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
-                //curUserCont = playerCont;
-                
             }
             
         }

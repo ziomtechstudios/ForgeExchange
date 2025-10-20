@@ -55,6 +55,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //If the stockpile is empty replace prefab sprite to empty one so that playerts now stockpile can be repopulated with an item
             M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (M_SpriteRend.sprite);
             itemPrefab = (IsEmpty) ? (null) : (itemPrefab);
+            itemCont = (IsEmpty) ? (null) : (itemCont); 
         }
         public void Start()
         {
@@ -68,6 +69,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             foreach (string itemTag in itemTags)
                 itemTagToSpriteDict.Add(itemTag, itemSprites[Array.IndexOf(itemTags, itemTag)]);
             M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[itemPrefab.GetComponent<ItemController>().PrefabItemStruct.itemSubTag + itemPrefab.GetComponent<ItemController>().PrefabItemStruct.itemTag]);
+            itemCont = (IsEmpty) ? (null) : (itemPrefab.GetComponent<ItemController>());
         }
     }
 }

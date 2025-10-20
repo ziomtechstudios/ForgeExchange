@@ -46,7 +46,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                     m_SpriteRend.sortingOrder = 1;
                 else
                     m_SpriteRend.sortingOrder = 2;
-                    //
             }
         }
 

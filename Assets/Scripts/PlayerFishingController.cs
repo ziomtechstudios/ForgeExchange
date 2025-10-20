@@ -13,12 +13,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private FishingRodController fishingRodCont;
         [SerializeField] private float reelingIncrmt;
         [SerializeField] [Range(0.0f, 1.0f)] private float lineDurability;
-        [SerializeField] private float oscillationSpeed;
         [SerializeField] private float lineDegradation;
         [SerializeField] private bool isProperTension;
         #endregion 
         #region "Getters/Setters"
         public FishingRodController FishingRodCont{get{return fishingRodCont;}}
+        public bool IsFullyReeledIn
+        {
+            get { return isFullyReeled; }
+        }
         #endregion
         #region"Private Members"
         private int isReelingHash, isFullyReeledHash;
@@ -68,7 +71,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void KeepingTheBite(InputAction.CallbackContext context)
         {
             inputVector = context.ReadValue<Vector2>();
-            //TODO Find appropriate and simple calculation for degradation of Rod when reeling inplayer a Bite Based on  player input and statisfying conditions.
+            //TODO Find appropriate and simple calculation for degradation of Rod when player is reeling in a Bite Based on  player input and satisfying conditions.
         }
         public void CastingRod(){
             if(fishingRod == null){
@@ -99,7 +102,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //.</summary>
             if (lineDurability > 0.0f && fishingRodCont.HasBite)
             {
-                Debug.Log("The Player has successfully reeled in a fish!");
                 fishingRodCont.HasBite = false;
                 playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem(fishingRodCont.CurFishSpawnerCont.SpawnMob(fishingRodCont.PrefabItemStruct.itemSubTag+"_"+fishingRodCont.PrefabItemStruct.itemTag));
             }
@@ -147,6 +149,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //If proper tension is applied from player input the fishing line experiences minimal degredation.
                     //If improper tension is applied from player input the rate of the fishing line's degredation is increased;
                     lineDurability -= ((isProperTension ? 1.00f : 5.00f) * lineDegradation * Time.deltaTime);
+                    playerInteractionCont.PlayerCont.PlayerUICont.OscilateGoodZone();
                 }
             }
         }

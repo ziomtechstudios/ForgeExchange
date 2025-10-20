@@ -31,6 +31,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Image goodZoneImage;
         [SerializeField] private Image curZoneImage;
         [SerializeField] private PlayerUIStruct fishingUIStruct;
+        [Tooltip("Minimum time the good zone bar for fishing mini-game can oscillate.")] [SerializeField] private float minTTO;
+        [Tooltip("Maximum time the good zone bar for fishing mini-game can oscillate.")] [SerializeField] private float maxTTO;
+        [Tooltip("The maximum speed the good zone bar can oscillate at, this value applies to both directions along x-axis.")] [SerializeField] private float maxOscillationSpeed;
+        [SerializeField] private float oscillationTimer;
         #endregion
         #region Getters/Setters
         public Image CurZoneImage => curZoneImage;
@@ -46,6 +50,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private Text circleText;
         private Text barText;
         private TextMeshProUGUI counterText;
+        private Vector3[] goodZoneCorners = new Vector3[4];
+        private float timeToOscillate;
+        private Vector2 randomDir;
+        private bool isAcceptableOscillation;
+        private bool isFullyOscillated;
         #endregion
         #region Public Members
         public void ToggleInventory()
@@ -53,10 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation);
             backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
         }
-        public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
-        #endregion
-        #region Private Functions
-        private void OscilateGoodZone()
+        public void OscilateGoodZone()
         {
             //TODO Implementing Challenge for the player's fishing mini-game.
             ///<Summary>
@@ -64,9 +70,35 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///Rect Transform of the curZone at all times must be such that the corners of CurZon Rect Transform are Contained by
             ///the RectTransform of the background.
             /// </summary>
-            bool isAcceptableOscillation = OverlappingUI.Overlapping(mainZoneRectTransform, GoodZoneRectTransform);
-            Debug.Log($"isAcceptableOscillation: {isAcceptableOscillation}");
-            //GoodZoneRectTransform.Translate();
+            isFullyOscillated = oscillationTimer >= timeToOscillate;
+            RandomizeOscillationDir();
+            Debug.Log(isAcceptableOscillation);
+            if (!isFullyOscillated)
+            {
+                oscillationTimer += Time.deltaTime;
+                if (isAcceptableOscillation)
+                    GoodZoneRectTransform.Translate(randomDir);
+                else if(!isAcceptableOscillation)
+                    RandomizeOscillationDir();
+            }
+            else
+            {
+                oscillationTimer = 0.0f;
+                timeToOscillate = Random.Range(minTTO, maxTTO);
+            }
+        }
+        public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
+        #endregion
+        #region Private Functions
+
+        private void RandomizeOscillationDir()
+        {
+            goodZoneRectTransform.GetWorldCorners(goodZoneCorners);
+            randomDir = (isFullyOscillated ? randomDir : new Vector2(Random.Range(-maxOscillationSpeed, maxOscillationSpeed), 0.0f));
+            isAcceptableOscillation = mainZoneRectTransform.rect.Contains(goodZoneCorners[0] + (Vector3)randomDir) &&
+                                           mainZoneRectTransform.rect.Contains(goodZoneCorners[1] + (Vector3)randomDir) &&
+                                           mainZoneRectTransform.rect.Contains(goodZoneCorners[2] + (Vector3)randomDir) &&
+                                           mainZoneRectTransform.rect.Contains(goodZoneCorners[3] + (Vector3)randomDir);
         }
         private void ClearUnwantedUI()
         {
@@ -102,6 +134,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             goodZoneRectTransform = goodZoneImage.gameObject.GetComponent<RectTransform>();
             curZoneImage = curZoneRectTransform.gameObject.GetComponent<Image>();
             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
+            goodZoneRectTransform.GetWorldCorners(goodZoneCorners);
+            timeToOscillate = Random.Range(minTTO, maxTTO);
         }
         // Update is called once per frame
         void Update()
@@ -116,7 +150,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         circleTransform = playerCont.PlayerLOS.transform.Find("circleUILOC");
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
                         itemUiTransform = playerCont.PlayerLOS.transform.Find("productUILOC");
-                        if (circleTransform != null)
+                        if (circleTransform)
                         {
                             circleImage.gameObject.transform.parent.transform.position = playerCam.WorldToScreenPoint(circleTransform.position);
                             circleImage.fillAmount = workstationCont.CircleAmnt;
@@ -127,7 +161,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             }
                         }
 
-                        if (barTransform != null)
+                        if (barTransform)
                         {
                             barImage.gameObject.transform.parent.transform.position = playerCam.WorldToScreenPoint(barTransform.position);
                             barImage.fillAmount = workstationCont.BarAmnt;
@@ -139,14 +173,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             }
                         }
 
-                        if (itemUiTransform != null)
+                        if (itemUiTransform)
                         {
                             StockpileController stockPileCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<StockpileController>();
-                            if (stockPileCont != null && (stockPileCont.CurQuantity != 0))
+                            if (stockPileCont && (stockPileCont.CurQuantity != 0))
                             {
                                 itemUI.gameObject.transform.position = playerCam.WorldToScreenPoint(playerCont.PlayerLOS.transform.Find("productUILOC").position);
                                 itemUI.gameObject.SetActive(true);
-                                itemUI.sprite = stockPileCont.ItemPrefab.GetComponent<ItemController>().ItemIcon;
+                                itemUI.sprite = stockPileCont.ItemCont.ItemIcon;
                             }
                             else if (stockPileCont.CurQuantity == 0 && itemUI.gameObject.activeInHierarchy)
                                 itemUI.gameObject.SetActive(false);
@@ -170,7 +204,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (!counterText.gameObject.activeInHierarchy)
                             counterText.gameObject.SetActive(true);
                         barTransform = playerCont.PlayerLOS.transform.Find("barUILOC");
-                        if (barTransform != null)
+                        if (barTransform)
                         {
                             barImage.gameObject.transform.parent.SetPositionAndRotation(playerCam.WorldToScreenPoint(barTransform.position), barTransform.rotation);
                             barImage.fillAmount = enemyCont.HealthCont.HealthBarAmnt;
@@ -190,10 +224,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(fishingUITransform.position);
                             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
                         }
-                        else if(isReelingFish)
-                            OscilateGoodZone();
-                        else
+                        else if(playerCont.PlayerInteractionCont.PlayerFishingCont.IsFullyReeledIn)
+                        {
                             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
+                            curZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                            goodZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        }
                         break;
                     default:
                         break;

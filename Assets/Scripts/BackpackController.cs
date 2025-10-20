@@ -110,7 +110,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         void OnEnable()
         {
-            //FindBackpackSlots();
             //Disable in-game quickslots, I didnt like having both references to quickslots enabled
             SyncQuickSlots("InGameToMenu");
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);

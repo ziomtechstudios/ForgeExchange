@@ -33,8 +33,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public TilemapType Type{get{return _type;}}
         #endregion
         #region "Public fields"
-
-
         [HideInInspector] public TileGrid Grid;
         public int GetTile(int x, int y)
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Com.ZiomtechStudios.ForgeExchange
@@ -14,6 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         /// </summary>
         [SerializeField] private GameObject potentialFish;
 
+        [CanBeNull]
         public override GameObject SpawnMob(string recipe)
         {
             CanSpawn = MobPrefabDict.TryGetValue(recipe, out potentialFish);
