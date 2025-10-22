@@ -1,5 +1,5 @@
 
-using System;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,13 +16,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private float lineDegradation;
         [SerializeField] private bool isProperTension;
         #endregion 
-        #region "Getters/Setters"
-        public FishingRodController FishingRodCont{get{return fishingRodCont;}}
-        public bool IsFullyReeledIn
-        {
-            get { return isFullyReeled; }
-        }
-        #endregion
         #region"Private Members"
         private int isReelingHash, isFullyReeledHash;
         private int isCastingHash;
@@ -117,6 +110,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
         public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
         public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
+        public FishingRodController FishingRodCont{get{return fishingRodCont;}}
         #endregion
         // Start is called before the first frame update
         void Start()

@@ -21,8 +21,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Private Fields"
         private bool GoFishing(){
-            playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, !playerCont.M_Animator.GetBool(playerCont.IsFishingHash));
             playerCont.IsFishing = true;
+            playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, playerCont.IsFishing);
             playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
             playerFishingCont.CastingRod();
             playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");

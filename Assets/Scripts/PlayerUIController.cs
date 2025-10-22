@@ -217,19 +217,28 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         break;
                     case "bounds":
-                        bool isReelingFish = playerCont.IsFishing && playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont.HasBite && playerCont.PlayerLOS.transform.CompareTag(("water"));
-                        if (isReelingFish && !mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
+                        if (playerCont.IsFishing)
                         {
-                            fishingUITransform = playerCont.transform.Find("HoldingItem").GetChild(0).Find("FishingUILOC");
-                            mainZoneImage.gameObject.transform.position = playerCam.WorldToScreenPoint(fishingUITransform.position);
-                            mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
+                            bool isReelingFish = (playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont
+                                .HasBite);
+                            if (isReelingFish &&
+                                !mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
+                            {
+                                fishingUITransform = playerCont.transform.Find("HoldingItem").GetChild(0)
+                                    .Find("FishingUILOC");
+                                mainZoneImage.gameObject.transform.position =
+                                    playerCam.WorldToScreenPoint(fishingUITransform.position);
+                                mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
+                            }
+                            else if (!isReelingFish &&  mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
+                            {
+                                mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
+                                curZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                                goodZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                            }
                         }
-                        else if(playerCont.PlayerInteractionCont.PlayerFishingCont.IsFullyReeledIn)
-                        {
-                            mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
-                            curZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                            goodZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                        }
+                        else
+                            ClearUnwantedUI();
                         break;
                     default:
                         break;
