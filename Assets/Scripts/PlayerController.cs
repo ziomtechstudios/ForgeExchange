@@ -92,7 +92,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public void OnDPadMove(InputAction.CallbackContext context)
         {
-            Debug.Log(InputActionType.Value);
             if (context.action.type == InputActionType.Value)
             {
                 if (context.started && !context.canceled)
@@ -176,9 +175,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else if (!IsMoving && M_Animator.GetBool(isMovingHash))
                 MovePlayer(false);
-            
-            
-
         }
     }
 }

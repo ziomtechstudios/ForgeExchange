@@ -22,6 +22,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private GameObject fishingRod;
         private bool isFullyReeled;
         private Vector2 inputVector;
+        private Transform holdingTransform;
         #endregion
         #region "Public Funcs"
         public void IsFullyReeled()
@@ -68,7 +69,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void CastingRod(){
             if(fishingRod == null){
-                fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
+                fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, holdingTransform, false);
                 fishingRodCont = fishingRod.GetComponent<FishingRodController>();
                 fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
                 lineDurability = 1.0f;
@@ -111,6 +112,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
         public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
         public FishingRodController FishingRodCont{get{return fishingRodCont;}}
+
+        public Transform HoldingTransform => holdingTransform;
+
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -120,6 +124,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isReelingHash = Animator.StringToHash("isReeling");
             isCastingHash = Animator.StringToHash("isCasting");
             isFullyReeled = false;
+            holdingTransform = transform.Find("HoldingItem");
         }
         void FixedUpdate(){
             if (playerInteractionCont.PlayerCont.IsFishing)

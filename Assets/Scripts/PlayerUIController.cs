@@ -18,7 +18,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string curZoneImagePath;
         [SerializeField] private RectTransform curZoneRectTransform;
         [SerializeField] private RectTransform goodZoneRectTransform;
-        [SerializeField] private RectTransform mainZoneRectTransform;
         [Header("UI Components")]
         [SerializeReference] private PlayerController playerCont;
         [SerializeField] private Image itemUI;
@@ -33,6 +32,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerUIStruct fishingUIStruct;
         [Tooltip("Minimum time the good zone bar for fishing mini-game can oscillate.")] [SerializeField] private float minTTO;
         [Tooltip("Maximum time the good zone bar for fishing mini-game can oscillate.")] [SerializeField] private float maxTTO;
+        [Tooltip("Minimun speed the good zone bar can oscillate at, this value is applies to both directions along x-axis")] [SerializeField] private float minOscillationSpeed;
         [Tooltip("The maximum speed the good zone bar can oscillate at, this value applies to both directions along x-axis.")] [SerializeField] private float maxOscillationSpeed;
         [SerializeField] private float oscillationTimer;
         #endregion
@@ -52,7 +52,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private TextMeshProUGUI counterText;
         private Vector3[] goodZoneCorners = new Vector3[4];
         private float timeToOscillate;
-        private Vector2 randomDir;
+        private Vector2 randomVelocity;
         private bool isAcceptableOscillation;
         private bool isFullyOscillated;
         #endregion
@@ -70,16 +70,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///Rect Transform of the curZone at all times must be such that the corners of CurZon Rect Transform are Contained by
             ///the RectTransform of the background.
             /// </summary>
-            isFullyOscillated = oscillationTimer >= timeToOscillate;
-            RandomizeOscillationDir();
-            Debug.Log(isAcceptableOscillation);
+            if(oscillationTimer == 0.0f)
+                RandomizeOscillationDir();
+            isFullyOscillated = (oscillationTimer >= timeToOscillate);
             if (!isFullyOscillated)
             {
                 oscillationTimer += Time.deltaTime;
-                if (isAcceptableOscillation)
-                    GoodZoneRectTransform.Translate(randomDir);
-                else if(!isAcceptableOscillation)
-                    RandomizeOscillationDir();
+                GoodZoneRectTransform.Translate(randomVelocity );
             }
             else
             {
@@ -93,12 +90,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         private void RandomizeOscillationDir()
         {
-            goodZoneRectTransform.GetWorldCorners(goodZoneCorners);
-            randomDir = (isFullyOscillated ? randomDir : new Vector2(Random.Range(-maxOscillationSpeed, maxOscillationSpeed), 0.0f));
-            isAcceptableOscillation = mainZoneRectTransform.rect.Contains(goodZoneCorners[0] + (Vector3)randomDir) &&
-                                           mainZoneRectTransform.rect.Contains(goodZoneCorners[1] + (Vector3)randomDir) &&
-                                           mainZoneRectTransform.rect.Contains(goodZoneCorners[2] + (Vector3)randomDir) &&
-                                           mainZoneRectTransform.rect.Contains(goodZoneCorners[3] + (Vector3)randomDir);
+            int randomDir = Random.Range(0, 2) * 2 - 1;
+            Debug.Log(randomDir);
+            randomVelocity = new Vector2(randomDir*Random.Range(minOscillationSpeed, maxOscillationSpeed), 0.0f);
+            //isAcceptableOscillation = OverlappingUI.IsInside(mainZoneRectTransform, curZoneRectTransform, (randomVelocity * (Time.deltaTime * timeToOscillate)));
         }
         private void ClearUnwantedUI()
         {
@@ -128,7 +123,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
             mainZoneImage = transform.Find(mainZoneImagePath).gameObject.GetComponent<Image>();
-            mainZoneRectTransform = mainZoneImage.gameObject.GetComponent<RectTransform>();
             curZoneRectTransform = transform.Find(curZoneImagePath).gameObject.GetComponent<RectTransform>();
             goodZoneImage = transform.Find(goodZoneImagePath).gameObject.GetComponent<Image>();
             goodZoneRectTransform = goodZoneImage.gameObject.GetComponent<RectTransform>();
@@ -224,7 +218,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             if (isReelingFish &&
                                 !mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
                             {
-                                fishingUITransform = playerCont.transform.Find("HoldingItem").GetChild(0)
+                                fishingUITransform = playerCont.PlayerInteractionCont.PlayerFishingCont.HoldingTransform.GetChild(0)
                                     .Find("FishingUILOC");
                                 mainZoneImage.gameObject.transform.position =
                                     playerCam.WorldToScreenPoint(fishingUITransform.position);
