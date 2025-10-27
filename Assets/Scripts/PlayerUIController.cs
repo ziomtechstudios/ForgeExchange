@@ -16,8 +16,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string mainZoneImagePath;
         [SerializeField] private string goodZoneImagePath;
         [SerializeField] private string curZoneImagePath;
-        [SerializeField] private RectTransform curZoneRectTransform;
-        [SerializeField] private RectTransform goodZoneRectTransform;
         [Header("UI Components")]
         [SerializeReference] private PlayerController playerCont;
         [SerializeField] private Image itemUI;
@@ -26,6 +24,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private GameObject backPackObj;
         [SerializeReference] private BackpackController backpackController;
         [Header("Fishing Mini-Game UI elements")] 
+        [SerializeField] private RectTransform curZoneRectTransform;
+        [SerializeField] private RectTransform goodZoneRectTransform;
+        [SerializeField] private RectTransform mainZoneRectTransform;
         [SerializeField] private Image mainZoneImage;
         [SerializeField] private Image goodZoneImage;
         [SerializeField] private Image curZoneImage;
@@ -73,12 +74,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if(oscillationTimer == 0.0f)
                 RandomizeOscillationDir();
             isFullyOscillated = (oscillationTimer >= timeToOscillate);
-            if (!isFullyOscillated)
+            if (!isFullyOscillated && isAcceptableOscillation)
             {
                 oscillationTimer += Time.deltaTime;
                 GoodZoneRectTransform.Translate(randomVelocity );
             }
-            else
+            else if(isFullyOscillated || !isAcceptableOscillation)
             {
                 oscillationTimer = 0.0f;
                 timeToOscillate = Random.Range(minTTO, maxTTO);
@@ -91,9 +92,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void RandomizeOscillationDir()
         {
             int randomDir = Random.Range(0, 2) * 2 - 1;
-            Debug.Log(randomDir);
             randomVelocity = new Vector2(randomDir*Random.Range(minOscillationSpeed, maxOscillationSpeed), 0.0f);
-            //isAcceptableOscillation = OverlappingUI.IsInside(mainZoneRectTransform, curZoneRectTransform, (randomVelocity * (Time.deltaTime * timeToOscillate)));
+            isAcceptableOscillation = OverlappingUI.IsInside(mainZoneRectTransform, curZoneRectTransform, (randomVelocity * timeToOscillate));
+            Debug.Log($"isAcceptableOsillation: {isAcceptableOscillation}.");
         }
         private void ClearUnwantedUI()
         {
@@ -123,6 +124,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
             mainZoneImage = transform.Find(mainZoneImagePath).gameObject.GetComponent<Image>();
+            mainZoneRectTransform = mainZoneImage.gameObject.GetComponent<RectTransform>();
             curZoneRectTransform = transform.Find(curZoneImagePath).gameObject.GetComponent<RectTransform>();
             goodZoneImage = transform.Find(goodZoneImagePath).gameObject.GetComponent<Image>();
             goodZoneRectTransform = goodZoneImage.gameObject.GetComponent<RectTransform>();
