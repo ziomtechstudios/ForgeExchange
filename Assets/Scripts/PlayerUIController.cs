@@ -222,7 +222,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             {
                                 fishingUITransform = playerCont.PlayerInteractionCont.PlayerFishingCont.HoldingTransform.GetChild(0)
                                     .Find("FishingUILOC");
-                                mainZoneImage.gameObject.transform.position =
+                                mainZoneImage.transform.parent.gameObject.transform.position =
                                     playerCam.WorldToScreenPoint(fishingUITransform.position);
                                 mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
                             }
