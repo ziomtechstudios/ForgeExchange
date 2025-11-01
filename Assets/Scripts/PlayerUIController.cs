@@ -24,6 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private GameObject backPackObj;
         [SerializeReference] private BackpackController backpackController;
         [Header("Fishing Mini-Game UI elements")] 
+        [SerializeField] private Transform fishingUITransform;
         [SerializeField] private RectTransform curZoneRectTransform;
         [SerializeField] private RectTransform goodZoneRectTransform;
         [SerializeField] private RectTransform mainZoneRectTransform;
@@ -42,9 +43,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Image CurZoneImage => curZoneImage;
         public RectTransform CurZoneRectTransform => curZoneRectTransform;
         public RectTransform GoodZoneRectTransform => goodZoneRectTransform;
+        public Transform FishingUITransform => fishingUITransform;
         #endregion
         #region Private Fields
-        private Transform circleTransform, barTransform, itemUiTransform, fishingUITransform;
+        private Transform circleTransform, barTransform, itemUiTransform;
         private Camera playerCam;
         private GameObject inGameQuickSlotObjs;
         private Image barImage;
@@ -227,6 +229,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 mainZoneImage.transform.parent.gameObject.transform.position =
                                     playerCam.WorldToScreenPoint(fishingUITransform.position);
                                 mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
+                                goodZoneSlider.value = 0.5f;
                             }
                             else if (!isReelingFish &&  mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
                             {
