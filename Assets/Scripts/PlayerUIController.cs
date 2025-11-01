@@ -31,6 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Image goodZoneImage;
         [SerializeField] private Image curZoneImage;
         [SerializeField] private PlayerUIStruct fishingUIStruct;
+        [SerializeField] private Slider goodZoneSlider;
         [Tooltip("Minimum time the good zone bar for fishing mini-game can oscillate.")] [SerializeField] private float minTTO;
         [Tooltip("Maximum time the good zone bar for fishing mini-game can oscillate.")] [SerializeField] private float maxTTO;
         [Tooltip("Minimun speed the good zone bar can oscillate at, this value is applies to both directions along x-axis")] [SerializeField] private float minOscillationSpeed;
@@ -53,7 +54,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private TextMeshProUGUI counterText;
         private Vector3[] goodZoneCorners = new Vector3[4];
         private float timeToOscillate;
-        private Vector2 randomVelocity;
+        private float randomVelocity;
         private bool isAcceptableOscillation;
         private bool isFullyOscillated;
         #endregion
@@ -74,16 +75,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if(oscillationTimer == 0.0f)
                 RandomizeOscillationDir();
             isFullyOscillated = (oscillationTimer >= timeToOscillate);
-            if (!isFullyOscillated && isAcceptableOscillation)
-            {
-                oscillationTimer += Time.deltaTime;
-                GoodZoneRectTransform.Translate(randomVelocity );
-            }
-            else if(isFullyOscillated || !isAcceptableOscillation)
+            if(isFullyOscillated)
             {
                 oscillationTimer = 0.0f;
                 timeToOscillate = Random.Range(minTTO, maxTTO);
             }
+            else
+            {
+                oscillationTimer += Time.deltaTime;
+                goodZoneSlider.value = Mathf.Clamp((goodZoneSlider.value += randomVelocity), 0.00f, 1.00f);
+            }
+
         }
         public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
         #endregion
@@ -92,9 +94,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void RandomizeOscillationDir()
         {
             int randomDir = Random.Range(0, 2) * 2 - 1;
-            randomVelocity = new Vector2(randomDir*Random.Range(minOscillationSpeed, maxOscillationSpeed), 0.0f);
-            isAcceptableOscillation = OverlappingUI.IsInside(mainZoneRectTransform, curZoneRectTransform, (randomVelocity * timeToOscillate));
-            Debug.Log($"isAcceptableOsillation: {isAcceptableOscillation}.");
+            randomVelocity = (randomDir*Random.Range(minOscillationSpeed, maxOscillationSpeed) * Time.deltaTime);
+            //isAcceptableOscillation = OverlappingUI.IsInside(mainZoneRectTransform, curZoneRectTransform, (randomVelocity * timeToOscillate));
         }
         private void ClearUnwantedUI()
         {
@@ -132,6 +133,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
             goodZoneRectTransform.GetWorldCorners(goodZoneCorners);
             timeToOscillate = Random.Range(minTTO, maxTTO);
+            goodZoneSlider = goodZoneRectTransform.parent.parent.gameObject.GetComponent<Slider>();
         }
         // Update is called once per frame
         void Update()
@@ -230,7 +232,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             {
                                 mainZoneImage.gameObject.transform.parent.gameObject.SetActive(false);
                                 curZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                                goodZoneRectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                                goodZoneSlider.value = 0.5f;
                             }
                         }
                         else
