@@ -13,6 +13,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private Tilemap underwallTileMap;
         [SerializeField] private Tilemap ornamentsTileMap;
         [SerializeField] private Tilemap waterTileMap;
+        [SerializeField] private Tilemap entryExitTilemap;
         [SerializeField] private Transform m_SpriteSortPoint;
         [SerializeField] private Transform m_OrnamentSortPoint;
         [Tooltip("When passing a value for transparancy work within the range of 0.0f to 255.0f. Take your target value and divide it by 255.0f so that it will result in a nuumber between 0.0f and 1.0f.")][Range(0.0f, 1.0f)] [SerializeField] private float transparancyVal;
@@ -28,7 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             //Are we colliding with a building wall?  
             if(col.CompareTag("underwall")){
                 isInside = (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null && ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) == null);
-                isBehindWall = !isInside && (((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) || (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null)) && (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null));
+                isBehindWall = !isInside && (((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) || (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null)) && (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null) && (entryExitTilemap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null));
                 //Players feet is on a floor tile so we up against the wall from the inside
                 if(isInside){
                     m_SpriteRend.sortingOrder = 2;
@@ -61,6 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             buildingTileMap = m_GridLayout.gameObject.transform.Find("tilemap_buildings").gameObject.GetComponent<Tilemap>();
             environmentTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment").gameObject.GetComponent<Tilemap>();
             underwallTileMap = m_GridLayout.gameObject.transform.Find("tilemap_underwall").gameObject.GetComponent<Tilemap>();
+            entryExitTilemap = m_GridLayout.gameObject.transform.Find("tilemap_underwall/tilemap_entry_exit").gameObject.GetComponent<Tilemap>();
             ornamentsTileMap  = m_GridLayout.gameObject.transform.Find("tilemap_underwall/tilemap_ornaments").gameObject.GetComponent<Tilemap>();
             waterTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment/tilemap_water").gameObject.GetComponent<Tilemap>();
             m_SpriteSortPoint = transform.Find("SpriteSortPos");
