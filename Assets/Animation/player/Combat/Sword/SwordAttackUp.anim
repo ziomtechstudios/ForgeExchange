@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SwordAttackUp
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -18,29 +18,31 @@ AnimationClip:
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
     - time: 0
       value: {fileID: -1310911095, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.11666667
+    - time: 0.13333334
       value: {fileID: 1051295558, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.23333333
+    - time: 0.25
       value: {fileID: -315682298, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.35
+    - time: 0.36666667
       value: {fileID: -1389780552, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.46666667
+    - time: 0.5
       value: {fileID: 1409009632, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.5833333
+    - time: 0.6166667
       value: {fileID: 1591449156, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.7
+    - time: 0.75
       value: {fileID: 978602678, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.81666666
+    - time: 0.8666667
       value: {fileID: 835862780, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
-    - time: 0.93333334
+    - time: 1
       value: {fileID: -1173202195, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -55,6 +57,8 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -1310911095, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
     - {fileID: 1051295558, guid: 976a5501f60487447b52eee7c1e90997, type: 3}
@@ -70,7 +74,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.95
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
