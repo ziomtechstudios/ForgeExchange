@@ -167,7 +167,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (IsMoving && (M_HealthCont.HP > 0.0f))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
-                if (m_Collider.IsTouchingLayers(layerMask) && hit.transform != null)
+                if (m_Collider.IsTouchingLayers(layerMask) && hit.transform)
                     MovePlayer(false);
                 //The player is either no longer touching bounds or is attempting to walk away from bounds
                 else
