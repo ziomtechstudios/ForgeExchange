@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &47048372792392459
+--- !u!1001 &4684134147327850084
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,36 +10,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Size.x
-      value: 0.48
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Size.y
-      value: 0.48
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1532276106, guid: cd30eb863cab75d47aebde64da24f3be, type: 3}
+      objectReference: {fileID: 1007015095, guid: 6012ef96704dda57a8aed5cb91e89081, type: 3}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Name
-      value: wood_Item
+      value: wooden_bow
       objectReference: {fileID: 0}
-    - target: {fileID: 2620681703460000771, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 2620681703460000771, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6fb91129af62340ca9743f1dc55ccee9, type: 2}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -80,41 +72,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8812768867111545185, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      propertyPath: refinement
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812768867111545185, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      propertyPath: prefabItemStruct
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d294e4c537b2c043b6017803afe5d72, type: 2}
-    m_RemovedComponents:
-    - {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-    - {fileID: 906800896134731824, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -820270833675690804}
+      addedObject: {fileID: 6347674294649198638}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
---- !u!1 &1015180756038987883 stripped
+--- !u!1 &5742336409462127876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-  m_PrefabInstance: {fileID: 47048372792392459}
+  m_PrefabInstance: {fileID: 4684134147327850084}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-820270833675690804
+--- !u!114 &6347674294649198638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015180756038987883}
+  m_GameObject: {fileID: 5742336409462127876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d732067b798dbe5b4d425a52a76476, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d2ad925febe7fd4da44f8e5a3947aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refinement: 1
-  prefabItemStruct: {fileID: 11400000, guid: 9d294e4c537b2c043b6017803afe5d72, type: 2}
-  itemIcon: {fileID: 633785672, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  refinement: 0
+  prefabItemStruct: {fileID: 0}
+  itemIcon: {fileID: 0}
+  weaponStruct: {fileID: 0}
+  m_Animator: {fileID: 0}
+  m_SpriteRenderer: {fileID: 0}
