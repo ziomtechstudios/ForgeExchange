@@ -4797,7 +4797,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.4036589
+      m_AnimationSpeed: 2.6078353
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -4808,7 +4808,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.437069
+      m_AnimationSpeed: 2.5351238
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -4819,7 +4819,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.9073713
+      m_AnimationSpeed: 2.3883185
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -5266,12 +5266,24 @@ PrefabInstance:
       value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -43
       objectReference: {fileID: 0}
+    - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 33.57
+      objectReference: {fileID: 0}
     - target: {fileID: 1004073336, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_Color.a
-      value: 0.5019608
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1004073338, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: NoItemSprite
@@ -39543,7 +39555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 351434327, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 418
+      value: 442.7
       objectReference: {fileID: 0}
     - target: {fileID: 396472311, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -39559,7 +39571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 901279200, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 888
+      value: 818.7
       objectReference: {fileID: 0}
     - target: {fileID: 901279200, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -39773,6 +39785,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1160338722, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.99
+      objectReference: {fileID: 0}
     - target: {fileID: 1164436549, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -39897,6 +39913,10 @@ PrefabInstance:
       propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[4].m_Action
       value: Pointer Down
       objectReference: {fileID: 0}
+    - target: {fileID: 1255621067, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 66.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1280522333, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_Name
       value: Joystick
@@ -39907,7 +39927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1280522334, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -914
+      value: -888.8
       objectReference: {fileID: 0}
     - target: {fileID: 1280522334, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -39943,11 +39963,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: bbb4178fe049638458ee8fd33d76b085, type: 3}
     - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1012
+      value: 959.1
       objectReference: {fileID: 0}
     - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 405
+      value: 452.6
       objectReference: {fileID: 0}
     - target: {fileID: 2122624621884231111, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive
@@ -40231,19 +40251,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154386360299, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154386360299, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154386360299, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154386360299, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154635181993, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_Depth
@@ -40267,7 +40287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154705275475, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -437
+      value: -391.4
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800258, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: runSpeed
@@ -40528,6 +40548,10 @@ PrefabInstance:
     - target: {fileID: 2492622399026964662, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.39999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510027285458107825, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 66.5
       objectReference: {fileID: 0}
     - target: {fileID: 8892634002129242897, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: lineDurability
