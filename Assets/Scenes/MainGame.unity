@@ -415,7 +415,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &50140967
@@ -513,7 +512,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &89115122
@@ -691,8 +689,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -944226239, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -951,7 +949,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &132394252
@@ -1049,7 +1046,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &134885843
@@ -1147,7 +1143,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &231349210
@@ -1320,7 +1315,6 @@ MonoBehaviour:
   slotWithItem: 1
   slotPrefab: {fileID: 1024181155318742764, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
   itemCont: {fileID: -3415474686000253241, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &249376057
@@ -2567,8 +2561,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 2083309257, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2887,7 +2881,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &425818291
@@ -2985,7 +2978,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &453281849
@@ -3837,7 +3829,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &546049174
@@ -3935,7 +3926,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &548088900
@@ -4331,10 +4321,9 @@ MonoBehaviour:
   slotImage: {fileID: 595018043}
   itemImage: {fileID: 369454689}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
-  slotType: 
+  slotWithItem: 1
+  slotPrefab: {fileID: 1024181155318742764, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
+  itemCont: {fileID: -3415474686000253241, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &595018043
@@ -4797,7 +4786,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.6078353
+      m_AnimationSpeed: 2.8364446
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -4808,7 +4797,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.5351238
+      m_AnimationSpeed: 2.065311
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -4819,7 +4808,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.3883185
+      m_AnimationSpeed: 2.8712895
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -5327,11 +5316,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: numRecipes
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: Recipes.Array.size
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: Recipes.Array.data[4]
@@ -5382,8 +5371,16 @@ PrefabInstance:
       value: WoodStick__StringSingleWoodStick_HookSingle_WoodStick
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[16]
+      value: StringSingleWoodStick_StringSingle_WoodStickStringSingleWoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[17]
+      value: _WoodStickStringSingleWoodStick_StringSingle_WoodStickStringSingle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftableItems.Array.size
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftableItems.Array.data[6]
@@ -5425,10 +5422,42 @@ PrefabInstance:
       propertyPath: craftableItems.Array.data[15]
       value: 
       objectReference: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[16]
+      value: 
+      objectReference: {fileID: 5742336409462127876, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftableItems.Array.data[17]
+      value: 
+      objectReference: {fileID: 5742336409462127876, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: itemTags.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: emptyStockpileSprite
       value: 
       objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: itemSprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: itemTags.Array.data[4]
+      value: WoodenBow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: itemTags.Array.data[5]
+      value: WoodenFishingRod
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: itemSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 813603082, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+    - target: {fileID: 1038668129, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: itemSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
     - target: {fileID: 1101136801, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_TagString
       value: UI
@@ -5892,7 +5921,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &723291568
@@ -5990,7 +6018,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &734699961
@@ -6587,7 +6614,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &850275118
@@ -6778,7 +6804,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &865616530
@@ -6933,8 +6958,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -944226239, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7579,8 +7604,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -426648271, guid: cd30eb863cab75d47aebde64da24f3be, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 2083309257, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7654,7 +7679,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1028719312
@@ -7967,7 +7991,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1084028162
@@ -26379,7 +26402,6 @@ MonoBehaviour:
   slotWithItem: 1
   slotPrefab: {fileID: 5316755668338559058, guid: 8c9980b0e73723b62abc64809082d78c, type: 3}
   itemCont: {fileID: -2683803410697654982, guid: 8c9980b0e73723b62abc64809082d78c, type: 3}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1175999298
@@ -26549,10 +26571,9 @@ MonoBehaviour:
   slotImage: {fileID: 1186627144}
   itemImage: {fileID: 927452698}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
-  slotType: 
+  slotWithItem: 1
+  slotPrefab: {fileID: 1015180756038987883, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
+  itemCont: {fileID: -820270833675690804, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1186627144
@@ -26725,7 +26746,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1197003364
@@ -26823,7 +26843,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1198788457
@@ -28491,7 +28510,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1277662846
@@ -28739,7 +28757,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1340082484
@@ -29292,7 +29309,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1378950375
@@ -29476,10 +29492,9 @@ MonoBehaviour:
   slotImage: {fileID: 1392300377}
   itemImage: {fileID: 1459220767}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
-  slotType: 
+  slotWithItem: 1
+  slotPrefab: {fileID: 1015180756038987883, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
+  itemCont: {fileID: -820270833675690804, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1392300377
@@ -30796,8 +30811,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -944226239, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -31899,7 +31914,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1503459352
@@ -32100,7 +32114,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1528365200
@@ -32198,7 +32211,6 @@ MonoBehaviour:
   slotWithItem: 1
   slotPrefab: {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
   itemCont: {fileID: -2246339533323770569, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1533541758
@@ -33345,8 +33357,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -426648271, guid: cd30eb863cab75d47aebde64da24f3be, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 2083309257, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -33511,7 +33523,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1739680823
@@ -35056,10 +35067,9 @@ MonoBehaviour:
   slotImage: {fileID: 1793441843}
   itemImage: {fileID: 106548229}
   slotInUse: 0
-  slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
-  slotType: 
+  slotWithItem: 1
+  slotPrefab: {fileID: 1015180756038987883, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
+  itemCont: {fileID: -820270833675690804, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1793441843
@@ -35157,7 +35167,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1805680971
@@ -35851,7 +35860,6 @@ MonoBehaviour:
   slotWithItem: 1
   slotPrefab: {fileID: 1024181155318742764, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
   itemCont: {fileID: -3415474686000253241, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &1980163605
@@ -35970,7 +35978,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &2039386041
@@ -36068,7 +36075,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &2052564670
@@ -36166,7 +36172,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &2060215170
@@ -36400,7 +36405,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &2074182367
@@ -36498,7 +36502,6 @@ MonoBehaviour:
   slotWithItem: 0
   slotPrefab: {fileID: 0}
   itemCont: {fileID: 0}
-  slotType: 
   curQuantity: 0
   maxQuantity: 0
 --- !u!114 &2078227649

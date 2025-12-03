@@ -12,7 +12,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private bool slotWithItem;
         [SerializeField] private GameObject slotPrefab;
         [SerializeField] private ItemController itemCont;
-        [SerializeField] private string slotType;
+        //[SerializeField] private string slotType;
         [SerializeField] private int curQuantity;
         [SerializeField] private int maxQuantity;
         #endregion

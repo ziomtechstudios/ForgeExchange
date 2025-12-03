@@ -4,5 +4,6 @@ public class WeaponStruct : ScriptableObject
 {
     public float minBaseDamage;
     public float maxBaseDamage;
+    public int weaponType;
 
 }

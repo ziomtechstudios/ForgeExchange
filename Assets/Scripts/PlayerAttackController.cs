@@ -11,7 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] WeaponController m_WeaponCont;
         #endregion
         #region "Private Fields"
-        private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash;
+        private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash;
         private bool hasWeapon, alreadyAttacking;
         private GameObject playerWeapon;
         private PlayerInteractionController playerInteractionCont;
@@ -24,6 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             playerWeapon = Instantiate(m_PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
             m_WeaponCont = playerWeapon.GetComponent<WeaponController>();
+            m_PlayerCont.M_Animator.SetInteger(weaponTypeHash, m_WeaponCont.m_WeaponStruct.weaponType);
             hasWeapon = true;
         }
         public void AllowAttack(){
@@ -55,6 +56,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             weaponAttackHash = Animator.StringToHash("isWAttacking");
             LookXHash = Animator.StringToHash("LookX");
             LookYHash = Animator.StringToHash("LookY");
+            weaponTypeHash = Animator.StringToHash("weaponType");
             alreadyAttacking = false;
         }
     }
