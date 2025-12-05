@@ -7,12 +7,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
     public class PlayerAttackController : MonoBehaviour
     {
         #region "Private Serialized Fields
-        [SerializeField] PlayerController m_PlayerCont;
-        [SerializeField] WeaponController m_WeaponCont;
+        [SerializeField] private PlayerController m_PlayerCont;
+        [SerializeField] private WeaponController m_WeaponCont;
+        [SerializeField] private bool alreadyAttacking;
         #endregion
         #region "Private Fields"
         private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash;
-        private bool hasWeapon, alreadyAttacking;
+        private bool hasWeapon;
         private GameObject playerWeapon;
         private PlayerInteractionController playerInteractionCont;
         #endregion
