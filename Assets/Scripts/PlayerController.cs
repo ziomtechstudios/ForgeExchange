@@ -159,7 +159,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_DSpriteLayering = GetComponent<DynamicSpriteLayering>();
         }
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             //Is the player looking at an interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);

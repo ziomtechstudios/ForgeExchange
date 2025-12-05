@@ -23,7 +23,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (playerController.CanRun && playerController.IsMoving && (stamina > 0.0f))
                 stamina -= burnRate;

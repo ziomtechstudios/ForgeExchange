@@ -19,6 +19,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Getters/Setters"
         public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
+        public bool AlreadyAttacking { get { return alreadyAttacking; } set { alreadyAttacking = value; } }
         #endregion
         #region "Public Fields"
         public void EquipWeapon()
@@ -30,6 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void AllowAttack(){
             alreadyAttacking = false;
+            Debug.Log("THe player has finished attacking and is free to attack again!");
         }
         public void UpdateWeaponAnim()
         {
@@ -38,7 +40,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
-            //The player is pressing the attakc button and has a weapon
+            //The player is pressing the attack button and has a weapon
             if (context.started && (m_WeaponCont != null) && !alreadyAttacking)
             {
                 UpdateWeaponAnim();
