@@ -25,6 +25,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private Transform holdingTransform;
         #endregion
         #region "Public Funcs"
+
+        public void SpawnRod()
+        {
+            fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, holdingTransform, false);
+        }
         public void IsFullyReeled()
         {
             ///<summary>
@@ -67,13 +72,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
             inputVector = context.ReadValue<Vector2>();
             //TODO Find appropriate and simple calculation for degradation of Rod when player is reeling in a Bite Based on  player input and satisfying conditions.
         }
-        public void CastingRod(){
-            if(fishingRod == null){
-                fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, holdingTransform, false);
-                fishingRodCont = fishingRod.GetComponent<FishingRodController>();
-                fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
-                lineDurability = 1.0f;
-            }
+        public void CastingRod()
+        {
+            if (fishingRod == null)
+                SpawnRod();
+            fishingRodCont = fishingRod.GetComponent<FishingRodController>();
+            fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
+            lineDurability = 1.0f;
+            
         }   
         /// <summary>
         /// This function is intended to be called when the last frame of the player's catching animation is played.

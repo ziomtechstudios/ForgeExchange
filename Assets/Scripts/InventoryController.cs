@@ -23,7 +23,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
             //WHen we are un-equipped an item within our quick slots
             if(playerCont.HoldingPrefab != null && (playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)){
-                playerCont.PlayerInteractionCont.UnEquipItem();
+                playerCont.PlayerInteractionCont.UnEquipItem(); 
                 if(playerCont.HoldingItem)
                     playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
                 else

@@ -598,15 +598,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Casting",
-                    "type": "Button",
-                    "id": "90dc47cb-0919-493a-ad68-1a3a4cb4747d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -629,17 +620,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Tension",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c78dc1ab-7dae-4973-b418-3b3c86bcedec",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "Press(pressPoint=0.5)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Casting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

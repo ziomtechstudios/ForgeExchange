@@ -112,8 +112,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
                     ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
                     ///</summary>
+                    
+                    //Debug.Log($"I am interacting with the water , In-Water = {dynamicSpriteLayering.IsObjInWater()}, also isFishing: {playerCont.IsFishing}.");
                     if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing)
-                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("fishing_rod")?GoFishing():true):false;
+                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
                     break;
                 
                 default:
