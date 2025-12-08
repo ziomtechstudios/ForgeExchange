@@ -25,7 +25,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int layerMask;
   
         #endregion
-        void Start()
+        private void Start()
         {
             enemyCollider = GetComponent<BoxCollider2D>();
             M_Animator = GetComponent<Animator>();
@@ -39,6 +39,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
+                Debug.Log($"Collider:{collision.gameObject.name} is touching layerMask:{layerMask}.");
                 healthController.InstDmg = collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg();
                 healthController.HP -= healthController.InstDmg;
                 healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;

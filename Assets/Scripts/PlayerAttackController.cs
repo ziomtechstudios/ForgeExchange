@@ -31,7 +31,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void AllowAttack(){
             alreadyAttacking = false;
-            Debug.Log("THe player has finished attacking and is free to attack again!");
+            //Debug.Log("THe player has finished attacking and is free to attack again!");
         }
         public void UpdateWeaponAnim()
         {

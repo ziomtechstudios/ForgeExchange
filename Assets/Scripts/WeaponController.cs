@@ -7,6 +7,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private WeaponStruct weaponStruct;
         [SerializeField] private Animator m_Animator;
         [SerializeField] private SpriteRenderer m_SpriteRenderer;
+        [SerializeField] private BoxCollider2D m_BoxCollider2D;
         #endregion
         #region Getters/Setters
         public WeaponStruct m_WeaponStruct { get { return weaponStruct; } }
@@ -16,10 +17,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return Random.Range(weaponStruct.minBaseDamage, weaponStruct.maxBaseDamage);
         }
         #endregion
+        #region Private Methods
+
+
         private void Start()
         {
             m_Animator = GetComponent<Animator>();
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
+            m_BoxCollider2D = transform.Find("collider").gameObject.GetComponent<BoxCollider2D>();
         }
+        #endregion
     }
 }
