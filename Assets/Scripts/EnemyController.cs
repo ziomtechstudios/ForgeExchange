@@ -37,9 +37,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            Debug.Log($"Other colliders layer :{LayerMask.LayerToName(collision.gameObject.layer)}, is touching layer:{LayerMask.LayerToName(gameObject.layer)}.");
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
-                Debug.Log($"Collider:{collision.gameObject.name} is touching layerMask:{layerMask}.");
                 healthController.InstDmg = collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg();
                 healthController.HP -= healthController.InstDmg;
                 healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
@@ -48,6 +48,5 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 healthController.FlashDamage();
             }
         }
-
     }
 }
