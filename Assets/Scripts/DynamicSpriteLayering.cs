@@ -56,6 +56,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public bool IsObjInWater(){
             return waterTileMap.GetTile(m_GridLayout.WorldToCell(transform.position));
         }
+
+        public bool IsObjOutside()
+        {
+            return environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position));
+        }
+
         // Start is called before the first frame update
         void Start()
         {
