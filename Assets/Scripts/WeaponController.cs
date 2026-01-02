@@ -8,6 +8,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Animator m_Animator;
         [SerializeField] private SpriteRenderer m_SpriteRenderer;
         [SerializeField] private BoxCollider2D m_BoxCollider2D;
+        [SerializeField] private PlayerAttackController playerAttackCont;
         #endregion
         #region Getters/Setters
         public WeaponStruct m_WeaponStruct { get { return weaponStruct; } }
@@ -25,6 +26,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             m_Animator = GetComponent<Animator>();
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
             m_BoxCollider2D = transform.Find("collider").gameObject.GetComponent<BoxCollider2D>();
+            playerAttackCont = transform.parent.parent.GetComponent<PlayerAttackController>();
         }
         #endregion
     }

@@ -24,7 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.IsFishing = true;
             playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, playerCont.IsFishing);
             playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
-            playerFishingCont.CastingRod();
+            //  playerFishingCont.CastingRod();
             playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
             return true;
         }
@@ -197,7 +197,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 }
                 return;
             }
-            
+                        //player is outside                  player is holding an item    THe player is not using their backpack
             else if (dynamicSpriteLayering.IsObjOutside() && playerCont.HoldingItem && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
             {
                 //When player is outside and trying to interact with the environment while holding an item
@@ -205,7 +205,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         playerCont.HoldingCont.PrefabItemStruct.craftingTag)
                 {
                     case"WoodenLog":
-                        
+                        //TODO Placeholder for log spawning code onto the mapw
                         break;
                     default:
                         break;

@@ -59,8 +59,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetFloat(lookXHash, lookDir.x);
                 M_Animator.SetFloat(lookYHash, lookDir.y);
             }
-            if (playerAttackCont.HasWeapon)
-                playerAttackCont.UpdateWeaponAnim();
         }
         private void TakeDamage(float amnt)
         {

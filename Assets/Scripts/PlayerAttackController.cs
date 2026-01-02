@@ -37,15 +37,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_WeaponCont.WeaponAnimator.SetFloat(LookXHash, m_PlayerCont.LookDir.x);
             m_WeaponCont.WeaponAnimator.SetFloat(LookYHash, m_PlayerCont.LookDir.y);
+            m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
             //The player is pressing the attack button and has a weapon
             if (context.started && (m_WeaponCont != null) && !alreadyAttacking)
             {
-                UpdateWeaponAnim();
                 m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
-                m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
                 alreadyAttacking = true;
             }
         }
