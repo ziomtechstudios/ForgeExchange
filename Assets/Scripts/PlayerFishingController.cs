@@ -23,12 +23,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool isFullyReeled;
         private Vector2 inputVector;
         private Transform holdingTransform;
+
         #endregion
         #region "Public Funcs"
 
         public void SpawnRod()
         {
-            fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, holdingTransform, false);
+            fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, HoldingTransform, false);
         }
         public void IsFullyReeled()
         {
@@ -119,7 +120,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
         public FishingRodController FishingRodCont{get{return fishingRodCont;}}
 
-        public Transform HoldingTransform => holdingTransform;
+        public Transform HoldingTransform { get { return holdingTransform;} }
 
         #endregion
         // Start is called before the first frame update

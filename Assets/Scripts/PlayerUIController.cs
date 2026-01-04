@@ -219,13 +219,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     case "bounds":
                         if (playerCont.IsFishing)
                         {
-                            bool isReelingFish = (playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont
+                             bool isReelingFish = (playerCont.PlayerInteractionCont.PlayerFishingCont.FishingRodCont
                                 .HasBite);
                             if (isReelingFish &&
                                 !mainZoneImage.gameObject.transform.parent.gameObject.activeInHierarchy)
                             {
                                 fishingUITransform = playerCont.PlayerInteractionCont.PlayerFishingCont.HoldingTransform.GetChild(0)
-                                    .Find("FishingUILOC");
+                                    .GetChild(0);
                                 mainZoneImage.transform.parent.gameObject.transform.position =
                                     playerCam.WorldToScreenPoint(fishingUITransform.position);
                                 mainZoneImage.gameObject.transform.parent.gameObject.SetActive(true);
