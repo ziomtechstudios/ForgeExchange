@@ -165,15 +165,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private void SwappingPlayerControlMap(){
             if(playerCont.HoldingItem){
-                switch(playerCont.HoldingPrefab.tag){
+                switch(playerCont.HoldingCont.PrefabItemStruct.craftingTag){
                     case "Weapon":
                         playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
                         playerCont.PlayerAtkCont.EquipWeapon();
                         break;
-                    case "Item":
+                    case "FishingRod":
                         playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
-                        break;
-                    default:
+                        playerCont.PlayerInteractionCont.PlayerFishingCont.SpawnRod();
                         playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
                         break;
                 }

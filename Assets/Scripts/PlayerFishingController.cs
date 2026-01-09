@@ -27,9 +27,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Public Funcs"
 
+        public void TriggerRodReeling()
+        {
+            fishingRodCont.RodReeling(true);
+        }
         public void SpawnRod()
         {
             fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, HoldingTransform, false);
+            fishingRodCont = fishingRod.GetComponent<FishingRodController>();
         }
         public void IsFullyReeled()
         {
@@ -55,7 +60,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if(!isFullyReeled)
             {
                 if(context.started){
-                    fishingRodCont.RodReeling(true);
+                    //fishingRodCont.RodReeling(true);
                     playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, true);
                 }
                 else if(context.canceled || playerInteractionCont.PlayerCont.M_Animator.GetBool(isFullyReeledHash)){
@@ -77,7 +82,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (fishingRod == null)
                 SpawnRod();
-            fishingRodCont = fishingRod.GetComponent<FishingRodController>();
             fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
             lineDurability = 1.0f;
             
@@ -118,7 +122,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
         public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
         public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
-        public FishingRodController FishingRodCont{get{return fishingRodCont;}}
+        public FishingRodController FishingRodCont{get{return fishingRodCont;} set { fishingRodCont = value; } }
 
         public Transform HoldingTransform { get { return holdingTransform;} }
 

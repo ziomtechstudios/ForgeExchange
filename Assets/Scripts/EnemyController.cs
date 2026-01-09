@@ -12,7 +12,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Private Serialized Fields"
         [SerializeField] private BoxCollider2D enemyCollider;
         [SerializeField] private PlayerUIStruct enemyUIStruct;
-        [SerializeField] private HealthController healthController;
         [SerializeField] private bool isAttacking;
         #endregion
         #region "Getter/Setters"
@@ -23,7 +22,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Private members"
         private int layerMask;
-  
+        private HealthController healthController;
         #endregion
         private void Start()
         {
@@ -31,15 +30,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
             M_Animator = GetComponent<Animator>();
             IsDamagedHash = Animator.StringToHash("isDamaged");
             healthController = GetComponent<HealthController>();
-            layerMask = 1 << LayerMask.NameToLayer("weapon");
+            layerMask = (1 << LayerMask.NameToLayer("weapon"));
             healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
             isAttacking = false;
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log($"Other colliders layer :{LayerMask.LayerToName(collision.gameObject.layer)}, is touching layer:{LayerMask.LayerToName(gameObject.layer)}.");
+            Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
             if (enemyCollider.IsTouchingLayers(layerMask))
             {
+                Debug.Log("The enemy is taking damage from a weapon!");
                 healthController.InstDmg = collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg();
                 healthController.HP -= healthController.InstDmg;
                 healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
@@ -48,5 +48,5 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 healthController.FlashDamage();
             }
         }
-    }
+    }   
 }
