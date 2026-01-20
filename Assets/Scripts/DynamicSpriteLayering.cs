@@ -25,43 +25,92 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #region "Private members"
         private GridLayout m_GridLayout;
         private bool isInside, isBehindWall;
-        private void SortTargetSprite(Collider2D col){
+        private void DynamicWallLayering(Collider2D col)
+        {
             //Are we colliding with a building wall?  
-            if(col.CompareTag("underwall")){
-                isInside = (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null && ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) == null);
-                isBehindWall = !isInside && (((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) || (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null) || (entryExitTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null)) && (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null));
+            if (col.CompareTag("underwall"))
+            {
+                isInside = (buildingTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) != null &&
+                            ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) == null);
+                isBehindWall = !isInside &&
+                               (((environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position)) != null) ||
+                                 (underwallTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) !=
+                                  null) ||
+                                 (entryExitTileMap.GetTile(m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) !=
+                                  null)) && (buildingTileMap.GetTile(
+                                   m_GridLayout.WorldToCell(m_SpriteSortPoint.position)) == null));
                 //Players feet is on a floor tile so we up against the wall from the inside
-                if(isInside){
+                if (isInside)
+                {
                     m_SpriteRend.sortingOrder = 2;
                     //We want gameobjects that are not the player to be layered in a similar fashion
                     //What we don't want is AI objects walking behind the walls and triggering the transparency effect.
-                    underwallTileMap.color = (gameObject.CompareTag("Player"))?Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal/255.0f)), Color.white, 1.00f):Color.white;
-                    entryExitTileMap.color = (gameObject.CompareTag("Player"))?Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal/255.0f)), Color.white, 1.00f):Color.white;
-                }                
+                    underwallTileMap.color = (gameObject.CompareTag("Player"))
+                        ? Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal / 255.0f)), Color.white, 1.00f)
+                        : Color.white;
+                    entryExitTileMap.color = (gameObject.CompareTag("Player"))
+                        ? Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal / 255.0f)), Color.white, 1.00f)
+                        : Color.white;
+                }
                 //The p[ayer is outside and behind a wall
-                else if(isBehindWall){
+                else if (isBehindWall)
+                {
                     m_SpriteRend.sortingOrder = 0;
-                    underwallTileMap.color = gameObject.CompareTag("Player")?Color.Lerp(Color.white, new Color(1.0f, 1.0f, 1.0f, transparancyVal), 1.00f):Color.white;
-                    entryExitTileMap.color = gameObject.CompareTag("Player")?Color.Lerp(Color.white, new Color(1.0f, 1.0f, 1.0f, transparancyVal), 1.00f):Color.white;
+                    underwallTileMap.color = gameObject.CompareTag("Player")
+                        ? Color.Lerp(Color.white, new Color(1.0f, 1.0f, 1.0f, transparancyVal), 1.00f)
+                        : Color.white;
+                    entryExitTileMap.color = gameObject.CompareTag("Player")
+                        ? Color.Lerp(Color.white, new Color(1.0f, 1.0f, 1.0f, transparancyVal), 1.00f)
+                        : Color.white;
                 }
                 //we are standing behind something hanging on the walls
-                else if(ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) != null)
+                else if (ornamentsTileMap.GetTile(m_GridLayout.WorldToCell(m_OrnamentSortPoint.position)) != null)
                     m_SpriteRend.sortingOrder = 1;
                 else
                     m_SpriteRend.sortingOrder = 2;
             }
         }
-
+        private void DynamicInteractableLayering(Collider2D col, int layer1, int layer2)
+        {
+            Vector2 dir = col.transform.position - transform.position;
+            m_SpriteRend.sortingOrder = (dir.y > 0 ? layer1 : layer2);
+        }
+        private void SortTargetSprite(Collider2D col){
+            switch (LayerMask.LayerToName(col.gameObject.layer))
+            {
+                case"bounds":
+                    DynamicWallLayering(col);
+                    break;
+                case "workstation":
+                    DynamicInteractableLayering(col, 2, 1);
+                    break;
+                case "chest":
+                    DynamicInteractableLayering(col, 3, 2);
+                    break;
+                    
+            }
+            
+        }
+        private void ResetWallTransparency()
+        {
+            if (underwallTileMap.color.a != 1.00f || entryExitTileMap.color.a != 1.00f)
+            {
+                underwallTileMap.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal / 255.0f)),
+                    Color.white, 1.00f);
+                entryExitTileMap.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal / 255.0f)),
+                    Color.white, 1.00f);
+            }
+        }
         #endregion
+        #region "Public Members/Methods"
         public bool IsObjInWater(){
             return waterTileMap.GetTile(m_GridLayout.WorldToCell(transform.position));
         }
-
         public bool IsObjOutside()
         {
             return environmentTileMap.GetTile(m_GridLayout.WorldToCell(transform.position));
         }
-
+        #endregion
         // Start is called before the first frame update
         void Start()
         {
@@ -76,7 +125,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             m_SpriteSortPoint = transform.Find("SpriteSortPos");
             m_OrnamentSortPoint = transform.Find("ornamentSortPoint");
         }
-
         // Called when attached gameObjects collider triggers another gameObject's collider
         void OnTriggerEnter2D(Collider2D col){         
             SortTargetSprite(col);
@@ -84,10 +132,10 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         void OnTriggerStay2D(Collider2D col){
             SortTargetSprite(col);
         }
-        void OnTriggerExit2D(Collider2D col){
-            SortTargetSprite(col);
-            underwallTileMap.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal/255.0f)), Color.white, 1.00f);
-            entryExitTileMap.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, (transparancyVal/255.0f)), Color.white, 1.00f);
+        void OnTriggerExit2D(Collider2D col)
+        {
+            m_SpriteRend.sortingOrder = 2;
+            ResetWallTransparency();
         }
     }
 }
