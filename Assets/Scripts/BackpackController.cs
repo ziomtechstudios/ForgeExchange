@@ -11,6 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region Private Functions + Members
         private RectTransform backPackRectTransform;
+
         #endregion
         #region Public Funcs
         public override void ReturnItem(PointerEventData eventData)
@@ -45,15 +46,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
-        {
+        {   
+            initSlotNum =DragAndDropSlot.GetSlotNum(eventData);
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
+                        initSlots = backPackSlots;
                         DragAndDropSlot.SelectItem(eventData, movingSlot, backPackSlots, InventoryCont.NoItemSprite, this);
                         break;
                     case ("QuickSlots"):
+                        initSlots = quickSlots;
                         DragAndDropSlot.SelectItem(eventData, movingSlot, quickSlots, InventoryCont.NoItemSprite, this);
                         break;
                     default:
@@ -75,23 +79,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public override void OnEndDrag(PointerEventData eventData)
         {
                //Finger released over UI element                         //finger currently over UI element that is part of Backpack UI                   Player was moving an item                          Making sure the slot we are slotting an item into does not have an item into it already.
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem)
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null)
             {
                 //THe position of the slot the player has dragged an item to.
-                int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+                int slotNum = DragAndDropSlot.GetSlotNum(eventData);
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.DropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, slotNum, quickSlots, initSlotNum);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, slotNum, backPackSlots, initSlotNum);
                         break;
                     default:
                         ReturnItem(eventData);
                         break;
                 }
-
             }
             else
                 ReturnItem(eventData);

@@ -87,16 +87,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //  Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are draggin from, does it have an item?
             if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
+                initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 //Based on the type of slot it is pass relevant parameters
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
+                        initSlots = backPackSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, NoItemSprite, this);
                             break;
                     case ("QuickSlots"):
+                        initSlots = quickSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, NoItemSprite, this);
                             break;
                     case ("CraftingSlots"):
+                            initSlots = craftingSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, craftingSlots, NoItemSprite, this);
                             AttemptCrafting();
                             break;
@@ -129,21 +133,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public override void  OnEndDrag(PointerEventData eventData)
         {
             
-            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination          //Making sure moving slot has an item                          //making sure destination slot has no item                                                                   //Checking to see that the destination slot holds no prefab 
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Craft Table") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
+            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Craft Table") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null )
             {
                 // Position of the targeted slot
                 int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, quickSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     case ("CraftingSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, craftingSlots, NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, craftingSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
                         AttemptCrafting();
                         break;
                     default:

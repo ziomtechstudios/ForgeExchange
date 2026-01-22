@@ -38,11 +38,32 @@ namespace Com.ZiomtechStudios.ForgeExchange
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.pointerCurrentRaycast.screenPosition, eventData.pressEventCamera, out Vector2 anchoredPosition);
             movingSlotRectTransform.anchoredPosition = anchoredPosition;
         }
-        public static void DropItem(SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, int slotIndex)
+        public static void SwapDropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex, SlotController[] initSlots, int initSlotIndex)
+        {
+            //Debug.Log($"Dest Slot With Item: {destSlots[destSlotIndex].SlotWithItem}, Moving Slot has Item:{movingSlotCont.SlotWithItem}.");
+            //If we are actually moving an item drop the item where we have stopped dragging
+            if (movingSlotCont.SlotWithItem)
+            {
+                if (destSlots[destSlotIndex].SlotWithItem)
+                {
+                    //SlotController tempSlotCont = destSlots[destSlotIndex];
+                    TransferItem(destSlots[destSlotIndex], initSlots[initSlotIndex], noItemSprite);
+                    TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+                }
+                else
+                    TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+            }
+        }
+        public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)
         {
             //If we are actually moving an item drop the item where we have stopped dragging
             if (movingSlotCont.SlotPrefab != null)
-                TransferItem(movingSlotCont, slots[slotIndex], noItemSprite);
+                    TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+        }
+
+        public static int GetSlotNum(PointerEventData eventData)
+        {
+            return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
         }
     }
 }

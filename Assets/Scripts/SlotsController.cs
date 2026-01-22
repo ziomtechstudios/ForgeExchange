@@ -19,8 +19,10 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #endregion
         public SlotController[] backPackSlots;
         public SlotController[] quickSlots;
+        public SlotController[] initSlots;
         public SlotController movingSlot;
         public Sprite NoItemSprite;
+        public int initSlotNum;
         public abstract void ReturnItem (PointerEventData eventData);
         public abstract void OnBeginDrag(PointerEventData eventData);
         public abstract void OnDrag(PointerEventData eventData);

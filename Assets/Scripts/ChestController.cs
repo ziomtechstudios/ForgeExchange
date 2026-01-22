@@ -60,16 +60,20 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                  //Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are draggin from, does it have an item?
             if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
+                initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 //Based on the type of slot it is pass relevant parameters
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
+                            initSlots = backPackSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, NoItemSprite, this);
                             break;
                     case ("QuickSlots"):
+                            initSlots = quickSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, NoItemSprite, this);
                             break;
                     case ("ChestSlots"):
+                            initSlots = chestSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, chestSlots, NoItemSprite, this);
                             break;
                     default:
@@ -85,20 +89,20 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public override void OnEndDrag(PointerEventData eventData)
         {
             //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination          //Making sure moving slot has an item                          //making sure destination slot has no item                                                                   //Checking to see that the destination slot holds no prefab 
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && !eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotWithItem && eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<SlotController>().SlotPrefab == null)
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null)
             {
                 //The position of the destination slot.
                 int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, quickSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     case ("ChestSlots"):
-                        DragAndDropSlot.DropItem(MovingSlot, chestSlots, NoItemSprite, slotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, chestSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     default:
                         ReturnItem(eventData);
