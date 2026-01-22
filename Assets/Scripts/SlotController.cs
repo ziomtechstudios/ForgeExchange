@@ -13,8 +13,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private GameObject slotPrefab;
         [SerializeField] private ItemController itemCont;
         //[SerializeField] private string slotType;
-        [SerializeField] private int curQuantity;
-        [SerializeField] private int maxQuantity;
+        [SerializeField] private int curStackQuantity;
+        
         #endregion
         #region Getters/Setters
         public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
@@ -23,8 +23,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
         public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
         public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
-        public int CurQuantity { get { return curQuantity;} set { curQuantity = value; } }
-        public int MaxQuantity { get { return maxQuantity;} set { maxQuantity = value; } }
+        public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
         #endregion
         #region Public Funcs
         public void Awake()
