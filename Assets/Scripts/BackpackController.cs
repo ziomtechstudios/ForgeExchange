@@ -86,10 +86,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
-                        DragAndDropSlot.SwapDropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, slotNum, quickSlots, initSlotNum);
+                        DragAndDropSlot.SwapDropItem(movingSlot, backPackSlots, InventoryCont.NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     case ("QuickSlots"):
-                        DragAndDropSlot.SwapDropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, slotNum, backPackSlots, initSlotNum);
+                        DragAndDropSlot.SwapDropItem(movingSlot, quickSlots, InventoryCont.NoItemSprite, slotNum, initSlots, initSlotNum);
                         break;
                     default:
                         ReturnItem(eventData);
