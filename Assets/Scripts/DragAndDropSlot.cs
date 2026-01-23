@@ -63,6 +63,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public static int GetSlotNum(PointerEventData eventData)
         {
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name);
             return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
         }
     }

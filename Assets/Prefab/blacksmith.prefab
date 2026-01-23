@@ -422,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1160338722
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2380,7 +2380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2417434154705275475
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4687,6 +4687,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2080820973}
     m_Modifications:
+    - target: {fileID: 694261606274635325, guid: 2401648c4b8954374a5b23fce767fbce, type: 3}
+      propertyPath: m_Name
+      value: Item0
+      objectReference: {fileID: 0}
     - target: {fileID: 694261606581494814, guid: 2401648c4b8954374a5b23fce767fbce, type: 3}
       propertyPath: m_Name
       value: Slot0
