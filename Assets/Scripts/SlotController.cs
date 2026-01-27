@@ -1,5 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
@@ -14,6 +16,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private ItemController itemCont;
         //[SerializeField] private string slotType;
         [SerializeField] private int curStackQuantity;
+        [SerializeField] private TextMeshProUGUI counterTMPro; 
         
         #endregion
         #region Getters/Setters
@@ -24,12 +27,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
         public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
         public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
+        public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } }
         #endregion
         #region Public Funcs
         public void Awake()
         {
             slotImage = GetComponent<Image>();
             itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
+            counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
         }
         #endregion
     }
