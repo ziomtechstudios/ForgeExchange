@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
@@ -90,6 +91,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 906800896134731824, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
     - {fileID: 1861954916640914412, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1369578523255272088}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
 --- !u!1 &6576258240568586645 stripped
 GameObject:
@@ -111,3 +118,4 @@ MonoBehaviour:
   refinement: 1
   prefabItemStruct: {fileID: 11400000, guid: 4121964f562f54884af80ed3eda5847a, type: 2}
   itemIcon: {fileID: 1749830321, guid: acef24146fdefa2a78b4c030450569ec, type: 3}
+  maxStackQuantity: 32

@@ -47,7 +47,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
-            initSlotNum =DragAndDropSlot.GetSlotNum(eventData);
+            initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
@@ -107,13 +107,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
             m_PlayerUIController = InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
-            movingSlot = MovingSlot.gameObject.GetComponent<SlotController>();
+            movingSlot = gameObject.transform.Find("Slot13").GetComponent<SlotController>();
             MovingSlotRectTrans = MovingSlot.gameObject.GetComponent<RectTransform>();
             backPackRectTransform = GetComponent<RectTransform>();
         }
         void OnEnable()
         {
-            //Disable in-game quickslots, I didnt like having both references to quickslots enabled
+            //Disable in-game quickslots, I didn't like having both references to quickslots enabled
             SyncQuickSlots("InGameToMenu");
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
         }

@@ -35,6 +35,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             slotImage = GetComponent<Image>();
             itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
             counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
+            counterTMPro.gameObject.SetActive(true);
         }
         #endregion
     }

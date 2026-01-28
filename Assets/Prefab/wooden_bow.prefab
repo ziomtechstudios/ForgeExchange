@@ -200,6 +200,7 @@ MonoBehaviour:
   refinement: 1
   prefabItemStruct: {fileID: 11400000, guid: 2a7ed3a1a87984e4f9f06dbd08ef32b0, type: 2}
   itemIcon: {fileID: 813603082, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+  maxStackQuantity: 1
   weaponStruct: {fileID: 11400000, guid: 0c25cab5c407e9e23a62cd42e87cea2a, type: 2}
   m_Animator: {fileID: 6401758095058177416}
   m_SpriteRenderer: {fileID: 5905778450364587890}
@@ -217,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c902b0b2783e74ab2b4e1fcb27afc804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowPrefab: {fileID: 0}
+  arrowCont: {fileID: 0}
 --- !u!212 &5905778450364587890 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}

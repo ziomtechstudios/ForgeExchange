@@ -107,6 +107,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         slotConts[i].SlotPrefab = playerCont.HoldingPrefab;
                         slotConts[i].ItemCont = playerCont.HoldingCont;
                         slotConts[i].ItemImage.sprite = playerCont.HoldingPrefab.GetComponent<ItemController>().ItemIcon;
+                        slotConts[i].CurStackQuantity++;
                         //Empty players hands only if the player isn't selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {
@@ -122,20 +123,34 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SlotItem(GameObject itemObj)
         {
+            ItemController itemCont = itemObj.GetComponent<ItemController>();
             AreAllSlotsFull();
             //If the player is holding an object and all their slots are not occupied
             if (!slotsAreFull)
             {
-                //iterating through slots we find the first empty slot
+                //iterating through slots we find the first eligible slot
                 for (int i = 0; i < inventoryAmnt; i++)
                 {
-                    if (!slotConts[i].SlotWithItem)
+                    if(!slotConts[i].SlotWithItem)
                     {
                         //Fill slot with item
                         slotConts[i].SlotWithItem = true;
                         slotConts[i].SlotPrefab = itemObj;
-                        slotConts[i].ItemCont = itemObj.GetComponent<ItemController>();
+                        slotConts[i].ItemCont = itemCont;
                         slotConts[i].ItemImage.sprite = slotConts[i].ItemCont.ItemIcon;
+                        slotConts[i].CurStackQuantity++;
+                        //Empty players hands only if the player isn't selecting the slot the item was just slotted into
+                        if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
+                        {
+                            playerCont.HoldingItem = false;
+                            playerCont.HoldingPrefab = null;
+                            playerCont.HoldingCont = null;
+                        }
+                        break;
+                    }
+                    else if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont))
+                    {
+                        slotConts[i].CurStackQuantity++;
                         //Empty players hands only if the player isn't selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {

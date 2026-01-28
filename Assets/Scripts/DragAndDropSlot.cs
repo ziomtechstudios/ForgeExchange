@@ -14,13 +14,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 destSlot.SlotWithItem = true;
                 destSlot.SlotPrefab = initSlot.SlotPrefab;
                 //Emptying Selected Slot if there is no stack
+                initSlot.CurStackQuantity = initSlot.CurStackQuantity--;
+                initSlot.CounterTMPro.text = initSlot.CurStackQuantity.ToString();
                 initSlot.ItemImage.sprite = (initSlot.CurStackQuantity < 1)? noItemSprite : initSlot.ItemImage.sprite;
                 initSlot.SlotWithItem = (initSlot.CurStackQuantity >= 1);
                 initSlot.ItemCont = (initSlot.CurStackQuantity < 1) ?  null : initSlot.ItemCont;
                 initSlot.SlotPrefab = (initSlot.CurStackQuantity < 1) ? null : initSlot.SlotPrefab;
-                initSlot.CurStackQuantity = initSlot.CurStackQuantity--;
-                initSlot.CounterTMPro.text = initSlot.CurStackQuantity.ToString();
-                initSlot.CounterTMPro.gameObject.SetActive(initSlot.CurStackQuantity >= 1);
+                initSlot.CounterTMPro.text = (initSlot.CurStackQuantity > 1) ?  initSlot.CurStackQuantity.ToString() : "";
         }
         //For situations like Item stacking where we just need to empty the moving slot
         private static void EmptyMovingSlot(SlotController movingSlot, Sprite noItemSprite)
@@ -54,16 +54,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //We are moving an item and the dest slot has an item
             if (movingSlotCont.SlotWithItem && destSlots[destSlotIndex].SlotWithItem)
             {
-                string destItemTag = destSlots[destSlotIndex].ItemCont.PrefabItemStruct.itemSubTag +
-                                     destSlots[destSlotIndex].ItemCont.PrefabItemStruct.itemTag;
-                string movingItemTag = movingSlotCont.ItemCont.PrefabItemStruct.itemSubTag + movingSlotCont.ItemCont.PrefabItemStruct.itemTag;
                 // We are moving an item to a slot that is occupied with the same type of item.
-                if (destItemTag == movingItemTag)
+                if (CheckMatchingItem(movingSlotCont.ItemCont, destSlots[destSlotIndex].ItemCont))
                 {
                     //Iterate counter of stack and make sure GUI Text is updated, and remove the item from the stack
                     destSlots[destSlotIndex].CurStackQuantity += ((destSlots[destSlotIndex].CurStackQuantity + 1) <= destSlots[destSlotIndex].ItemCont.MaxStackQuantity) ? 1 : 0;
-                    destSlots[destSlotIndex].CounterTMPro.text = destSlots[destSlotIndex].CurStackQuantity.ToString();
+                    
                     EmptyMovingSlot(movingSlotCont,noItemSprite);
+                    
                 }
                 else 
                 {
@@ -72,8 +70,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 }
             }
             //We are moving an item and there is no item at the destination slot
-            else if(movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
+            else if (movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
+            {
                 TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+                destSlots[destSlotIndex].CurStackQuantity++;
+                
+            }
+            destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
         }
         public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)
         {
@@ -84,8 +87,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public static int GetSlotNum(PointerEventData eventData)
         {
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name);
             return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+        }
+
+        public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
+        {
+            return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
         }
     }
 }
