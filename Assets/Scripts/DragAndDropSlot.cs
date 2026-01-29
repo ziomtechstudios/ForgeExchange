@@ -15,6 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 destSlot.SlotPrefab = initSlot.SlotPrefab;
                 //Emptying Selected Slot if there is no stack
                 initSlot.CurStackQuantity = initSlot.CurStackQuantity--;
+                Debug.Log(initSlot.CurStackQuantity);
                 initSlot.CounterTMPro.text = initSlot.CurStackQuantity.ToString();
                 initSlot.ItemImage.sprite = (initSlot.CurStackQuantity < 1)? noItemSprite : initSlot.ItemImage.sprite;
                 initSlot.SlotWithItem = (initSlot.CurStackQuantity >= 1);

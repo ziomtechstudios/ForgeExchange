@@ -1,4 +1,5 @@
 using Com.ZiomtechStudios.ForgeExchange;
+using UnityEngine;
 
 public static class SynchronizeSlots
 {
@@ -11,7 +12,8 @@ public static class SynchronizeSlots
             currentSlots[i].ItemCont = referecedSlots[i].ItemCont;
             currentSlots[i].SlotPrefab = referecedSlots[i].SlotPrefab;
             currentSlots[i].CurStackQuantity = referecedSlots[i].CurStackQuantity;
-            currentSlots[i].CounterTMPro.text = referecedSlots[i].CounterTMPro.text;
+            //Debug.Log(currentSlots[i].CounterTMPro.text);
+            currentSlots[i].CounterTMPro.SetText(referecedSlots[i].CounterTMPro.text);
         }
     }
 }
