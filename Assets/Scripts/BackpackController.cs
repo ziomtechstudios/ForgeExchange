@@ -47,9 +47,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
-            initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
+                initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
@@ -70,12 +70,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
         }
-        /// <summary>
-        /// Moving slot is at destination
-        /// Check to see if destination has a slot and if that slot is not being used
-        /// If there is an empty slot remove item from moving slot and insert into destination slot
-        /// if no empty slot send the item back into its original slot
-        /// </summary>
         public override void OnEndDrag(PointerEventData eventData)
         {
                //Finger released over UI element                         //finger currently over UI element that is part of Backpack UI                   Player was moving an item                          Making sure the slot we are slotting an item into does not have an item into it already.
