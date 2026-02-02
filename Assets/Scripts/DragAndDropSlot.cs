@@ -22,7 +22,23 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 initSlot.SlotPrefab = (initSlot.CurStackQuantity < 1) ? null : initSlot.SlotPrefab;
                 initSlot.CounterTMPro.text = (initSlot.CurStackQuantity > 1) ?  initSlot.CurStackQuantity.ToString() : "";
         }
-
+        private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
+        {
+            //Moving item from initial slot to destination slot
+            destSlot.ItemCont = initSlot.ItemCont;
+            destSlot.ItemImage.sprite = initSlot.ItemCont.ItemIcon;
+            destSlot.SlotWithItem = true;
+            destSlot.SlotPrefab = initSlot.SlotPrefab;
+            destSlot.CurStackQuantity =  initSlot.CurStackQuantity;
+            destSlot.CounterTMPro.text = destSlot.CurStackQuantity.ToString();
+            //emptying initial slot
+            initSlot.CurStackQuantity = 0;
+            initSlot.CounterTMPro.text = "";
+            initSlot.ItemCont = null;
+            initSlot.ItemImage.sprite  =  noItemSprite;
+            initSlot.SlotWithItem = false;
+            initSlot.SlotPrefab = null;
+        }
         private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
         {
             //Stack at destination slot is moved to initial slot
@@ -50,6 +66,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             movingSlot.ItemCont = null;
             movingSlot.SlotPrefab = null;
             movingSlot.CurStackQuantity = 0;
+            movingSlot.gameObject.SetActive(false);
         }
         public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, SlotsController container)
         {
@@ -59,11 +76,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Store reference to original slot in case invalid item drop is later made.
                 container.OgSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
                 container.OgSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
-                //Transfering Item from Initial slot and transferring to moving slot.
-                TransferItem(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
+                if (selectedSlotCont.CurStackQuantity == 1)
+                    //Transferring Item from Initial slot and transferring to moving slot.
+                    TransferItem(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
+                else if(selectedSlotCont.CurStackQuantity > 1)
+                    //Transferring whole stack from initial to moving slot
+                    TransferStack(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
                 //Making moving slot visible.
                 movingSlotCont.gameObject.SetActive(true);
             }
+            
         }
         public static void MoveItem(PointerEventData eventData, RectTransform canvasRectTransform, RectTransform movingSlotRectTransform)
         {
@@ -89,9 +111,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //We are moving an item and there is no item at the destination slot
             else if (movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
             {
-                TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
-                destSlots[destSlotIndex].CurStackQuantity++;
-                
+                if (movingSlotCont.CurStackQuantity == 1)
+                {
+                    TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+                    destSlots[destSlotIndex].CurStackQuantity++;
+                } 
+                else if (movingSlotCont.CurStackQuantity > 1)
+                {
+                    TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+                }
             }
             destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
         }
@@ -101,12 +129,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (movingSlotCont.SlotPrefab != null)
                     TransferItem(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
         }
-
         public static int GetSlotNum(PointerEventData eventData)
         {
             return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
         }
-
         public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
         {
             return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
