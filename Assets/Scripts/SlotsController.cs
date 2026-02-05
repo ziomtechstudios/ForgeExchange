@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 namespace Com.ZiomtechStudios.ForgeExchange{    
     
     public abstract class SlotsController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -27,7 +28,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public abstract void OnBeginDrag(PointerEventData eventData);
         public abstract void OnDrag(PointerEventData eventData);
         public abstract void OnEndDrag(PointerEventData eventData);
-
-
+        
     }
 }

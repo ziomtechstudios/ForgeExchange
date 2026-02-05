@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class BackpackController : SlotsController
@@ -44,6 +46,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Update status of if all quick slots are full
             InventoryCont.AreAllSlotsFull();
         }
+        
+
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
@@ -77,6 +81,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //THe position of the slot the player has dragged an item to.
                 int slotNum = DragAndDropSlot.GetSlotNum(eventData);
+                Debug.Log($"We are trying to drop the item or stack to slot {slotNum} in {eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name} slots.");
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
