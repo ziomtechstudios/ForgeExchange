@@ -81,7 +81,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //THe position of the slot the player has dragged an item to.
                 int slotNum = DragAndDropSlot.GetSlotNum(eventData);
-                Debug.Log($"We are trying to drop the item or stack to slot {slotNum} in {eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name} slots.");
+                //Debug.Log($"We are trying to drop the item or stack to slot {slotNum} in {eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name} slots.");
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("Backpack"):
