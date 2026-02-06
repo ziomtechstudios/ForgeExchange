@@ -92,11 +92,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
                     case ("BackpackSlots"):
-                        initSlots = backPackSlots;
+                            initSlots = backPackSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, NoItemSprite, this);
                             break;
                     case ("QuickSlots"):
-                        initSlots = quickSlots;
+                            initSlots = quickSlots;
                             DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, NoItemSprite, this);
                             break;
                     case ("CraftingSlots"):

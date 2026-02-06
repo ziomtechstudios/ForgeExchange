@@ -102,6 +102,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         // Start is called before the first frame update
+        void Start()
+        {
+            for (int i =0; i < backPackSlots.Length; i++)
+                backPackSlots[i] = transform.Find($"Slot{i}").GetComponent<SlotController>();
+            gameObject.SetActive(false);
+        } 
         void Awake()
         {
             InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
@@ -112,7 +118,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         void OnEnable()
         {
-            //Disable in-game quickslots, I didn't like having both references to quickslots enabled
             SyncQuickSlots("InGameToMenu");
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
         }
