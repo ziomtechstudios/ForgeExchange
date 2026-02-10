@@ -26,7 +26,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Reevaluating current ingredients the user has deposited into the crafting table
             foreach (SlotController ingredient in craftingSlots)
                 currentRecipe += ingredient.SlotWithItem ? ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag : "_";
-            //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictoinary
+            //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
             if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
             { 
                 craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
@@ -67,8 +67,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 case ("CraftingMenu"):
                     DragAndDropSlot.DropItem(MovingSlot, craftedSlot, NoItemSprite, OgSlotIndex);
                     break;
-                default:
-                    break;
             }
         }
 
@@ -84,7 +82,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {
-            //  Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are draggin from, does it have an item?
+            //  Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are dragging from, does it have an item?
             if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
@@ -120,9 +118,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
                         craftTableCont.StockpileCont.Withdraw(1);
                         break;
-                    default:
-                        break;
-                    
                 }
             }
         }
@@ -133,7 +128,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public override void  OnEndDrag(PointerEventData eventData)
         {
             
-            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination
+            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appropriate destination
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Craft Table") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null )
             {
                 // Position of the targeted slot
