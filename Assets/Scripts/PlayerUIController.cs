@@ -124,7 +124,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             backPackObj = transform.Find("Main Camera/Canvas/Inventory/ImageInventory").gameObject;
             playerHPImage = transform.Find("Main Camera/Canvas/Combat Attributes/HPBack/Healthbar").gameObject.GetComponent<Image>();
             playerStaminaImage = transform.Find("Main Camera/Canvas/Combat Attributes/SPBack/StaminaBar").gameObject.GetComponent<Image>();
-            backPackObj.SetActive(false);
             backpackController = backPackObj.transform.Find("Backpack").gameObject.GetComponent<BackpackController>();
             mainZoneImage = transform.Find(mainZoneImagePath).gameObject.GetComponent<Image>();
             mainZoneRectTransform = mainZoneImage.gameObject.GetComponent<RectTransform>();

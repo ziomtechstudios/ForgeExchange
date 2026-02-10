@@ -40,6 +40,24 @@ namespace Com.ZiomtechStudios.ForgeExchange
             initSlot.SlotWithItem = false;
             initSlot.SlotPrefab = null;
         }
+        private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
+        {
+            //Moving item from initial slot to destination slot
+            destSlot.ItemCont = initSlot.ItemCont;
+            destSlot.ItemImage.sprite = initSlot.ItemCont.ItemIcon;
+            destSlot.SlotWithItem = true;
+            destSlot.SlotPrefab = initSlot.SlotPrefab;
+            destSlot.CurStackQuantity =  initSlot.CurStackQuantity;
+            destSlot.CounterTMPro.text = destSlot.CurStackQuantity.ToString();
+            //emptying initial slot
+            initSlot.CurStackQuantity = 0;
+            initSlot.CounterTMPro.text = "";
+            initSlot.ItemCont = null;
+            initSlot.ItemImage.sprite  =  noItemSprite;
+            initSlot.SlotWithItem = false;
+            initSlot.SlotPrefab = null;
+            return 0;
+        }
         private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
         {
             //Stack at destination slot is moved to initial slot
@@ -104,7 +122,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 // We are moving an item to a slot that is occupied with the same type of item.
                 if (CheckMatchingItem(movingSlotCont.ItemCont, destSlots[destSlotIndex].ItemCont))
-                    destSlots[destSlotIndex].CurStackQuantity += ((destSlots[destSlotIndex].CurStackQuantity + 1) <= destSlots[destSlotIndex].ItemCont.MaxStackQuantity) ? 1 : 0;
+                {
+                    //If stacking an item or stack onto an existing stack let us make sure we are exceeding the maximum ammount of items.
+                    //If we do lets return to moving item/stack back to it's original position.
+                    bool isOverFilled = ((destSlots[destSlotIndex].CurStackQuantity + movingSlotCont.CurStackQuantity) > destSlots[destSlotIndex].ItemCont.MaxStackQuantity);
+                    Debug.Log($"isOverFilled: {isOverFilled}.");
+                    destSlots[destSlotIndex].CurStackQuantity += (isOverFilled ? ReturnStack(movingSlotCont, initSlots[initSlotIndex], noItemSprite) : movingSlotCont.CurStackQuantity);
+                }
                 else
                     SwapStacks(initSlots[initSlotIndex], destSlots[destSlotIndex], movingSlotCont, noItemSprite);
             }

@@ -106,7 +106,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             for (int i =0; i < backPackSlots.Length; i++)
                 backPackSlots[i] = transform.Find($"Slot{i}").GetComponent<SlotController>();
-            gameObject.SetActive(false);
         } 
         void Awake()
         {
