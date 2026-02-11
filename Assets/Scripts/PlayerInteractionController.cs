@@ -116,9 +116,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing)
                         playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
                     break;
-                
-                default:
-                    break;
             }
         }
         #endregion
@@ -192,8 +189,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject.GetComponent<ChestController>().SyncChestSlots(playerCont);
                         break;
-                    default: 
-                        break;
                 }
                 return;
             }
@@ -205,9 +200,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         playerCont.HoldingCont.PrefabItemStruct.craftingTag)
                 {
                     case"WoodenLog":
-                        //TODO Placeholder for log spawning code onto the mapw
-                        break;
-                    default:
+                        //TODO Placeholder for log spawning code onto the map
                         break;
                 }
             }

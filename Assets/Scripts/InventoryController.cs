@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,16 +75,25 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
                 {
-                     //desired slot found
-                    //Empty players hands
-                    //Empty slot
-                    playerCont.HoldingPrefab = null;
-                    playerCont.HoldingCont = null;
-                    playerCont.HoldingItem = false;
-                    slotConts[i].ItemImage.sprite = noItemSprite;
-                    slotConts[i].SlotWithItem = false;
-                    slotConts[i].ItemCont = null;
-                    slotConts[i].SlotPrefab = null;
+                    if (slotConts[i].CurStackQuantity == 1)
+                    {
+                        //The player is dropping a single item from a slot and they only have a stack of 1 at that quickslot.
+                        //We empty the slot and de-equip the slot.
+                        playerCont.HoldingPrefab = null;
+                        playerCont.HoldingCont = null;
+                        playerCont.HoldingItem = false;
+                        slotConts[i].ItemImage.sprite = noItemSprite;
+                        slotConts[i].SlotWithItem = false;
+                        slotConts[i].ItemCont = null;
+                        slotConts[i].SlotPrefab = null;
+                    }
+                    //We are dropping one item from a stack on item in a slot.
+                    //Decrement the counter of the stack by one and update the stack counter.
+                    else if (slotConts[i].CurStackQuantity > 1)
+                    {
+                        slotConts[i].CurStackQuantity--;
+                        DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
+                    }
                     SelectSlot(-1);
                     break;
                 }

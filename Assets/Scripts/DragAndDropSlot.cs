@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -50,14 +51,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
             initSlot.SlotWithItem = true;
             initSlot.SlotPrefab = destSlot.SlotPrefab;
             initSlot.CurStackQuantity = destSlot.CurStackQuantity;
-            initSlot.CounterTMPro.text = (initSlot.CurStackQuantity > 1) ?  initSlot.CurStackQuantity.ToString() : "";
+            //initSlot.CounterTMPro.text = (initSlot.CurStackQuantity > 1) ?  initSlot.CurStackQuantity.ToString() : "";
+            UpdateSlotCounterText(initSlot);
             //Stack in moving slot moved into destination slot
             destSlot.ItemCont = movingSlot.ItemCont;
             destSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
             destSlot.SlotWithItem = true;
             destSlot.SlotPrefab = movingSlot.SlotPrefab;
             destSlot.CurStackQuantity =  movingSlot.CurStackQuantity;
-            destSlot.CounterTMPro.text = (destSlot.CurStackQuantity > 1) ?  destSlot.CurStackQuantity.ToString() : "";
+            //destSlot.CounterTMPro.text = (destSlot.CurStackQuantity > 1) ?  destSlot.CurStackQuantity.ToString() : "";
+            UpdateSlotCounterText(destSlot);
             //Emptying moving slot
             EmptyMovingSlot(movingSlot, noItemSprite);
         }
@@ -132,6 +135,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
         {
             return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
+        }
+
+        public static void UpdateSlotCounterText(SlotController slotCont)
+        {
+            slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";
         }
     }
 }
