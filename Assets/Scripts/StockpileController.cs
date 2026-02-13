@@ -41,9 +41,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 CurQuantity += amount;
                 return true;
-            }
-            else
-                return false;
+            } 
+            return false;
         }
         //if player can withdraw from stock item then update quantity and return outcome
         public void Withdraw(int amount)

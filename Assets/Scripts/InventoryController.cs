@@ -75,9 +75,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
                 {
-                    if (slotConts[i].CurStackQuantity == 1)
+                    //We are dropping one item from a stack on item in a slot.
+                    //Decrement the counter of the stack by one and update the stack counter.
+                    slotConts[i].CurStackQuantity--;
+                    DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
+                    SelectSlot(-1);
+                    if (slotConts[i].CurStackQuantity == 0)
                     {
-                        //The player is dropping a single item from a slot and they only have a stack of 1 at that quickslot.
+                        //The player is dropping a single item from a slot, and they only have a stack of 1 at that quick-slot.
                         //We empty the slot and de-equip the slot.
                         playerCont.HoldingPrefab = null;
                         playerCont.HoldingCont = null;
@@ -87,14 +92,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         slotConts[i].ItemCont = null;
                         slotConts[i].SlotPrefab = null;
                     }
-                    //We are dropping one item from a stack on item in a slot.
-                    //Decrement the counter of the stack by one and update the stack counter.
-                    else if (slotConts[i].CurStackQuantity > 1)
-                    {
-                        slotConts[i].CurStackQuantity--;
-                        DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
-                    }
-                    SelectSlot(-1);
                     break;
                 }
             }
@@ -188,6 +185,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             AreAllSlotsFull();
         }
         private void SwappingPlayerControlMap(){
+            //Based on what type of item we are holding will change the players control scheme.
             if(playerCont.HoldingItem){
                 switch(playerCont.HoldingCont.PrefabItemStruct.craftingTag){
                     case "Weapon":
