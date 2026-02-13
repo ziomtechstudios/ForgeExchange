@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 namespace Com.ZiomtechStudios.ForgeExchange{    
     
     public abstract class SlotsController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -7,6 +8,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #region "Private Fields"
         private RectTransform movingSlotRectTrans;
         private InventoryController inventoryCont;
+        private IDictionary<string, SlotController[]> slotTypeDict;
         #endregion
         #region 'Getters / Setters
         public SlotController MovingSlot{get{return movingSlot;}set{movingSlot = value;}}
@@ -14,12 +16,14 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public int QuickSlotsSlotNum{get;set;}
         public RectTransform MovingSlotRectTrans{get{return movingSlotRectTrans;}set{movingSlotRectTrans=value;}}
         public InventoryController InventoryCont{get{return inventoryCont;}set{ inventoryCont = value;}}
+        public IDictionary<string, SlotController[]> SlotTypeDict{get{return slotTypeDict;}set{slotTypeDict=value;}}
         public string OgSlotType{get;set;}
         public int OgSlotIndex{get;set;}
         #endregion
         public SlotController[] backPackSlots;
         public SlotController[] quickSlots;
         public SlotController[] initSlots;
+        public SlotController[] destSlots;
         public SlotController movingSlot;
         public Sprite NoItemSprite;
         public int initSlotNum;

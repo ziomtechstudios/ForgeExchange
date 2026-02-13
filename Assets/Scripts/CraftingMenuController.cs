@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -63,7 +64,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 case ("CraftingSlots"):
                     DragAndDropSlot.DropItem(MovingSlot, craftingSlots, NoItemSprite, OgSlotIndex);
                     break;
-                //CraftedItemSlot
                 case ("CraftingMenu"):
                     DragAndDropSlot.DropItem(MovingSlot, craftedSlot, NoItemSprite, OgSlotIndex);
                     break;
@@ -82,24 +82,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {
-            //  Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are dragging from, does it have an item?
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
+            /// <summary>
+            /// Making sure the press point is not on blank space.
+            /// Are we sure that what we are dragging from is a slot?
+            /// THe slot that we are dragging from, does it have an item?
+            /// Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
+            /// </summary>
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+                DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
                 //Based on the type of slot it is pass relevant parameters
                 switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                 {
-                    case ("BackpackSlots"):
-                            initSlots = backPackSlots;
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, NoItemSprite, this);
-                            break;
-                    case ("QuickSlots"):
-                            initSlots = quickSlots;
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, NoItemSprite, this);
-                            break;
                     case ("CraftingSlots"):
-                            initSlots = craftingSlots;
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, craftingSlots, NoItemSprite, this);
                             AttemptCrafting();
                             break;
                     case ("CraftingMenu"):
@@ -115,7 +111,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 ingredient.ItemCont = null;
                             }
                         }
-                        DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
+                        //DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
                         craftTableCont.StockpileCont.Withdraw(1);
                         break;
                 }
@@ -128,27 +124,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public override void  OnEndDrag(PointerEventData eventData)
         {
             
-            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appropriate destination
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Craft Table") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null )
+            ///<summary>
+            /// The players finger has stopped dragging onto a slot. &&
+            /// Making sure the destination slot is an appropriate destination. &&
+            /// The player has an item in the moving slot. &&
+            /// Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
+            /// </summary>
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Craft Table") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots)  )
             {
                 // Position of the targeted slot
                 int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
-                switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
-                {
-                    case ("BackpackSlots"):
-                        DragAndDropSlot.SwapDropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
-                        break;
-                    case ("QuickSlots"):
-                        DragAndDropSlot.SwapDropItem(MovingSlot, quickSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
-                        break;
-                    case ("CraftingSlots"):
-                        DragAndDropSlot.SwapDropItem(MovingSlot, craftingSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
+                if(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name != "CraftingMenu")
+                    DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
+                else
+                    ReturnItem(eventData);
+                if(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name == "CraftingSlots")
                         AttemptCrafting();
-                        break;
-                    default:
-                        ReturnItem(eventData);
-                        break;
-                }
             }
             else 
                 ReturnItem(eventData);
@@ -156,6 +147,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         void Awake()
         {
+            SlotTypeDict = new Dictionary<string, SlotController[]>();
             craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             craftingSlots = new SlotController[craftedSlotNum];
@@ -164,6 +156,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftedSlot = new SlotController[1];
             craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
+            SlotTypeDict.Add("BackpackSlots", backPackSlots);
+            SlotTypeDict.Add("QuickSlots", quickSlots);
+            SlotTypeDict.Add("CraftingSlots", craftingSlots);
+            SlotTypeDict.Add("CraftingMenu", craftedSlot);
         }
     }
 }

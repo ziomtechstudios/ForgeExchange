@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,11 +12,19 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #endregion
         private RectTransform chestRectTransform;
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             chestSlots = new SlotController[chestSlotNum];
             for(int i = 0; i < chestSlots.Length; i++)
                 chestSlots[i] = transform.Find($"ChestSlots/Slot{i}").gameObject.GetComponent<SlotController>();
+            SlotTypeDict = new Dictionary<string, SlotController[]>();
+            SlotTypeDict.Add("ChestSlots", chestSlots);
+            SlotTypeDict.Add("QuickSlots", quickSlots);
+            SlotTypeDict.Add("BackpackSlots", backPackSlots);
+        }
+        void Awake()
+        {
+
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             chestRectTransform = GetComponent<RectTransform>();
@@ -40,46 +49,20 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void ReturnItem(PointerEventData eventData)
         {
-            switch (OgSlotType)
-            {
-                case ("BackpackSlots"):
-                    DragAndDropSlot.DropItem(MovingSlot, backPackSlots, NoItemSprite, OgSlotIndex);
-                    break;
-                case ("QuickSlots"):
-                    DragAndDropSlot.DropItem(MovingSlot, quickSlots, NoItemSprite, OgSlotIndex);
-                    break;
-                case ("ChestSlots"):
-                    DragAndDropSlot.DropItem(MovingSlot, chestSlots, NoItemSprite, OgSlotIndex);
-                    break;
-                default:
-                    break;
-            }
+            DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {   
-                 //Making sure the press point is not on blank space.  Are we sure that what we are dragging from is a slot?  + THe slot that we are draggin from, does it have an item?
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem)
+            ///<summary>
+            /// Making sure the press point is not on blank space. &&
+            /// Are we sure that what we are dragging from is a slot? &&
+            /// The slot that we are draggin from, does it have an item? &&
+            /// The type of slot we are dragging and item from is in our Dictionary if SlotTypes
+            /// </summary>
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-                //Based on the type of slot it is pass relevant parameters
-                switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
-                {
-                    case ("BackpackSlots"):
-                            initSlots = backPackSlots;
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, backPackSlots, NoItemSprite, this);
-                            break;
-                    case ("QuickSlots"):
-                            initSlots = quickSlots;
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, quickSlots, NoItemSprite, this);
-                            break;
-                    case ("ChestSlots"):
-                            initSlots = chestSlots;
-                            DragAndDropSlot.SelectItem(eventData, MovingSlot, chestSlots, NoItemSprite, this);
-                            break;
-                    default:
-                        break;
-                    
-                }
+                DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
             }
         }
         public override void OnDrag(PointerEventData eventData)
@@ -88,26 +71,17 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void OnEndDrag(PointerEventData eventData)
         {
-            //  The players finger has stopped dragging onto a slot   Making sure the destination slot is an appripriate destination          //Making sure moving slot has an item                          //making sure destination slot has no item                                                                   //Checking to see that the destination slot holds no prefab 
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null)
+            ///<summary>
+            /// Making sure the player is dragging an item. &&
+            /// Making sure we are dropping the item onto an appropriate UI element. &&
+            /// Checking to see that the destination slot holds no prefab. &&
+            /// Chekcing that the slot we have stopped at in part of a subset of slots in our dictionary of approved slots.
+            /// </summary>
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
                 //The position of the destination slot.
-                int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
-                switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
-                {
-                    case ("BackpackSlots"):
-                        DragAndDropSlot.SwapDropItem(MovingSlot, backPackSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
-                        break;
-                    case ("QuickSlots"):
-                        DragAndDropSlot.SwapDropItem(MovingSlot, quickSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
-                        break;
-                    case ("ChestSlots"):
-                        DragAndDropSlot.SwapDropItem(MovingSlot, chestSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
-                        break;
-                    default:
-                        ReturnItem(eventData);
-                        break;
-                }
+                int slotNum = DragAndDropSlot.GetSlotNum(eventData);
+                DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
             }
             else 
                 ReturnItem(eventData);

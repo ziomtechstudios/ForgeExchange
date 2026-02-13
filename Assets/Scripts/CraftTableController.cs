@@ -14,7 +14,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Tooltip("The array of possible items that can be crafted.")][SerializeField] private GameObject[] craftableItems;
         [SerializeField] private CraftingMenuController craftingMenuController;
         [SerializeField] private StockpileController stockpileController;
-        [Tooltip("For every craftable item there is coressponding recipe(s).")][SerializeField] private IDictionary<string, GameObject> craftedItemsDict;
+        [Tooltip("For every craftable item there is corresponding recipe(s).")][SerializeField] private IDictionary<string, GameObject> craftedItemsDict;
         #endregion
         #region Private Fields/Members
         private int inUseHash;
