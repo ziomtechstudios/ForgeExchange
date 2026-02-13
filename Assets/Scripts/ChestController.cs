@@ -77,6 +77,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             /// Checking to see that the destination slot holds no prefab. &&
             /// Chekcing that the slot we have stopped at in part of a subset of slots in our dictionary of approved slots.
             /// </summary>
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Chest") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
                 //The position of the destination slot.
