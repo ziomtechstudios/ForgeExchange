@@ -79,7 +79,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //Decrement the counter of the stack by one and update the stack counter.
                     slotConts[i].CurStackQuantity--;
                     DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
-                    SelectSlot(-1);
                     if (slotConts[i].CurStackQuantity == 0)
                     {
                         //The player is dropping a single item from a slot, and they only have a stack of 1 at that quick-slot.
@@ -91,6 +90,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         slotConts[i].SlotWithItem = false;
                         slotConts[i].ItemCont = null;
                         slotConts[i].SlotPrefab = null;
+                        SelectSlot(-1);
                     }
                     break;
                 }

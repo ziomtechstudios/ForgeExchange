@@ -56,9 +56,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void Work(ItemController itemCont)
         {
-            if(InUse){
+            if(InUse)
                 stockpileController.Deposit(1, itemCont.gameObject, itemCont);
-            }
         }
         #endregion
         #region "Event Functions"

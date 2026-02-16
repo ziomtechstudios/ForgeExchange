@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,7 +23,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             initSlot.ItemImage.sprite  =  noItemSprite;
             initSlot.SlotWithItem = false;
             initSlot.SlotPrefab = null;
-        }
+        } 
         private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
             //Moving item from initial slot to destination slot
@@ -109,7 +108,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //If stacking an item or stack onto an existing stack let us make sure we are exceeding the maximum amount of items.
                     //If we do lets return to moving item/stack back to its original position.
                     bool isOverFilled = ((destSlots[destSlotIndex].CurStackQuantity + movingSlotCont.CurStackQuantity) > destSlots[destSlotIndex].ItemCont.MaxStackQuantity);
-                    Debug.Log($"isOverFilled: {isOverFilled}.");
                     destSlots[destSlotIndex].CurStackQuantity += (isOverFilled ? ReturnStack(movingSlotCont, initSlots[initSlotIndex], noItemSprite) : movingSlotCont.CurStackQuantity);
                     destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
                 }

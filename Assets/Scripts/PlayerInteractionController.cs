@@ -42,8 +42,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool DropObj()
         {
             //Make sure we have reference to component in players LOS.
-            if (stockpileCont == null)
-                stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+            stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
             //If the stockpile cant take in the item we set the playerHolding to true.
             if (stockpileCont.Deposit(1, playerCont.HoldingPrefab, playerCont.HoldingCont))
@@ -56,8 +55,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool PickUpObj()
         {
             //Make sure we have reference to component in players LOS.
-            if (stockpileCont == null)
-                stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+            stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             //Make sure that the stockpile is not empty.
             if (!stockpileCont.IsEmpty)
             {

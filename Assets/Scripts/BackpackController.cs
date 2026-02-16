@@ -65,7 +65,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                /// Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
                /// Slot we are dropping off to is in our dictionary of slots.
                /// </summary>
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Backpack") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
                 //THe position of the slot the player has dragged an item to.
                 int slotNum = DragAndDropSlot.GetSlotNum(eventData);
@@ -73,8 +73,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 ReturnItem(eventData);
-            //Debug.Log($"The item dropped has an initial index of {OgSlotIndex} and was in the {OgSlotType} group of slots.");
-            
         }
         #endregion
         // Start is called before the first frame update
