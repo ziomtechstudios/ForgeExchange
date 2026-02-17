@@ -2356,7 +2356,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.2785513
+      m_AnimationSpeed: 2.6096225
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2367,7 +2367,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.1210608
+      m_AnimationSpeed: 2.3911839
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2378,7 +2378,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.127481
+      m_AnimationSpeed: 2.8477569
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2882,7 +2882,7 @@ PrefabInstance:
       objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
     - target: {fileID: 1101136801, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_TagString
-      value: UI
+      value: Slot
       objectReference: {fileID: 0}
     - target: {fileID: 1101136802, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -26833,7 +26833,7 @@ GameObject:
   - component: {fileID: 1758122563}
   - component: {fileID: 1758122562}
   m_Layer: 5
-  m_Name: CurQuantityText (1)
+  m_Name: CurQuantityText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

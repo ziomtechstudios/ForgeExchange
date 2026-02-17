@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,16 +24,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Private Funcs/Members
         private RectTransform craftMenuRectTrans;
         private void AttemptCrafting(){
-            //This var is nullified here so that when debugging the current Recipe can still be seen via editor.
-            currentRecipe = null;
             //Reevaluating current ingredients the user has deposited into the crafting table
             foreach (SlotController ingredient in craftingSlots)
                 currentRecipe += ingredient.SlotWithItem ? ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag : "_";
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
-            if (currentRecipe != null && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
+            if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
             { 
                 craftedSlot[0].ItemCont = potentialItem.GetComponent<ItemController>();
-                craftedSlot[0].ItemImage.sprite = (potentialItem != null) ? craftedSlot[0].ItemCont.ItemIcon : NoItemSprite;
+                craftedSlot[0].ItemImage.sprite = (potentialItem) ? craftedSlot[0].ItemCont.ItemIcon : NoItemSprite;
                 craftedSlot[0].SlotPrefab = potentialItem;
                 craftedSlot[0].SlotWithItem = true;
                 craftedSlot[0].CurStackQuantity = 1;
@@ -47,6 +46,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 craftedSlot[0].CurStackQuantity = 0;
                 craftTableCont.StockpileCont.Withdraw(1);
             }
+            currentRecipe = "";
         }
         #endregion
         #region Getters/Setters
@@ -79,7 +79,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             /// </summary>
             if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
             {
-                Debug.Log(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name);
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
                 //Based on the type of slot it is pass relevant parameters
@@ -104,6 +103,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 ingredient.SlotWithItem = stillStack;
                                 ingredient.ItemCont = stillStack ? ingredient.ItemCont : null;
                             }
+                            currentRecipe = "";
                         }
                         //DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
                         craftTableCont.StockpileCont.Withdraw(1);
@@ -145,6 +145,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else 
                 ReturnItem(eventData);
         }
+
+        void Update()
+        {
+            if(currentRecipe == "") 
+                AttemptCrafting();
+        }
+        
         #endregion
 
         void Start()
@@ -162,6 +169,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SlotTypeDict.Add("QuickSlots", quickSlots);
             SlotTypeDict.Add("CraftingSlots", craftingSlots);
             SlotTypeDict.Add("CraftingMenu", craftedSlot);
+            currentRecipe = null;
+        }
+
+        void OnEnable()
+        {
+            currentRecipe = null;
         }
     }
 }
