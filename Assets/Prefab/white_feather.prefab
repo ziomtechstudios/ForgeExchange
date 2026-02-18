@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1581093371190196634
+--- !u!1001 &2128677692432796401
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,23 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Size.x
-      value: 0.16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Size.y
-      value: 0.16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e94016c0351252ff08ff5ff5c281b90d, type: 3}
+      objectReference: {fileID: -1171452149, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
     - target: {fileID: -8001514427631032042, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_Name
-      value: copper_arrow
+      value: white_feather
       objectReference: {fileID: 0}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75,44 +75,26 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4361437681896307962}
-    - targetCorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8371976926888276075}
+      addedObject: {fileID: 7629188551970656368}
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
---- !u!1 &1963762614350443258 stripped
+--- !u!1 &1385726253164233105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
-  m_PrefabInstance: {fileID: 1581093371190196634}
+  m_PrefabInstance: {fileID: 2128677692432796401}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-4361437681896307962
+--- !u!114 &7629188551970656368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963762614350443258}
+  m_GameObject: {fileID: 1385726253164233105}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81d732067b798dbe5b4d425a52a76476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   refinement: 1
-  prefabItemStruct: {fileID: 11400000, guid: b9ff7ff4c4890cc4a95edc5034350d86, type: 2}
-  itemIcon: {fileID: 21300000, guid: e94016c0351252ff08ff5ff5c281b90d, type: 3}
-  maxStackQuantity: 32
---- !u!111 &8371976926888276075
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963762614350443258}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 432f50305191ab959b26dbc2b01e3555, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  prefabItemStruct: {fileID: 11400000, guid: 980ad64acdddd8c438daab86d04b42a8, type: 2}
+  itemIcon: {fileID: -1171452149, guid: 8b1c4f40ef1ffdeeab73fd5682f1ae67, type: 3}
+  maxStackQuantity: 64
