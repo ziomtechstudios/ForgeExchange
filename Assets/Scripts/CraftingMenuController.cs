@@ -17,7 +17,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string currentRecipe;
         [Header("Current User component(s).")]
         [SerializeField] private PlayerController currentUserController;
-        [SerializeField] private (GameObject, ItemController) potentialItem;
+        [SerializeField] private (GameObject, ItemController) potentialItemTuple;
         [SerializeField] private int smallestIngredientStack;
         #endregion
         #region "Private Funcs/Members
@@ -28,21 +28,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Reevaluating current ingredients the user has deposited into the crafting table.
             foreach (SlotController ingredient in craftingSlots)
             {
+                //When slot is not empty check and see if it is an ingredient stack with the smallest sized\
                 if(ingredient.CurStackQuantity > 0)
                     smallestIngredientStack = (ingredient.CurStackQuantity < smallestIngredientStack) ? ingredient.CurStackQuantity : smallestIngredientStack;
                 currentRecipe += ingredient.SlotWithItem ? ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag : "_";
             }
 
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
-            if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItem))
+            if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemTuple))
             { 
                 //The player has used a valid recipe so we make sure the crafted item slot is populated with the correct item.
-                craftedSlot[0].ItemCont = potentialItem.Item2;
+                craftedSlot[0].ItemCont = potentialItemTuple.Item2;
                 //If the smallest stack of an ingredient is bigger than the maximum stack size of the final product.
                 //We need to truncate the size of stack of items to be crafted so it does not exceed the max of its item type.
                 smallestIngredientStack = (smallestIngredientStack < craftedSlot[0].ItemCont.MaxStackQuantity)? smallestIngredientStack : craftedSlot[0].ItemCont.MaxStackQuantity;
-                craftedSlot[0].ItemImage.sprite = (potentialItem.Item1) ? craftedSlot[0].ItemCont.ItemIcon : NoItemSprite;
-                craftedSlot[0].SlotPrefab = potentialItem.Item1;
+                craftedSlot[0].ItemImage.sprite = (potentialItemTuple.Item1) ? craftedSlot[0].ItemCont.ItemIcon : NoItemSprite;
+                craftedSlot[0].SlotPrefab = potentialItemTuple.Item1;
                 craftedSlot[0].SlotWithItem = true;
                 craftedSlot[0].CurStackQuantity = smallestIngredientStack;
                 craftTableCont.Work(craftedSlot[0].ItemCont);
@@ -53,7 +54,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 craftedSlot[0].SlotPrefab = null;
                 craftedSlot[0].SlotWithItem = false;
                 craftedSlot[0].ItemCont = null;
-                potentialItem = (null, null);
+                potentialItemTuple = (null, null);
                 craftedSlot[0].CurStackQuantity = 0;
                 craftTableCont.StockpileCont.Withdraw(1);
             }
@@ -144,12 +145,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //THe player has placed an item onto a slot for the ingredients of a craftable item.
                     //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
                     case "CraftingSlots":
-                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
                         AttemptCrafting();
                         break;
                     //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
                     default:
-                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
                         break;
                 }
             }

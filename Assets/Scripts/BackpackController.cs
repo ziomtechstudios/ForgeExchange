@@ -37,7 +37,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Update status of if all quick slots are full
             InventoryCont.AreAllSlotsFull();
         }
-        
+
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            TimerPointerHeldDown = Time.time;
+            IsHolding = true;
+        }
 
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
@@ -69,7 +74,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //THe position of the slot the player has dragged an item to.
                 int slotNum = DragAndDropSlot.GetSlotNum(eventData);
-                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, slotNum, initSlots, initSlotNum);
+                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
             }
             else
                 ReturnItem(eventData);

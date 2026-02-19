@@ -93,7 +93,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.pointerCurrentRaycast.screenPosition, eventData.pressEventCamera, out Vector2 anchoredPosition);
             movingSlotRectTransform.anchoredPosition = anchoredPosition;
         }
-        public static void SwapDropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex, SlotController[] initSlots, int initSlotIndex)
+        public static void SwapDropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex, SlotController[] initSlots, int initSlotIndex, PointerEventData eventData)
         {
             //We are moving an item and the dest slot has an item
             if (movingSlotCont.SlotWithItem && destSlots[destSlotIndex].SlotWithItem)
@@ -113,7 +113,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //We are moving an item and there is no item at the destination slot
             else if (movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
                 TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
-            //destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
             EmptyMovingSlot(movingSlotCont, noItemSprite);
         }
         public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)

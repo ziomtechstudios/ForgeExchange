@@ -82,7 +82,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             {
                 //The position of the destination slot.
                 int slotNum = DragAndDropSlot.GetSlotNum(eventData);
-                DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum);
+                DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
             }
             else 
                 ReturnItem(eventData);
