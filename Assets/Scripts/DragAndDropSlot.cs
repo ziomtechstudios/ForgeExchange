@@ -30,14 +30,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
             destSlot.SlotWithItem = true;
             destSlot.SlotPrefab = initSlot.SlotPrefab;
             destSlot.CurStackQuantity =  initSlot.CurStackQuantity;
-            destSlot.CounterTMPro.text = destSlot.CurStackQuantity.ToString();
+            UpdateSlotCounterText(destSlot);
             //emptying initial slot
             initSlot.CurStackQuantity = 0;
-            initSlot.CounterTMPro.text = "";
             initSlot.ItemCont = null;
             initSlot.ItemImage.sprite  =  noItemSprite;
             initSlot.SlotWithItem = false;
             initSlot.SlotPrefab = null;
+            UpdateSlotCounterText(initSlot);
             return 0;
         }
         private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
@@ -48,7 +48,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             initSlot.SlotWithItem = true;
             initSlot.SlotPrefab = destSlot.SlotPrefab;
             initSlot.CurStackQuantity = destSlot.CurStackQuantity;
-            //initSlot.CounterTMPro.text = (initSlot.CurStackQuantity > 1) ?  initSlot.CurStackQuantity.ToString() : "";
             UpdateSlotCounterText(initSlot);
             //Stack in moving slot moved into destination slot
             destSlot.ItemCont = movingSlot.ItemCont;
@@ -56,7 +55,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             destSlot.SlotWithItem = true;
             destSlot.SlotPrefab = movingSlot.SlotPrefab;
             destSlot.CurStackQuantity =  movingSlot.CurStackQuantity;
-            //destSlot.CounterTMPro.text = (destSlot.CurStackQuantity > 1) ?  destSlot.CurStackQuantity.ToString() : "";
             UpdateSlotCounterText(destSlot);
             //Emptying moving slot
             EmptyMovingSlot(movingSlot, noItemSprite);
@@ -126,7 +124,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public static int GetSlotNum(PointerEventData eventData)
         {
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name);
             return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
         }
         public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
