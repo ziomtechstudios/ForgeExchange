@@ -51,6 +51,14 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         {
             DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
         }
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            
+        }
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            
+        }
         public override void OnBeginDrag(PointerEventData eventData)
         {   
             ///<summary>

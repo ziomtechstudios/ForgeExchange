@@ -44,6 +44,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             IsHolding = true;
         }
 
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            
+        }
+
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
@@ -57,7 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, InventoryCont.NoItemSprite, this);
             }
         }
-        //Move moving slot to coressponding current touch position
+        //Move moving slot to corresponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);

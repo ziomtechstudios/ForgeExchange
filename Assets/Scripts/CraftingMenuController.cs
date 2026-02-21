@@ -48,7 +48,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 craftedSlot[0].CurStackQuantity = smallestIngredientStack;
                 craftTableCont.Work(craftedSlot[0].ItemCont);
             }
-            else{
+            else
+            {
                 //The recipe was not a valid one so we make sure the slot for a crafted item remains blank.
                 craftedSlot[0].ItemImage.sprite = NoItemSprite;
                 craftedSlot[0].SlotPrefab = null;
@@ -80,6 +81,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
             currentUserController = playerCont;
+        }
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            
+        }
+
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {

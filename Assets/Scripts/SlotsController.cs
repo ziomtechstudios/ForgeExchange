@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 namespace Com.ZiomtechStudios.ForgeExchange{    
@@ -11,6 +12,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         private IDictionary<string, SlotController[]> slotTypeDict;
         private float timerPointerHeldDown;
         private bool isHolding;
+        private Slider subStackItemSlider;
         #endregion
         #region 'Getters / Setters
         public SlotController MovingSlot{get{return movingSlot;}set{movingSlot = value;}}
@@ -23,6 +25,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public int OgSlotIndex{get;set;}
         public float TimerPointerHeldDown{get{return timerPointerHeldDown;}set{timerPointerHeldDown=value;}}
         public bool IsHolding{get{return isHolding;}set{isHolding=value;}}
+        public Slider SubStackItemSlider{get{return subStackItemSlider;}set{subStackItemSlider=value;}}
         #endregion
         public SlotController[] backPackSlots;
         public SlotController[] quickSlots;

@@ -53,6 +53,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private Image circleImage;
         private Text circleText;
         private Text barText;
+        private Slider subStackItemSlider;
         private TextMeshProUGUI counterText;
         private Vector3[] goodZoneCorners = new Vector3[4];
         private float timeToOscillate;
@@ -135,6 +136,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             goodZoneRectTransform.GetWorldCorners(goodZoneCorners);
             timeToOscillate = Random.Range(minTTO, maxTTO);
             goodZoneSlider = goodZoneRectTransform.parent.parent.gameObject.GetComponent<Slider>();
+
         }
         // Update is called once per frame
         void Update()
