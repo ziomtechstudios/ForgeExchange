@@ -20,8 +20,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public int QuickSlotsSlotNum{get;set;}
         public RectTransform MovingSlotRectTrans{get{return movingSlotRectTrans;}set{movingSlotRectTrans=value;}}
         public InventoryController InventoryCont{get{return inventoryCont;}set{ inventoryCont = value;}}
-        public IDictionary<string, SlotController[]> SlotTypeDict{get{return slotTypeDict;}set{slotTypeDict=value;}}
-        public string OgSlotType{get;set;}
+        public IDictionary<string, SlotController[]> SlotTypeDict{get{return slotTypeDict;}set{slotTypeDict=value;}} public string OgSlotType{get;set;}
         public int OgSlotIndex{get;set;}
         public float TimerPointerHeldDown{get{return timerPointerHeldDown;}set{timerPointerHeldDown=value;}}
         public bool IsHolding{get{return isHolding;}set{isHolding=value;}}
@@ -34,12 +33,16 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public SlotController movingSlot;
         public Sprite NoItemSprite;
         public int initSlotNum;
+        public int destSlotNum;
+        public string SubStackItemTransformPath;
+        public SubsetStackSliderController subStackSliderCont;
         public abstract void ReturnItem (PointerEventData eventData);
         public abstract void OnBeginDrag(PointerEventData eventData);
         public abstract void OnDrag(PointerEventData eventData);
         public abstract void OnEndDrag(PointerEventData eventData);
         public abstract void OnPointerDown(PointerEventData eventData);
         public abstract void OnPointerUp(PointerEventData eventData);
+        public abstract void ActivateSubStackSlider(PointerEventData eventData);
 
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 // ReSharper disable InvalidXmlDocComment
 
 namespace Com.ZiomtechStudios.ForgeExchange
@@ -40,13 +42,24 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public override void OnPointerDown(PointerEventData eventData)
         {
-            TimerPointerHeldDown = Time.time;
-            IsHolding = true;
+            TimerPointerHeldDown += (eventData.IsPointerMoving()?0.0f:Time.time);
         }
 
         public override void OnPointerUp(PointerEventData eventData)
         {
+            TimerPointerHeldDown = Time.time -  TimerPointerHeldDown;
             
+        }
+
+        public override void ActivateSubStackSlider(PointerEventData eventData)
+        {
+            if (TimerPointerHeldDown >= 1.0f)
+            {
+                subStackSliderCont.InitSlot = initSlots[OgSlotIndex];
+                subStackSliderCont.DestSlot = destSlots[destSlotNum];
+                subStackSliderCont.CurEventData = eventData;
+                SubStackItemSlider.gameObject.SetActive(true);
+            }
         }
 
         //Store info of original item is contained in and move the item to the moving slot
@@ -78,8 +91,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
                 //THe position of the slot the player has dragged an item to.
-                int slotNum = DragAndDropSlot.GetSlotNum(eventData);
-                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
+                destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
             }
             else
                 ReturnItem(eventData);
@@ -93,6 +106,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 backPackSlots[i] = transform.Find($"Slot{i}").GetComponent<SlotController>();
             SlotTypeDict.Add("Backpack", backPackSlots);
             SlotTypeDict.Add("QuickSlots", quickSlots);
+            SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
+            subStackSliderCont = SubStackItemSlider.gameObject.GetComponent<SubsetStackSliderController>();
         } 
         void Awake()
         {
