@@ -82,6 +82,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
             currentUserController = playerCont;
         }
+
+        public override void ActivateSubStackSlider(PointerEventData eventData)
+        {
+            
+        }
         public override void OnPointerDown(PointerEventData eventData)
         {
             

@@ -24,7 +24,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         void Awake()
         {
-
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             chestRectTransform = GetComponent<RectTransform>();
@@ -56,6 +55,10 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             
         }
         public override void OnPointerUp(PointerEventData eventData)
+        {
+            
+        }
+        public override void ActivateSubStackSlider(PointerEventData eventData)
         {
             
         }

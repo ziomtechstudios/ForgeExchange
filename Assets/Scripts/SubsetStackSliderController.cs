@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
  namespace Com.ZiomtechStudios.ForgeExchange
  {
-     public class SubsetStackSliderController : MonoBehaviour
+     public class SubsetStackSliderController : Slider
      {
          [SerializeField] private SlotController initSlot;
          [SerializeField] private SlotController destSlot;
@@ -25,10 +25,11 @@ using UnityEngine.EventSystems;
              smallestAmountText = transform.Find("SmallestAmntText").gameObject.GetComponent<TextMeshProUGUI>();
              largestAmountText = transform.Find("LargestAmntText").gameObject.GetComponent<TextMeshProUGUI>();
          }
-         void OnEnable()
+         /*void OnEnable()
          {
-             smallestAmountText.text = $"{initSlot.CurStackQuantity - (initSlot.CurStackQuantity - 1)}";
-             largestAmountText.text = $"{initSlot.CurStackQuantity-1}";
+             //smallestAmountText.text = $"{initSlot.CurStackQuantity - (initSlot.CurStackQuantity - 1)}";
+             //largestAmountText.text = $"{initSlot.CurStackQuantity-1}";
          }
+         */
      }
  }
