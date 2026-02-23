@@ -1,22 +1,16 @@
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-// ReSharper disable InvalidXmlDocComment
-
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class BackpackController : SlotsController
     {
         #region Private Serialized Fields
-
         [SerializeField] private PlayerUIController m_PlayerUIController;
         #endregion
         #region Private Functions + Members
         private RectTransform backPackRectTransform;
-
         #endregion
         #region Public Funcs
         public override void ReturnItem(PointerEventData eventData)
@@ -39,7 +33,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Update status of if all quick slots are full
             InventoryCont.AreAllSlotsFull();
         }
-
         public override void OnPointerDown(PointerEventData eventData)
         {
             TimerPointerHeldDown += (eventData.IsPointerMoving()?0.0f:Time.time);
@@ -47,10 +40,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public override void OnPointerUp(PointerEventData eventData)
         {
-            TimerPointerHeldDown = Time.time -  TimerPointerHeldDown;
-            
+            TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
         }
-
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
             if (TimerPointerHeldDown >= 1.0f)
@@ -61,14 +52,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 SubStackItemSlider.gameObject.SetActive(true);
             }
         }
-
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
-            /// <summary>
-            /// If the player is pressing on a slot with an item &&
-            /// the type of slot we are dragging an item from is in our dictionary of slots.
-            /// </summary>
+            // If the player is pressing on a slot with an item &&
+            // the type of slot we are dragging an item from is in our dictionary of slots.
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
@@ -82,15 +70,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnEndDrag(PointerEventData eventData)
         {
-               ///<summary>
-               /// Finger released over UI element. &&
-               /// Finger currently over an interactive UI element that is part of Backpack UI. &&
-               /// Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
-               /// Slot we are dropping off to is in our dictionary of slots.
-               /// </summary>
+            // Finger released over UI element. &&
+            // Finger currently over an interactive UI element that is part of Backpack UI. &&
+            // Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
+            // Slot we are dropping off to is in our dictionary of slots.
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
-                //THe position of the slot the player has dragged an item to.
+                //The position of the slot the player has dragged an item to.
                 destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
             }
