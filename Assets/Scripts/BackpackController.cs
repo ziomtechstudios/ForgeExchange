@@ -13,6 +13,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private RectTransform backPackRectTransform;
         #endregion
         #region Public Funcs
+        public override void CloseMenu()
+        {
+            transform.parent.gameObject.SetActive(false);
+        }
         public override void ReturnItem(PointerEventData eventData)
         {
             DragAndDropSlot.DropItem(movingSlot, initSlots, NoItemSprite, OgSlotIndex);
@@ -37,21 +41,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             TimerPointerHeldDown += (eventData.IsPointerMoving()?0.0f:Time.time);
         }
-
-        public override void OnPointerUp(PointerEventData eventData)
-        {
-            TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
-        }
-        public override void ActivateSubStackSlider(PointerEventData eventData)
-        {
-            if (TimerPointerHeldDown >= 1.0f)
-            {
-                subStackSliderCont.InitSlot = initSlots[OgSlotIndex];
-                subStackSliderCont.DestSlot = destSlots[destSlotNum];
-                subStackSliderCont.CurEventData = eventData;
-                SubStackItemSlider.gameObject.SetActive(true);
-            }
-        }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
@@ -74,7 +63,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             // Finger currently over an interactive UI element that is part of Backpack UI. &&
             // Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
             // Slot we are dropping off to is in our dictionary of slots.
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots)  && TimerPointerHeldDown < 1.0f)
             {
                 //The position of the slot the player has dragged an item to.
                 destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
@@ -82,6 +71,25 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 ReturnItem(eventData);
+        }
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
+            Debug.Log(TimerPointerHeldDown);
+            destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+            ActivateSubStackSlider(eventData);
+            
+        }
+        public override void ActivateSubStackSlider(PointerEventData eventData)
+        {
+            if (TimerPointerHeldDown >= 1.0f  && (initSlots[initSlotNum] != destSlots[destSlotNum]))
+            {
+                subStackSliderCont.InitSlot = initSlots[initSlotNum];
+                subStackSliderCont.DestSlot = destSlots[destSlotNum];
+                subStackSliderCont.CurEventData = eventData;
+                SubStackItemSlider.gameObject.SetActive(true);
+                TimerPointerHeldDown = 0.0f;
+            }
         }
         #endregion
         // Start is called before the first frame update
@@ -99,10 +107,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
             m_PlayerUIController = InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
-            movingSlot = gameObject.transform.Find("Slot13").GetComponent<SlotController>();
+            movingSlot = transform.Find("Slot13").GetComponent<SlotController>();
             MovingSlotRectTrans = MovingSlot.gameObject.GetComponent<RectTransform>();
             backPackRectTransform = GetComponent<RectTransform>();
-            
         }
         void OnEnable()
         {

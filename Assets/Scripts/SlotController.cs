@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,9 +15,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private bool slotWithItem;
         [SerializeField] private GameObject slotPrefab;
         [SerializeField] private ItemController itemCont;
-        //[SerializeField] private string slotType;
         [SerializeField] private int curStackQuantity;
-        [SerializeField] private TextMeshProUGUI counterTMPro; 
+        [SerializeField] private TextMeshProUGUI counterTMPro;
+        [SerializeField] [CanBeNull] private RectTransform subStackSliderRectTransform;
         
         #endregion
         #region Getters/Setters
@@ -28,6 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
         public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
         public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
+        public RectTransform SubStackSliderRectTransform { get { return subStackSliderRectTransform; } set { subStackSliderRectTransform = value; } }
         #endregion
         #region Public Funcs
         public void Awake()
@@ -35,7 +37,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             slotImage = GetComponent<Image>();
             itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
             counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
-            //counterTMPro.gameObject.SetActive(true);
+            transform.Find("SubStackSliderRectTransform").TryGetComponent<RectTransform>(out subStackSliderRectTransform);
         }
         #endregion
     }

@@ -5,6 +5,25 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
+        public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite, int subStackQuantity)
+        {
+            //Creating substack base on item from moving slot to destination slot
+            destSlot.ItemCont = movingSlot.ItemCont;
+            destSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
+            destSlot.SlotWithItem = true;
+            destSlot.SlotPrefab = movingSlot.SlotPrefab;
+            destSlot.CurStackQuantity =  subStackQuantity;
+            UpdateSlotCounterText(destSlot);
+            //Creating stack with remainder of quantity back at the initial slot
+            initSlot.ItemCont = movingSlot.ItemCont;
+            initSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
+            initSlot.SlotWithItem = true;
+            initSlot.SlotPrefab = movingSlot.SlotPrefab;
+            initSlot.CurStackQuantity =  movingSlot.CurStackQuantity - subStackQuantity;
+            UpdateSlotCounterText(initSlot);
+            EmptyMovingSlot(movingSlot, noItemSprite);
+        }
+        
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
             //Moving item from initial slot to destination slot

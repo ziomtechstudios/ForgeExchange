@@ -42,6 +42,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public abstract void OnPointerDown(PointerEventData eventData);
         public abstract void OnPointerUp(PointerEventData eventData);
         public abstract void ActivateSubStackSlider(PointerEventData eventData);
+        public abstract void CloseMenu();
 
     }
 }

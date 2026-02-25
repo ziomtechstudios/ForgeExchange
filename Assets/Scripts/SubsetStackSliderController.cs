@@ -12,8 +12,7 @@ using UnityEngine.EventSystems;
          [SerializeField] private string smallestAmountTransform;
          [SerializeField] private string largestAmountTransform;
          [SerializeField] private string confirmButtonTransform;
-         [SerializeField] private Slider subStackSlider;
-         [SerializeField] private Button confirmButton;
+         [SerializeField] private RectTransform substackSliderRectTransform;
          #endregion
          #region "Private Members"
          private PointerEventData curEventData;
@@ -21,20 +20,32 @@ using UnityEngine.EventSystems;
          private TextMeshProUGUI largestAmountText;
          #endregion
          #region "Getters/Setters"
-         public PointerEventData CurEventData { get { return curEventData; } set {curEventData = value;} }
-         public SlotController DestSlot { get { return destSlot;} set { destSlot = value; } }
-         public SlotController InitSlot { get { return initSlot;} set { initSlot = value; } }
+
+         public PointerEventData CurEventData
+         {
+             get { return curEventData; } set { curEventData = value; }
+         }
+
+         public SlotController DestSlot
+         {
+             get { return destSlot; } set { destSlot = value; }
+         }
+
+         public SlotController InitSlot
+         {
+             get { return initSlot; } set { initSlot = value; }
+         }
+
          #endregion
-         public void ConfirmSubStackQuantity()
+         void Start()
          {
              
          }
-         void Start()
+     void Awake()
          {
-             subStackSlider = GetComponent<Slider>();
-             confirmButton = transform.Find(confirmButtonTransform).GetComponent<Button>();
              smallestAmountText = transform.Find(smallestAmountTransform).gameObject.GetComponent<TextMeshProUGUI>();
              largestAmountText = transform.Find(largestAmountTransform).gameObject.GetComponent<TextMeshProUGUI>();
+             substackSliderRectTransform = transform.Find("SubStackSliderRectTransform").GetComponent<RectTransform>();
          }
          void OnEnable()
          {

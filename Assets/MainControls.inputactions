@@ -87,15 +87,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CraftMenuExit",
-                    "type": "Button",
-                    "id": "dd7d33e5-3650-44a1-9f58-93c800b6ce4c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "54061b6a-0fe9-4689-bb6c-aea95b152169",
@@ -112,51 +103,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Up",
-                    "type": "Value",
-                    "id": "ab95dd30-838e-4f69-9333-35085375f765",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Down",
-                    "type": "Button",
-                    "id": "9319c0b4-801f-46ad-9abd-16d562aea9f3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Left",
-                    "type": "Button",
-                    "id": "01bbd4b9-af8b-4fa6-a575-182215a8b354",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Right",
-                    "type": "Button",
-                    "id": "e972f13b-6108-409c-817e-452036a2d7f9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "TapAndHoldStack",
-                    "type": "Button",
-                    "id": "ed643084-87e7-4e51-8ac8-9a9debf9cd41",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -261,17 +207,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7ab7fcc1-2d47-4f3a-bf78-2f4aba49929f",
-                    "path": "<Touchscreen>/touch8/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CraftMenuExit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a29c1d4b-6572-4700-ba6f-d88c9907b381",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -289,61 +224,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04559462-196e-4dd6-ae76-fef6e98915bf",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Up",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b4924710-5121-40b1-917f-1d7f087202fb",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Down",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e38525b5-792d-40e2-9821-e7f1e73088d0",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "30c55c3b-1e53-46e7-a004-26142391793d",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f00bb2b3-de3d-49f4-a73e-296737243472",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TapAndHoldStack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

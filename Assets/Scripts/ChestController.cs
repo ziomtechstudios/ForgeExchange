@@ -46,6 +46,11 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             }
             
         }
+
+        public override void CloseMenu()
+        {
+            gameObject.SetActive(false);
+        }
         public override void ReturnItem(PointerEventData eventData)
         {
             DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);

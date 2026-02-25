@@ -72,7 +72,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
         }
 
-        public void CloseMenu()
+        public override void CloseMenu()
         {
             craftTableCont.ToggleUse(currentUserController);
         }
