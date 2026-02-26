@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class SynchronizeSlots
 {
-    public static void SyncSlots(SlotController[] currentSlots, SlotController[] referecedSlots)
+    public static void SyncSlots(QuickSlotController[] currentSlots, QuickSlotController[] referecedSlots)
     {
         for (int i = 0; i < currentSlots.Length; i++)
         {
@@ -12,7 +12,6 @@ public static class SynchronizeSlots
             currentSlots[i].ItemCont = referecedSlots[i].ItemCont;
             currentSlots[i].SlotPrefab = referecedSlots[i].SlotPrefab;
             currentSlots[i].CurStackQuantity = referecedSlots[i].CurStackQuantity;
-            //Debug.Log(currentSlots[i].CounterTMPro.text);
             currentSlots[i].CounterTMPro.SetText(referecedSlots[i].CounterTMPro.text);
         }
     }

@@ -6,38 +6,21 @@ using UnityEngine.UI;
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public class SlotController : MonoBehaviour
+    public class SlotController : QuickSlotController
     {
         #region Private Serialized Fields
-        [SerializeField] private Image slotImage;
-        [SerializeField] private Image itemImage;
-        [SerializeField] private bool slotInUse;
-        [SerializeField] private bool slotWithItem;
-        [SerializeField] private GameObject slotPrefab;
-        [SerializeField] private ItemController itemCont;
-        [SerializeField] private int curStackQuantity;
-        [SerializeField] private TextMeshProUGUI counterTMPro;
-        [SerializeField] [CanBeNull] private RectTransform subStackSliderRectTransform;
-        
+        [SerializeField] private RectTransform subStackSliderRectTransform;
         #endregion
         #region Getters/Setters
-        public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
-        public bool SlotWithItem { get { return slotWithItem; } set { slotWithItem = value; } }
-        public GameObject SlotPrefab { get { return slotPrefab; } set { slotPrefab = value; } }
-        public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
-        public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
-        public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
-        public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
-        public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
         public RectTransform SubStackSliderRectTransform { get { return subStackSliderRectTransform; } set { subStackSliderRectTransform = value; } }
         #endregion
         #region Public Funcs
-        public void Awake()
+        public void Start()
         {
-            slotImage = GetComponent<Image>();
-            itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
-            counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
-            transform.Find("SubStackSliderRectTransform").TryGetComponent<RectTransform>(out subStackSliderRectTransform);
+            SlotImage = GetComponent<Image>();
+            ItemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
+            CounterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
+            subStackSliderRectTransform = transform.Find("SubStackSliderRectTransform").GetComponent<RectTransform>();
         }
         #endregion
     }

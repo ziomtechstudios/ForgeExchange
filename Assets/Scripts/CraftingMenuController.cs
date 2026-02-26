@@ -83,16 +83,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             currentUserController = playerCont;
         }
 
-        public override void ActivateSubStackSlider(PointerEventData eventData)
-        {
-            
-        }
         public override void OnPointerDown(PointerEventData eventData)
-        {
-            
-        }
-
-        public override void OnPointerUp(PointerEventData eventData)
         {
             
         }
@@ -173,16 +164,26 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else 
                 ReturnItem(eventData);
         }
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            
+        }
+        public override void ActivateSubStackSlider(PointerEventData eventData)
+        {
+            
+        }
 
+        public override void ConfirmSubStackQuantity()
+        {
+            
+        }
         void Update()
         {
             //The current recipe is set to "" after an item is crafted so we will check to see if ingredients remain and another item can be crafted.
             if(currentRecipe == "") 
                 AttemptCrafting();
         }
-        
         #endregion
-
         void Start()
         {
             craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
@@ -200,7 +201,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SlotTypeDict.Add("CraftingMenu", craftedSlot);
             currentRecipe = null;
         }
-
         void OnEnable()
         {
             currentRecipe = null;

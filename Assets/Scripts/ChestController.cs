@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Com.ZiomtechStudios.ForgeExchange{
     public class ChestController : SlotsController
@@ -21,6 +22,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             SlotTypeDict.Add("ChestSlots", chestSlots);
             SlotTypeDict.Add("QuickSlots", quickSlots);
             SlotTypeDict.Add("BackpackSlots", backPackSlots);
+            SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
+            subStackSliderCont = SubStackItemSlider.gameObject.GetComponent<SubsetStackSliderController>();
         }
         void Awake()
         {
@@ -57,15 +60,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void OnPointerDown(PointerEventData eventData)
         {
-            
-        }
-        public override void OnPointerUp(PointerEventData eventData)
-        {
-            
-        }
-        public override void ActivateSubStackSlider(PointerEventData eventData)
-        {
-            
+            TimerPointerHeldDown += (eventData.IsPointerMoving()?0.0f:Time.time);
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {   
@@ -93,7 +88,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             /// Checking to see that the destination slot holds no prefab. &&
             /// Chekcing that the slot we have stopped at in part of a subset of slots in our dictionary of approved slots.
             /// </summary>
-            //Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
                 //The position of the destination slot.
@@ -102,6 +96,41 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             }
             else 
                 ReturnItem(eventData);
+        }
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+            if (eventData.pointerCurrentRaycast.gameObject != null &&
+                eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem &&
+                movingSlot.SlotPrefab != null &&
+                SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
+                    out destSlots) && initSlots[initSlotNum] != destSlots[destSlotNum] && !destSlots[destSlotNum].SlotWithItem)
+            {
+                TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
+                Debug.Log(TimerPointerHeldDown);
+                ActivateSubStackSlider(eventData);
+                TimerPointerHeldDown = 0.0f;
+            }
+            else 
+                ReturnItem(eventData);
+        }
+        public override void ActivateSubStackSlider(PointerEventData eventData)
+        {
+            if (TimerPointerHeldDown >= 1.0f)
+            {
+                subStackSliderCont.InitSlot = initSlots[initSlotNum];
+                subStackSliderCont.DestSlot = destSlots[destSlotNum];
+                subStackSliderCont.MovingSlot = movingSlot;
+                subStackSliderCont.CurEventData = eventData;
+                SubStackItemSlider.gameObject.SetActive(true);
+            }
+        }
+
+        public override void ConfirmSubStackQuantity()
+        {
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
+            SubStackItemSlider.value = 0.0f;
+            SubStackItemSlider.gameObject.SetActive(false);
         }
     }
 }

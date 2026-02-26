@@ -9,7 +9,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         #region Serialized Fields
         [Tooltip("Amount of inventory slots.")][SerializeField] private int inventoryAmnt;  
-        [SerializeField] private SlotController[] slotConts;
+        [SerializeField] private QuickSlotController[] slotConts;
         [SerializeField] private PlayerController playerCont;
         [Tooltip("Are all of the items equipped with an item?")][SerializeField] private bool slotsAreFull;
         [Tooltip("Sprite used by slot to indicate there is no item.")][SerializeField] private Sprite noItemSprite;
@@ -59,7 +59,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region Getters/Setters
         public bool SlotsAreFull { get { return slotsAreFull; } }
-        public SlotController[] SlotConts { get { return slotConts; } }
+        public QuickSlotController[] SlotConts { get { return slotConts; } }
         public int InventoryAmnt { get { return inventoryAmnt; } }
         public Sprite NoItemSprite { get { return noItemSprite; } }
         #endregion
@@ -207,12 +207,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void Start()
         {
             playerCont = transform.parent.parent.parent.GetComponent<PlayerController>();
-            slotConts = new SlotController[inventoryAmnt];
+            slotConts = new QuickSlotController[inventoryAmnt];
             slotsAreFull = false;
             //Setting inventory to empty, should change in future when saves are implemented
             for (int i = 0; i < inventoryAmnt; i++)
             {
-                slotConts[i] = transform.Find($"Slot{i}").gameObject.GetComponent<SlotController>();
+                slotConts[i] = transform.Find($"Slot{i}").gameObject.GetComponent<QuickSlotController>();
                 slotConts[i].SlotInUse = false;
                 slotConts[i].SlotWithItem = false;
                 slotConts[i].SlotPrefab = null;

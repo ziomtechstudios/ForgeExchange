@@ -74,22 +74,36 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnPointerUp(PointerEventData eventData)
         {
-            TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
-            Debug.Log(TimerPointerHeldDown);
             destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-            ActivateSubStackSlider(eventData);
-            
+            if (eventData.pointerCurrentRaycast.gameObject != null &&
+                eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem &&
+                movingSlot.SlotPrefab != null &&
+                SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
+                    out destSlots) && initSlots[initSlotNum] != destSlots[destSlotNum])
+            {
+                TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
+                Debug.Log(TimerPointerHeldDown);
+                ActivateSubStackSlider(eventData);
+                TimerPointerHeldDown = 0.0f;
+            }
+
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
-            if (TimerPointerHeldDown >= 1.0f  && (initSlots[initSlotNum] != destSlots[destSlotNum]))
+            if (TimerPointerHeldDown >= 1.0f)
             {
                 subStackSliderCont.InitSlot = initSlots[initSlotNum];
                 subStackSliderCont.DestSlot = destSlots[destSlotNum];
+                subStackSliderCont.MovingSlot = movingSlot;
                 subStackSliderCont.CurEventData = eventData;
                 SubStackItemSlider.gameObject.SetActive(true);
-                TimerPointerHeldDown = 0.0f;
             }
+        }
+        public override void ConfirmSubStackQuantity()
+        {
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
+            SubStackItemSlider.value = 0.0f;
+            SubStackItemSlider.gameObject.SetActive(false);
         }
         #endregion
         // Start is called before the first frame update

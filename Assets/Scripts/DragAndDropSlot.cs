@@ -5,23 +5,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
-        public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite, int subStackQuantity)
+        public static void SplitStack(SlotController initSlot, SlotController destSlot, int subStackQuantity)
         {
-            //Creating substack base on item from moving slot to destination slot
-            destSlot.ItemCont = movingSlot.ItemCont;
-            destSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
-            destSlot.SlotWithItem = true;
-            destSlot.SlotPrefab = movingSlot.SlotPrefab;
+            //Creating stack with remainder of quantity back at the initial slot
+            initSlot.ItemCont = destSlot.ItemCont;
+            initSlot.ItemImage.sprite = destSlot.ItemCont.ItemIcon;
+            initSlot.SlotWithItem = true;
+            initSlot.SlotPrefab = destSlot.SlotPrefab;
+            initSlot.CurStackQuantity =  destSlot.CurStackQuantity - subStackQuantity;
+            UpdateSlotCounterText(initSlot);
+            //Updating quantity of destSlot
             destSlot.CurStackQuantity =  subStackQuantity;
             UpdateSlotCounterText(destSlot);
-            //Creating stack with remainder of quantity back at the initial slot
-            initSlot.ItemCont = movingSlot.ItemCont;
-            initSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
-            initSlot.SlotWithItem = true;
-            initSlot.SlotPrefab = movingSlot.SlotPrefab;
-            initSlot.CurStackQuantity =  movingSlot.CurStackQuantity - subStackQuantity;
-            UpdateSlotCounterText(initSlot);
-            EmptyMovingSlot(movingSlot, noItemSprite);
         }
         
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
@@ -149,7 +144,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
         }
 
-        public static void UpdateSlotCounterText(SlotController slotCont)
+        public static void UpdateSlotCounterText(QuickSlotController slotCont)
         {
             slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";
         }

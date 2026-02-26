@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 7134110827443127174}
   - component: {fileID: 7134110827443127175}
   - component: {fileID: 4795489665742314381}
-  - component: {fileID: 4795489665742314377}
+  - component: {fileID: 9033479141330535701}
   m_Layer: 5
   m_Name: QuickSlot#
   m_TagString: Untagged
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Touchscreen>/touch2/tap
---- !u!114 &4795489665742314377
+--- !u!114 &9033479141330535701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7134110827443127169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a49ed3c44a2800459209a1fe6fe5b59, type: 3}
+  m_Script: {fileID: 11500000, guid: 23349b0cfe5bf3c63a6a7de765165703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slotImage: {fileID: 0}

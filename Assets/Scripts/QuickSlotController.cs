@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+
+namespace Com.ZiomtechStudios.ForgeExchange
+{
+    public class QuickSlotController : MonoBehaviour
+    {
+        #region Private Serialized Fields
+        [SerializeField] private Image slotImage;
+        [SerializeField] private Image itemImage;
+        [SerializeField] private bool slotInUse;
+        [SerializeField] private bool slotWithItem;
+        [SerializeField] private GameObject slotPrefab;
+        [SerializeField] private ItemController itemCont;
+        [SerializeField] private int curStackQuantity;
+        [SerializeField] private TextMeshProUGUI counterTMPro;
+        #endregion
+        #region Getters/Setters
+        public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
+        public bool SlotWithItem { get { return slotWithItem; } set { slotWithItem = value; } }
+        public GameObject SlotPrefab { get { return slotPrefab; } set { slotPrefab = value; } }
+        public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
+        public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
+        public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
+        public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
+        public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
+        #endregion
+        #region Public Funcs
+        public void Awake()
+        {
+            slotImage = GetComponent<Image>();
+            itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
+            counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
+        }
+        #endregion
+    }
+}
