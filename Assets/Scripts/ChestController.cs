@@ -109,10 +109,8 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
                 Debug.Log(TimerPointerHeldDown);
                 ActivateSubStackSlider(eventData);
-                TimerPointerHeldDown = 0.0f;
             }
-            else 
-                ReturnItem(eventData);
+            TimerPointerHeldDown = 0.0f;
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {

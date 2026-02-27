@@ -130,6 +130,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 849459954}
     m_Modifications:
+    - target: {fileID: 131247357386132036, guid: 070d74abf869df71c881473834efc626, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1372930658}
+    - target: {fileID: 131247357386132036, guid: 070d74abf869df71c881473834efc626, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateSliderHandleAmmount
+      objectReference: {fileID: 0}
+    - target: {fileID: 131247357386132036, guid: 070d74abf869df71c881473834efc626, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Com.ZiomtechStudios.ForgeExchange.SubsetStackSliderController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 131247357386132036, guid: 070d74abf869df71c881473834efc626, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3964778737611381996, guid: 070d74abf869df71c881473834efc626, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2499,7 +2515,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.4457378
+      m_AnimationSpeed: 2.365549
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2510,7 +2526,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.7605875
+      m_AnimationSpeed: 2.9330094
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2521,7 +2537,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.7113626
+      m_AnimationSpeed: 2.145422
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:

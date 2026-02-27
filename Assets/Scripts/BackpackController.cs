@@ -39,7 +39,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnPointerDown(PointerEventData eventData)
         {
-            TimerPointerHeldDown += (eventData.IsPointerMoving()?0.0f:Time.time);
+            Debug.Log($"Pointer is Moving: {eventData.IsPointerMoving()}");
+            TimerPointerHeldDown += ((!eventData.IsPointerMoving() || !eventData.dragging)?0.0f:Time.deltaTime);
         }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
@@ -51,11 +52,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, InventoryCont.NoItemSprite, this);
             }
+
+            TimerPointerHeldDown = 0.0f;
         }
         //Move moving slot to corresponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
+            TimerPointerHeldDown = 0.0f;
         }
         public override void OnEndDrag(PointerEventData eventData)
         {
@@ -84,9 +88,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
                 Debug.Log(TimerPointerHeldDown);
                 ActivateSubStackSlider(eventData);
-                TimerPointerHeldDown = 0.0f;
             }
-
+            TimerPointerHeldDown = 0.0f;
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
