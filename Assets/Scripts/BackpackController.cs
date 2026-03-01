@@ -39,8 +39,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log($"Pointer is Moving: {eventData.IsPointerMoving()}");
-            TimerPointerHeldDown += ((!eventData.IsPointerMoving() || !eventData.dragging)?0.0f:Time.deltaTime);
+            //Debug.Log($"Pointer is Moving: {eventData.IsPointerMoving()}");
+            //isPointerDownAndStill = (!eventData.IsPointerMoving() || !eventData.dragging);
         }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
@@ -52,20 +52,20 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, InventoryCont.NoItemSprite, this);
             }
-
-            TimerPointerHeldDown = 0.0f;
+            //6TimerPointerHeldDown = 0.0f;
         }
         //Move moving slot to corresponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
-            TimerPointerHeldDown = 0.0f;
+            //TimerPointerHeldDown = 0.0f;
         }
-        public override void OnEndDrag(PointerEventData eventData)
+        public override void OnEndDrag(PointerEventData eventData)  
         {
+            isPointerDownAndStill = (!eventData.IsPointerMoving() || !eventData.dragging);
             // Finger released over UI element. &&
             // Finger currently over an interactive UI element that is part of Backpack UI. &&
-            // Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
+            // Player was moving an item && Making surewaw the slot we are slotting an item into does not have an item into it already. &&
             // Slot we are dropping off to is in our dictionary of slots.
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots)  && TimerPointerHeldDown < 1.0f)
             {
@@ -85,7 +85,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
                     out destSlots) && initSlots[initSlotNum] != destSlots[destSlotNum])
             {
-                TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
+                //TimerPointerHeldDown -= Time.time;
                 Debug.Log(TimerPointerHeldDown);
                 ActivateSubStackSlider(eventData);
             }
@@ -107,6 +107,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
+        }
+
+        public void FixedUpdate()
+        {
+            TimerPointerHeldDown += ((isPointerDownAndStill) ? Time.deltaTime : 0.0f);
         }
         #endregion
         // Start is called before the first frame update

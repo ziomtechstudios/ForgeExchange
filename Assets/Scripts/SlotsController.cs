@@ -34,6 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public int initSlotNum;
         public int destSlotNum;
         public string SubStackItemTransformPath;
+        public bool isPointerDownAndStill;
         public SubsetStackSliderController subStackSliderCont;
         public abstract void ReturnItem (PointerEventData eventData);
         public abstract void OnBeginDrag(PointerEventData eventData);
