@@ -130,5 +130,10 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
         }
+
+        public override void CheckIfMoving(PointerEventData eventData)
+        {
+            
+        }
     }
 }

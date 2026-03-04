@@ -198,6 +198,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
         }
+
+        public override void CheckIfMoving(PointerEventData eventData)
+        {
+        }
         void Update()
         {
             //The current recipe is set to "" after an item is crafted so we will check to see if ingredients remain and another item can be crafted.
