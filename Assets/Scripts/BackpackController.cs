@@ -6,11 +6,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class BackpackController : SlotsController
     {
-        #region Private Serialized Fields
+        #region "Private Serialized Fields"
         [SerializeField] private PlayerUIController m_PlayerUIController;
         #endregion
         #region Private Functions + Members
         private RectTransform backPackRectTransform;
+        #endregion
+        #region public members
+
+        public Vector2 initPointerPos;
+        public Vector2 finalPointerPos;
         #endregion
         #region Public Funcs
         public override void CloseMenu()
@@ -39,14 +44,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log($"We are in the OnPointerDown function.");
-            CheckIfMoving(eventData);
+            //Debug.Log($"We are in the OnPointerDown function.");
+            //CheckIfMoving(eventData);
         }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {   
-            Debug.Log($"We are in the OnBeginDrag function.");
-            CheckIfMoving(eventData);
             // If the player is pressing on a slot with an item &&
             // the type of slot we are dragging an item from is in our dictionary of slots.
             if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
@@ -54,49 +57,45 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, InventoryCont.NoItemSprite, this);
             }
-            //6TimerPointerHeldDown = 0.0f;
+            //TimerPointerHeldDown = 0.0f;
         }
         //Move moving slot to corresponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
-            Debug.Log($"We are in the OnDrag function.");
-            CheckIfMoving(eventData);
+            //Debug.Log($"We are in the OnDrag function.");
+            //CheckIfMoving(eventData);
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
             //TimerPointerHeldDown = 0.0f;
+            initPointerPos = eventData.position;
+            TimerPointerHeldDown = Time.time;
         }
         public override void OnEndDrag(PointerEventData eventData)  
         {
-            Debug.Log($"We are in the OnEndDrag function.");
-            CheckIfMoving(eventData);
             // Finger released over UI element. &&
             // Finger currently over an interactive UI element that is part of Backpack UI. &&
             // Player was moving an item && Making surewaw the slot we are slotting an item into does not have an item into it already. &&
             // Slot we are dropping off to is in our dictionary of slots.
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots)  && TimerPointerHeldDown < 1.0f)
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
-                //The position of the slot the player has dragged an item to.
-                destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+
+                if(destSlots[destSlotNum].SlotWithItem)
+                    DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+                else if(initSlots[initSlotNum] != destSlots[destSlotNum] && TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
+                    ActivateSubStackSlider(eventData);
             }
             else
                 ReturnItem(eventData);
+            TimerPointerHeldDown = 0.0f;
+            //initPointerPos = Vector2.zero;
+            //finalPointerPos = Vector2.zero;
         }
         public override void OnPointerUp(PointerEventData eventData)
         {
-            Debug.Log($"We are in the OnPointerUp function.");
-            CheckIfMoving(eventData);
+            //The position of the slot the player has dragged an item to.
             destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-            if (eventData.pointerCurrentRaycast.gameObject != null &&
-                eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem &&
-                movingSlot.SlotPrefab != null &&
-                SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
-                    out destSlots) && initSlots[initSlotNum] != destSlots[destSlotNum])
-            {
-                //TimerPointerHeldDown -= Time.time;
-                Debug.Log(TimerPointerHeldDown);
-                ActivateSubStackSlider(eventData);
-            }
-            TimerPointerHeldDown = 0.0f;
+            finalPointerPos = eventData.position;
+            TimerPointerHeldDown = (initPointerPos == finalPointerPos) ? (TimerPointerHeldDown - Time.time) : 0.0f;
+            Debug.Log(TimerPointerHeldDown);
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
