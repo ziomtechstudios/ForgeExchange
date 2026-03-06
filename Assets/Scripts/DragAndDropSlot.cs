@@ -5,20 +5,24 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
-        public static void SplitStack(SlotController initSlot, SlotController destSlot, int subStackQuantity)
+        public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, int subStackQuantity, Sprite noItemSprite)
         {
             //Creating stack with remainder of quantity back at the initial slot
-            initSlot.ItemCont = destSlot.ItemCont;
-            initSlot.ItemImage.sprite = destSlot.ItemCont.ItemIcon;
+            initSlot.ItemCont = movingSlot.ItemCont;
+            initSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
             initSlot.SlotWithItem = true;
-            initSlot.SlotPrefab = destSlot.SlotPrefab;
-            initSlot.CurStackQuantity =  destSlot.CurStackQuantity - subStackQuantity;
+            initSlot.SlotPrefab = movingSlot.SlotPrefab;
+            initSlot.CurStackQuantity =  movingSlot.CurStackQuantity - subStackQuantity;
             UpdateSlotCounterText(initSlot);
             //Updating quantity of destSlot
+            destSlot.ItemCont = movingSlot.ItemCont;
+            destSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
+            destSlot.SlotWithItem = true;
+            destSlot.SlotPrefab = movingSlot.SlotPrefab;
             destSlot.CurStackQuantity =  subStackQuantity;
             UpdateSlotCounterText(destSlot);
+            EmptyMovingSlot(movingslot, noITemSprite);
         }
-        
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
             //Moving item from initial slot to destination slot
@@ -112,7 +116,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //We are moving an item and the dest slot has an item
             if (movingSlotCont.SlotWithItem && destSlots[destSlotIndex].SlotWithItem)
             {
-                // We are moving an item/stack to a slot that is occupied with the same type of item./stack
+                // We are moving an item/stack to a slot that is occupied with the same type of item   /stack
                 if (CheckMatchingItem(movingSlotCont.ItemCont, destSlots[destSlotIndex].ItemCont))
                 {
                     //If stacking an item or stack onto an existing stack let us make sure we are exceeding the maximum amount of items.

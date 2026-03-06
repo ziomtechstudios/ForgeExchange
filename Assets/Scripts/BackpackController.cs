@@ -13,9 +13,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private RectTransform backPackRectTransform;
         #endregion
         #region public members
-
-        public Vector2 initPointerPos;
-        public Vector2 finalPointerPos;
+        public SlotController initSlotAtDrag;
         #endregion
         #region Public Funcs
         public override void CloseMenu()
@@ -44,8 +42,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnPointerDown(PointerEventData eventData)
         {
-            //Debug.Log($"We are in the OnPointerDown function.");
-            //CheckIfMoving(eventData);
         }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
@@ -62,23 +58,26 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Move moving slot to corresponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
-            //Debug.Log($"We are in the OnDrag function.");
-            //CheckIfMoving(eventData);
             DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
-            //TimerPointerHeldDown = 0.0f;
-            initPointerPos = eventData.position;
+            initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
             TimerPointerHeldDown = Time.time;
         }
-        public override void OnEndDrag(PointerEventData eventData)  
+        public override void OnPointerUp(PointerEventData eventData)
         {
+            //The position of the slot the player has dragged an item to.
+            destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+        }
+        public override void OnEndDrag(PointerEventData eventData)  
+        {   
             // Finger released over UI element. &&
             // Finger currently over an interactive UI element that is part of Backpack UI. &&
             // Player was moving an item && Making surewaw the slot we are slotting an item into does not have an item into it already. &&
             // Slot we are dropping off to is in our dictionary of slots.
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
-
-                if(destSlots[destSlotNum].SlotWithItem)
+                TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time-TimerPointerHeldDown) : 0.0f;
+                Debug.Log($"TimerPointerHeldDown = {TimerPointerHeldDown}.");
+                if(destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
                     DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
                 else if(initSlots[initSlotNum] != destSlots[destSlotNum] && TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
                     ActivateSubStackSlider(eventData);
@@ -86,16 +85,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
                 ReturnItem(eventData);
             TimerPointerHeldDown = 0.0f;
-            //initPointerPos = Vector2.zero;
-            //finalPointerPos = Vector2.zero;
-        }
-        public override void OnPointerUp(PointerEventData eventData)
-        {
-            //The position of the slot the player has dragged an item to.
-            destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-            finalPointerPos = eventData.position;
-            TimerPointerHeldDown = (initPointerPos == finalPointerPos) ? (TimerPointerHeldDown - Time.time) : 0.0f;
-            Debug.Log(TimerPointerHeldDown);
+            initSlotAtDrag = null;
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
@@ -110,7 +100,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ConfirmSubStackQuantity()
         {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
         }
