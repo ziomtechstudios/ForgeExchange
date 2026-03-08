@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine; 
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -59,13 +60,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public void UpdateSliderHandleAmmount()
         {
-            currentAmountText.text = $"{Mathf.CeilToInt(subStackSlider.value * (movingSlot.CurStackQuantity - 1))}";
+            currentAmountText.text = $"{Mathf.CeilToInt(subStackSlider.value * (movingSlot.CurStackQuantity - 1)) + (subStackSlider.value == 0.0f? 1:0)}";
         }
 
         void Start()
         {
             substackSliderRectTransform = transform.GetComponent<RectTransform>();
-        }
+        } 
 
         void Awake()
         {
@@ -79,9 +80,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void OnEnable()
         {
             substackSliderRectTransform.position = destSlot.SubStackSliderRectTransform.position;
-            smallestAmountText.text = $"{movingSlot.CurStackQuantity - (movingSlot.CurStackQuantity - 1)}";
+            smallestAmountText.text = "1";
             largestAmountText.text = $"{movingSlot.CurStackQuantity - 1}";
-            currentAmountText.text = $"{Mathf.CeilToInt(subStackSlider.value * (movingSlot.CurStackQuantity - 1))}";
+            UpdateSliderHandleAmmount();
         }
-    }
+    }   
 }

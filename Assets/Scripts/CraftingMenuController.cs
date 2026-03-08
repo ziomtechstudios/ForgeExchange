@@ -194,7 +194,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ConfirmSubStackQuantity()
         {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1), NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
         }

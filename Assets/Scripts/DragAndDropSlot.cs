@@ -21,7 +21,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             destSlot.SlotPrefab = movingSlot.SlotPrefab;
             destSlot.CurStackQuantity =  subStackQuantity;
             UpdateSlotCounterText(destSlot);
-            EmptyMovingSlot(movingslot, noITemSprite);
+            EmptyMovingSlot(movingSlot, noItemSprite);
         }
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {

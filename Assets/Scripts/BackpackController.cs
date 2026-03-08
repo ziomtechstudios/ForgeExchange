@@ -48,7 +48,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {   
             // If the player is pressing on a slot with an item &&
             // the type of slot we are dragging an item from is in our dictionary of slots.
-            if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
+            if (eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots) && !isSubStacking)
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, InventoryCont.NoItemSprite, this);
@@ -71,16 +71,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {   
             // Finger released over UI element. &&
             // Finger currently over an interactive UI element that is part of Backpack UI. &&
-            // Player was moving an item && Making surewaw the slot we are slotting an item into does not have an item into it already. &&
+            // Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
             // Slot we are dropping off to is in our dictionary of slots.
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
             {
                 TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time-TimerPointerHeldDown) : 0.0f;
                 Debug.Log($"TimerPointerHeldDown = {TimerPointerHeldDown}.");
-                if(destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
-                    DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
-                else if(initSlots[initSlotNum] != destSlots[destSlotNum] && TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
-                    ActivateSubStackSlider(eventData);
+                if (initSlots[initSlotNum] != destSlots[destSlotNum])
+                {
+                    if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
+                        DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+                    else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
+                        ActivateSubStackSlider(eventData); 
+                }
+                else
+                    ReturnItem(eventData);
             }
             else
                 ReturnItem(eventData);
@@ -91,6 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             if (TimerPointerHeldDown >= 1.0f)
             {
+                isSubStacking = true;
                 subStackSliderCont.InitSlot = initSlots[initSlotNum];
                 subStackSliderCont.DestSlot = destSlots[destSlotNum];
                 subStackSliderCont.MovingSlot = movingSlot;
@@ -100,20 +106,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ConfirmSubStackQuantity()
         {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1));
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), InventoryCont.NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
+            isSubStacking = false;
         }
-
         public override void CheckIfMoving(PointerEventData eventData)
         {
             isPointerDownAndStill = (!eventData.IsPointerMoving() || !eventData.dragging);
             Debug.Log($"isPointerDownAndStill: {isPointerDownAndStill}");
-        }
-
-        public void FixedUpdate()
-        {
-            TimerPointerHeldDown += ((isPointerDownAndStill) ? Time.deltaTime : 0.0f);
         }
         #endregion
         // Start is called before the first frame update
@@ -139,12 +140,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             SyncQuickSlots("InGameToMenu");
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
+            isSubStacking = false;
+            isPointerDownAndStill = false;
         }
         void OnDisable()
         {
             SyncQuickSlots("MenuToInGame");
             //Re-enable in-game quickslots since backpack is closed
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
+            isSubStacking = false;
+            isPointerDownAndStill = false;
         }
     }
 }
