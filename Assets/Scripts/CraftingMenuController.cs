@@ -124,7 +124,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void OnDrag(PointerEventData eventData)
         {
-            DragAndDropSlot.MoveItem(eventData, craftMenuRectTrans, MovingSlotRectTrans);
+            if (!IsSubStacking)
+            {
+                DragAndDropSlot.MoveItem(eventData, craftMenuRectTrans, MovingSlotRectTrans);
+                initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject
+                    .GetComponent<SlotController>();
+                TimerPointerHeldDown = Time.time;
+            }
         }
         public override void  OnEndDrag(PointerEventData eventData)
         {
@@ -133,10 +139,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Making sure the destination slot is an appropriate destination.
             //The player has an item in the moving slot.
             //Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots)  )
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots) && !IsSubStacking)
             {
                 // Position of the targeted slot
-                int slotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+                destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
@@ -146,18 +152,28 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //THe player has placed an item onto a slot for the ingredients of a craftable item.
                     //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
                     case "CraftingSlots":
-                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
+                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
                         AttemptCrafting();
                         break;
                     //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
                     default:
-                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
+                        if (initSlots[initSlotNum] != destSlots[destSlotNum])
+                        {
+                            if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
+                                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+                            else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
+                                ActivateSubStackSlider(eventData); 
+                        }
+                        else
+                            ReturnItem(eventData);
                         break;
                 }
             }
             //The player is trying to place the item in an inappropriate area so we will just return it back to its original spot.
-            else 
+            else if(!IsSubStacking)
                 ReturnItem(eventData);
+            TimerPointerHeldDown = 0.0f;
+            initSlotAtDrag = null;
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
@@ -172,9 +188,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ConfirmSubStackQuantity()
         {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1), NoItemSprite);
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), InventoryCont.NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
+            isSubStacking = false;
         }
         void Update()
         {

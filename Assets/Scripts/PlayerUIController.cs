@@ -62,10 +62,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool isFullyOscillated;
         #endregion
         #region Public Members
-        public void ToggleInventory()
+        public void OpenInventory()
         {
-            backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking);
-            backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
+            if (!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking)
+            {
+                backPackObj.SetActive(true);
+                backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
+            }
         }
         public void OscilateGoodZone()
         {

@@ -12,9 +12,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Functions + Members
         private RectTransform backPackRectTransform;
         #endregion
-        #region public members
-        public SlotController initSlotAtDrag;
-        #endregion
         #region Public Funcs
         public override void CloseMenu()
         {
