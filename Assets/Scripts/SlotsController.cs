@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 namespace Com.ZiomtechStudios.ForgeExchange{    
-    public abstract class SlotsController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler, IPointerDownHandler
+    public abstract class SlotsController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         #region "Private Fields"
         private RectTransform movingSlotRectTrans;
@@ -24,6 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public float TimerPointerHeldDown{get{return timerPointerHeldDown;}set{timerPointerHeldDown=value;}}
         public bool IsHolding{get{return isHolding;}set{isHolding=value;}}
         public Slider SubStackItemSlider{get{return subStackItemSlider;}set{subStackItemSlider=value;}}
+        public bool IsSubStacking{get{return isSubStacking;}set{isSubStacking=value;}}
         #endregion
         public SlotController[] backPackSlots;
         public SlotController[] quickSlots;
@@ -34,19 +35,15 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         public int initSlotNum;
         public int destSlotNum;
         public string SubStackItemTransformPath;
-        public bool isPointerDownAndStill;
         public bool isSubStacking;
         public SubsetStackSliderController subStackSliderCont;
         public abstract void ReturnItem (PointerEventData eventData);
         public abstract void OnBeginDrag(PointerEventData eventData);
         public abstract void OnDrag(PointerEventData eventData);
         public abstract void OnEndDrag(PointerEventData eventData);
-        public abstract void OnPointerDown(PointerEventData eventData);
-        public abstract void OnPointerUp(PointerEventData eventData);
         public abstract void ActivateSubStackSlider(PointerEventData eventData);
         public abstract void ConfirmSubStackQuantity();
         public abstract void CloseMenu();
-        public abstract void CheckIfMoving(PointerEventData eventData);
 
     }
 }

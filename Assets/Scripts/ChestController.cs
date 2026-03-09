@@ -58,10 +58,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         {
             DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
         }
-        public override void OnPointerDown(PointerEventData eventData)
-        {
-            TimerPointerHeldDown += (eventData.IsPointerMoving()?0.0f:Time.time);
-        }
         public override void OnBeginDrag(PointerEventData eventData)
         {   
             ///<summary>
@@ -97,21 +93,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             else 
                 ReturnItem(eventData);
         }
-        public override void OnPointerUp(PointerEventData eventData)
-        {
-            destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-            if (eventData.pointerCurrentRaycast.gameObject != null &&
-                eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem &&
-                movingSlot.SlotPrefab != null &&
-                SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
-                    out destSlots) && initSlots[initSlotNum] != destSlots[destSlotNum] && !destSlots[destSlotNum].SlotWithItem)
-            {
-                TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
-                Debug.Log(TimerPointerHeldDown);
-                ActivateSubStackSlider(eventData);
-            }
-            TimerPointerHeldDown = 0.0f;
-        }
+
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
             if (TimerPointerHeldDown >= 1.0f)
@@ -129,11 +111,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1), NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
-        }
-
-        public override void CheckIfMoving(PointerEventData eventData)
-        {
-            
         }
     }
 }

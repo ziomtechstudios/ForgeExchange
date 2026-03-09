@@ -82,19 +82,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
             currentUserController = playerCont;
         }
-
-        public override void OnPointerDown(PointerEventData eventData)
-        {
-            Debug.Log($"Pointer is Moving: {eventData.IsPointerMoving()}");
-            TimerPointerHeldDown += ((!eventData.IsPointerMoving() || !eventData.dragging)?0.0f:Time.time);
-        }
         public override void OnBeginDrag(PointerEventData eventData)
         {
             // Making sure the press point is not on blank space.
             // Are we sure that what we are dragging from is a slot?
             // THe slot that we are dragging from, does it have an item?
             // Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots) && !isSubStacking)
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
@@ -165,22 +159,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else 
                 ReturnItem(eventData);
         }
-        public override void OnPointerUp(PointerEventData eventData)
-        {
-            destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-            if (eventData.pointerCurrentRaycast.gameObject != null &&
-                eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem &&
-                movingSlot.SlotPrefab != null &&
-                SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
-                    out destSlots) && initSlots[initSlotNum] != destSlots[destSlotNum])
-            {
-                TimerPointerHeldDown = Time.time - TimerPointerHeldDown;
-                Debug.Log(TimerPointerHeldDown);
-                ActivateSubStackSlider(eventData);
-                
-            }
-            TimerPointerHeldDown = 0.0f;
-        }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
             if (TimerPointerHeldDown >= 1.5f)
@@ -197,10 +175,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1), NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
-        }
-
-        public override void CheckIfMoving(PointerEventData eventData)
-        {
         }
         void Update()
         {

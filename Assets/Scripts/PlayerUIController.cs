@@ -64,7 +64,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Members
         public void ToggleInventory()
         {
-            backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation);
+            backPackObj.SetActive(!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking);
             backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
         }
         public void OscilateGoodZone()
@@ -88,7 +88,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 oscillationTimer += Time.deltaTime;
                 goodZoneSlider.value = Mathf.Clamp((goodZoneSlider.value += randomVelocity), 0.00f, 1.00f);
             }
-
         }
         public GameObject InGameQuickSlotObjs { get { return inGameQuickSlotObjs; } }
         #endregion
@@ -136,7 +135,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             goodZoneRectTransform.GetWorldCorners(goodZoneCorners);
             timeToOscillate = Random.Range(minTTO, maxTTO);
             goodZoneSlider = goodZoneRectTransform.parent.parent.gameObject.GetComponent<Slider>();
-
         }
         // Update is called once per frame
         void Update()
@@ -161,7 +159,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 circleText.text = workstationCont.WorkstationUIStruct.circleTitle;
                             }
                         }
-
                         if (barTransform)
                         {
                             barImage.gameObject.transform.parent.transform.position = playerCam.WorldToScreenPoint(barTransform.position);
@@ -173,7 +170,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 barText.text = workstationCont.WorkstationUIStruct.barTitle;
                             }
                         }
-
                         if (itemUiTransform)
                         {
                             StockpileController stockPileCont = playerCont.PlayerLOS.transform.gameObject.GetComponent<StockpileController>();
@@ -186,7 +182,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             else if (stockPileCont.CurQuantity == 0 && itemUI.gameObject.activeInHierarchy)
                                 itemUI.gameObject.SetActive(false);
                         }
-
                         break;
                     //Player sees a stockpile.
                     case "stockpile":
