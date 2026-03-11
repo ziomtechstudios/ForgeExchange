@@ -1385,7 +1385,6 @@ GameObject:
   - component: {fileID: 1977494651}
   - component: {fileID: 1977494654}
   - component: {fileID: 1977494653}
-  - component: {fileID: 1977494655}
   m_Layer: 5
   m_Name: InventoryButton
   m_TagString: UI
@@ -1450,19 +1449,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1977494655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977494650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ControlPath: <Touchscreen>/touch9/tap
 --- !u!1 &2080820972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,9 +1532,15 @@ MonoBehaviour:
   - {fileID: 9119569251309689973}
   - {fileID: 2572892174896621692}
   initSlots: []
+  destSlots: []
   movingSlot: {fileID: 0}
   NoItemSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   initSlotNum: 0
+  destSlotNum: 0
+  SubStackItemTransformPath: 
+  isSubStacking: 0
+  subStackSliderCont: {fileID: 0}
+  initSlotAtDrag: {fileID: 0}
   m_PlayerUIController: {fileID: 2417434155176800270}
 --- !u!1 &372799352514828716
 GameObject:
@@ -2249,7 +2241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryAmnt: 6
   slotConts:
-  - {fileID: 292360772}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -6530,17 +6522,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829d50a9bc4df4422b2223728188bf0d, type: 3}
---- !u!114 &292360772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4795489665742314377, guid: 829d50a9bc4df4422b2223728188bf0d, type: 3}
-  m_PrefabInstance: {fileID: 4795489666030471629}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a49ed3c44a2800459209a1fe6fe5b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2417434154951608909 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7134110827443127168, guid: 829d50a9bc4df4422b2223728188bf0d, type: 3}

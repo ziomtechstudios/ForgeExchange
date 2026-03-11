@@ -78,15 +78,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "160e12b2-3490-46dc-a788-16300a55f625",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "54061b6a-0fe9-4689-bb6c-aea95b152169",
@@ -191,17 +182,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "6",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ccb1c3ae-5f2a-4c27-929a-46cc951c0802",
-                    "path": "<Touchscreen>/touch9/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

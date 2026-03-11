@@ -78,7 +78,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SyncCraftingMenuSlots(PlayerController playerCont)
         {
-            SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
+            SynchronizeSlots.SyncSlots(backPackSlots,  playerCont.PlayerBackPackCont.backPackSlots);
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
             currentUserController = playerCont;
         }
@@ -88,7 +88,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             // Are we sure that what we are dragging from is a slot?
             // THe slot that we are dragging from, does it have an item?
             // Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots) && !isSubStacking)
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots) && !IsSubStacking)
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
@@ -216,10 +216,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SlotTypeDict.Add("CraftingSlots", craftingSlots);
             SlotTypeDict.Add("CraftingMenu", craftedSlot);
             currentRecipe = null;
+            IsSubStacking = false;
         }
         void OnEnable()
         {
             currentRecipe = null;
+            IsSubStacking = false;
+        }
+
+        void OnDisable()
+        {
+            IsSubStacking = false;
         }
     }
 }

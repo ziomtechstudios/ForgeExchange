@@ -2510,7 +2510,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.0828085
+      m_AnimationSpeed: 2.9884808
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2521,7 +2521,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.184703
+      m_AnimationSpeed: 2.491643
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2532,7 +2532,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.2917535
+      m_AnimationSpeed: 2.5271025
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2828,11 +2828,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1004073335, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2854,6 +2854,10 @@ PrefabInstance:
       propertyPath: craftedSlotNum
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1004073338, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: subStackSliderCont
+      value: 
+      objectReference: {fileID: 2033343404}
     - target: {fileID: 1004073338, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftedSlot.Array.size
       value: 1
@@ -3310,6 +3314,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 476691313687885036, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: currentAmountTransform
+      value: Handle Slide Area/Handle/Text (TMP)
+      objectReference: {fileID: 0}
     - target: {fileID: 583378844944101580, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -3345,6 +3353,22 @@ PrefabInstance:
     - target: {fileID: 4053388588453723865, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_Name
       value: SubStackSliderRectTransform
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249991360749856798, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2033343404}
+    - target: {fileID: 4249991360749856798, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateSliderHandleAmmount
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249991360749856798, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Com.ZiomtechStudios.ForgeExchange.SubsetStackSliderController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249991360749856798, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5753775797730999569, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -22420,6 +22444,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8734230099395214053, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
   m_PrefabInstance: {fileID: 581365805}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1214356003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1977494650, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+  m_PrefabInstance: {fileID: 2417434154386360278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1214356006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1977494653, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+  m_PrefabInstance: {fileID: 2417434154386360278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214356003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1214356008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214356003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 2
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: -1334469703, guid: 5f90fb095cd3ac05397ead840fa6e87b, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1214356006}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 988638011}
+        m_TargetAssemblyTypeName: Com.ZiomtechStudios.ForgeExchange.PlayerUIController,
+          Assembly-CSharp
+        m_MethodName: OpenInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1219244799
 GameObject:
   m_ObjectHideFlags: 0
@@ -28648,6 +28745,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7349bef61a71a45922a49fb056dca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2033343404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 476691313687885036, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+  m_PrefabInstance: {fileID: 677537566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc94bff360c14c829851f2dc8ded675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2046527791 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4172440012100988574, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
@@ -31942,11 +32050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1507663461641715903, guid: f276e31161a9a59b49e9980e159a055f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 44.1
+      value: 45.97
       objectReference: {fileID: 0}
     - target: {fileID: 1507663461641715903, guid: f276e31161a9a59b49e9980e159a055f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 59.8
+      value: 60.61
       objectReference: {fileID: 0}
     - target: {fileID: 1507663461641715903, guid: f276e31161a9a59b49e9980e159a055f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -32134,6 +32242,10 @@ PrefabInstance:
       value: ShopControls/TapAndHoldStack[/Device Simulator Touchscreen/press]
       objectReference: {fileID: 0}
     - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -32305,6 +32417,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 995.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977494651, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 484.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977494653, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -461037723, guid: 5f90fb095cd3ac05397ead840fa6e87b, type: 3}
     - target: {fileID: 2080820972, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -32486,7 +32622,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2080820973, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1866318748}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1977494650, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214356008}
   m_SourcePrefab: {fileID: 100100000, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
 --- !u!224 &2417434154386360279 stripped
 RectTransform:
