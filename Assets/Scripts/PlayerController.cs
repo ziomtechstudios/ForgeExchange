@@ -19,7 +19,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private float interactDist;
         [SerializeField] private bool holdingItem;
         [Header("Player Interaction/Inventory")]
-        [SerializeField] private RaycastHit2D hit;
         [SerializeField] private bool usingWorkstation;
         [SerializeField] private GameObject holdingPrefab;
         [SerializeReference] private ItemController holdingCont;
@@ -41,6 +40,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, isFishingHash;
         private int layerMask;
         private GameObject backPackObj;
+        private RaycastHit2D hit;
         //Parametric bool for moving represents object desire to move, IsMoving represents if obj meets conditions in order to move
         private void MovePlayer(bool moving)
         {
@@ -86,18 +86,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             moveDir = context.ReadValue<Vector2>();
             ApplyMovement(context);
-        }
-
-        public void OnDPadMove(InputAction.CallbackContext context)
-        {
-            if (context.action.type == InputActionType.Value)
-            {
-                if (context.started && !context.canceled)
-                    moveDir = context.ReadValue<Vector2>();
-                else
-                    moveDir = Vector2.zero;
-                ApplyMovement(context);
-            }
         }
         public void ToggleRun(InputAction.CallbackContext context)
         {
