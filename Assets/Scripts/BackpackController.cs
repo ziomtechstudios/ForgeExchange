@@ -126,14 +126,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             SyncQuickSlots("InGameToMenu");
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
-            //IsSubStacking = false;
+            IsSubStacking = false;
         }
         void OnDisable()
         {
             SyncQuickSlots("MenuToInGame");
             //Re-enable in-game quickslots since backpack is closed
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
-            //IsSubStacking = false;
+            IsSubStacking = false;
         }
     }
 }

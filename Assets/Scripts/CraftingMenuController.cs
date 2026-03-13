@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
@@ -74,7 +75,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         public override void CloseMenu()
         {
-            craftTableCont.ToggleUse(currentUserController);
+            if(!isSubStacking)
+                craftTableCont.ToggleUse(currentUserController);
         }
         public void SyncCraftingMenuSlots(PlayerController playerCont)
         {
@@ -161,7 +163,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (initSlots[initSlotNum] != destSlots[destSlotNum])
                         {
                             if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
-                                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, InventoryCont.NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+                                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
                             else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
                                 ActivateSubStackSlider(eventData); 
                         }
@@ -178,6 +180,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
+            isSubStacking = true;
             subStackSliderCont.InitSlot = initSlots[initSlotNum];
             subStackSliderCont.DestSlot = destSlots[destSlotNum];
             subStackSliderCont.MovingSlot = movingSlot;
@@ -186,7 +189,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ConfirmSubStackQuantity()
         {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), InventoryCont.NoItemSprite);
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
             isSubStacking = false;
@@ -215,6 +218,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SlotTypeDict.Add("CraftingMenu", craftedSlot);
             currentRecipe = null;
             IsSubStacking = false;
+            SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
+            
         }
         void OnEnable()
         {

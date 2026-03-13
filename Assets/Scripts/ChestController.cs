@@ -25,6 +25,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             SlotTypeDict.Add("BackpackSlots", backPackSlots);
             SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
             subStackSliderCont = SubStackItemSlider.gameObject.GetComponent<SubsetStackSliderController>();
+            IsSubStacking = false;
         }
         void Awake()
         {
@@ -41,20 +42,23 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
                 curUserCont = playerCont;
                 curUserCont.IsUsingStorage = true;
+                IsSubStacking = false;
             }
             
         }
 
         public override void CloseMenu()
         {
-            //Update contents of slots in chest to match aappropriate slots outside of chest
-            SynchronizeSlots.SyncSlots(curUserCont.PlayerBackPackCont.backPackSlots, backPackSlots);
-            SynchronizeSlots.SyncSlots(curUserCont.PlayerInventoryCont.SlotConts, quickSlots);
-            curUserCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
-            gameObject.SetActive(false);
-            curUserCont.IsUsingStorage = false;
-            curUserCont = null;
-
+            if (!IsSubStacking)
+            {
+                //Update contents of slots in chest to match aappropriate slots outside of chest
+                SynchronizeSlots.SyncSlots(curUserCont.PlayerBackPackCont.backPackSlots, backPackSlots);
+                SynchronizeSlots.SyncSlots(curUserCont.PlayerInventoryCont.SlotConts, quickSlots);
+                curUserCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
+                gameObject.SetActive(false);
+                curUserCont.IsUsingStorage = false;
+                curUserCont = null;
+            }
         }
         public override void ReturnItem(PointerEventData eventData)
         {
@@ -68,38 +72,53 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             /// The slot that we are draggin from, does it have an item? &&
             /// The type of slot we are dragging and item from is in our Dictionary if SlotTypes
             /// </summary>
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots) && !IsSubStacking)
             {
                 initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+                initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
                 DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
             }
         }
         public override void OnDrag(PointerEventData eventData)
         {
-            DragAndDropSlot.MoveItem(eventData, chestRectTransform, MovingSlotRectTrans);
+            if (!IsSubStacking)
+            {
+                DragAndDropSlot.MoveItem(eventData, chestRectTransform, MovingSlotRectTrans);
+                initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
+                TimerPointerHeldDown = Time.time;
+            }
         }
         public override void OnEndDrag(PointerEventData eventData)
         {
-            ///<summary>
-            /// Making sure the player is dragging an item. &&
-            /// Making sure we are dropping the item onto an appropriate UI element. &&
-            /// Checking to see that the destination slot holds no prefab. &&
-            /// Chekcing that the slot we have stopped at in part of a subset of slots in our dictionary of approved slots.
-            /// </summary>
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
+            // Finger released over UI element. &&
+            // Finger currently over an interactive UI element that is part of Backpack UI. &&
+            // Player was moving an item && Making sure the slot we are slotting an item into does not have an item into it already. &&
+            // Slot we are dropping off to is in our dictionary of slots.
+            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots) && !IsSubStacking)
             {
-                //The position of the destination slot.
-                int slotNum = DragAndDropSlot.GetSlotNum(eventData);
-                DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, slotNum, initSlots, initSlotNum, eventData);
+                destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+                TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time-TimerPointerHeldDown) : 0.0f;
+                if (initSlots[initSlotNum] != destSlots[destSlotNum])
+                {
+                    if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
+                        DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+                    else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
+                        ActivateSubStackSlider(eventData); 
+                }
+                else
+                    ReturnItem(eventData);
             }
-            else 
+            else if(!IsSubStacking)
                 ReturnItem(eventData);
+            TimerPointerHeldDown = 0.0f;
+            initSlotAtDrag = null;
         }
 
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
             if (TimerPointerHeldDown >= 1.0f)
             {
+                IsSubStacking = true;
                 subStackSliderCont.InitSlot = initSlots[initSlotNum];
                 subStackSliderCont.DestSlot = destSlots[destSlotNum];
                 subStackSliderCont.MovingSlot = movingSlot;
@@ -110,9 +129,10 @@ namespace Com.ZiomtechStudios.ForgeExchange{
  
         public override void ConfirmSubStackQuantity()
         {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(destSlots[destSlotNum].CurStackQuantity - 1))+((SubStackItemSlider.value!=0.0f)?0:1), NoItemSprite);
+            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), NoItemSprite);
             SubStackItemSlider.value = 0.0f;
             SubStackItemSlider.gameObject.SetActive(false);
+            IsSubStacking = false;
         }
     }
 }
