@@ -10,6 +10,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         #region "Private serialized fields."
         [SerializeField] private SlotController[] chestSlots;
         [SerializeField] private int chestSlotNum;
+        [SerializeField] private PlayerController curUserCont;
         #endregion
         private RectTransform chestRectTransform;
         // Start is called before the first frame update
@@ -31,28 +32,29 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             chestRectTransform = GetComponent<RectTransform>();
         }
-        public void SyncChestSlots(PlayerController playerCont){
-
-            if(gameObject.activeInHierarchy){
-                //Update contents of slots in chest to match aappropriate slots outside of chest
-                SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.backPackSlots, backPackSlots);
-                SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, quickSlots);
-                playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
-                //curUserCont = null;
-                gameObject.SetActive(false);
-            }
-            else{
+        public void OpenChest(PlayerController playerCont){
+            
+            if(!gameObject.activeInHierarchy){
                 gameObject.SetActive(true);
                 SynchronizeSlots.SyncSlots(backPackSlots,playerCont.PlayerBackPackCont.backPackSlots);
                 SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
+                curUserCont = playerCont;
+                curUserCont.IsUsingStorage = true;
             }
             
         }
 
         public override void CloseMenu()
         {
+            //Update contents of slots in chest to match aappropriate slots outside of chest
+            SynchronizeSlots.SyncSlots(curUserCont.PlayerBackPackCont.backPackSlots, backPackSlots);
+            SynchronizeSlots.SyncSlots(curUserCont.PlayerInventoryCont.SlotConts, quickSlots);
+            curUserCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
             gameObject.SetActive(false);
+            curUserCont.IsUsingStorage = false;
+            curUserCont = null;
+
         }
         public override void ReturnItem(PointerEventData eventData)
         {

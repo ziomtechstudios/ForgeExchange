@@ -33,6 +33,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.HoldingPrefab = null;
             playerCont.PlayerInventoryCont.SelectSlot(-1);
             playerCont.PlayerAtkCont.HasWeapon = false;
+            playerCont.HoldingItem = false;
         }
         //TODO
         /*private bool GoSwimming() {
@@ -41,8 +42,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }*/
         private bool DropObj()
         {
-            //Make sure we have reference to component in players LOS.
-            stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
             //If the stockpile cant take in the item we set the playerHolding to true.
             if (stockpileCont.Deposit(1, playerCont.HoldingPrefab, playerCont.HoldingCont))
@@ -153,8 +152,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void OnInteraction(InputAction.CallbackContext context)
         {
-                //Is the player looking at an object? && Are they pressing the interact button && Is there a backpack closed?
-            if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
+                //Is the player looking at an object? && Are they pressing the interact button && Is the player using any storage menu?
+            if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.IsUsingStorage)
             {
                 //Diff scenarios based on what the player is interacting with
                 switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
@@ -177,33 +176,30 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///If the player is not holding an item check that the quickslots are not full.
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
                         ///If the player is holding an object allow them to drop the object
-                        ///
+                        stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
                         playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DropObj();
                         break;
                     case "chest":
-                        if(playerCont.HoldingItem){
-                            playerCont.HoldingItem = false;
-                            UnEquipItem();
+                        if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
+                        {
+                            if(playerCont.HoldingItem)
+                                UnEquipItem();
+                            playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject
+                                .GetComponent<ChestController>().OpenChest(playerCont);
                         }
-                        playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject.GetComponent<ChestController>().SyncChestSlots(playerCont);
                         break;
                 }
-                return;
             }
-                        //player is outside                  player is holding an item    THe player is not using their backpack
-            else if (dynamicSpriteLayering.IsObjOutside() && playerCont.HoldingItem && !playerCont.PlayerBackPackCont.gameObject.activeInHierarchy)
+            //       The player is holding an item && The player has no storage open. && The player is not interacting with anything.
+            else if (playerCont.HoldingItem && !playerCont.IsUsingStorage && !(playerCont.PlayerLOS.transform == null))
             {
-                //When player is outside and trying to interact with the environment while holding an item
-                switch (playerCont.HoldingCont.PrefabItemStruct.itemSubTag +
-                        playerCont.HoldingCont.PrefabItemStruct.craftingTag)
-                {
-                    case"WoodenLog":
-                        //TODO Placeholder for log spawning code onto the map
-                        break;
-                }
+                //TODO: Adding code for dropping objects onto the floor.
             }
             else
+            {
                 stockpileCont = null;
+                workstationCont = null;
+            }
         }
         #endregion
         // Start is called before the first frame update

@@ -69,7 +69,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                 TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time-TimerPointerHeldDown) : 0.0f;
-                //Debug.Log($"TimerPointerHeldDown = {TimerPointerHeldDown}.");
                 if (initSlots[initSlotNum] != destSlots[destSlotNum])
                 {
                     if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
@@ -87,15 +86,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
-            if (TimerPointerHeldDown >= 1.0f)
-            {
-                IsSubStacking = true;
-                subStackSliderCont.InitSlot = initSlots[initSlotNum];
-                subStackSliderCont.DestSlot = destSlots[destSlotNum];
-                subStackSliderCont.MovingSlot = movingSlot;
-                subStackSliderCont.CurEventData = eventData;
-                SubStackItemSlider.gameObject.SetActive(true);
-            }
+            IsSubStacking = true;
+            subStackSliderCont.InitSlot = initSlots[initSlotNum];
+            subStackSliderCont.DestSlot = destSlots[destSlotNum];
+            subStackSliderCont.MovingSlot = movingSlot;
+            subStackSliderCont.CurEventData = eventData;
+            SubStackItemSlider.gameObject.SetActive(true);
         }
         public override void ConfirmSubStackQuantity()
         {

@@ -143,6 +143,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 // Position of the targeted slot
                 destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+                TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time-TimerPointerHeldDown) : 0.0f;
                 switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                 {
                     //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
@@ -177,14 +178,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ActivateSubStackSlider(PointerEventData eventData)
         {
-            if (TimerPointerHeldDown >= 1.5f)
-            {
-                subStackSliderCont.InitSlot = initSlots[initSlotNum];
-                subStackSliderCont.DestSlot = destSlots[destSlotNum];
-                subStackSliderCont.MovingSlot = movingSlot;
-                subStackSliderCont.CurEventData = eventData;
-                SubStackItemSlider.gameObject.SetActive(true);
-            }
+            subStackSliderCont.InitSlot = initSlots[initSlotNum];
+            subStackSliderCont.DestSlot = destSlots[destSlotNum];
+            subStackSliderCont.MovingSlot = movingSlot;
+            subStackSliderCont.CurEventData = eventData;
+            SubStackItemSlider.gameObject.SetActive(true);
         }
         public override void ConfirmSubStackQuantity()
         {

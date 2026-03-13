@@ -18,6 +18,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private float maxStam;
         [SerializeField] private float interactDist;
         [SerializeField] private bool holdingItem;
+        [SerializeField] private bool isUsingStorage;
         [Header("Player Interaction/Inventory")]
         [SerializeField] private bool usingWorkstation;
         [SerializeField] private GameObject holdingPrefab;
@@ -114,7 +115,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
         public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
         public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
-        public int IsFishingHash { get { return isFishingHash;} set{isFishingHash = value;}} 
+        public int IsFishingHash { get { return isFishingHash;} set{isFishingHash = value;}}
+        public bool IsUsingStorage { get { return isUsingStorage;} set{isUsingStorage = value;}}
         #endregion
         // Start is called before the first frame update
         void Start()
