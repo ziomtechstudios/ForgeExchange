@@ -37,6 +37,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private AudioClip playerStoneSteps;
         [SerializeField] private AudioClip playerGrassSteps;
         #endregion
+        #region Getters/Setters
+        public bool IsRunning { get { return isRunning; } }
+        #endregion
         #region Private Fields
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, isFishingHash;
         private int layerMask;
