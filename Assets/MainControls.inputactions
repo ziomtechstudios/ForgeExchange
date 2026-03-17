@@ -223,19 +223,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "ca145650-1c12-48f6-a7d4-bea357522a2f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "6",
                     "type": "Button",
                     "id": "a0e114bf-fd0c-4ae0-8fc4-0ee5cff02edc",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -289,7 +280,7 @@
                     "name": "LightAttack",
                     "type": "Button",
                     "id": "41efe799-0415-4c60-8860-0f323825de9f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
@@ -408,17 +399,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "6",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bcd60d50-e476-445a-8f61-81e600fc74c5",
-                    "path": "<Touchscreen>/touch9/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

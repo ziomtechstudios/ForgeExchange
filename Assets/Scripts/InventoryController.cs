@@ -157,6 +157,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     else if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont))
                     {
                         slotConts[i].CurStackQuantity++;
+                        DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
                         //Empty players hands only if the player isn't selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {
@@ -195,7 +196,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     case "FishingRod":
                         playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
                         playerCont.PlayerInteractionCont.PlayerFishingCont.SpawnRod();
-                        playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+                        //playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
                         break;
                 }
             }
