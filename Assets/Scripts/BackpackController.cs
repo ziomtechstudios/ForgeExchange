@@ -134,6 +134,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Re-enable in-game quickslots since backpack is closed
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
             IsSubStacking = false;
+            InventoryCont.PlayerCont.IsUsingStorage = false;
         }
     }
 }

@@ -64,10 +64,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Members
         public void OpenInventory()
         {
-            if (!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking)
+            if (!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking && !playerCont.IsUsingStorage)
             {
                 backPackObj.SetActive(true);
                 backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
+                playerCont.IsUsingStorage = true;
             }
         }
         public void OscilateGoodZone()

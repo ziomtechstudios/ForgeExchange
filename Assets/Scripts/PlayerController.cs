@@ -39,6 +39,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region Getters/Setters
         public bool IsRunning { get { return isRunning; } }
+        public RaycastHit2D PlayerLOS { get { return hit; } }
+        public bool HoldingItem { get { return holdingItem; } set { holdingItem = value; } }
+        public GameObject HoldingPrefab { get { return holdingPrefab; } set { holdingPrefab = value; } }
+        public ItemController HoldingCont { get { return holdingCont; } set { holdingCont = value; } }
+        public BackpackController PlayerBackPackCont { get { return backpackCont; } }
+        public InventoryController PlayerInventoryCont { get { return m_InventoryCont; } }
+        public PlayerUIController PlayerUICont { get { return playerUIController; } }
+        public PlayerInput PlayerInput { get { return playerInput; } }
+        public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
+        public PlayerInteractionController PlayerInteractionCont{get{return playerInteractionCont;}}
+        public Vector2 LookDir { get { return lookDir; } }
+        public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
+        public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
+        public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
+        public int IsFishingHash { get { return isFishingHash;} set{isFishingHash = value;}}
+        public bool IsUsingStorage { get { return isUsingStorage;} set{isUsingStorage = value;}}
         #endregion
         #region Private Fields
         private int lookXHash, lookYHash, isMovingHash, moveXHash, moveYHash, isDeadHash, isFishingHash;
@@ -103,24 +119,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_AudioSource.PlayOneShot(playerStoneSteps, 0.5f);
         }
         #endregion
-        #region Getter and Setters
-        public RaycastHit2D PlayerLOS { get { return hit; } }
-        public bool HoldingItem { get { return holdingItem; } set { holdingItem = value; } }
-        public GameObject HoldingPrefab { get { return holdingPrefab; } set { holdingPrefab = value; } }
-        public ItemController HoldingCont { get { return holdingCont; } set { holdingCont = value; } }
-        public BackpackController PlayerBackPackCont { get { return backpackCont; } }
-        public InventoryController PlayerInventoryCont { get { return m_InventoryCont; } }
-        public PlayerUIController PlayerUICont { get { return playerUIController; } }
-        public PlayerInput PlayerInput { get { return playerInput; } }
-        public PlayerAttackController PlayerAtkCont { get { return playerAttackCont; } }
-        public PlayerInteractionController PlayerInteractionCont{get{return playerInteractionCont;}}
-        public Vector2 LookDir { get { return lookDir; } }
-        public bool UsingWorkstation { get { return usingWorkstation; } set { usingWorkstation = value; } }
-        public bool CanRun { get { return canRun; } set { isRunning = canRun; } }
-        public StaminaController PlayerStaminaCont { get { return playerStaminaCont; } }
-        public int IsFishingHash { get { return isFishingHash;} set{isFishingHash = value;}}
-        public bool IsUsingStorage { get { return isUsingStorage;} set{isUsingStorage = value;}}
-        #endregion
         // Start is called before the first frame update
         void Start()
         {
@@ -154,8 +152,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             //Is the player looking at an interactable object + within an interactable distance?
             hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
-            //If player wants to move
-            if (IsMoving && (M_HealthCont.HP > 0.0f))
+            //If player wants to move make sure they are alive and not interacting with anything that would impede movement 
+            if (IsMoving && (M_HealthCont.HP > 0.0f) && ((!UsingWorkstation && !IsUsingStorage) || !UsingWorkstation))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if (m_Collider.IsTouchingLayers(layerMask) && hit.transform)

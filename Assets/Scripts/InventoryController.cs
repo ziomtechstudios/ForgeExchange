@@ -62,6 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public QuickSlotController[] SlotConts { get { return slotConts; } }
         public int InventoryAmnt { get { return inventoryAmnt; } }
         public Sprite NoItemSprite { get { return noItemSprite; } }
+        public PlayerController PlayerCont { get { return playerCont; } }
         #endregion
         #region Public funcs
         public void AreAllSlotsFull()

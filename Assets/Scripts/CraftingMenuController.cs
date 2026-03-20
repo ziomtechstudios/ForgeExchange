@@ -83,6 +83,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SynchronizeSlots.SyncSlots(backPackSlots,  playerCont.PlayerBackPackCont.backPackSlots);
             SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
             currentUserController = playerCont;
+            currentUserController.IsUsingStorage = true;
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {
@@ -230,6 +231,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void OnDisable()
         {
             IsSubStacking = false;
+            currentUserController.IsUsingStorage = false;
         }
     }
 }

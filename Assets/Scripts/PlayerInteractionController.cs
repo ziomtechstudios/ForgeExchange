@@ -141,14 +141,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ///If it is a special use case we simply add it to the switch case and create a function that if successfull sets player holding item bool to false.
             ///If this was an accident we want the player to keep holding  the item and simply reassign playerHoldingItem to its current value, presummably true.
             ///</summary>
-            workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
-            switch (playerCont.PlayerLOS.transform.tag)
+            if (!playerCont.IsUsingStorage)
             {
-                case "Forge":
-                    return ForgeInteraction();
-                default:
-                    return playerCont.HoldingItem;
+                workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
+                switch (playerCont.PlayerLOS.transform.tag)
+                {
+                    case "Forge":
+                        return ForgeInteraction();
+                    default:
+                        return playerCont.HoldingItem;
+                }
             }
+            return playerCont.HoldingItem;
         }
         public void OnInteraction(InputAction.CallbackContext context)
         {
@@ -186,6 +190,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                                 UnEquipItem();
                             playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject
                                 .GetComponent<ChestController>().OpenChest(playerCont);
+                            playerCont.IsUsingStorage = true;
                         }
                         break;
                 }
