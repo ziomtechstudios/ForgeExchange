@@ -151,9 +151,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void FixedUpdate()
         {
             //Is the player looking at an interactable object + within an interactable distance?
-            hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
+            //hit = Physics2D.RayCast(transform.position, lookDir, interactDist, layerMask);
+            hit = Physics2D.CircleCast(transform.position, 0.1f, lookDir, interactDist, layerMask);
             //If player wants to move make sure they are alive and not interacting with anything that would impede movement 
-            if (IsMoving && (M_HealthCont.HP > 0.0f) && ((!UsingWorkstation && !IsUsingStorage) || !UsingWorkstation))
+            if (IsMoving && (M_HealthCont.HP > 0.0f) && (!UsingWorkstation && !IsUsingStorage))
             {
                 //If player is touching bounds and the player is trying to move towards the bounds
                 if (m_Collider.IsTouchingLayers(layerMask) && hit.transform)

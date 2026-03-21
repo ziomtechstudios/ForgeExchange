@@ -62,7 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 playerCont.HoldingItem = true;
                 playerCont.HoldingPrefab = stockpileCont.ItemPrefab;
                 playerCont.HoldingCont = stockpileCont.ItemPrefab.GetComponent<ItemController>();
-                playerCont.PlayerInventoryCont.SlotItem();
+                playerCont.PlayerInventoryCont.SlotItem(playerCont.HoldingPrefab);
                 stockpileCont.Withdraw(1);
             }
             return playerCont.HoldingItem;

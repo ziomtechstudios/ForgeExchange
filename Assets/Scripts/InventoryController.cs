@@ -67,7 +67,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public funcs
         public void AreAllSlotsFull()
         {
-            slotsAreFull = Array.TrueForAll(slotConts, slotCont => slotCont.SlotWithItem == true);
+            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity >= slotCont.ItemCont.MaxStackQuantity));
         }
         public void DroppingItem()
         {
@@ -154,8 +154,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             playerCont.HoldingCont = null;
                         }
                         break;
-                    }
-                    else if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont))
+                    } 
+                    if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont))
                     {
                         slotConts[i].CurStackQuantity++;
                         DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
@@ -170,7 +170,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     }
                 }
             }
-            AreAllSlotsFull();
         }
         
         public void OnSelect(InputAction.CallbackContext context)

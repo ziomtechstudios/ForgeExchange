@@ -68,6 +68,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Public Functions/Members"
 
+        public void SubStacking(PointerEventData eventData)
+        {
+            if (initSlots[initSlotNum] != destSlots[destSlotNum])
+            {
+                if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
+                    DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+                else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
+                    ActivateSubStackSlider(eventData); 
+            }
+            else
+                ReturnItem(eventData);
+        }
+
         public override void ReturnItem(PointerEventData eventData)
         {
             DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
@@ -122,6 +135,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         //DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
                         craftTableCont.StockpileCont.Withdraw(1);
                         break;
+                        
                 }
             }
         }
@@ -156,20 +170,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //THe player has placed an item onto a slot for the ingredients of a craftable item.
                     //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
                     case "CraftingSlots":
-                        DragAndDropSlot.SwapDropItem(MovingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
-                        AttemptCrafting();
+                        SubStacking(eventData);
+                        if(!isSubStacking)
+                            AttemptCrafting();
                         break;
                     //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
                     default:
-                        if (initSlots[initSlotNum] != destSlots[destSlotNum])
-                        {
-                            if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
-                                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
-                            else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
-                                ActivateSubStackSlider(eventData); 
-                        }
-                        else
-                            ReturnItem(eventData);
+                        SubStacking(eventData);
                         break;
                 }
             }

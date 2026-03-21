@@ -14,12 +14,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Private Fields"
         private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash;
         private bool hasWeapon;
+        private bool alreadyDamagedEnemy;
         private GameObject playerWeapon;
         private PlayerInteractionController playerInteractionCont;
         #endregion
         #region "Getters/Setters"
         public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
         public bool AlreadyAttacking { get { return alreadyAttacking; } set { alreadyAttacking = value; } }
+        public bool AlreadyDamagedEnemy
+        {
+            get { return alreadyDamagedEnemy;}
+            set { alreadyDamagedEnemy = value; }
+        }
         #endregion
         #region "Public Fields"
         public void EquipWeapon()
@@ -29,8 +35,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             m_PlayerCont.M_Animator.SetInteger(weaponTypeHash, m_WeaponCont.m_WeaponStruct.weaponType);
             hasWeapon = true;
         }
-        public void AllowAttack(){
+        public void AllowAttack()
+        {
             alreadyAttacking = false;
+            alreadyDamagedEnemy = false;
             //Debug.Log("THe player has finished attacking and is free to attack again!");
         }
         public void UpdateWeaponAnim()
@@ -60,6 +68,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             LookYHash = Animator.StringToHash("LookY");
             weaponTypeHash = Animator.StringToHash("weaponType");
             alreadyAttacking = false;
+            alreadyDamagedEnemy = false;      
         }
     }
 }

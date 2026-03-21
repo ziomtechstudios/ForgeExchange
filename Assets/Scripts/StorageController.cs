@@ -6,7 +6,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         [SerializeField] private int curQuantity;
         [SerializeField] private int maxQuantity;
         [SerializeField] private bool isEmpty;
-        [SerializeField] private SlotController[] storageSlots;
+        //[SerializeField] private SlotController[] storageSlots;
         public bool IsEmpty { get { return isEmpty; } set { isEmpty = value; } }
         public SpriteRenderer M_SpriteRend{get { return m_SpriteRend;} set { m_SpriteRend = value;}}
 
