@@ -64,7 +64,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Members
         public void OpenInventory()
         {
-            if (!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking && !playerCont.IsUsingStorage)
+            if (!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking && !playerCont.IsUsingStorage && !playerCont.IsFishing)
             {
                 backPackObj.SetActive(true);
                 backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");

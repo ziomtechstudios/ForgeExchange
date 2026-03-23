@@ -110,7 +110,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
                     ///</summary>
                     //Debug.Log($"I am interacting with the water , In-Water = {dynamicSpriteLayering.IsObjInWater()}, also isFishing: {playerCont.IsFishing}.");
-                    if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing)
+                    if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing && !playerCont.IsUsingStorage)
                         playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
                     break;
             }
