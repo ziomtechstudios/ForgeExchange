@@ -69,7 +69,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetBool(isMovingHash, true);
                 M_Animator.SetFloat(moveXHash, moveDir.x);
                 M_Animator.SetFloat(moveYHash, moveDir.y);
-                isRunning = (canRun && playerStaminaCont.Stamina > 0.0f) ? (true) : false;
+                isRunning = (canRun && playerStaminaCont.Stamina > 0.0f);
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (IsMoving ? 1.00f : 0.00f) * moveDir);
                 TriggerSoundEffect();
             }

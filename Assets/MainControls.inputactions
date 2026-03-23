@@ -111,7 +111,7 @@
                 {
                     "name": "",
                     "id": "7af2b54f-98cd-4c48-ade2-1b3196613451",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "",
@@ -432,6 +432,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cf72c55-f2ea-4f5e-831c-dc5127bab51e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
