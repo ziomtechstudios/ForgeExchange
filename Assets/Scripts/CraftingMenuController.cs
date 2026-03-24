@@ -134,24 +134,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                             AttemptCrafting();
                             break;
                     case ("CraftingMenu"):
-                        //If we are dragging an item from the crafted slot, the player has chosen to craft the item.
-                        //Therefor we will empty the contents of the crafting table.
-                        //Item will be moved from craftedSlot to moving slot.
-                        if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
-                        {
-                            foreach (SlotController ingredient in craftingSlots)
-                            {
-                                //ingredient.CurStackQuantity-= smallestIngredientStack;
-                                bool stillStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
-                                DragAndDropSlot.UpdateSlotCounterText(ingredient);
-                                ingredient.ItemImage.sprite = stillStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
-                                ingredient.SlotPrefab = stillStack ? ingredient.SlotPrefab : null;
-                                ingredient.SlotWithItem = stillStack;
-                                ingredient.ItemCont = stillStack ? ingredient.ItemCont : null;
-                            }
-                            currentRecipe = null;
-                            craftTableCont.StockpileCont.Withdraw(1);
-                        }
+                        EmptyCraftingMenu();
                         break;
                         
                 }
