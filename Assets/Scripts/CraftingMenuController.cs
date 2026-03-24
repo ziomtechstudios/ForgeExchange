@@ -52,21 +52,40 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
             {
                 //The recipe was not a valid one so we make sure the slot for a crafted item remains blank.
-                craftedSlot[0].ItemImage.sprite = NoItemSprite;
-                craftedSlot[0].SlotPrefab = null;
-                craftedSlot[0].SlotWithItem = false;
-                craftedSlot[0].ItemCont = null;
+                DragAndDropSlot.EmptyCurrentSlot(craftedSlot[0], NoItemSprite, false);
                 potentialItemTuple = (null, null);
-                craftedSlot[0].CurStackQuantity = 0;
                 craftTableCont.StockpileCont.Withdraw(1);
             }
-            currentRecipe = "";
+
+            currentRecipe = null;
         }
         #endregion
         #region Getters/Setters
         public string CurrentRecipe { get { return currentRecipe; } }
         #endregion
         #region "Public Functions/Members"
+
+        public void EmptyCraftingMenu()
+        {
+            //If we are dragging an item from the crafted slot, the player has chosen to craft the item.
+            //Therefor we will empty the contents of the crafting table.
+            //Item will be moved from craftedSlot to moving slot.
+            if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
+            {
+                foreach (SlotController ingredient in craftingSlots)
+                {
+                    //ingredient.CurStackQuantity-= smallestIngredientStack;
+                    bool stillStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
+                    DragAndDropSlot.UpdateSlotCounterText(ingredient);
+                    ingredient.ItemImage.sprite = stillStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
+                    ingredient.SlotPrefab = stillStack ? ingredient.SlotPrefab : null;
+                    ingredient.SlotWithItem = stillStack;
+                    ingredient.ItemCont = stillStack ? ingredient.ItemCont : null;
+                }
+                currentRecipe = null;
+                craftTableCont.StockpileCont.Withdraw(1);
+            }
+        }
 
         public void SubStacking(PointerEventData eventData)
         {
@@ -122,18 +141,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         {
                             foreach (SlotController ingredient in craftingSlots)
                             {
-                                ingredient.CurStackQuantity-= smallestIngredientStack;
-                                bool stillStack = ingredient.CurStackQuantity > 0;
+                                //ingredient.CurStackQuantity-= smallestIngredientStack;
+                                bool stillStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
                                 DragAndDropSlot.UpdateSlotCounterText(ingredient);
                                 ingredient.ItemImage.sprite = stillStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
                                 ingredient.SlotPrefab = stillStack ? ingredient.SlotPrefab : null;
                                 ingredient.SlotWithItem = stillStack;
                                 ingredient.ItemCont = stillStack ? ingredient.ItemCont : null;
                             }
-                            currentRecipe = "";
+                            currentRecipe = null;
+                            craftTableCont.StockpileCont.Withdraw(1);
                         }
-                        //DragAndDropSlot.SelectItem(eventData, MovingSlot, craftedSlot, NoItemSprite, this);
-                        craftTableCont.StockpileCont.Withdraw(1);
                         break;
                         
                 }
@@ -205,7 +223,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void Update()
         {
             //The current recipe is set to "" after an item is crafted so we will check to see if ingredients remain and another item can be crafted.
-            if(currentRecipe == "") 
+            if(currentRecipe == null) 
                 AttemptCrafting();
         }
         #endregion

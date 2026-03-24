@@ -21,7 +21,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             destSlot.SlotPrefab = movingSlot.SlotPrefab;
             destSlot.CurStackQuantity =  subStackQuantity;
             UpdateSlotCounterText(destSlot);
-            EmptyMovingSlot(movingSlot, noItemSprite);
+            EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
@@ -31,31 +31,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             destSlot.SlotWithItem = true;
             destSlot.SlotPrefab = initSlot.SlotPrefab;
             destSlot.CurStackQuantity =  initSlot.CurStackQuantity;
-            destSlot.CounterTMPro.text = (destSlot.CurStackQuantity > 1)?destSlot.CurStackQuantity.ToString():"";
+            UpdateSlotCounterText(destSlot);
             //emptying initial slot
-            initSlot.CurStackQuantity = 0;
-            initSlot.CounterTMPro.text = "";
-            initSlot.ItemCont = null;
-            initSlot.ItemImage.sprite  =  noItemSprite;
-            initSlot.SlotWithItem = false;
-            initSlot.SlotPrefab = null;
+            EmptyCurrentSlot(initSlot, noItemSprite, false);
         } 
         private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
-            //Moving item from initial slot to destination slot
-            destSlot.ItemCont = initSlot.ItemCont;
-            destSlot.ItemImage.sprite = initSlot.ItemCont.ItemIcon;
-            destSlot.SlotWithItem = true;
-            destSlot.SlotPrefab = initSlot.SlotPrefab;
-            destSlot.CurStackQuantity =  initSlot.CurStackQuantity;
-            UpdateSlotCounterText(destSlot);
-            //emptying initial slot
-            initSlot.CurStackQuantity = 0;
-            initSlot.ItemCont = null;
-            initSlot.ItemImage.sprite  =  noItemSprite;
-            initSlot.SlotWithItem = false;
-            initSlot.SlotPrefab = null;
-            UpdateSlotCounterText(initSlot);
+            TransferStack(initSlot, destSlot, noItemSprite);
             return 0;
         }
         private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
@@ -75,18 +57,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
             destSlot.CurStackQuantity =  movingSlot.CurStackQuantity;
             UpdateSlotCounterText(destSlot);
             //Emptying moving slot
-            EmptyMovingSlot(movingSlot, noItemSprite);
+            EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         //For situations like Item stacking where we just need to empty the moving slot
-        private static void EmptyMovingSlot(SlotController movingSlot, Sprite noItemSprite)
+        public static void EmptyCurrentSlot(SlotController curSlot, Sprite noItemSprite, bool isMovingSlot)
         {
-            movingSlot.ItemImage.sprite = noItemSprite;
-            movingSlot.SlotWithItem = false;
-            movingSlot.ItemCont = null;
-            movingSlot.SlotPrefab = null;
-            movingSlot.CurStackQuantity = 0;
-            movingSlot.CounterTMPro.text = "";
-            movingSlot.gameObject.SetActive(false);
+            curSlot.ItemImage.sprite = noItemSprite;
+            curSlot.SlotWithItem = false;
+            curSlot.ItemCont = null;
+            curSlot.SlotPrefab = null;
+            curSlot.CurStackQuantity = 0;
+            curSlot.CounterTMPro.text = "";
+            if (isMovingSlot)
+                curSlot.gameObject.SetActive(false);
+            else
+                UpdateSlotCounterText(curSlot);
         }
         public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, SlotsController container)
         {
@@ -131,7 +116,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //We are moving an item and there is no item at the destination slot
             else if (movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
                 TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
-            EmptyMovingSlot(movingSlotCont, noItemSprite);
+            EmptyCurrentSlot(movingSlotCont, noItemSprite, true);
         }
         public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)
         {

@@ -40,7 +40,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
             return false;
         }*/
-        private bool DropObj()
+        private bool DepositObj()
         {
             //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
             //If the stockpile cant take in the item we set the playerHolding to true.
@@ -74,7 +74,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //First we check if this fuel deposit will be more than what the forge can handle
                     workstationCont.Overflow(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
                     //If the item can be used as fuel, and we are not using workstation that doesn't use fuel and if refueling the workstation won't overflow
-                    //Workstation that dont require fuel such as forge-pump will simply have their Fuel Full boolean set to true thereby !true.
+                    //Workstation that dont require fuel such as forge-pump will simply have their Fuel Full boolean set to true thereby false
                     if ((playerCont.HoldingCont.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
                     {
                         workstationCont.Refuel(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
@@ -181,7 +181,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
                         ///If the player is holding an object allow them to drop the object
                         stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DropObj();
+                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DepositObj();
                         break;
                     case "chest":
                         if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
