@@ -23,6 +23,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         #region "Getters/Setters"
         public StockpileController StockpileCont { get { return stockpileController; } }
+        public CraftingMenuController CraftingMenuCont { get { return craftingMenuController; } }
         //public bool InUseHash{get{ return m_Animator.GetBool(inUseHash); } set { m_Animator.SetBool(inUseHash, value); } }
         public IDictionary<string, (GameObject, ItemController)> CraftedItemDict { get { return craftedItemsDict; } }
         #endregion

@@ -155,7 +155,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         }
                         break;
                     } 
-                    if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont))
+                    if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont)  && ((slotConts[i].CurStackQuantity+1) <= slotConts[i].ItemCont.MaxStackQuantity))
                     {
                         slotConts[i].CurStackQuantity++;
                         DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);

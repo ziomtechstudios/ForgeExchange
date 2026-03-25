@@ -66,26 +66,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Public Functions/Members"
 
         public void EmptyCraftingMenu()
-        {
-            //If we are dragging an item from the crafted slot, the player has chosen to craft the item.
-            //Therefor we will empty the contents of the crafting table.
-            //Item will be moved from craftedSlot to moving slot.
-            if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
+        { 
+            foreach (SlotController ingredient in craftingSlots)
             {
-                foreach (SlotController ingredient in craftingSlots)
-                {
-                    //ingredient.CurStackQuantity-= smallestIngredientStack;
-                    bool stillStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
-                    DragAndDropSlot.UpdateSlotCounterText(ingredient);
-                    ingredient.ItemImage.sprite = stillStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
-                    ingredient.SlotPrefab = stillStack ? ingredient.SlotPrefab : null;
-                    ingredient.SlotWithItem = stillStack;
-                    ingredient.ItemCont = stillStack ? ingredient.ItemCont : null;
-                }
-                currentRecipe = null;
-                craftTableCont.StockpileCont.Withdraw(1);
+                    
+                bool stillAStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
+                DragAndDropSlot.UpdateSlotCounterText(ingredient);
+                ingredient.ItemImage.sprite = stillAStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
+                ingredient.SlotPrefab = stillAStack ? ingredient.SlotPrefab : null;
+                ingredient.SlotWithItem = stillAStack;
+                ingredient.ItemCont = stillAStack ? ingredient.ItemCont : null;
             }
+            currentRecipe = null;
+            craftTableCont.StockpileCont.Withdraw(1);
         }
+        
 
         public void SubStacking(PointerEventData eventData)
         {
@@ -123,26 +118,28 @@ namespace Com.ZiomtechStudios.ForgeExchange
             // Are we sure that what we are dragging from is a slot?
             // THe slot that we are dragging from, does it have an item?
             // Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
-            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots) && !IsSubStacking)
-            {
-                initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-                DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
-                //Based on the type of slot it is pass relevant parameters
-                switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
+            if(!IsSubStacking){
+                if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
                 {
-                    case ("CraftingSlots"):
-                            AttemptCrafting();
+                    initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+                    DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
+                    switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
+                    {
+                        case ("CraftingSlots"):
+                                AttemptCrafting();
+                                break;
+                        case ("CraftingMenu"):
+                            if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
+                                EmptyCraftingMenu();
                             break;
-                    case ("CraftingMenu"):
-                        EmptyCraftingMenu();
-                        break;
-                        
+                            
+                    }
                 }
             }
         }
         public override void OnDrag(PointerEventData eventData)
         {
-            if (!IsSubStacking)
+            if (!IsSubStacking && eventData.pointerCurrentRaycast.gameObject)
             {
                 DragAndDropSlot.MoveItem(eventData, craftMenuRectTrans, MovingSlotRectTrans);
                 initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject
@@ -157,29 +154,41 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Making sure the destination slot is an appropriate destination.
             //The player has an item in the moving slot.
             //Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotPrefab != null && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots) && !IsSubStacking)
+            if (!IsSubStacking)
             {
-                // Position of the targeted slot
-                destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
-                TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time-TimerPointerHeldDown) : 0.0f;
-                switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
+                if (eventData.pointerCurrentRaycast.gameObject != null &&
+                    eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem &&
+                    MovingSlot.SlotPrefab != null &&
+                    SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
+                        out destSlots))
                 {
-                    //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
-                    case "CraftingMenu":
-                        ReturnItem(eventData);
-                        break;
-                    //THe player has placed an item onto a slot for the ingredients of a craftable item.
-                    //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
-                    case "CraftingSlots":
-                        SubStacking(eventData);
-                        if(!isSubStacking)
-                            AttemptCrafting();
-                        break;
-                    //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
-                    default:
-                        SubStacking(eventData);
-                        break;
+                    // Position of the targeted slot
+                    destSlotNum =
+                        Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+                    TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum])
+                        ? (Time.time - TimerPointerHeldDown)
+                        : 0.0f;
+                    switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
+                    {
+                        //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
+                        case "CraftingMenu":
+                            ReturnItem(eventData);
+                            break;
+                        //THe player has placed an item onto a slot for the ingredients of a craftable item.
+                        //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
+                        case "CraftingSlots":
+                            SubStacking(eventData);
+                            if (!isSubStacking)
+                                AttemptCrafting();
+                            break;
+                        //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
+                        default:
+                            SubStacking(eventData);
+                            break;
+                    }
                 }
+                else
+                    ReturnItem(eventData);
             }
             //The player is trying to place the item in an inappropriate area so we will just return it back to its original spot.
             else if(!IsSubStacking)
@@ -212,6 +221,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #endregion
         void Start()
         {
+            craftTableCont = transform.parent.parent.GetComponent<CraftTableController>();
             craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             craftedSlot = new SlotController[1];
