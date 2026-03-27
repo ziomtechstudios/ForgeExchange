@@ -13,6 +13,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private BoxCollider2D enemyCollider;
         [SerializeField] private PlayerUIStruct enemyUIStruct;
         [SerializeField] private bool isAttacking;
+        [SerializeField] private PlayerAttackController playerAtkCont;
         #endregion
         #region "Getter/Setters"
         public PlayerUIStruct EnemyUIStruct { get { return enemyUIStruct; } set { enemyUIStruct = value; } }
@@ -37,7 +38,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
-            PlayerAttackController? playerAtkCont = collision.gameObject.GetComponent<PlayerAttackController?>();
+            playerAtkCont = collision.gameObject.GetComponent<PlayerAttackController>();
             if (enemyCollider.IsTouchingLayers(layerMask) && !playerAtkCont.AlreadyDamagedEnemy)
             {
                 Debug.Log("The enemy is taking damage from a weapon!");

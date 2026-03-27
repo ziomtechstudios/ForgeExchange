@@ -38,12 +38,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void IsFullyReeled()
         {
-            ///<summary>
-            ///We check to see if the player has fully reeled in the line.
-            ///First increment ammount the line has currently reeled and then check to see if this reaches or exceeds the maximum.
-            ///Pass the boolean result into the animation controller of both the player and the fishing rod.
-            ///If the line is fuly reeled reset the reeled amount to zero
-            ///</summary>
             isFullyReeled = ((fishingRodCont.CurReeledAmnt += reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
             playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, isFullyReeled);
             fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
@@ -60,7 +54,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if(!isFullyReeled)
             {
                 if(context.started){
-                    //fishingRodCont.RodReeling(true);
                     playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, true);
                 }
                 else if(context.canceled || playerInteractionCont.PlayerCont.M_Animator.GetBool(isFullyReeledHash)){
@@ -101,10 +94,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
             // In case player no longer wants to fish they can now revert to other activities
             playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
-            ///<summary>
-            /// Satisfies condition for casting rod if fishing is done consecutively.
-            /// This also ensures that if the player where to equip another item it will be the only gameObject held within the scene @ runtime.
-            //.</summary>
+
+            // Satisfies condition for casting rod if fishing is done consecutively.
+            // This also ensures that if the player where to equip another item it will be the only gameObject held within the scene @ runtime.
             if (lineDurability > 0.0f && fishingRodCont.HasBite)
             {
                 fishingRodCont.HasBite = false;
@@ -144,14 +136,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     IsFullyReeled();
                 if (fishingRodCont.HasBite)
                 {
-                    ///<summary>
-                    /// If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
-                    /// We then apply minimal wear to durability of the line.
-                    /// If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
-                    /// If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
-                    /// If not the player looses the fish.
-                    /// Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
-                    /// </summary>
+
+                    // If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
+                    // We then apply minimal wear to durability of the line.
+                    // If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
+                    // If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
+                    // If not the player looses the fish.
+                    // Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
                     if (inputVector != Vector2.zero)
                         playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(
                             new Vector2((inputVector.x), 0.0f));

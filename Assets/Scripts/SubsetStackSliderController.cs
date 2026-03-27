@@ -32,11 +32,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
 
         #region "Getters/Setters"
 
-        public PointerEventData CurEventData
+        /*public PointerEventData CurEventData
         {
             get { return curEventData; }
             set { curEventData = value; }
-        }
+        }*/
 
         public SlotController DestSlot
         {

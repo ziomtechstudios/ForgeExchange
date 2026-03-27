@@ -5,34 +5,24 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
+        private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity)
+        {
+            targetSlot.ItemCont = referenceSlot.ItemCont;
+            targetSlot.ItemImage.sprite = referenceSlot.ItemCont.ItemIcon;
+            targetSlot.SlotWithItem = true;
+            targetSlot.SlotPrefab = referenceSlot.SlotPrefab;
+            targetSlot.CurStackQuantity = quantity;
+            UpdateSlotCounterText(targetSlot);
+        }
         public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, int subStackQuantity, Sprite noItemSprite)
         {
-            //Creating stack with remainder of quantity back at the initial slot
-            initSlot.ItemCont = movingSlot.ItemCont;
-            initSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
-            initSlot.SlotWithItem = true;
-            initSlot.SlotPrefab = movingSlot.SlotPrefab;
-            initSlot.CurStackQuantity =  movingSlot.CurStackQuantity - subStackQuantity;
-            UpdateSlotCounterText(initSlot);
-            //Updating quantity of destSlot
-            destSlot.ItemCont = movingSlot.ItemCont;
-            destSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
-            destSlot.SlotWithItem = true;
-            destSlot.SlotPrefab = movingSlot.SlotPrefab;
-            destSlot.CurStackQuantity =  subStackQuantity;
-            UpdateSlotCounterText(destSlot);
+            AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity - subStackQuantity);
+            AssignSlotContents(destSlot, movingSlot, subStackQuantity);
             EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
-            //Moving item from initial slot to destination slot
-            destSlot.ItemCont = initSlot.ItemCont;
-            destSlot.ItemImage.sprite = initSlot.ItemCont.ItemIcon;
-            destSlot.SlotWithItem = true;
-            destSlot.SlotPrefab = initSlot.SlotPrefab;
-            destSlot.CurStackQuantity =  initSlot.CurStackQuantity;
-            UpdateSlotCounterText(destSlot);
-            //emptying initial slot
+            AssignSlotContents(destSlot, initSlot,initSlot.CurStackQuantity);
             EmptyCurrentSlot(initSlot, noItemSprite, false);
         } 
         private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
@@ -42,21 +32,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
         {
-            //Stack at destination slot is moved to initial slot
-            initSlot.ItemCont = destSlot.ItemCont;
-            initSlot.ItemImage.sprite = destSlot.ItemCont.ItemIcon;
-            initSlot.SlotWithItem = true;
-            initSlot.SlotPrefab = destSlot.SlotPrefab;
-            initSlot.CurStackQuantity = destSlot.CurStackQuantity;
-            UpdateSlotCounterText(initSlot);
-            //Stack in moving slot moved into destination slot
-            destSlot.ItemCont = movingSlot.ItemCont;
-            destSlot.ItemImage.sprite = movingSlot.ItemCont.ItemIcon;
-            destSlot.SlotWithItem = true;
-            destSlot.SlotPrefab = movingSlot.SlotPrefab;
-            destSlot.CurStackQuantity =  movingSlot.CurStackQuantity;
-            UpdateSlotCounterText(destSlot);
-            //Emptying moving slot
+            AssignSlotContents(initSlot, destSlot, destSlot.CurStackQuantity);
+            AssignSlotContents(destSlot, movingSlot, movingSlot.CurStackQuantity);
             EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         //For situations like Item stacking where we just need to empty the moving slot
@@ -126,13 +103,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public static int GetSlotNum(PointerEventData eventData)
         {
+            //TODO: Figure out how to handle debug statement for when player selects protion of UI screen that does not provide a string to parse into an int.
             return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
         }
         public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
         {
             return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
         }
-
         public static void UpdateSlotCounterText(QuickSlotController slotCont)
         {
             slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";

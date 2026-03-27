@@ -109,7 +109,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             subStackSliderCont.InitSlot = initSlots[initSlotNum];
             subStackSliderCont.DestSlot = destSlots[destSlotNum];
             subStackSliderCont.MovingSlot = movingSlot;
-            subStackSliderCont.CurEventData = eventData;
+            //subStackSliderCont.CurEventData = eventData;
             SubStackItemSlider.gameObject.SetActive(true);
         }
         public override void ConfirmSubStackQuantity()

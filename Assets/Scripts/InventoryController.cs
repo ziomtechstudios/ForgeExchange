@@ -196,7 +196,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     case "FishingRod":
                         playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
                         playerCont.PlayerInteractionCont.PlayerFishingCont.SpawnRod();
-                        //playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
                         break;
                 }
             }

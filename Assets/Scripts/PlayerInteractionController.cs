@@ -108,11 +108,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor(5.0f);
                     break;
                 case "water":
-                    ///<summary>
-                    ///If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
-                    ///If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
-                    ///</summary>
-                    //Debug.Log($"I am interacting with the water , In-Water = {dynamicSpriteLayering.IsObjInWater()}, also isFishing: {playerCont.IsFishing}.");
+                    //If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
+                    //If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
                     if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing && !playerCont.IsUsingStorage)
                         playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
                     break;
@@ -139,11 +136,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public bool InteractWorkstation()
         {
-            ///<summary>
-            ///The player is interacting with a workstation while equiping the item for a special use case like refueling forge or by accident.
-            ///If it is a special use case we simply add it to the switch case and create a function that if successfull sets player holding item bool to false.
-            ///If this was an accident we want the player to keep holding  the item and simply reassign playerHoldingItem to its current value, presummably true.
-            ///</summary>
+            //The player is interacting with a workstation while equiping the item for a special use case like refueling forge or by accident.
+            //If it is a special use case we simply add it to the switch case and create a function that if successfull sets player holding item bool to false.
+            //If this was an accident we want the player to keep holding  the item and simply reassign playerHoldingItem to its current value, presummably true.
             if (!playerCont.IsUsingStorage)
             {
                 workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();

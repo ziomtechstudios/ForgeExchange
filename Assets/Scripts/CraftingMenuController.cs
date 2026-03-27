@@ -25,6 +25,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private RectTransform craftMenuRectTrans;
         private void AttemptCrafting()
         {
+            
             smallestIngredientStack = 64;
             //Reevaluating current ingredients the user has deposited into the crafting table.
             foreach (SlotController ingredient in craftingSlots)
@@ -61,6 +62,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         #region Getters/Setters
+        //Still needed even if not used in script, lets me see the value at runtime so when i create new recipes I can copy  and paste into dictionary when in the inspector.
         public string CurrentRecipe { get { return currentRecipe; } }
         #endregion
         #region "Public Functions/Members"
@@ -69,7 +71,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         { 
             foreach (SlotController ingredient in craftingSlots)
             {
-                    
                 bool stillAStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
                 DragAndDropSlot.UpdateSlotCounterText(ingredient);
                 ingredient.ItemImage.sprite = stillAStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
@@ -149,7 +150,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void  OnEndDrag(PointerEventData eventData)
         {
-            
             //The players finger has stopped dragging onto a slot.
             //Making sure the destination slot is an appropriate destination.
             //The player has an item in the moving slot.
@@ -202,7 +202,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             subStackSliderCont.InitSlot = initSlots[initSlotNum];
             subStackSliderCont.DestSlot = destSlots[destSlotNum];
             subStackSliderCont.MovingSlot = movingSlot;
-            subStackSliderCont.CurEventData = eventData;
+            //subStackSliderCont.CurEventData = eventData;
             SubStackItemSlider.gameObject.SetActive(true);
         }
         public override void ConfirmSubStackQuantity()
