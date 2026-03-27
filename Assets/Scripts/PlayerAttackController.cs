@@ -50,8 +50,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public void OnAttack(InputAction.CallbackContext context)
         {
             //TODO: Set up logic at runtime for second attack for combo-light attack.
-            // General Logic for this is after player is allowed to attack again and attacks within some time period.
-            // Once second attack in combo is triggered we play attack from same blend tree but at a higher speed in reverse.
+            // General logic for this is after player is allowed to attack again and they press attack input within some time period.
+            // Once second attack in combo is triggered we play attack from same blend tree but at a higher speed in reverse for melee and forward for range.
             //The player is pressing the attack button and has a weapon
             if (context.started && (m_WeaponCont != null) && !alreadyAttacking)
             {
