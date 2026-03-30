@@ -12,11 +12,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private bool alreadyAttacking;
         #endregion
         #region "Private Fields"
-        private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash;
+
+        private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash, comboAtkHash;
         private bool hasWeapon;
         private bool alreadyDamagedEnemy;
         private GameObject playerWeapon;
         private PlayerInteractionController playerInteractionCont;
+        private float timeBetweenAtks;
         #endregion
         #region "Getters/Setters"
         public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
@@ -57,7 +59,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
                 alreadyAttacking = true;
+                timeBetweenAtks = Time.time;
             }
+            else if((timeBetweenAtks -= Time.time) <= 2.00f)
+                m_PlayerCont.M_Animator.SetTrigger(comboAtkHash);
         }
         #endregion
         // Start is called before the first frame update
@@ -70,8 +75,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             LookXHash = Animator.StringToHash("LookX");
             LookYHash = Animator.StringToHash("LookY");
             weaponTypeHash = Animator.StringToHash("weaponType");
+            comboAtkHash = Animator.StringToHash("isComboAttack");
             alreadyAttacking = false;
-            alreadyDamagedEnemy = false;      
+            alreadyDamagedEnemy = false;
+            timeBetweenAtks = 0.0f;
         }
     }
 }
