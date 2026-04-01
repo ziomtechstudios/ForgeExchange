@@ -34,7 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             playerWeapon = Instantiate(m_PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
             m_WeaponCont = playerWeapon.GetComponent<WeaponController>();
-            m_PlayerCont.M_Animator.SetInteger(weaponTypeHash, m_WeaponCont.m_WeaponStruct.weaponType);
+            m_PlayerCont.M_Animator.SetInteger(weaponTypeHash, (int)m_WeaponCont.m_WeaponStruct.weaponType);
             hasWeapon = true;
         }
         public void AllowAttack()
@@ -61,7 +61,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 alreadyAttacking = true;
                 timeBetweenAtks = Time.time;
             }
-            else if((timeBetweenAtks -= Time.time) <= 2.00f)
+            if((timeBetweenAtks -= Time.time) <= 2.00f && alreadyAttacking)
                 m_PlayerCont.M_Animator.SetTrigger(comboAtkHash);
         }
         #endregion
