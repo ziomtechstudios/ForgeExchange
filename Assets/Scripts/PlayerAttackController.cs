@@ -12,7 +12,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private bool alreadyAttacking;
         #endregion
         #region "Private Fields"
-
         private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash, comboAtkHash;
         private bool hasWeapon;
         private bool alreadyDamagedEnemy;
@@ -41,7 +40,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             alreadyAttacking = false;
             alreadyDamagedEnemy = false;
-            //Debug.Log("THe player has finished attacking and is free to attack again!");
         }
         public void UpdateWeaponAnim()
         {
@@ -55,14 +53,22 @@ namespace Com.ZiomtechStudios.ForgeExchange
             // General logic for this is after player is allowed to attack again and they press attack input within some time period.
             // Once second attack in combo is triggered we play attack from same blend tree but at a higher speed in reverse for melee and forward for range.
             //The player is pressing the attack button and has a weapon
-            if (context.started && (m_WeaponCont != null) && !alreadyAttacking)
+            if (context.started && m_WeaponCont)
             {
-                m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
-                alreadyAttacking = true;
-                timeBetweenAtks = Time.time;
+                if (!alreadyAttacking)
+                {
+                    Debug.Log("We are triggering the first attack.");
+                    m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
+                    alreadyAttacking = true;
+                    timeBetweenAtks = Time.time;
+                    return;
+                }
+                if (((timeBetweenAtks -= Time.time) <= 2.00f) && alreadyAttacking)
+                {
+                    Debug.Log("We are triggering the second attack for a combo attack.");
+                    m_PlayerCont.M_Animator.SetTrigger(comboAtkHash);
+                }
             }
-            if((timeBetweenAtks -= Time.time) <= 2.00f && alreadyAttacking)
-                m_PlayerCont.M_Animator.SetTrigger(comboAtkHash);
         }
         #endregion
         // Start is called before the first frame update
