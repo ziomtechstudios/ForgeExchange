@@ -34,7 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 playerCont.HoldingPrefab = slotConts[index].SlotPrefab;   
             return playerCont.HoldingItem;
         }
-        //Player selects which slot in their inventory the!slotConts[index].SlotInUse want to select, makes that obj the one the player is holding
+        //Player selects which slot in their inventory the  !slotConts[index].SlotInUse want to select, makes that obj the one the player is holding
         public void SelectSlot(int slotIndex)
         {
             //selected slot is highlighted

@@ -10,14 +10,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private PlayerController m_PlayerCont;
         [SerializeField] private WeaponController m_WeaponCont;
         [SerializeField] private bool alreadyAttacking;
+        [SerializeField] private float timeToCombo;
         #endregion
         #region "Private Fields"
-        private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash, comboAtkHash;
+        private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash, comboAtkHash, isWComboAtk;
         private bool hasWeapon;
         private bool alreadyDamagedEnemy;
         private GameObject playerWeapon;
         private PlayerInteractionController playerInteractionCont;
         private float timeBetweenAtks;
+        private bool canUpdateWeaponAnim;
         #endregion
         #region "Getters/Setters"
         public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
@@ -40,12 +42,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             alreadyAttacking = false;
             alreadyDamagedEnemy = false;
+            m_PlayerCont.M_Animator.SetBool(comboAtkHash, false);
+            m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, false);
         }
         public void UpdateWeaponAnim()
         {
             m_WeaponCont.WeaponAnimator.SetFloat(LookXHash, m_PlayerCont.LookDir.x);
             m_WeaponCont.WeaponAnimator.SetFloat(LookYHash, m_PlayerCont.LookDir.y);
-            m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
+            if(canUpdateWeaponAnim)
+                m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
@@ -57,16 +62,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 if (!alreadyAttacking)
                 {
+                    canUpdateWeaponAnim = true;
                     Debug.Log("We are triggering the first attack.");
                     m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
                     alreadyAttacking = true;
                     timeBetweenAtks = Time.time;
                     return;
                 }
-                if (((timeBetweenAtks -= Time.time) <= 2.00f) && alreadyAttacking)
+                if (((timeBetweenAtks -= Time.time) <= timeToCombo) && alreadyAttacking)
                 {
                     Debug.Log("We are triggering the second attack for a combo attack.");
-                    m_PlayerCont.M_Animator.SetTrigger(comboAtkHash);
+                    canUpdateWeaponAnim = false;
+                    m_PlayerCont.M_Animator.SetBool(comboAtkHash, true);
+                    m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, true);
                 }
             }
         }
@@ -78,6 +86,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont = GetComponent<PlayerInteractionController>();
             playerAttackHash = Animator.StringToHash("isAttacking");
             weaponAttackHash = Animator.StringToHash("isWAttacking");
+            isWComboAtk = Animator.StringToHash("isWComboAtk");
             LookXHash = Animator.StringToHash("LookX");
             LookYHash = Animator.StringToHash("LookY");
             weaponTypeHash = Animator.StringToHash("weaponType");
