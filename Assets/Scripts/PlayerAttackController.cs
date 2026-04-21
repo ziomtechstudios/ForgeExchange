@@ -69,10 +69,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     timeBetweenAtks = Time.time;
                     return;
                 }
-                if (((timeBetweenAtks -= Time.time) <= timeToCombo) && alreadyAttacking)
+                if (((timeBetweenAtks -= Time.time) <= timeToCombo) && alreadyAttacking && !m_PlayerCont.M_Animator.GetBool(comboAtkHash))
                 {
                     Debug.Log("We are triggering the second attack for a combo attack.");
                     canUpdateWeaponAnim = false;
+                    UpdateWeaponAnim();
                     m_PlayerCont.M_Animator.SetBool(comboAtkHash, true);
                     m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, true);
                 }

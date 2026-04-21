@@ -17,6 +17,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Funcs
         private bool ToggleHolding(int index)
         {
+            
             //If the slot selected has an item that the player wants to hold
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
