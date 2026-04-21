@@ -2433,7 +2433,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.0822315
+      m_AnimationSpeed: 2.6581976
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2444,7 +2444,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.8961866
+      m_AnimationSpeed: 2.2566664
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2455,7 +2455,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.8738286
+      m_AnimationSpeed: 2.6847308
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -24708,6 +24708,24 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1421297644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 989033117, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+  m_PrefabInstance: {fileID: 2417434154386360278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1421297646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421297644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10df5921eb070fb74b4d0e383a4dc748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGamePadConnected: 0
 --- !u!114 &1440875361 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8892634002129242897, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
@@ -31585,6 +31603,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 106285504, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 30ec5c5d3d1461a4491eb7f0328d22d3, type: 3}
     - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 23
@@ -31937,6 +31959,18 @@ PrefabInstance:
       propertyPath: m_ControlPath
       value: <Gamepad>/buttonEast
       objectReference: {fileID: 0}
+    - target: {fileID: 1975200066, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975200066, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 57a04317fe403db40b898b86567ee127, type: 3}
+    - target: {fileID: 1975200066, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2080820972, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -32061,6 +32095,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 989033117, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1421297646}
     - targetCorrespondingSourceObject: {fileID: 1789136132, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1956692441}
