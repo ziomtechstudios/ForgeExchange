@@ -1,29 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class ControlsManager : MonoBehaviour
     {
-        [SerializeField] private bool isGamePadConnected;
-
-        private void ToggleOnScreenControls()
+        public void ShowOnScreenControls()
         {
-            isGamePadConnected = Gamepad.all.Count > 0;
-            gameObject.SetActive(!isGamePadConnected);
+            gameObject.SetActive(true);
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public void HideOnScreenControls()
         {
-            ToggleOnScreenControls();
-        }
-
-        void OnDeviceConnected(InputDevice device)
-        {
-            ToggleOnScreenControls();
+            gameObject.SetActive(false);
         }
     }
 }
