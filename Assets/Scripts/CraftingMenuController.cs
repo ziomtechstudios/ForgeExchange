@@ -89,8 +89,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
                     DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
-                else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem)
-                    ActivateSubStackSlider(eventData); 
+                else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem && movingSlot.CurStackQuantity > 2)
+                    ActivateSubStackSlider(eventData);
+                else if(TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem && movingSlot.CurStackQuantity == 2)
+                    DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, 1, NoItemSprite);
             }
             else
                 ReturnItem(eventData);

@@ -24,7 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.IsFishing = true;
             playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, playerCont.IsFishing);
             playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
-            //  playerFishingCont.CastingRod();
+            //playerFishingCont.CastingRod() is called @ first frame of player's casting animation so that player and fishing rod's animations are in sync.
             playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
             return true;
         }

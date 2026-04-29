@@ -12,10 +12,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             InputSystem.onDeviceChange += OnDeviceChange;
         }
-        void OnDisable()
-        {
-            //InputSystem.onDeviceChange -= OnDeviceChange;
-        }
         private void OnDeviceChange(InputDevice device, InputDeviceChange change)
         {
             if (device.name.Equals("iOSGameController"))
@@ -39,7 +35,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         break;
                 }
             }
-            Debug.Log($"Device: {device.name}, was {change}");
         }
     }
 }

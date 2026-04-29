@@ -33,9 +33,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeReference] private PlayerInteractionController playerInteractionCont;
         [Header("Health/Stamina")]
         [SerializeField] private StaminaController playerStaminaCont;
-        [Header("Player Audio")]
-        [SerializeField] private AudioClip playerStoneSteps;
-        [SerializeField] private AudioClip playerGrassSteps;
         #endregion
         #region Getters/Setters
         public bool IsRunning { get { return isRunning; } }
@@ -71,7 +68,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 M_Animator.SetFloat(moveYHash, moveDir.y);
                 isRunning = (canRun && playerStaminaCont.Stamina > 0.0f);
                 transform.Translate((isRunning ? runSpeed : 1.00f) * Time.deltaTime * walkSpeed * (IsMoving ? 1.00f : 0.00f) * moveDir);
-                TriggerSoundEffect();
             }
             else
             {
@@ -113,10 +109,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 canRun = true;
             else if (context.canceled)
                 canRun = false;
-        }
-        public void TriggerSoundEffect(){
-            if(M_DSpriteLayering.IsInside)
-                M_AudioSource.PlayOneShot(playerStoneSteps, 0.5f);
         }
         #endregion
         // Start is called before the first frame update
