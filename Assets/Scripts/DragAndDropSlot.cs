@@ -7,10 +7,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
     {
         private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity)
         {
-            targetSlot.ItemCont = referenceSlot.ItemCont;
-            targetSlot.ItemImage.sprite = referenceSlot.ItemCont.ItemIcon;
+            targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
+            targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple.Item2.ItemIcon;
             targetSlot.SlotWithItem = true;
-            targetSlot.SlotPrefab = referenceSlot.SlotPrefab;
             targetSlot.CurStackQuantity = quantity;
             UpdateSlotCounterText(targetSlot);
         }
@@ -22,7 +21,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
-            AssignSlotContents(destSlot, initSlot,initSlot.CurStackQuantity);
+            AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity);
             EmptyCurrentSlot(initSlot, noItemSprite, false);
         } 
         private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
@@ -41,8 +40,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             curSlot.ItemImage.sprite = noItemSprite;
             curSlot.SlotWithItem = false;
-            curSlot.ItemCont = null;
-            curSlot.SlotPrefab = null;
+            curSlot.SlotItemTuple = (null, null);
             curSlot.CurStackQuantity = 0;
             curSlot.CounterTMPro.text = "";
             if (isMovingSlot)
@@ -79,11 +77,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (movingSlotCont.SlotWithItem && destSlots[destSlotIndex].SlotWithItem)
             {
                 // We are moving an item/stack to a slot that is occupied with the same type of item   /stack
-                if (CheckMatchingItem(movingSlotCont.ItemCont, destSlots[destSlotIndex].ItemCont))
+                if (CheckMatchingItem(movingSlotCont.SlotItemTuple.Item2, destSlots[destSlotIndex].SlotItemTuple.Item2))
                 {
                     //If stacking an item or stack onto an existing stack let us make sure we are exceeding the maximum amount of items.
                     //If we do lets return to moving item/stack back to its original position.
-                    bool isOverFilled = ((destSlots[destSlotIndex].CurStackQuantity + movingSlotCont.CurStackQuantity) > destSlots[destSlotIndex].ItemCont.MaxStackQuantity);
+                    bool isOverFilled = ((destSlots[destSlotIndex].CurStackQuantity + movingSlotCont.CurStackQuantity) > destSlots[destSlotIndex].SlotItemTuple.Item2.MaxStackQuantity);
                     destSlots[destSlotIndex].CurStackQuantity += (isOverFilled ? ReturnStack(movingSlotCont, initSlots[initSlotIndex], noItemSprite) : movingSlotCont.CurStackQuantity);
                     destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
                 }
@@ -98,7 +96,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)
         {
             //If we are actually moving an item drop the item where we have stopped dragging
-            if (movingSlotCont.SlotPrefab != null)
+            if (movingSlotCont.SlotItemTuple != (null, null))
                     TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
         }
         public static int GetSlotNum(PointerEventData eventData)

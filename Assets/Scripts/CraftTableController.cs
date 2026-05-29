@@ -58,10 +58,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 InUse = true;
             }
         }
-        public override void Work(ItemController itemCont)
+        public override void Work((GameObject, ItemController) craftedTuple)
         {
             if(InUse)
-                stockpileController.Deposit(1, itemCont.gameObject, itemCont);
+                stockpileController.Deposit(1, craftedTuple);
         }
         #endregion
         #region "Event Functions"

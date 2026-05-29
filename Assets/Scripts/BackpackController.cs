@@ -75,7 +75,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 // Slot we are dropping off to is in our dictionary of slots.
                 if (eventData.pointerCurrentRaycast.gameObject != null &&
                     eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem &&
-                    movingSlot.SlotPrefab != null &&
+                    movingSlot.SlotItemTuple.Item1 &&
                     SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
                         out destSlots))
                 {

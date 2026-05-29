@@ -33,7 +33,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SpawnRod()
         {
-            fishingRod = Instantiate(playerInteractionCont.PlayerCont.HoldingPrefab, HoldingTransform, false);
+            fishingRod = Instantiate(playerInteractionCont.PlayerCont.MainHandTuple.Item1, HoldingTransform, false);
             fishingRodCont = fishingRod.GetComponent<FishingRodController>();
         }
         public void IsFullyReeled()

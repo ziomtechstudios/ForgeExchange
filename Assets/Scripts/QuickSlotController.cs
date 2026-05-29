@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class QuickSlotController : MonoBehaviour
@@ -14,18 +12,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private Image itemImage;
         [SerializeField] private bool slotInUse;
         [SerializeField] private bool slotWithItem;
-        [SerializeField] private GameObject slotPrefab;
-        [SerializeField] private ItemController itemCont;
+        private (GameObject, ItemController) slotItemTuple;
         [SerializeField] private int curStackQuantity;
         [SerializeField] private TextMeshProUGUI counterTMPro;
         #endregion
         #region Getters/Setters
         public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
         public bool SlotWithItem { get { return slotWithItem; } set { slotWithItem = value; } }
-        public GameObject SlotPrefab { get { return slotPrefab; } set { slotPrefab = value; } }
+        public (GameObject, ItemController) SlotItemTuple { get { return slotItemTuple; } set { slotItemTuple = value; } }
         public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
         public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
-        public ItemController ItemCont { get { return itemCont; } set { itemCont = value; } }
         public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
         public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
         #endregion

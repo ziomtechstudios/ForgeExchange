@@ -2468,7 +2468,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.7595828
+      m_AnimationSpeed: 2.5022202
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2479,7 +2479,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.0393186
+      m_AnimationSpeed: 2.595313
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2490,7 +2490,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.072558
+      m_AnimationSpeed: 2.379208
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -26157,10 +26157,6 @@ MonoBehaviour:
   canSpawn: 0
   recipes:
   - Wooden_FishingRod
-  potentialPrefabs:
-  - {fileID: 4343454654779642740, guid: 23cb981b64677f181b31aa01eea7f2ea, type: 3}
-  potentialItemConts:
-  - {fileID: -7310841293376275512, guid: 23cb981b64677f181b31aa01eea7f2ea, type: 3}
 --- !u!1001 &1546750746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28437,7 +28433,6 @@ GameObject:
   - component: {fileID: 1853563435}
   - component: {fileID: 1853563434}
   - component: {fileID: 1853563436}
-  - component: {fileID: 1853563437}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -28506,87 +28501,6 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
---- !u!114 &1853563437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853563432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061497e5506754028a81f55f9e33f9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteKeys:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  tuplePrefabs:
-  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: 1889874052148490108, guid: 65b8f2bad26c11c3495b476481aa5a84, type: 3}
-  - {fileID: 1963762614350443258, guid: 3027b68b6e356eca1b27a609d5da0dc7, type: 3}
-  - {fileID: 4364558014274191309, guid: f40391486611af79189a089beccbf722, type: 3}
-  - {fileID: 8861168423362456300, guid: 8bacc4916a6920eab83847253d70398d, type: 3}
-  - {fileID: 6523370096078143492, guid: c8748494eea8ad409ad06f9b781e5964, type: 3}
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 4343454654779642740, guid: 23cb981b64677f181b31aa01eea7f2ea, type: 3}
-  - {fileID: 1560987628691976045, guid: bba2232027d72170d82c47614425b453, type: 3}
-  - {fileID: 6576258240568586645, guid: afddbc4c0aa6283c1a2687796c1bdd4f, type: 3}
-  - {fileID: 8270811349214939455, guid: 943a766fd6ce97340b45090be25ad7f1, type: 3}
-  - {fileID: 2541162681544386626, guid: 8dfde1c4310465a4fa4b95b328df5036, type: 3}
-  - {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: 4334522629706852286, guid: b77ea69ee98cca6418d1c246b356dda1, type: 3}
-  - {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: 5316755668338559058, guid: 8c9980b0e73723b62abc64809082d78c, type: 3}
-  - {fileID: 1024181155318742764, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
-  - {fileID: 1385726253164233105, guid: cca5c1a58d45ca414a4c626ac2f7530f, type: 3}
-  - {fileID: 1015180756038987883, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
-  - {fileID: 5742336409462127876, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
-  - {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: 3531801837518785348, guid: 36f5100892097a355abbd45e6e450f16, type: 3}
-  tupleItemConts:
-  - {fileID: 4754367476166997813, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: -6737222858521219208, guid: 65b8f2bad26c11c3495b476481aa5a84, type: 3}
-  - {fileID: -4361437681896307962, guid: 3027b68b6e356eca1b27a609d5da0dc7, type: 3}
-  - {fileID: -992187451815783074, guid: f40391486611af79189a089beccbf722, type: 3}
-  - {fileID: -4527944284211706722, guid: 8bacc4916a6920eab83847253d70398d, type: 3}
-  - {fileID: -6626139071584657763, guid: c8748494eea8ad409ad06f9b781e5964, type: 3}
-  - {fileID: -4674321677111082268, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: -7310841293376275512, guid: 23cb981b64677f181b31aa01eea7f2ea, type: 3}
-  - {fileID: -2473928803172379679, guid: bba2232027d72170d82c47614425b453, type: 3}
-  - {fileID: -1369578523255272088, guid: afddbc4c0aa6283c1a2687796c1bdd4f, type: 3}
-  - {fileID: -1657266752314720225, guid: 943a766fd6ce97340b45090be25ad7f1, type: 3}
-  - {fileID: 351038583976638260, guid: 8dfde1c4310465a4fa4b95b328df5036, type: 3}
-  - {fileID: -5215207092700577673, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: 6200558864162506648, guid: b77ea69ee98cca6418d1c246b356dda1, type: 3}
-  - {fileID: -7464791638044350641, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: -2683803410697654982, guid: 8c9980b0e73723b62abc64809082d78c, type: 3}
-  - {fileID: -3415474686000253241, guid: 7d55d3a26c2c6bfc883d496523507241, type: 3}
-  - {fileID: 7629188551970656368, guid: cca5c1a58d45ca414a4c626ac2f7530f, type: 3}
-  - {fileID: -820270833675690804, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
-  - {fileID: 6347674294649198638, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
-  - {fileID: -2246339533323770569, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: -6502435677090061265, guid: 36f5100892097a355abbd45e6e450f16, type: 3}
 --- !u!1 &1900663050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1497742828, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
@@ -31782,10 +31696,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 30ec5c5d3d1461a4491eb7f0328d22d3, type: 3}
     - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_UIInputModule
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015521348, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_NotificationBehavior
       value: 2
       objectReference: {fileID: 0}
@@ -32291,10 +32201,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154705275474, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2417434154951608906, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
-      propertyPath: m_FillCenter
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800258, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}

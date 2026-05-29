@@ -1,5 +1,6 @@
  using System;
-using UnityEditor;
+ using Unity.VisualScripting;
+ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,18 +22,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //If the slot selected has an item that the player wants to hold
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
-            playerCont.HoldingCont = playerCont.HoldingItem ? slotConts[index].ItemCont : null;
+            playerCont.MainHandTuple = playerCont.HoldingItem ? slotConts[index].SlotItemTuple : (null,null);
             //WHen we are un-equipped an item within our quick slots
-            if(playerCont.HoldingPrefab != null && (playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)){
+            if(playerCont.MainHandTuple.Item1 && (playerCont.gameObject.transform.Find("HoldingItem").childCount != 0)){
                 playerCont.PlayerInteractionCont.UnEquipItem(); 
                 if(playerCont.HoldingItem)
-                    playerCont.HoldingPrefab = slotConts[index].SlotPrefab;
+                    playerCont.MainHandTuple = slotConts[index].SlotItemTuple;
                 else
                     playerCont.PlayerAtkCont.HasWeapon = false;
             }
             //equipping item
             else 
-                playerCont.HoldingPrefab = slotConts[index].SlotPrefab;   
+                playerCont.MainHandTuple = slotConts[index].SlotItemTuple; 
             return playerCont.HoldingItem;
         }
         //Player selects which slot in their inventory the  !slotConts[index].SlotInUse want to select, makes that obj the one the player is holding
@@ -68,14 +69,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public funcs
         public void AreAllSlotsFull()
         {
-            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity >= slotCont.ItemCont.MaxStackQuantity));
+            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity >= slotCont.SlotItemTuple.Item2.MaxStackQuantity));
         }
         public void DroppingItem()
         {
             //If the player is holding item we look for corresponding slot holding said item
             for (int i = 0; i < inventoryAmnt; i++)
             {
-                if ((slotConts[i].SlotPrefab == playerCont.HoldingPrefab) && slotConts[i].SlotInUse)
+                if ((slotConts[i].SlotItemTuple == playerCont.MainHandTuple) && slotConts[i].SlotInUse)
                 {
                     //We are dropping one item from a stack on item in a slot.
                     //Decrement the counter of the stack by one and update the stack counter.
@@ -84,14 +85,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     if (slotConts[i].CurStackQuantity == 0)
                     {
                         //The player is dropping a single item from a slot, and they only have a stack of 1 at that quick-slot.
-                        //We empty the slot and de-equip the slot.
-                        playerCont.HoldingPrefab = null;
-                        playerCont.HoldingCont = null;
+                        //We empty the slot and de-equip the slot. ;
+                        playerCont.MainHandTuple = (null, null);
                         playerCont.HoldingItem = false;
                         slotConts[i].ItemImage.sprite = noItemSprite;
                         slotConts[i].SlotWithItem = false;
-                        slotConts[i].ItemCont = null;
-                        slotConts[i].SlotPrefab = null;
+
+                        slotConts[i].SlotItemTuple = (null, null);
                         SelectSlot(-1);
                     }
                     break;
@@ -112,16 +112,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     {
                         //Fill slot with item
                         slotConts[i].SlotWithItem = true;
-                        slotConts[i].SlotPrefab = playerCont.HoldingPrefab;
-                        slotConts[i].ItemCont = playerCont.HoldingCont;
-                        slotConts[i].ItemImage.sprite = playerCont.HoldingPrefab.GetComponent<ItemController>().ItemIcon;
+                        slotConts[i].SlotItemTuple = playerCont.MainHandTuple;
+                        slotConts[i].ItemImage.sprite = playerCont.MainHandTuple.Item2.ItemIcon;
                         slotConts[i].CurStackQuantity++;
                         //Empty players hands only if the player isn't selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {
                             playerCont.HoldingItem = false;
-                            playerCont.HoldingPrefab = null;
-                            playerCont.HoldingCont = null;
+                            playerCont.MainHandTuple = (null, null);
                         }
                         break;
                     }
@@ -129,9 +127,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             AreAllSlotsFull();
         }
-        public void SlotItem(GameObject itemObj)
+        public void SlotItem((GameObject, ItemController) itemTuple)
         {
-            ItemController itemCont = itemObj.GetComponent<ItemController>();
             AreAllSlotsFull();
             //If the player is holding an object and all their slots are not occupied
             if (!slotsAreFull)
@@ -143,20 +140,18 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     {
                         //Fill slot with item
                         slotConts[i].SlotWithItem = true;
-                        slotConts[i].SlotPrefab = itemObj;
-                        slotConts[i].ItemCont = itemCont;
-                        slotConts[i].ItemImage.sprite = slotConts[i].ItemCont.ItemIcon;
+                        slotConts[i].SlotItemTuple = itemTuple;
+                        slotConts[i].ItemImage.sprite = slotConts[i].SlotItemTuple.Item2.ItemIcon;
                         slotConts[i].CurStackQuantity++;
                         //Empty players hands only if the player isn't selecting the slot the item was just slotted into
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {
                             playerCont.HoldingItem = false;
-                            playerCont.HoldingPrefab = null;
-                            playerCont.HoldingCont = null;
+                            playerCont.MainHandTuple = (null, null);
                         }
                         break;
                     } 
-                    if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemCont, slotConts[i].ItemCont)  && ((slotConts[i].CurStackQuantity+1) <= slotConts[i].ItemCont.MaxStackQuantity))
+                    if(slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemTuple.Item2, slotConts[i].SlotItemTuple.Item2)  && ((slotConts[i].CurStackQuantity+1) <= slotConts[i].SlotItemTuple.Item2.MaxStackQuantity))
                     {
                         slotConts[i].CurStackQuantity++;
                         DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
@@ -164,8 +159,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
                         {
                             playerCont.HoldingItem = false;
-                            playerCont.HoldingPrefab = null;
-                            playerCont.HoldingCont = null;
+                            playerCont.MainHandTuple = (null, null);
                         }
                         break;
                     }
@@ -189,7 +183,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void SwappingPlayerControlMap(){
             //Based on what type of item we are holding will change the players control scheme.
             if(playerCont.HoldingItem){
-                switch(playerCont.HoldingCont.PrefabItemStruct.craftingTag){
+                switch(playerCont.MainHandTuple.Item2.PrefabItemStruct.craftingTag){
                     case "Weapon":
                         playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
                         playerCont.PlayerAtkCont.EquipWeapon();
@@ -217,7 +211,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 slotConts[i] = transform.Find($"Slot{i}").gameObject.GetComponent<QuickSlotController>();
                 slotConts[i].SlotInUse = false;
                 slotConts[i].SlotWithItem = false;
-                slotConts[i].SlotPrefab = null;
+                slotConts[i].SlotItemTuple = (null, null);
                 slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
             }
         }

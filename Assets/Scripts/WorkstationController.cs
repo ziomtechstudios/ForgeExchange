@@ -16,7 +16,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public float CircleAmnt { get { return circleAmnt; } set { circleAmnt = value; } }
         public bool BarFull { get { return barFull; } set { barFull = value; } }
         public bool DoingWork { get { return doingWork; } set { doingWork = value; } }
-        public virtual void Work(ItemController itemController) { }
+        public virtual void Work((GameObject, ItemController) workstationTuple) { }
         public virtual void Refuel(float fuel) { }
         public virtual void Overflow(float amount) { }
         public virtual void ToggleUse(PlayerController playerCont) { }

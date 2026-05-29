@@ -21,8 +21,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private bool isUsingStorage;
         [Header("Player Interaction/Inventory")]
         [SerializeField] private bool usingWorkstation;
-        [SerializeField] private GameObject holdingPrefab;
-        [SerializeReference] private ItemController holdingCont;
+        //[SerializeField] private GameObject holdingPrefab;
+        //[SerializeReference] private ItemController holdingCont;
         [SerializeReference] private InventoryController m_InventoryCont;
         [SerializeField] private BoxCollider2D m_Collider;
         [SerializeField] private PlayerInput playerInput;
@@ -38,8 +38,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool IsRunning { get { return isRunning; } }
         public RaycastHit2D PlayerLOS { get { return hit; } }
         public bool HoldingItem { get { return holdingItem; } set { holdingItem = value; } }
-        public GameObject HoldingPrefab { get { return holdingPrefab; } set { holdingPrefab = value; } }
-        public ItemController HoldingCont { get { return holdingCont; } set { holdingCont = value; } }
+        //public GameObject HoldingPrefab { get { return holdingPrefab; } set { holdingPrefab = value; } }
+        //public ItemController HoldingCont { get { return holdingCont; } set { holdingCont = value; } }
+        public (GameObject, ItemController) MainHandTuple { get { return mainHandTuple; }  set { mainHandTuple = value; } }
+        public (GameObject, ItemController) OffHandTuple { get { return offHandTuple; }  set { offHandTuple = value; } }
         public BackpackController PlayerBackPackCont { get { return backpackCont; } }
         public InventoryController PlayerInventoryCont { get { return m_InventoryCont; } }
         public PlayerUIController PlayerUICont { get { return playerUIController; } }
@@ -58,6 +60,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int layerMask;
         private GameObject backPackObj;
         private RaycastHit2D hit;
+        private (GameObject, ItemController) mainHandTuple;
+        private (GameObject, ItemController) offHandTuple;
         //Parametric bool for moving represents object desire to move, IsMoving represents if obj meets conditions in order to move
         private void MovePlayer(bool moving)
         {
@@ -138,6 +142,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerInteractionCont = GetComponent<PlayerInteractionController>();
             M_AudioSource = GetComponent<AudioSource>();
             M_DSpriteLayering = GetComponent<DynamicSpriteLayering>();
+            foreach (var actionMap in playerInput.actions.actionMaps)
+                actionMap.Disable();
+            playerInput.SwitchCurrentActionMap("ShopControls");
         }
         // Update is called once per frame
         void FixedUpdate()

@@ -30,7 +30,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void UnEquipItem(){
             DestroyImmediate(gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
-            playerCont.HoldingPrefab = null;
+            playerCont.MainHandTuple = (null, null);
             playerCont.PlayerInventoryCont.SelectSlot(-1);
             playerCont.PlayerAtkCont.HasWeapon = false;
             playerCont.HoldingItem = false;
@@ -44,7 +44,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
             //If the stockpile cant take in the item we set the playerHolding to true.
-            if (stockpileCont.Deposit(1, playerCont.HoldingPrefab, playerCont.HoldingCont))
+            if (stockpileCont.Deposit(1, playerCont.MainHandTuple))
                 playerCont.PlayerInventoryCont.DroppingItem();
             if (!playerCont.HoldingItem)
                 playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
@@ -60,9 +60,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 //Occupy the objects in the players hands and have them slot it into first available slot.
                 playerCont.HoldingItem = true;
-                playerCont.HoldingPrefab = stockpileCont.ItemPrefab;
-                playerCont.HoldingCont = stockpileCont.ItemPrefab.GetComponent<ItemController>();
-                playerCont.PlayerInventoryCont.SlotItem(playerCont.HoldingPrefab);
+                playerCont.MainHandTuple = stockpileCont.StockPileTuple;
+                playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
                 if(workstationCont is CraftTableController craftingTableCont)
                     craftingTableCont.CraftingMenuCont.EmptyCraftingMenu();
                 else
@@ -71,16 +70,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return playerCont.HoldingItem;
         }
         private bool ForgeInteraction(){
-            switch (playerCont.HoldingCont.PrefabItemStruct.itemTag)
+            switch (playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag)
             {
                 case "Fuel":
                     //First we check if this fuel deposit will be more than what the forge can handle
-                    workstationCont.Overflow(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
+                    workstationCont.Overflow(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
                     //If the item can be used as fuel, and we are not using workstation that doesn't use fuel and if refueling the workstation won't overflow
                     //Workstation that dont require fuel such as forge-pump will simply have their Fuel Full boolean set to true thereby false
-                    if ((playerCont.HoldingCont.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
+                    if ((playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
                     {
-                        workstationCont.Refuel(playerCont.HoldingCont.PrefabItemStruct.fuelAmnt);
+                        workstationCont.Refuel(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
                         playerCont.PlayerInventoryCont.DroppingItem();
                         return false;
                     }
@@ -90,7 +89,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //Make sure that the forge is on and that its not already smelting ore(s)
                     if (workstationCont.InUse && !workstationCont.DoingWork)
                     {
-                        workstationCont.Work(playerCont.HoldingCont);
+                        workstationCont.Work(playerCont.MainHandTuple);
                         playerCont.PlayerInventoryCont.DroppingItem();
                         workstationCont.DoingWork = true;
                         return false;
@@ -111,7 +110,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     //If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
                     //If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
                     if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing && !playerCont.IsUsingStorage)
-                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.HoldingCont.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
+                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
                     break;
             }
         }

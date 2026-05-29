@@ -13,10 +13,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         /// Look up val will be following parameters
         /// Season, time of day, type of Rod, type of bait, level of fishing skill.
         /// </summary>
-        [SerializeField] private GameObject potentialFish;
+        private (GameObject, ItemController) potentialFish;
+        [SerializeField] private GameObject[] potentialPrefabs;
+        [SerializeField] private ItemController[] potentialItemConts;
 
         [CanBeNull]
-        public override GameObject SpawnMob(string recipe)
+        public override (GameObject, ItemController) SpawnMob(string recipe)
         {
             CanSpawn = MobPrefabDict.TryGetValue(recipe, out potentialFish);
             return potentialFish;
@@ -25,7 +27,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Start is called before the first frame update
         void Start()
         {
-            MobPrefabDict =  new Dictionary<string, GameObject>();
+            SpawnableMobs = new (GameObject, ItemController)[potentialPrefabs.Length];
+            for (int i = 0; i < potentialPrefabs.Length; i++)
+                SpawnableMobs[i] = (potentialPrefabs[i], potentialItemConts[i]);
+            MobPrefabDict =  new Dictionary<string, (GameObject,ItemController)>();
             CanSpawn = false;
             foreach (string recipe in Recipes)
                 MobPrefabDict.Add(recipe, SpawnableMobs[Array.IndexOf(Recipes, recipe)]);

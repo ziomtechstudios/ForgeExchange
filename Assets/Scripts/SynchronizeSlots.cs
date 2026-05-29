@@ -9,8 +9,7 @@ public static class SynchronizeSlots
         {
             currentSlots[i].ItemImage.sprite = referecedSlots[i].ItemImage.sprite;
             currentSlots[i].SlotWithItem = referecedSlots[i].SlotWithItem;
-            currentSlots[i].ItemCont = referecedSlots[i].ItemCont;
-            currentSlots[i].SlotPrefab = referecedSlots[i].SlotPrefab;
+            currentSlots[i].SlotItemTuple = referecedSlots[i].SlotItemTuple;
             currentSlots[i].CurStackQuantity = referecedSlots[i].CurStackQuantity;
             currentSlots[i].CounterTMPro.SetText(referecedSlots[i].CounterTMPro.text);
         }

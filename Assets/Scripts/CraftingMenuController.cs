@@ -33,22 +33,21 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //When slot is not empty check and see if it is an ingredient stack with the smallest sized\
                 if(ingredient.CurStackQuantity > 0)
                     smallestIngredientStack = (ingredient.CurStackQuantity < smallestIngredientStack) ? ingredient.CurStackQuantity : smallestIngredientStack;
-                currentRecipe += ingredient.SlotWithItem ? ingredient.ItemCont.PrefabItemStruct.itemSubTag + ingredient.ItemCont.PrefabItemStruct.craftingTag : "_";
+                currentRecipe += ingredient.SlotWithItem ? ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemSubTag + ingredient.SlotItemTuple.Item2.PrefabItemStruct.craftingTag : "_";
             }
 
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
             if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemTuple))
             { 
                 //The player has used a valid recipe so we make sure the crafted item slot is populated with the correct item.
-                craftedSlot[0].ItemCont = potentialItemTuple.Item2;
+                craftedSlot[0].SlotItemTuple = potentialItemTuple;
                 //If the smallest stack of an ingredient is bigger than the maximum stack size of the final product.
                 //We need to truncate the size of stack of items to be crafted so it does not exceed the max of its item type.
-                smallestIngredientStack = (smallestIngredientStack < craftedSlot[0].ItemCont.MaxStackQuantity)? smallestIngredientStack : craftedSlot[0].ItemCont.MaxStackQuantity;
-                craftedSlot[0].ItemImage.sprite = (potentialItemTuple.Item1) ? craftedSlot[0].ItemCont.ItemIcon : NoItemSprite;
-                craftedSlot[0].SlotPrefab = potentialItemTuple.Item1;
+                smallestIngredientStack = (smallestIngredientStack < craftedSlot[0].SlotItemTuple.Item2.MaxStackQuantity)? smallestIngredientStack : craftedSlot[0].SlotItemTuple.Item2.MaxStackQuantity;
+                craftedSlot[0].ItemImage.sprite = (potentialItemTuple.Item1) ? craftedSlot[0].SlotItemTuple.Item2.ItemIcon : NoItemSprite;
                 craftedSlot[0].SlotWithItem = true;
                 craftedSlot[0].CurStackQuantity = smallestIngredientStack;
-                craftTableCont.Work(craftedSlot[0].ItemCont);
+                craftTableCont.Work(craftedSlot[0].SlotItemTuple);
             }
             else
             {
@@ -73,10 +72,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 bool stillAStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
                 DragAndDropSlot.UpdateSlotCounterText(ingredient);
-                ingredient.ItemImage.sprite = stillAStack ? ingredient.ItemCont.ItemIcon : NoItemSprite;
-                ingredient.SlotPrefab = stillAStack ? ingredient.SlotPrefab : null;
+                ingredient.ItemImage.sprite = stillAStack ? ingredient.SlotItemTuple.Item2.ItemIcon : NoItemSprite;
+                ingredient.SlotItemTuple = stillAStack ? ingredient.SlotItemTuple : (null, null);
                 ingredient.SlotWithItem = stillAStack;
-                ingredient.ItemCont = stillAStack ? ingredient.ItemCont : null;
             }
             currentRecipe = null;
             craftTableCont.StockpileCont.Withdraw(1);
@@ -160,7 +158,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 if (eventData.pointerCurrentRaycast.gameObject != null &&
                     eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem &&
-                    MovingSlot.SlotPrefab != null &&
+                    MovingSlot.SlotItemTuple.Item1 &&
                     SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
                         out destSlots))
                 {

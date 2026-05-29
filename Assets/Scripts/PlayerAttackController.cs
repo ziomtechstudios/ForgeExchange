@@ -33,7 +33,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Public Fields"
         public void EquipWeapon()
         {
-            playerWeapon = Instantiate(m_PlayerCont.HoldingPrefab, transform.Find("HoldingItem"), false);
+            playerWeapon = Instantiate(m_PlayerCont.MainHandTuple.Item1, transform.Find("HoldingItem"), false);
             m_WeaponCont = playerWeapon.GetComponent<WeaponController>();
             m_PlayerCont.M_Animator.SetInteger(weaponTypeHash, (int)m_WeaponCont.m_WeaponStruct.weaponType);
             hasWeapon = true;
