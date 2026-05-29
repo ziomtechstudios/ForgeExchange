@@ -2468,7 +2468,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.7595828
+      m_AnimationSpeed: 2.6530578
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2479,7 +2479,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.0393186
+      m_AnimationSpeed: 2.9033654
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2490,7 +2490,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.072558
+      m_AnimationSpeed: 2.8580692
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2629,6 +2629,18 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.7137255
       objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[9]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[10]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[11]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
     - target: {fileID: 2819462577265270540, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -65.57
@@ -3965,7 +3977,7 @@ Transform:
   m_GameObject: {fileID: 1133487217}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.04, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

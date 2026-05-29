@@ -18,10 +18,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private string currentRecipe;
         [Header("Current User component(s).")]
         [SerializeField] private PlayerController currentUserController;
-        [SerializeField] private (GameObject, ItemController) potentialItemTuple;
         [SerializeField] private int smallestIngredientStack;
+        [Header("Global Prefab Dictionary of Item Tuples.")]
+        [SerializeField] private SpriteToTupleController spriteToTupleCont;
         #endregion
         #region "Private Funcs/Members
+        private (GameObject, ItemController) potentialItemTuple;
+        private Sprite potentialItemSprite;
         private RectTransform craftMenuRectTrans;
         private void AttemptCrafting()
         {
@@ -37,7 +40,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
 
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
-            if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemTuple))
+            if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemSprite) && spriteToTupleCont.SpriteToTupleDict.TryGetValue(potentialItemSprite, out potentialItemTuple))
             { 
                 //The player has used a valid recipe so we make sure the crafted item slot is populated with the correct item.
                 craftedSlot[0].SlotItemTuple = potentialItemTuple;
@@ -148,7 +151,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 TimerPointerHeldDown = Time.time;
             }
         }
-        public override void  OnEndDrag(PointerEventData eventData)
+        public override void OnEndDrag(PointerEventData eventData)
         {
             //The players finger has stopped dragging onto a slot.
             //Making sure the destination slot is an appropriate destination.
@@ -202,7 +205,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             subStackSliderCont.InitSlot = initSlots[initSlotNum];
             subStackSliderCont.DestSlot = destSlots[destSlotNum];
             subStackSliderCont.MovingSlot = movingSlot;
-            //subStackSliderCont.CurEventData = eventData;
             SubStackItemSlider.gameObject.SetActive(true);
         }
         public override void ConfirmSubStackQuantity()
@@ -224,12 +226,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftTableCont = transform.parent.parent.GetComponent<CraftTableController>();
             craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
-            craftedSlot = new SlotController[1];
             craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             craftingSlots = new SlotController[craftedSlotNum];
             for (int i = 0; i < craftingSlots.Length; i++)
                 craftingSlots[i] = transform.Find($"CraftingSlots/Slot{i}").gameObject.GetComponent<SlotController>();
+            SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
+            spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>();
+            
+        }
+
+        void Awake()
+        {
+            craftedSlot = new SlotController[1];
             SlotTypeDict = new Dictionary<string, SlotController[]>();
             SlotTypeDict.Add("BackpackSlots", backPackSlots);
             SlotTypeDict.Add("QuickSlots", quickSlots);
@@ -237,8 +246,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SlotTypeDict.Add("CraftingMenu", craftedSlot);
             currentRecipe = null;
             IsSubStacking = false;
-            SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
-            
         }
         void OnEnable()
         {

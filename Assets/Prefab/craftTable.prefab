@@ -442,6 +442,7 @@ MonoBehaviour:
   currentRecipe: ' '
   currentUserController: {fileID: 0}
   smallestIngredientStack: 0
+  spriteToTupleCont: {fileID: 0}
 --- !u!1 &1101136801
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,10 +538,9 @@ MonoBehaviour:
   itemImage: {fileID: 610288213}
   slotInUse: 0
   slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
   curStackQuantity: 0
   counterTMPro: {fileID: 0}
+  spriteToTupleController: {fileID: 0}
   subStackSliderRectTransform: {fileID: 0}
 --- !u!1 &1806179800
 GameObject:
@@ -834,47 +834,27 @@ MonoBehaviour:
   - WoodStick__StringSingleWoodStick_HookSingle_WoodStick
   - StringSingleWoodStick_StringSingle_WoodStickStringSingleWoodStick_
   - _WoodStickStringSingleWoodStick_StringSingle_WoodStickStringSingle
-  numRecipes: 18
-  craftableItems:
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 785816535576406002, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: 4438686593638793159, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: 506017075671237859, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: 4605241645559018280, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: 8638431706442511446, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: 5742336409462127876, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
-  - {fileID: 5742336409462127876, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
-  craftedItemConts:
-  - {fileID: -4674321677111082268, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: -4674321677111082268, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: -4674321677111082268, guid: 2da632ed54c888a4ea73cc35c60c8fee, type: 3}
-  - {fileID: 4754367476166997813, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: 4754367476166997813, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: 4754367476166997813, guid: 0bbace76aab06284f83f4bce7f5199cf, type: 3}
-  - {fileID: -7464791638044350641, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: -7464791638044350641, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: -7464791638044350641, guid: afb8bf50d50299b44969713424c50777, type: 3}
-  - {fileID: -5215207092700577673, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: -5215207092700577673, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: -5215207092700577673, guid: 40546d4bdbdcd684e8450d1f3973059b, type: 3}
-  - {fileID: -2246339533323770569, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: -2246339533323770569, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: -2246339533323770569, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: -2246339533323770569, guid: 11dd18d1b1ccc09cca7e0d8e8011de2f, type: 3}
-  - {fileID: 6347674294649198638, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
-  - {fileID: 6347674294649198638, guid: 4a56032fb60e949c3af7e947dccd521b, type: 3}
   craftingMenuController: {fileID: 1004073338}
   stockpileController: {fileID: 1038668129}
+  craftedItemSprites:
+  - {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
+  - {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
+  - {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
+  - {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+  - {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+  - {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+  - {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+  - {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+  - {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+  - {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+  - {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+  - {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+  - {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+  - {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+  - {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+  - {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+  - {fileID: -1207428965, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+  - {fileID: -1207428965, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
 --- !u!114 &1038668129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,9 +871,8 @@ MonoBehaviour:
   curQuantity: 0
   maxQuantity: 1
   isEmpty: 0
-  storageSlots: []
-  itemPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
+  initPrefab: {fileID: 0}
+  initItemCont: {fileID: 0}
   emptyStockpileSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   itemSprites:
   - {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}

@@ -196,7 +196,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
                 playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
-            Debug.Log($"The player's current action map is now: {playerCont.PlayerInput.currentActionMap.name}.");
         }
         #endregion
         // Start is called before the first frame update

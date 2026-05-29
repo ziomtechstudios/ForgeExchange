@@ -57,8 +57,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (gameObject.tag.Contains("Stockpile"))
                 M_SpriteRend = GetComponent<SpriteRenderer>();
             else
-                M_SpriteRend= transform.Find("productUILOC").gameObject.GetComponent<SpriteRenderer>();
-            //CurQuantity = MaxQuantity;
+                M_SpriteRend = transform.Find("productUILOC").gameObject.GetComponent<SpriteRenderer>();
             IsEmpty = (CurQuantity == 0);
             itemTagToSpriteDict = new Dictionary<string, Sprite>();
             foreach (string itemTag in itemTags)

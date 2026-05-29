@@ -15,6 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private (GameObject, ItemController) slotItemTuple;
         [SerializeField] private int curStackQuantity;
         [SerializeField] private TextMeshProUGUI counterTMPro;
+        [SerializeField] private SpriteToTupleController spriteToTupleController;
         #endregion
         #region Getters/Setters
         public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
@@ -24,10 +25,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
         public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
         public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
+        public SpriteToTupleController SpriteToTupleCont { get { return spriteToTupleController; } set { spriteToTupleController = value; } }
+
         #endregion
         #region Public Funcs
-        public void Awake()
+        public void Start()
         {
+            spriteToTupleController = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>();
+            if(SlotWithItem)
+                SlotItemTuple = spriteToTupleController.SpriteToTupleDict[ItemImage.sprite];
             slotImage = GetComponent<Image>();
             itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
             counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
