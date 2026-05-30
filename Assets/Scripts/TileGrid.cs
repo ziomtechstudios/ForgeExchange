@@ -13,7 +13,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public int TileSize, Seed;
         public Dictionary<int, Tile> Tiles { get; private set; }
         public Dictionary<TilemapType, MapGenerator> Tilemaps;
-
         [Serializable]
         class GroundTiles
         {
@@ -21,7 +20,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             public Color Color;
             public Texture2D Texture;
         }
-
         [Serializable]
         class ObjectTiles
         {
@@ -29,7 +27,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             public Color Color;
             public Texture2D Texture;
         }
-
         [SerializeField] private GroundTiles[] GroundTileTypes;
         [SerializeField] private ObjectTiles[] ObjectTileTypes;
         [SerializeField] private SpriteAtlas spriteAtlas;

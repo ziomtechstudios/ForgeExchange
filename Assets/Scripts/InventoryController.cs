@@ -90,7 +90,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         playerCont.HoldingItem = false;
                         slotConts[i].ItemImage.sprite = noItemSprite;
                         slotConts[i].SlotWithItem = false;
-
                         slotConts[i].SlotItemTuple = (null, null);
                         SelectSlot(-1);
                     }

@@ -21,8 +21,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private bool isUsingStorage;
         [Header("Player Interaction/Inventory")]
         [SerializeField] private bool usingWorkstation;
-        //[SerializeField] private GameObject holdingPrefab;
-        //[SerializeReference] private ItemController holdingCont;
         [SerializeReference] private InventoryController m_InventoryCont;
         [SerializeField] private BoxCollider2D m_Collider;
         [SerializeField] private PlayerInput playerInput;
@@ -38,8 +36,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool IsRunning { get { return isRunning; } }
         public RaycastHit2D PlayerLOS { get { return hit; } }
         public bool HoldingItem { get { return holdingItem; } set { holdingItem = value; } }
-        //public GameObject HoldingPrefab { get { return holdingPrefab; } set { holdingPrefab = value; } }
-        //public ItemController HoldingCont { get { return holdingCont; } set { holdingCont = value; } }
         public (GameObject, ItemController) MainHandTuple { get { return mainHandTuple; }  set { mainHandTuple = value; } }
         public (GameObject, ItemController) OffHandTuple { get { return offHandTuple; }  set { offHandTuple = value; } }
         public BackpackController PlayerBackPackCont { get { return backpackCont; } }
@@ -93,7 +89,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (collision.collider.IsTouchingLayers(1 << LayerMask.NameToLayer("enemy")) && enemyController.IsAttacking)
                 TakeDamage(1.00f);
         }
-
         private void ApplyMovement(InputAction.CallbackContext context)
         {
             IsMoving = (moveDir != Vector2.zero);
@@ -101,7 +96,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         #region Public Members
-
         public void OnMove(InputAction.CallbackContext context)
         {
             moveDir = context.ReadValue<Vector2>();

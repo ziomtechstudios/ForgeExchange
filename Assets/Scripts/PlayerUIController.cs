@@ -67,7 +67,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (!backPackObj.activeInHierarchy && !playerCont.UsingWorkstation && !playerCont.PlayerBackPackCont.IsSubStacking && !playerCont.IsUsingStorage && !playerCont.IsFishing)
             {
                 backPackObj.SetActive(true);
-                backpackController.SyncQuickSlots(backPackObj.activeInHierarchy ? "InGameToMenu" : "MenuToInGame");
                 playerCont.IsUsingStorage = true;
             }
         }

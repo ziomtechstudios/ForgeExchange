@@ -232,8 +232,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             for (int i = 0; i < craftingSlots.Length; i++)
                 craftingSlots[i] = transform.Find($"CraftingSlots/Slot{i}").gameObject.GetComponent<SlotController>();
             SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
-            spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>();
-            
+            spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>(); 
         }
 
         void Awake()

@@ -22,22 +22,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             DragAndDropSlot.DropItem(movingSlot, initSlots, NoItemSprite, OgSlotIndex);
         }
-        public void SyncQuickSlots(string order)
-        {
-            switch (order)
-            {
-                //Make Quick Slots in menu match the ones in-game
-                case "InGameToMenu":
-                    SynchronizeSlots.SyncSlots(quickSlots, InventoryCont.SlotConts);
-                    break;
-                //Make the quick slots in the in-game UI to match the ones in the inventory menu
-                case "MenuToInGame":
-                    SynchronizeSlots.SyncSlots(InventoryCont.SlotConts, quickSlots);
-                    break;
-            }
-            //Update status of if all quick slots are full
-            InventoryCont.AreAllSlotsFull();
-        }
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {
@@ -111,7 +95,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             subStackSliderCont.InitSlot = initSlots[initSlotNum];
             subStackSliderCont.DestSlot = destSlots[destSlotNum];
             subStackSliderCont.MovingSlot = movingSlot;
-            //subStackSliderCont.CurEventData = eventData;
             SubStackItemSlider.gameObject.SetActive(true);
         }
         public override void ConfirmSubStackQuantity()
@@ -125,33 +108,34 @@ namespace Com.ZiomtechStudios.ForgeExchange
         // Start is called before the first frame update
         void Start()
         {
-            SlotTypeDict = new Dictionary<string, SlotController[]>();
+            m_PlayerUIController = InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
             for (int i =0; i < backPackSlots.Length; i++)
                 backPackSlots[i] = transform.Find($"Slot{i}").GetComponent<SlotController>();
             SlotTypeDict.Add("Backpack", backPackSlots);
             SlotTypeDict.Add("QuickSlots", quickSlots);
             SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
             subStackSliderCont = SubStackItemSlider.gameObject.GetComponent<SubsetStackSliderController>();
-            IsSubStacking = false;
+            movingSlot = transform.Find("Slot13").GetComponent<SlotController>();
+            MovingSlotRectTrans = MovingSlot.gameObject.GetComponent<RectTransform>();
+            backPackRectTransform = GetComponent<RectTransform>();
         } 
         void Awake()
         {
             InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
-            m_PlayerUIController = InventoryCont.transform.parent.parent.parent.gameObject.GetComponent<PlayerUIController>();
-            movingSlot = transform.Find("Slot13").GetComponent<SlotController>();
-            MovingSlotRectTrans = MovingSlot.gameObject.GetComponent<RectTransform>();
-            backPackRectTransform = GetComponent<RectTransform>();
+            SlotTypeDict = new Dictionary<string, SlotController[]>();
             isSubStacking = false;
         }
         void OnEnable()
         {
-            SyncQuickSlots("InGameToMenu");
+            SynchronizeSlots.SyncSlots(quickSlots, InventoryCont.SlotConts);
+            InventoryCont.AreAllSlotsFull();
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
             IsSubStacking = false;
         }
         void OnDisable()
         {
-            SyncQuickSlots("MenuToInGame");
+            SynchronizeSlots.SyncSlots(InventoryCont.SlotConts, quickSlots);
+            InventoryCont.AreAllSlotsFull();
             //Re-enable in-game quickslots since backpack is closed
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
             IsSubStacking = false;

@@ -1,6 +1,6 @@
 using UnityEngine;
 namespace Com.ZiomtechStudios.ForgeExchange{
-    public  abstract class StorageController : MonoBehaviour
+    public abstract class StorageController : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer m_SpriteRend;
         [SerializeField] private int curQuantity;

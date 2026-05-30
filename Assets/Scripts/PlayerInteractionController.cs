@@ -81,7 +81,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     {
                         workstationCont.Refuel(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
                         playerCont.PlayerInventoryCont.DroppingItem();
-                        return false;
+                        return playerCont.HoldingItem;
                     }
                     else
                         return true;
@@ -128,10 +128,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 return false;
             }
             //If the stockpile has an item to give and the player has at least one free quick slot
-            else if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
+            if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
                 return PickUpObj();
-            else
-                return playerCont.HoldingItem;
+            return playerCont.HoldingItem;
         }
         public bool InteractWorkstation()
         {

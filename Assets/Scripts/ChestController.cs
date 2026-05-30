@@ -44,9 +44,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 curUserCont.IsUsingStorage = true;
                 IsSubStacking = false;
             }
-            
         }
-
         public override void CloseMenu()
         {
             if (!IsSubStacking)
@@ -149,7 +147,6 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                 SubStackItemSlider.gameObject.SetActive(true);
             }
         }
- 
         public override void ConfirmSubStackQuantity()
         {
             DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), NoItemSprite);

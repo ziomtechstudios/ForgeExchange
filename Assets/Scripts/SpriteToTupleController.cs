@@ -11,7 +11,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public IDictionary<Sprite, (GameObject, ItemController)> SpriteToTupleDict;
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             tupleTerms = new (GameObject, ItemController)[tuplePrefabs.Length];
             SpriteToTupleDict = new Dictionary<Sprite, (GameObject, ItemController)>();

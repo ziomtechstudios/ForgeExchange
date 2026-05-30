@@ -6,7 +6,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class ForgeController : WorkstationController
     {
-        #region Private serialized members
+        #region Private serialized members  
+        [Header("Reference to Global Item Dictionary")] 
+        [SerializeField] private SpriteToTupleController spriteToTupleCont;
         [Header("Forge Heating.")]
         [SerializeField] private float curTemp;
         [SerializeField] private float maxTemp;
@@ -25,11 +27,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //[SerializeField] private GameObject 
         [Header("Ore To Bar Exchange Data")]
         [SerializeField] private string[] ores;
-        [SerializeField] private GameObject[] barsPrefabs;
+        [SerializeField] private Sprite[] barsSprites;
         #endregion
         #region Private memebers
         private int inUseHash;
-        private IDictionary<string, GameObject> oresToBarsDict;
+        private IDictionary<string, Sprite> oresToBarsDict;
         #endregion
         #region Public Funcs
         // On/Off switch for forge where base temp for forge is defined at runtime
@@ -61,8 +63,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Calculate the quickest time this forge could smelt given ore
                 idealTTS = (((MaxTemp + forgePumpCont.MaxBoostTemp) - smeltedController.PrefabItemStruct.meltingTemp) / smeltedController.PrefabItemStruct.meltingTemp) * ttsScaler;
                 //Pass the proper data about the  soon-to-be bar to the forge so that it will gie it to the player later on
-                forgeStockPileCont.StockPileTuple = (oresToBarsDict[smeltedController.PrefabItemStruct.itemSubTag],
-                    oresToBarsDict[smeltedController.PrefabItemStruct.itemSubTag].GetComponent<ItemController>());
+                spriteToTupleCont.SpriteToTupleDict.TryGetValue(oresToBarsDict[smeltedController.PrefabItemStruct.itemSubTag], out var tempWorkstationTuple);
+                forgeStockPileCont.StockPileTuple = tempWorkstationTuple;
             }
         }
         public override void Refuel(float fuel)
@@ -78,21 +80,27 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Getters/Setters
         public float CurTemp { get { return curTemp; } set { curTemp = value; } }
         public float MaxTemp { get { return maxTemp; } set { maxTemp = value; } }
-        public float FuelAmnt { get { return fuelAmnt; } set { fuelAmnt = value; } }
-        public float MaxFuelAmnt { get { return maxFuelAmnt; } set { maxFuelAmnt = value; } }
+        //public float FuelAmnt { get { return fuelAmnt; } set { fuelAmnt = value; } }
+        //public float MaxFuelAmnt { get { return maxFuelAmnt; } set { maxFuelAmnt = value; } }
         #endregion
         // Start is called before the first frame update
         void Start()
         {
+            
+            forgePumpCont = transform.parent.transform.Find("forge_pump").gameObject.GetComponent<ForgePumpController>();
+            forgeStockPileCont = GetComponent<StockpileController>();
+            spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>();
+        }
+
+        private void Awake()
+        {
             forgeAnimator = GetComponent<Animator>();
             inUseHash = Animator.StringToHash("inUse");
-            forgePumpCont = transform.parent.transform.Find("forge_pump").gameObject.GetComponent<ForgePumpController>();
             SetForge(false, 0.0f);
             ttsTimer = 0.0f;
-            forgeStockPileCont = GetComponent<StockpileController>();
-            oresToBarsDict = new Dictionary<string, GameObject>();
+            oresToBarsDict = new Dictionary<string, Sprite>();
             foreach (string ore in ores)
-                oresToBarsDict.Add(ore, barsPrefabs[Array.IndexOf(ores, ore)]);
+                oresToBarsDict.Add(ore, barsSprites[Array.IndexOf(ores, ore)]);
         }
         // Update is called once per frame
         void Update()

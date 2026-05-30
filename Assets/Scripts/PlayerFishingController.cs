@@ -136,7 +136,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     IsFullyReeled();
                 if (fishingRodCont.HasBite)
                 {
-
                     // If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
                     // We then apply minimal wear to durability of the line.
                     // If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.

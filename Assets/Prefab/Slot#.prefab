@@ -170,10 +170,10 @@ MonoBehaviour:
   itemImage: {fileID: 694261606274635323}
   slotInUse: 0
   slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
   curStackQuantity: 0
   counterTMPro: {fileID: 8154305593007455088}
+  spriteToTupleController: {fileID: 0}
+  subStackSliderRectTransform: {fileID: 0}
 --- !u!1 &891200449834233468
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,8 +208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.47, y: -33.52}
-  m_SizeDelta: {x: 25, y: 25}
+  m_AnchoredPosition: {x: -31.3, y: 31.3}
+  m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4734038140419412639
 CanvasRenderer:

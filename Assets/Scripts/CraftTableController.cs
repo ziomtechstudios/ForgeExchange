@@ -7,18 +7,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
     public class CraftTableController : WorkstationController
     {
         #region private Serialized + Non Fields
-        //[SerializeField] private Animator m_Animator;
         [SerializeField] private GameObject craftMenuObj;
         [Tooltip("The array that represents the proper sequences of crafting ingredients to bring about a craftable item.")][SerializeField] private string[] Recipes;
-        //[Tooltip("The array of possible items that can be crafted. Used to create GameObject and ItemController tuple.")][SerializeField] private GameObject[] craftableItems;
-        //[Tooltip("The array of possible item controllers used by the crafted items. Used to create GameObject and ItemController tuple.")][SerializeField] private ItemController[] craftedItemConts;
-        //[Tooltip("The tuple that binds crafted Item prefabs with a reference to their item controllers.")] private List<(GameObject, ItemController)> craftedItemTupleList;
         [SerializeField] private CraftingMenuController craftingMenuController;
         [SerializeField] private StockpileController stockpileController;
         [Tooltip("Crafting table recipe provides us .")] private IDictionary<string, Sprite> craftedItemsDict;
-
         [SerializeField] private Sprite[]  craftedItemSprites;
-        
         #endregion
         #region Private Fields/Members
         private int inUseHash;

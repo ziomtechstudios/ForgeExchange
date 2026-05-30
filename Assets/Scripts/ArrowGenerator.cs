@@ -10,12 +10,10 @@ namespace Com.ZiomtechStudios.ForgeExchange {
         [SerializeField] private GameObject arrowPrefab;
         [SerializeField] private ItemController arrowCont;
         #endregion
-        
         // Start is called before the first frame update
         void Start() {
 
         }
-
         // Update is called once per frame
         void Update() {
 

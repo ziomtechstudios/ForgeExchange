@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.44, y: -33.46}
-  m_SizeDelta: {x: 25, y: 25}
+  m_AnchoredPosition: {x: -30.6, y: 30.7}
+  m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &854238061067809250
 CanvasRenderer:
@@ -320,7 +320,6 @@ MonoBehaviour:
   itemImage: {fileID: 0}
   slotInUse: 0
   slotWithItem: 0
-  slotPrefab: {fileID: 0}
-  itemCont: {fileID: 0}
   curStackQuantity: 0
   counterTMPro: {fileID: 0}
+  spriteToTupleController: {fileID: 0}
