@@ -1,9 +1,6 @@
- using System;
- using Unity.VisualScripting;
- using UnityEditor;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class InventoryController : MonoBehaviour
@@ -11,6 +8,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Serialized Fields
         [Tooltip("Amount of inventory slots.")][SerializeField] private int inventoryAmnt;  
         [SerializeField] private QuickSlotController[] slotConts;
+        [SerializeField] private QuickSlotController offHandSlotCont;
+        [SerializeField] private QuickSlotController tempSlotCont;
         [SerializeField] private PlayerController playerCont;
         [Tooltip("Are all of the items equipped with an item?")][SerializeField] private bool slotsAreFull;
         [Tooltip("Sprite used by slot to indicate there is no item.")][SerializeField] private Sprite noItemSprite;
@@ -18,7 +17,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Private Funcs
         private bool ToggleHolding(int index)
         {
-            
             //If the slot selected has an item that the player wants to hold
             playerCont.HoldingItem = slotConts[index].SlotWithItem && !slotConts[index].SlotInUse;
             //Update sprite of what player is holding to that of what was in the selected slot
@@ -196,12 +194,29 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
                 playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
         }
+        public void SwapHands()
+        {
+            foreach (QuickSlotController slotCont in slotConts)
+            {
+                if (slotCont.SlotInUse)
+                {
+                    DragAndDropSlot.AssignSlotContents(tempSlotCont, slotCont, slotCont.CurStackQuantity);
+                    DragAndDropSlot.EmptyCurrentSlot(slotCont, noItemSprite, false);
+                    DragAndDropSlot.AssignSlotContents(slotCont, offHandSlotCont, offHandSlotCont.CurStackQuantity);
+                    DragAndDropSlot.AssignSlotContents(offHandSlotCont, tempSlotCont, tempSlotCont.CurStackQuantity);
+                    DragAndDropSlot.EmptyCurrentSlot(tempSlotCont, noItemSprite, false);
+                    break;
+                }
+            }
+        }
         #endregion
         // Start is called before the first frame update
         void Start()
         {
             playerCont = transform.parent.parent.parent.GetComponent<PlayerController>();
             slotConts = new QuickSlotController[inventoryAmnt];
+            offHandSlotCont = transform.Find("Slot6").gameObject.GetComponent<QuickSlotController>();
+            tempSlotCont = transform.Find("Slot7").gameObject.GetComponent<QuickSlotController>();
             slotsAreFull = false;
             //Setting inventory to empty, should change in future when saves are implemented
             for (int i = 0; i < inventoryAmnt; i++)
@@ -210,8 +225,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 slotConts[i].SlotInUse = false;
                 slotConts[i].SlotWithItem = false;
                 slotConts[i].SlotItemTuple = (null, null);
-                slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
+                //All of a sudden this line causing Nullreference error in simulator and final build(s).
+                //Everything works fine for now with it left out so fuck it leave it for now
+                //slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
             }
         }
+        
     }
 }

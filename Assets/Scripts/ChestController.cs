@@ -47,6 +47,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void CloseMenu()
         {
+            Debug.Log("Trying to close chest.");
             if (!IsSubStacking)
             {
                 //Update contents of slots in chest to match aappropriate slots outside of chest

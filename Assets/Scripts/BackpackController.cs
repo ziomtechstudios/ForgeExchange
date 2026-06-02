@@ -15,6 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Funcs
         public override void CloseMenu()
         {
+            Debug.Log("Trying to close backpack.");
             if(!isSubStacking)
                 transform.parent.gameObject.SetActive(false);
         }
@@ -25,7 +26,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {
-            if (!IsSubStacking)
+            if (!IsSubStacking) 
             {
                 // If the player is pressing on a slot with an item &&
                 // the type of slot we are dragging an item from is in our dictionary of slots.
@@ -130,16 +131,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SynchronizeSlots.SyncSlots(quickSlots, InventoryCont.SlotConts);
             InventoryCont.AreAllSlotsFull();
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
-            IsSubStacking = false;
         }
         void OnDisable()
         {
             SynchronizeSlots.SyncSlots(InventoryCont.SlotConts, quickSlots);
             InventoryCont.AreAllSlotsFull();
-            //Re-enable in-game quickslots since backpack is closed
-            m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
-            IsSubStacking = false;
             InventoryCont.PlayerCont.IsUsingStorage = false;
+            m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
         }
     }
 }

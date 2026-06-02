@@ -2468,7 +2468,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.6530578
+      m_AnimationSpeed: 2.708
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2479,7 +2479,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.9033654
+      m_AnimationSpeed: 2.2072053
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2490,7 +2490,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.8580692
+      m_AnimationSpeed: 2.477644
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -26166,13 +26166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9c0c92d54bc40399f196ce1d7e8788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSpawn: 0
   recipes:
   - Wooden_FishingRod
-  potentialPrefabs:
-  - {fileID: 4343454654779642740, guid: 23cb981b64677f181b31aa01eea7f2ea, type: 3}
-  potentialItemConts:
-  - {fileID: -7310841293376275512, guid: 23cb981b64677f181b31aa01eea7f2ea, type: 3}
+  spawnableMobs:
+  - {fileID: -582709241, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+  spriteToTupleCont: {fileID: 0}
 --- !u!1001 &1546750746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26521,12 +26519,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7055797447627000057, guid: c6093b62279225147bdeb22d0f9ca843, type: 3}
+      propertyPath: isEmpty
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055797447627000057, guid: c6093b62279225147bdeb22d0f9ca843, type: 3}
       propertyPath: initPrefab
       value: 
       objectReference: {fileID: 1015180756038987883, guid: 2a3497d1c3eaeec6f8d23bd6655cfcba, type: 3}
     - target: {fileID: 7055797447627000057, guid: c6093b62279225147bdeb22d0f9ca843, type: 3}
       propertyPath: curQuantity
-      value: 24
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7055797447627000057, guid: c6093b62279225147bdeb22d0f9ca843, type: 3}
       propertyPath: initItemCont
@@ -28806,7 +28808,7 @@ PrefabInstance:
       objectReference: {fileID: 1889874052148490108, guid: 65b8f2bad26c11c3495b476481aa5a84, type: 3}
     - target: {fileID: 6400380837280584065, guid: 83e0c6f7c22e52240822421b29a54853, type: 3}
       propertyPath: curQuantity
-      value: 24
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 6400380837280584065, guid: 83e0c6f7c22e52240822421b29a54853, type: 3}
       propertyPath: initItemCont
@@ -32300,6 +32302,10 @@ PrefabInstance:
     - target: {fileID: 2417434154386360289, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: timeToCombo
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417434154705275472, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
+      propertyPath: playerCont
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2417434154705275474, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_IsActive

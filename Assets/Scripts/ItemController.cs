@@ -12,6 +12,5 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public ItemStruct PrefabItemStruct { get { return prefabItemStruct; } set { prefabItemStruct = value; } }
         public int MaxStackQuantity { get { return maxStackQuantity; } set { maxStackQuantity = value; } }
         public Sprite ItemIcon { get { return itemIcon; } }
-
     }
 }

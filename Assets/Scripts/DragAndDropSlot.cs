@@ -5,7 +5,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
-        private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity)
+        public static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity)
+        {
+            targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
+            targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple.Item2.ItemIcon;
+            targetSlot.SlotWithItem = true;
+            targetSlot.CurStackQuantity = quantity;
+            UpdateSlotCounterText(targetSlot);
+        }
+        public static void AssignSlotContents(QuickSlotController targetSlot, QuickSlotController referenceSlot, int quantity)
         {
             targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
             targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple.Item2.ItemIcon;
@@ -36,7 +44,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
             EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         //For situations like Item stacking where we just need to empty the moving slot
-        public static void EmptyCurrentSlot(SlotController curSlot, Sprite noItemSprite, bool isMovingSlot)
+        public static void EmptyCurrentSlot(SlotController curSlot, Sprite noItemSprite, bool isMovingOrTempSlot)
+        {
+            curSlot.ItemImage.sprite = noItemSprite;
+            curSlot.SlotWithItem = false;
+            curSlot.SlotItemTuple = (null, null);
+            curSlot.CurStackQuantity = 0;
+            curSlot.CounterTMPro.text = "";
+            if (isMovingOrTempSlot)
+                curSlot.gameObject.SetActive(false);
+            else
+                UpdateSlotCounterText(curSlot);
+        }
+        public static void EmptyCurrentSlot(QuickSlotController curSlot, Sprite noItemSprite, bool isMovingSlot)
         {
             curSlot.ItemImage.sprite = noItemSprite;
             curSlot.SlotWithItem = false;
@@ -48,6 +68,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
                 UpdateSlotCounterText(curSlot);
         }
+        
         public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, SlotsController container)
         {
             SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
