@@ -140,7 +140,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 actionMap.Disable();
             playerInput.SwitchCurrentActionMap("ShopControls");
         }
-        // Update is called once per frame
+      
         void FixedUpdate()
         {
             //Is the player looking at an interactable object + within an interactable distance?

@@ -5,31 +5,31 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
-        public static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity)
+        public static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity, Sprite noItemSprite)
         {
             targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
-            targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple.Item2.ItemIcon;
+            targetSlot.ItemImage.sprite  = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
             targetSlot.SlotWithItem = true;
             targetSlot.CurStackQuantity = quantity;
             UpdateSlotCounterText(targetSlot);
         }
-        public static void AssignSlotContents(QuickSlotController targetSlot, QuickSlotController referenceSlot, int quantity)
+        public static void AssignSlotContents(QuickSlotController targetSlot, QuickSlotController referenceSlot, int quantity, Sprite noItemSprite)
         {
             targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
-            targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple.Item2.ItemIcon;
-            targetSlot.SlotWithItem = true;
+            targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
+            targetSlot.SlotWithItem = referenceSlot.SlotItemTuple != (null, null);
             targetSlot.CurStackQuantity = quantity;
             UpdateSlotCounterText(targetSlot);
         }
         public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, int subStackQuantity, Sprite noItemSprite)
         {
-            AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity - subStackQuantity);
-            AssignSlotContents(destSlot, movingSlot, subStackQuantity);
+            AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity - subStackQuantity, noItemSprite);
+            AssignSlotContents(destSlot, movingSlot, subStackQuantity, noItemSprite);
             EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
         {
-            AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity);
+            AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity, noItemSprite);
             EmptyCurrentSlot(initSlot, noItemSprite, false);
         } 
         private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
@@ -37,10 +37,17 @@ namespace Com.ZiomtechStudios.ForgeExchange
             TransferStack(initSlot, destSlot, noItemSprite);
             return 0;
         }
-        private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
+        public static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
         {
-            AssignSlotContents(initSlot, destSlot, destSlot.CurStackQuantity);
-            AssignSlotContents(destSlot, movingSlot, movingSlot.CurStackQuantity);
+            AssignSlotContents(initSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
+            AssignSlotContents(destSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
+            EmptyCurrentSlot(movingSlot, noItemSprite, true);
+        }
+        public static void SwapStacks(QuickSlotController initSlot, QuickSlotController destSlot, QuickSlotController movingSlot, Sprite noItemSprite)
+        {
+            AssignSlotContents(movingSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
+            AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity, noItemSprite);
+            AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
             EmptyCurrentSlot(movingSlot, noItemSprite, true);
         }
         //For situations like Item stacking where we just need to empty the moving slot

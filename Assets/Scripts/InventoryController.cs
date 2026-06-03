@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Xsl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Com.ZiomtechStudios.ForgeExchange
@@ -200,11 +201,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 if (slotCont.SlotInUse)
                 {
-                    DragAndDropSlot.AssignSlotContents(tempSlotCont, slotCont, slotCont.CurStackQuantity);
-                    DragAndDropSlot.EmptyCurrentSlot(slotCont, noItemSprite, false);
-                    DragAndDropSlot.AssignSlotContents(slotCont, offHandSlotCont, offHandSlotCont.CurStackQuantity);
-                    DragAndDropSlot.AssignSlotContents(offHandSlotCont, tempSlotCont, tempSlotCont.CurStackQuantity);
-                    DragAndDropSlot.EmptyCurrentSlot(tempSlotCont, noItemSprite, false);
+                    DragAndDropSlot.SwapStacks(slotCont, offHandSlotCont, tempSlotCont, noItemSprite);
+                    slotCont.SlotInUse = slotCont.SlotItemTuple != (null, null);
+                    slotCont.SlotImage.fillCenter = !slotCont.SlotInUse;
                     break;
                 }
             }
