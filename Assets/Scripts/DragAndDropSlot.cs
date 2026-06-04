@@ -143,5 +143,57 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";
         }
+
+        public static void FreeingOffHand(QuickSlotController ogSlotCont, QuickSlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
+        {
+            foreach (QuickSlotController slotCont in destSlotConts)
+            {
+                if (!slotCont.SlotWithItem)
+                {
+                    AssignSlotContents(slotCont, ogSlotCont, ogSlotCont.CurStackQuantity, noItemSprite);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
+                if (slotCont.SlotWithItem &&
+                    CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
+                        slotCont.SlotItemTuple.Item2) &&
+                    ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
+                     slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                {
+                    slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
+                    UpdateSlotCounterText(slotCont);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
+            }
+        } 
+        public static void FreeingOffHand(QuickSlotController ogSlotCont, SlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
+        {
+            foreach (SlotController slotCont in destSlotConts)
+            {
+                //If we find a slot with no stack in it we move our stack into that free slot 
+                if (!slotCont.SlotWithItem)
+                {
+                    AssignSlotContents(slotCont, ogSlotCont, ogSlotCont.CurStackQuantity, noItemSprite);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
+                if (slotCont.SlotWithItem &&
+                    CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
+                        slotCont.SlotItemTuple.Item2) &&
+                    ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
+                     slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                {
+                    slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
+                    UpdateSlotCounterText(slotCont);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
+            }
+        } 
     }
 }

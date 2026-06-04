@@ -68,7 +68,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public funcs
         public void AreAllSlotsFull()
         {
-            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity >= slotCont.SlotItemTuple.Item2.MaxStackQuantity));
+            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity < slotCont.SlotItemTuple.Item2.MaxStackQuantity));
         }
         public void DroppingItem()
         {
@@ -169,6 +169,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SwapHands()
         {
+            AreAllSlotsFull();
             //Swapping items held in offhand and in main hand
             if (playerCont.HoldingItem)
             {
@@ -185,32 +186,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     }
                 }
             }
-            AreAllSlotsFull();
-            //Item and or stack only held in offhand so we are emptying offhand and placing item/stack in an open quick slot.
-            if(!playerCont.HoldingItem && playerCont.OffHandTuple != (null,null))
+            //Item and or stack only held in offhand so we are emptying offhand and placing item/stack in an open quick slot or backpack slot.
+            else if(!playerCont.HoldingItem && playerCont.OffHandTuple != (null,null))
             {
-                foreach (QuickSlotController slotCont in slotConts)
-                {
-                    if (!slotCont.SlotInUse)
-                    {
-                        DragAndDropSlot.AssignSlotContents(slotCont, offHandSlotCont, offHandSlotCont.CurStackQuantity, noItemSprite);
-                        DragAndDropSlot.EmptyCurrentSlot(offHandSlotCont, noItemSprite, false);
-                        playerCont.OffHandTuple = (null, null);
-                        return;
-                    }
-
-                    if (slotCont.SlotInUse &&
-                        DragAndDropSlot.CheckMatchingItem(offHandSlotCont.SlotItemTuple.Item2,
-                            slotCont.SlotItemTuple.Item2) &&
-                        ((slotCont.CurStackQuantity + offHandSlotCont.CurStackQuantity) <=
-                         slotCont.SlotItemTuple.Item2.MaxStackQuantity))
-                    {
-                        slotCont.CurStackQuantity+=offHandSlotCont.CurStackQuantity;
-                        DragAndDropSlot.EmptyCurrentSlot(offHandSlotCont, noItemSprite, false);
-                        playerCont.OffHandTuple = (null, null);
-                        return;
-                    }
-                }
+                //We know there is a quick slot free and/or it or other quick slots have room left in it's existing stack.
+                if(!slotsAreFull)
+                    DragAndDropSlot.FreeingOffHand(offHandSlotCont, slotConts, noItemSprite, playerCont);
+                //Let's start looking for room in the backpack.
+                else if (slotsAreFull)
+                    DragAndDropSlot.FreeingOffHand(offHandSlotCont, playerCont.PlayerBackPackCont.backPackSlots, noItemSprite, playerCont);
             }
         }
         #endregion
