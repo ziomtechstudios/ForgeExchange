@@ -97,34 +97,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             AreAllSlotsFull();
         }
-        public void SlotItem()
-        {
-            AreAllSlotsFull();
-            //If the player is holding an object and all their slots are not occupied
-            if (!slotsAreFull)
-            {
-                //iterating through slots we find the first empty slot
-                for (int i = 0; i < inventoryAmnt; i++)
-                {
-                    if (!slotConts[i].SlotWithItem)
-                    {
-                        //Fill slot with item
-                        slotConts[i].SlotWithItem = true;
-                        slotConts[i].SlotItemTuple = playerCont.MainHandTuple;
-                        slotConts[i].ItemImage.sprite = playerCont.MainHandTuple.Item2.ItemIcon;
-                        slotConts[i].CurStackQuantity++;
-                        //Empty players hands only if the player isn't selecting the slot the item was just slotted into
-                        if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
-                        {
-                            playerCont.HoldingItem = false;
-                            playerCont.MainHandTuple = (null, null);
-                        }
-                        break;
-                    }
-                }
-            }
-            AreAllSlotsFull();
-        }
         public void SlotItem((GameObject, ItemController) itemTuple)
         {
             AreAllSlotsFull();
@@ -197,14 +169,47 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SwapHands()
         {
-            foreach (QuickSlotController slotCont in slotConts)
+            //Swapping items held in offhand and in main hand
+            if (playerCont.HoldingItem)
             {
-                if (slotCont.SlotInUse)
+                foreach (QuickSlotController slotCont in slotConts)
                 {
-                    DragAndDropSlot.SwapStacks(slotCont, offHandSlotCont, tempSlotCont, noItemSprite);
-                    slotCont.SlotInUse = slotCont.SlotItemTuple != (null, null);
-                    slotCont.SlotImage.fillCenter = !slotCont.SlotInUse;
-                    break;
+                    if (slotCont.SlotInUse)
+                    {
+                        DragAndDropSlot.SwapStacks(slotCont, offHandSlotCont, tempSlotCont, noItemSprite);
+                        playerCont.HoldingItem = slotCont.SlotInUse;
+                        playerCont.MainHandTuple = slotCont.SlotItemTuple;
+                        playerCont.OffHandTuple = offHandSlotCont.SlotItemTuple;
+                        SwappingPlayerControlMap();
+                        return;
+                    }
+                }
+            }
+            AreAllSlotsFull();
+            //Item and or stack only held in offhand so we are emptying offhand and placing item/stack in an open quick slot.
+            if(!playerCont.HoldingItem && playerCont.OffHandTuple != (null,null))
+            {
+                foreach (QuickSlotController slotCont in slotConts)
+                {
+                    if (!slotCont.SlotInUse)
+                    {
+                        DragAndDropSlot.AssignSlotContents(slotCont, offHandSlotCont, offHandSlotCont.CurStackQuantity, noItemSprite);
+                        DragAndDropSlot.EmptyCurrentSlot(offHandSlotCont, noItemSprite, false);
+                        playerCont.OffHandTuple = (null, null);
+                        return;
+                    }
+
+                    if (slotCont.SlotInUse &&
+                        DragAndDropSlot.CheckMatchingItem(offHandSlotCont.SlotItemTuple.Item2,
+                            slotCont.SlotItemTuple.Item2) &&
+                        ((slotCont.CurStackQuantity + offHandSlotCont.CurStackQuantity) <=
+                         slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                    {
+                        slotCont.CurStackQuantity+=offHandSlotCont.CurStackQuantity;
+                        DragAndDropSlot.EmptyCurrentSlot(offHandSlotCont, noItemSprite, false);
+                        playerCont.OffHandTuple = (null, null);
+                        return;
+                    }
                 }
             }
         }

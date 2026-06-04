@@ -5,7 +5,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public static class DragAndDropSlot
     {
-        public static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity, Sprite noItemSprite)
+        private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity, Sprite noItemSprite)
         {
             targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
             targetSlot.ItemImage.sprite  = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
@@ -19,6 +19,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
             targetSlot.SlotWithItem = referenceSlot.SlotItemTuple != (null, null);
             targetSlot.CurStackQuantity = quantity;
+            targetSlot.SlotInUse = (targetSlot.SlotInUse && targetSlot.SlotWithItem);
+            targetSlot.SlotImage.fillCenter = !targetSlot.SlotInUse;
             UpdateSlotCounterText(targetSlot);
         }
         public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, int subStackQuantity, Sprite noItemSprite)
@@ -37,7 +39,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             TransferStack(initSlot, destSlot, noItemSprite);
             return 0;
         }
-        public static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
+
+        private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
         {
             AssignSlotContents(initSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
             AssignSlotContents(destSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
