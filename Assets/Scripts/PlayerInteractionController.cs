@@ -55,8 +55,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             //Make sure we have reference to component in players LOS.
             stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+            PlayerCont.PlayerInventoryCont.AreAllSlotsFull();
             //Make sure that the stockpile is not empty.
-            if (!stockpileCont.IsEmpty)
+            if (!stockpileCont.IsEmpty && !PlayerCont.PlayerInventoryCont.SlotsAreFull)
             {
                 //Occupy the objects in the players hands and have them slot it into first available slot.
                 playerCont.HoldingItem = true;

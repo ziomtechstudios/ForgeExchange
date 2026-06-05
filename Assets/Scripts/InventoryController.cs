@@ -68,7 +68,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public funcs
         public void AreAllSlotsFull()
         {
-            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity < slotCont.SlotItemTuple.Item2.MaxStackQuantity));
+            slotsAreFull = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem == true && slotCont.CurStackQuantity == slotCont.SlotItemTuple.Item2.MaxStackQuantity));
         }
         public void DroppingItem()
         {
@@ -194,7 +194,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     DragAndDropSlot.FreeingOffHand(offHandSlotCont, slotConts, noItemSprite, playerCont);
                 //Let's start looking for room in the backpack.
                 else if (slotsAreFull)
-                    DragAndDropSlot.FreeingOffHand(offHandSlotCont, playerCont.PlayerBackPackCont.backPackSlots, noItemSprite, playerCont);
+                {
+                    Debug.Log("We are attempting to place item in off hand slot into the backpack!");
+                    DragAndDropSlot.FreeingOffHand(offHandSlotCont, playerCont.PlayerBackPackCont.backPackSlots,
+                        noItemSprite, playerCont);
+                }
             }
         }
         #endregion
