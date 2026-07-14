@@ -310,11 +310,11 @@ PrefabInstance:
       objectReference: {fileID: 2541162681544386626, guid: 8dfde1c4310465a4fa4b95b328df5036, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont
@@ -1645,11 +1645,11 @@ PrefabInstance:
       objectReference: {fileID: 8861168423362456300, guid: 8bacc4916a6920eab83847253d70398d, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont
@@ -1973,11 +1973,11 @@ PrefabInstance:
       objectReference: {fileID: 6523370096078143492, guid: c8748494eea8ad409ad06f9b781e5964, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont
@@ -2602,7 +2602,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.519959
+      m_AnimationSpeed: 2.9859633
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2613,7 +2613,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.7657335
+      m_AnimationSpeed: 2.5682206
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2624,7 +2624,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.5011582
+      m_AnimationSpeed: 2.7143219
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -3883,7 +3883,11 @@ PrefabInstance:
       objectReference: {fileID: 6523370096078143492, guid: c8748494eea8ad409ad06f9b781e5964, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
+      propertyPath: maxQuantity
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont
@@ -26623,11 +26627,11 @@ PrefabInstance:
       objectReference: {fileID: 6576258240568586645, guid: afddbc4c0aa6283c1a2687796c1bdd4f, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont
@@ -27007,11 +27011,11 @@ PrefabInstance:
       objectReference: {fileID: 8270811349214939455, guid: 943a766fd6ce97340b45090be25ad7f1, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont
@@ -27349,11 +27353,11 @@ PrefabInstance:
       objectReference: {fileID: 1560987628691976045, guid: bba2232027d72170d82c47614425b453, type: 3}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: curQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: maxQuantity
-      value: 10
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1163613097570474660, guid: 5f72e3cc89bf152448d29b4889a02d05, type: 3}
       propertyPath: initItemCont

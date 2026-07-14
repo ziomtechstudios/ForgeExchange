@@ -129,13 +129,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void OnEnable()
         {
             SynchronizeSlots.SyncSlots(quickSlots, InventoryCont.SlotConts);
-            InventoryCont.AreAllSlotsFull();
+            InventoryCont.UpdateQuickSlotStatus();
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(false);
         }
         void OnDisable()
         {
             SynchronizeSlots.SyncSlots(InventoryCont.SlotConts, quickSlots);
-            InventoryCont.AreAllSlotsFull();
+            InventoryCont.UpdateQuickSlotStatus();
             InventoryCont.PlayerCont.IsUsingStorage = false;
             m_PlayerUIController.InGameQuickSlotObjs.SetActive(true);
         }

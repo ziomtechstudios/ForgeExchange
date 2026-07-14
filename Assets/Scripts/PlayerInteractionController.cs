@@ -55,9 +55,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             //Make sure we have reference to component in players LOS.
             stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-            PlayerCont.PlayerInventoryCont.AreAllSlotsFull();
+            PlayerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
             //Make sure that the stockpile is not empty.
-            if (!stockpileCont.IsEmpty && !PlayerCont.PlayerInventoryCont.SlotsAreFull)
+            if (!stockpileCont.IsEmpty)
             {
                 //Occupy the objects in the players hands and have them slot it into first available slot.
                 playerCont.HoldingItem = true;
@@ -129,7 +129,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 return false;
             }
             //If the stockpile has an item to give and the player has at least one free quick slot
-            if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreFull)
+            if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreOccupied)
                 return PickUpObj();
             return playerCont.HoldingItem;
         }
@@ -178,7 +178,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
                         ///If the player is holding an object allow them to drop the object
                         stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreFull ? false : PickUpObj()) : DepositObj();
+                        playerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
+                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreOccupied ? false : PickUpObj()) : DepositObj();
                         break;
                     case "chest":
                         if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
