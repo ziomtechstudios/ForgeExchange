@@ -12,7 +12,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private QuickSlotController offHandSlotCont;
         [SerializeField] private QuickSlotController tempSlotCont;
         [SerializeField] private PlayerController playerCont;
-        [Tooltip("Are all of the slots equipped with an item?")][SerializeField] private bool slotsAreOccupied;
+        [Tooltip("Are all of the slots equipped with an item?")][SerializeField] private bool slotsFullyOccupied;
         [Tooltip("Are there any slots with stacks that are not yet full?")] [SerializeField] private bool hasStackableStack;
         [Tooltip("Sprite used by slot to indicate there is no item.")][SerializeField] private Sprite noItemSprite;
         #endregion
@@ -36,12 +36,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 playerCont.MainHandTuple = slotConts[index].SlotItemTuple; 
             return playerCont.HoldingItem;
         }
-        private void AddToStack(int i)
+        private void AddToStack(QuickSlotController slotCont)
         {
-            slotConts[i].CurStackQuantity++;
-            DragAndDropSlot.UpdateSlotCounterText(slotConts[i]);
+            slotCont.CurStackQuantity++;
+            DragAndDropSlot.UpdateSlotCounterText(slotCont);
             //Empty players hands only if the player isn't selecting the slot the item was just slotted into
-            if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
+            if (slotCont.SlotWithItem != slotCont.SlotInUse)
             {
                 playerCont.HoldingItem = false;
                 playerCont.MainHandTuple = (null, null);
@@ -71,21 +71,23 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         #endregion
         #region Getters/Setters
-        public bool SlotsAreOccupied { get { return slotsAreOccupied; } }
+        public bool SlotsFullyOccupied { get { return slotsFullyOccupied; } }
         public QuickSlotController[] SlotConts { get { return slotConts; } }
         public int InventoryAmnt { get { return inventoryAmnt; } }
         public Sprite NoItemSprite { get { return noItemSprite; } }
         public PlayerController PlayerCont { get { return playerCont; } }
         #endregion
         #region Public funcs
-        public void CheckForOpenStack((GameObject, ItemController) slottingItemTuple, SlotController targetSlotCont)
+        public void CheckForOpenStack((GameObject, ItemController) slottingItemTuple, QuickSlotController targetSlotCont)
         {
             hasStackableStack = ((targetSlotCont.CurStackQuantity+1) < targetSlotCont.SlotItemTuple.Item2?.MaxStackQuantity) && DragAndDropSlot.CheckMatchingItem(targetSlotCont.SlotItemTuple.Item2, slottingItemTuple.Item2);
         }
+
         public void UpdateQuickSlotStatus()
         {
-            slotsAreOccupied = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem));
+            slotsFullyOccupied = Array.TrueForAll(slotConts, slotCont => (slotCont.SlotWithItem && slotCont.CurStackQuantity == slotCont.SlotItemTuple.Item2.MaxStackQuantity));
         }
+
         public void DroppingItem()
         {
             //If the player is holding item we look for corresponding slot holding said item
@@ -121,47 +123,50 @@ namespace Com.ZiomtechStudios.ForgeExchange
             /// 2. Place it within an empty slot within the array of quickslots.
             /// 3. A. Either cancel the slotting if the item. B. Dropping the item onto the ground. C Finding a empty slot in backpack. D. Stack item onto a approriate stack in a backpackslot.
             /// </sumary>
+            
+            //Find out if we have any full or partially filed slots
             UpdateQuickSlotStatus();
-            //If the player is holding an object and all their slots are not occupied
-            if(!slotsAreOccupied)
-            { 
-                //iterating through slots we find the first eligible slot
-                for (int i = 0; i < inventoryAmnt; i++)
-                { 
-                    if(!slotConts[i].SlotWithItem)
-                    { 
-                        
-                        //Fill slot with it
-                        slotConts[i].SlotWithItem = true;
-                        slotConts[i].SlotItemTuple = itemTuple;
-                        slotConts[i].ItemImage.sprite = slotConts[i].SlotItemTuple.Item2.ItemIcon;
-                        slotConts[i].CurStackQuantity++;
-                        //Empty players hands only if the player isn't selecting the slot the item was just slotted into
-                        if (slotConts[i].SlotWithItem != slotConts[i].SlotInUse)
-                        { 
-                            playerCont.HoldingItem = false;
-                            playerCont.MainHandTuple = (null, null);
-                        }
-                        break;
-                    }
-                }
+            if (slotsFullyOccupied)
+            {
+                //TODO This is the block of code that is used to store object in backpack or drop it onto the ground
+                playerCont.PlayerInteractionCont.m_CurStockpileCont.Deposit(1, playerCont.MainHandTuple);
+                playerCont.HoldingItem = false;
+                playerCont.MainHandTuple = (null, null);
             }
             else
-            { 
-                Debug.Log("All quick slots are full next we check to see if a quick slot has a partially full stack of the same type of item.");
-                for (int i = 0; i < inventoryAmnt; i++)
-                { 
-                    if (slotConts[i].SlotWithItem && DragAndDropSlot.CheckMatchingItem(itemTuple.Item2, slotConts[i].SlotItemTuple.Item2) &&
-                      ((slotConts[i].CurStackQuantity + 1) <= slotConts[i].SlotItemTuple.Item2.MaxStackQuantity))
+            {
+                foreach (QuickSlotController slotCont in slotConts)
+                {
+                    CheckForOpenStack(slotCont.SlotItemTuple, slotCont);
+                    if (hasStackableStack)
+                    {
+                        AddToStack(slotCont);
+                        return;
+                    }
+                } 
+                if (!hasStackableStack)
+                {
+                    foreach (QuickSlotController slotCont in slotConts)
+                    {
+                        if (!slotCont.SlotWithItem)
                         {
-                            AddToStack(i);
-                            break;
+                            //Fill slot with it
+                            slotCont.SlotWithItem = true;
+                            slotCont.SlotItemTuple = itemTuple;
+                            slotCont.ItemImage.sprite = slotCont.SlotItemTuple.Item2.ItemIcon;
+                            slotCont.CurStackQuantity++;
+                            //Empty players hands only if the player isn't selecting the slot the item was just slotted into
+                            if (slotCont.SlotWithItem != slotCont.SlotInUse)
+                            { 
+                                playerCont.HoldingItem = false;
+                                playerCont.MainHandTuple = (null, null);
+                            }
+                            return;
                         }
                     }
                 }
-            /*else if(slotsAreOccupied && !hasStackableStack)
-                //TODO: Adding logic here for slotting things into backpack if avaliable slots in backpack and if not there then falls onto floor.
-            */
+                    
+            }
         }
         public void OnSelect(InputAction.CallbackContext context)
         {
@@ -216,10 +221,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else if(!playerCont.HoldingItem && playerCont.OffHandTuple != (null,null))
             {
                 //We know there is a quick slot free and/or it or other quick slots have room left in it's existing stack.
-                if(!slotsAreOccupied)
+                if(!slotsFullyOccupied)
                     DragAndDropSlot.FreeingOffHand(offHandSlotCont, slotConts, noItemSprite, playerCont);
                 //Let's start looking for room in the backpack.
-                else if (slotsAreOccupied)
+                else if (slotsFullyOccupied)
                 {
                     Debug.Log("We are attempting to place item in off hand slot into the backpack!");
                     DragAndDropSlot.FreeingOffHand(offHandSlotCont, playerCont.PlayerBackPackCont.backPackSlots,
@@ -235,7 +240,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             slotConts = new QuickSlotController[inventoryAmnt];
             offHandSlotCont = transform.Find("Slot6").gameObject.GetComponent<QuickSlotController>();
             tempSlotCont = transform.Find("Slot7").gameObject.GetComponent<QuickSlotController>();
-            slotsAreOccupied = false;
+            slotsFullyOccupied = false;
             //Setting inventory to empty, should change in future when saves are implemented
             for (int i = 0; i < inventoryAmnt; i++)
             {

@@ -11,8 +11,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
         [SerializeField] private PlayerFishingController playerFishingCont;
         #endregion
-        #region "Private Members"
-        private StockpileController stockpileCont;
+        #region "Public Members"
+        public StockpileController m_CurStockpileCont;
         #endregion
         #region Getters/Setters"
         public PlayerController PlayerCont => playerCont;
@@ -40,11 +40,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
             playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
             return false;
         }*/
-        private bool DepositObj()
+        public bool DepositObj()
         {
             //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
             //If the stockpile cant take in the item we set the playerHolding to true.
-            if (stockpileCont.Deposit(1, playerCont.MainHandTuple))
+            if (m_CurStockpileCont.Deposit(1, playerCont.MainHandTuple))
                 playerCont.PlayerInventoryCont.DroppingItem();
             if (!playerCont.HoldingItem)
                 playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
@@ -54,19 +54,19 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private bool PickUpObj()
         {
             //Make sure we have reference to component in players LOS.
-            stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+            m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             PlayerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
             //Make sure that the stockpile is not empty.
-            if (!stockpileCont.IsEmpty)
+            if (!m_CurStockpileCont.IsEmpty)
             {
                 //Occupy the objects in the players hands and have them slot it into first available slot.
                 playerCont.HoldingItem = true;
-                playerCont.MainHandTuple = stockpileCont.StockPileTuple;
+                playerCont.MainHandTuple = m_CurStockpileCont.StockPileTuple;
                 playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
                 if(workstationCont is CraftTableController craftingTableCont)
                     craftingTableCont.CraftingMenuCont.EmptyCraftingMenu();
                 else
-                    stockpileCont.Withdraw(1);
+                    m_CurStockpileCont.Withdraw(1);
             }
             return playerCont.HoldingItem;
         }
@@ -120,16 +120,16 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool UseWorkstation()
         {
             //Make sure we have reference to component in players LOS
-            stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+            m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
             workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
             //If the workstation like a forge does not have any item to give to the interacting player, toggle use of workstation.
-            if (stockpileCont.CurQuantity == 0)
+            if (m_CurStockpileCont.CurQuantity == 0)
             {
                 workstationCont.ToggleUse(playerCont);
                 return false;
             }
             //If the stockpile has an item to give and the player has at least one free quick slot
-            if (stockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsAreOccupied)
+            if (m_CurStockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsFullyOccupied)
                 return PickUpObj();
             return playerCont.HoldingItem;
         }
@@ -177,9 +177,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///If the player is not holding an item check that the quickslots are not full.
                         ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
                         ///If the player is holding an object allow them to drop the object
-                        stockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+                        m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
                         playerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
-                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsAreOccupied ? false : PickUpObj()) : DepositObj();
+                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsFullyOccupied ? false : PickUpObj()) : DepositObj();
                         break;
                     case "chest":
                         if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
@@ -200,7 +200,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
             {
-                stockpileCont = null;
+                m_CurStockpileCont = null;
                 workstationCont = null;
             }
         }
