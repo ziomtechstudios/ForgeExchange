@@ -179,7 +179,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         ///If the player is holding an object allow them to drop the object
                         m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
                         playerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
-                        playerCont.HoldingItem = !playerCont.HoldingItem ? (playerCont.PlayerInventoryCont.SlotsFullyOccupied ? false : PickUpObj()) : DepositObj();
+                        playerCont.HoldingItem = playerCont.HoldingItem ? DepositObj() : PickUpObj();
                         break;
                     case "chest":
                         if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
