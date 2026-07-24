@@ -127,7 +127,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             
             //Find out if we have any full or partially filed slots
             UpdateQuickSlotStatus();
-            Debug.Log($"slotsFullyOccupied: {slotsFullyOccupied}");
             if (slotsFullyOccupied)
             {
                 foreach (QuickSlotController slotCont in slotConts)
@@ -135,12 +134,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     CheckForOpenStack(playerCont.MainHandTuple, slotCont);
                     if (hasStackableStack)
                     {
-                        Debug.Log("The player has a quickslot with a partially filled stack of the same item, adding one more to the stack!");
                         AddToStack(slotCont);
                         return;
                     }
                 }
-                Debug.Log("THe quickslots are occupied with full stacks, now we are placing item back into stockpile.");
                 //TODO This is the block of code that is used to store object in backpack or drop it onto the ground
                 playerCont.PlayerInteractionCont.m_CurStockpileCont.Deposit(1, playerCont.MainHandTuple);
                 playerCont.HoldingItem = false;
@@ -153,13 +150,11 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     CheckForOpenStack(playerCont.MainHandTuple, slotCont);
                     if (hasStackableStack)
                     {
-                        Debug.Log("The player has a quick-slot with a partially filled stack of the same item, adding one more to the stack!");
                         AddToStack(slotCont);
                         return;
                     }
                     if (!slotCont.SlotWithItem)
                     {
-                        Debug.Log("The player had no partially filled stack in quick-slot of the same item but there is an empty slot to occupy.");
                         //Fill slot with it
                         slotCont.SlotWithItem = true;
                         slotCont.SlotItemTuple = itemTuple;

@@ -62,11 +62,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Occupy the objects in the players hands and have them slot it into first available slot.
                 playerCont.HoldingItem = true;
                 playerCont.MainHandTuple = m_CurStockpileCont.StockPileTuple;
-                playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
                 if(workstationCont is CraftTableController craftingTableCont)
                     craftingTableCont.CraftingMenuCont.EmptyCraftingMenu();
                 else
                     m_CurStockpileCont.Withdraw(1);
+                playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
+
             }
             return playerCont.HoldingItem;
         }
@@ -200,8 +201,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             else
             {
-                m_CurStockpileCont = null;
-                workstationCont = null;
+                //m_CurStockpileCont = null;
+                //workstationCont = null;
             }
         }
         #endregion
