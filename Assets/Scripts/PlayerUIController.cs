@@ -100,7 +100,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             int randomDir = Random.Range(0, 2) * 2 - 1;
             randomVelocity = (randomDir*Random.Range(minOscillationSpeed, maxOscillationSpeed) * Time.deltaTime);
-            //isAcceptableOscillation = OverlappingUI.IsInside(mainZoneRectTransform, curZoneRectTransform, (randomVelocity * timeToOscillate));
         }
         private void ClearUnwantedUI()
         {

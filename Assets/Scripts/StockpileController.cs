@@ -63,7 +63,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             foreach (string itemTag in itemTags)
                 itemTagToSpriteDict.Add(itemTag, itemSprites[Array.IndexOf(itemTags, itemTag)]);
             stockPileTuple = (initPrefab, initItemCont);
-            M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[stockPileTuple.Item2.PrefabItemStruct.itemSubTag + stockPileTuple.Item2.PrefabItemStruct.itemTag]);
+            M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[stockPileTuple.Item2.PrefabItemStruct.itemTag + stockPileTuple.Item2.PrefabItemStruct.itemSubTag]);
         }
     }
 }

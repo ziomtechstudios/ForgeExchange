@@ -17,6 +17,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [Tooltip("Are there any slots with stacks that are not yet full?")] [SerializeField] private bool hasStackableStack;
         [Tooltip("Sprite used by slot to indicate there is no item.")][SerializeField] private Sprite noItemSprite;
         #endregion
+        public QuickSlotController OfHandSlotCont => offHandSlotCont;
         #region Private Funcs
         private bool ToggleHolding(int index)
         {

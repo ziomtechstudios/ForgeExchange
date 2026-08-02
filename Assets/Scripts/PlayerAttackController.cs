@@ -24,6 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region "Getters/Setters"
         public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
         public bool AlreadyAttacking { get { return alreadyAttacking; } set { alreadyAttacking = value; } }
+        public PlayerController PlayerCont { get { return m_PlayerCont; }}
         public bool AlreadyDamagedEnemy
         {
             get { return alreadyDamagedEnemy;}
@@ -52,6 +53,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if(canUpdateWeaponAnim)
                 m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
         }
+
+        public void CheckIfAmmo()
+        {
+            //Making sure this weapon uses ammo and that we have enough ammo to make a shot.
+            if (PlayerCont.PlayerInventoryCont.OfHandSlotCont.CurStackQuantity-1 >= 0)
+            {
+                m_WeaponCont.AmmoCont.LaunchProjectile(PlayerCont.LookDir);
+            }
+        }
         public void OnAttack(InputAction.CallbackContext context)
         {
             //TODO: Set up logic at runtime for second attack for combo-light attack.
@@ -77,6 +87,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     m_PlayerCont.M_Animator.SetBool(comboAtkHash, true);
                     m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, true);
                 }
+                if(m_WeaponCont.AmmoCont)
+                    CheckIfAmmo();
             }
         }
         #endregion
