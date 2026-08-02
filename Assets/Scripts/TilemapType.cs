@@ -1,8 +1,5 @@
-namespace Com.ZiomtechStudios.ForgeExchange
+public enum TilemapType
 {
-    public enum TilemapType
-    {
-        Ground,
-        Object
-    }
+    Ground,
+    Object
 }

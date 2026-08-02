@@ -1,8 +1,5 @@
-namespace Com.ZiomtechStudios.ForgeExchange
+public enum WeaponType 
 {
-    public enum WeaponType 
-    {
-        OneHandedSword = 0,
-        Bow = 1
-    }
+    OneHandedSword = 0,
+    Bow = 1
 }

@@ -1,55 +1,51 @@
- using UnityEngine;
-using Unity.MLAgents;
+using UnityEngine;
 
-namespace Com.ZiomtechStudios.ForgeExchange
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(HealthController))]
+public class EnemyController : BeingController
 {
-    [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(SpriteRenderer))]
-    [RequireComponent(typeof(BoxCollider2D))]
-    [RequireComponent(typeof(HealthController))]
-    public class EnemyController : BeingController
-    {
-        #region "Private Serialized Fields"
-        [SerializeField] private BoxCollider2D enemyCollider;
-        [SerializeField] private PlayerUIStruct enemyUIStruct;
-        [SerializeField] private bool isAttacking;
-        [SerializeField] private PlayerAttackController playerAtkCont;
-        #endregion
-        #region "Getter/Setters"
-        public PlayerUIStruct EnemyUIStruct { get { return enemyUIStruct; } set { enemyUIStruct = value; } }
-        public HealthController HealthCont { get { return healthController; } }
-        public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
+    #region "Private Serialized Fields"
+    [SerializeField] private BoxCollider2D enemyCollider;
+    [SerializeField] private PlayerUIStruct enemyUIStruct;
+    [SerializeField] private bool isAttacking;
+    [SerializeField] private PlayerAttackController playerAtkCont;
+    #endregion
+    #region "Getter/Setters"
+    public PlayerUIStruct EnemyUIStruct { get { return enemyUIStruct; } set { enemyUIStruct = value; } }
+    public HealthController HealthCont { get { return healthController; } }
+    public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
 
-        #endregion
-        #region "Private members"
-        private int layerMask;
-        private HealthController healthController;
-        #endregion
-        private void Start()
+    #endregion
+    #region "Private members"
+    private int layerMask;
+    private HealthController healthController;
+    #endregion
+    private void Start()
+    {
+        enemyCollider = GetComponent<BoxCollider2D>();
+        M_Animator = GetComponent<Animator>();
+        IsDamagedHash = Animator.StringToHash("isDamaged");
+        healthController = GetComponent<HealthController>();
+        layerMask = (1 << LayerMask.NameToLayer("weapon"));
+        healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
+        isAttacking = false;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
+        playerAtkCont = collision.gameObject.GetComponent<PlayerAttackController>();
+        if (enemyCollider.IsTouchingLayers(layerMask) && !playerAtkCont.AlreadyDamagedEnemy)
         {
-            enemyCollider = GetComponent<BoxCollider2D>();
-            M_Animator = GetComponent<Animator>();
-            IsDamagedHash = Animator.StringToHash("isDamaged");
-            healthController = GetComponent<HealthController>();
-            layerMask = (1 << LayerMask.NameToLayer("weapon"));
+            Debug.Log("The enemy is taking damage from a weapon!");
+            healthController.InstDmg = collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg();
+            healthController.HP -= healthController.InstDmg;
             healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
-            isAttacking = false;
+            healthController.IsDamaged = true;
+            M_Animator.SetBool(IsDamagedHash, healthController.IsDamaged);
+            healthController.FlashDamage();
+            playerAtkCont.AlreadyDamagedEnemy = true;
         }
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
-            playerAtkCont = collision.gameObject.GetComponent<PlayerAttackController>();
-            if (enemyCollider.IsTouchingLayers(layerMask) && !playerAtkCont.AlreadyDamagedEnemy)
-            {
-                Debug.Log("The enemy is taking damage from a weapon!");
-                healthController.InstDmg = collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg();
-                healthController.HP -= healthController.InstDmg;
-                healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
-                healthController.IsDamaged = true;
-                M_Animator.SetBool(IsDamagedHash, healthController.IsDamaged);
-                healthController.FlashDamage();
-                playerAtkCont.AlreadyDamagedEnemy = true;
-            }
-        }
-    }   
+    }
 }

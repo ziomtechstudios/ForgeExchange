@@ -1,217 +1,214 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Com.ZiomtechStudios.ForgeExchange
+public class PlayerInteractionController : MonoBehaviour
 {
-    public class PlayerInteractionController : MonoBehaviour
-    {
-        #region "Private Serialized Fields"
-        [SerializeField] private PlayerController playerCont;
-        [SerializeField] private WorkstationController workstationCont;
-        [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
-        [SerializeField] private PlayerFishingController playerFishingCont;
-        #endregion
-        #region "Public Members"
-        public StockpileController m_CurStockpileCont;
-        #endregion
-        #region Getters/Setters"
-        public PlayerController PlayerCont => playerCont;
-        public PlayerFishingController PlayerFishingCont => playerFishingCont;
+    #region "Private Serialized Fields"
+    [SerializeField] private PlayerController playerCont;
+    [SerializeField] private WorkstationController workstationCont;
+    [SerializeField] private DynamicSpriteLayering dynamicSpriteLayering;
+    [SerializeField] private PlayerFishingController playerFishingCont;
+    #endregion
+    #region "Public Members"
+    public StockpileController m_CurStockpileCont;
+    #endregion
+    #region Getters/Setters"
+    public PlayerController PlayerCont => playerCont;
+    public PlayerFishingController PlayerFishingCont => playerFishingCont;
         
-        #endregion
-        #region "Private Fields"
-        private bool GoFishing(){
-            playerCont.IsFishing = true;
-            playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, playerCont.IsFishing);
-            playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
-            //playerFishingCont.CastingRod() is called @ first frame of player's casting animation so that player and fishing rod's animations are in sync.
-            playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
-            return true;
-        }
-        public void UnEquipItem(){
-            DestroyImmediate(gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
-            playerCont.MainHandTuple = (null, null);
-            playerCont.PlayerInventoryCont.SelectSlot(-1);
-            playerCont.PlayerAtkCont.HasWeapon = false;
-            playerCont.HoldingItem = false;
-        }
-        //TODO
-        /*private bool GoSwimming() {
+    #endregion
+    #region "Private Fields"
+    private bool GoFishing(){
+        playerCont.IsFishing = true;
+        playerCont.M_Animator.SetBool(playerFishingCont.IsCastingHash, playerCont.IsFishing);
+        playerCont.M_Animator.SetBool(playerCont.IsFishingHash, true);
+        //playerFishingCont.CastingRod() is called @ first frame of player's casting animation so that player and fishing rod's animations are in sync.
+        playerCont.PlayerInput.SwitchCurrentActionMap("FishingControls");
+        return true;
+    }
+    public void UnEquipItem(){
+        DestroyImmediate(gameObject.transform.Find("HoldingItem").GetChild(0).gameObject, true);
+        playerCont.MainHandTuple = (null, null);
+        playerCont.PlayerInventoryCont.SelectSlot(-1);
+        playerCont.PlayerAtkCont.HasWeapon = false;
+        playerCont.HoldingItem = false;
+    }
+    //TODO
+    /*private bool GoSwimming() {
             playerCont.M_Animator.SetBool(playerCont.InWaterHash, dynamicSpriteLayering.IsObjInWater());
             return false;
         }*/
-        public bool DepositObj()
-        {
-            //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
-            //If the stockpile cant take in the item we set the playerHolding to true.
-            if (m_CurStockpileCont.Deposit(1, playerCont.MainHandTuple))
-                playerCont.PlayerInventoryCont.DroppingItem();
-            if (!playerCont.HoldingItem)
-                playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
-            return playerCont.HoldingItem;
-        }
+    public bool DepositObj()
+    {
+        //If what the player is holding is an appropriate item for a stockpile and the stockpile is not full we add the item.
+        //If the stockpile cant take in the item we set the playerHolding to true.
+        if (m_CurStockpileCont.Deposit(1, playerCont.MainHandTuple))
+            playerCont.PlayerInventoryCont.DroppingItem();
+        if (!playerCont.HoldingItem)
+            playerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+        return playerCont.HoldingItem;
+    }
 
-        private bool PickUpObj()
+    private bool PickUpObj()
+    {
+        //Make sure we have reference to component in players LOS.
+        m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+        PlayerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
+        //Make sure that the stockpile is not empty.
+        if (!m_CurStockpileCont.IsEmpty)
         {
-            //Make sure we have reference to component in players LOS.
-            m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-            PlayerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
-            //Make sure that the stockpile is not empty.
-            if (!m_CurStockpileCont.IsEmpty)
-            {
-                //Occupy the objects in the players hands and have them slot it into first available slot.
-                playerCont.HoldingItem = true;
-                playerCont.MainHandTuple = m_CurStockpileCont.StockPileTuple;
-                if(workstationCont is CraftTableController craftingTableCont)
-                    craftingTableCont.CraftingMenuCont.EmptyCraftingMenu();
+            //Occupy the objects in the players hands and have them slot it into first available slot.
+            playerCont.HoldingItem = true;
+            playerCont.MainHandTuple = m_CurStockpileCont.StockPileTuple;
+            if(workstationCont is CraftTableController craftingTableCont)
+                craftingTableCont.CraftingMenuCont.EmptyCraftingMenu();
+            else
+                m_CurStockpileCont.Withdraw(1);
+            playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
+
+        }
+        return playerCont.HoldingItem;
+    }
+    private bool ForgeInteraction(){
+        switch (playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag)
+        {
+            case "Fuel":
+                //First we check if this fuel deposit will be more than what the forge can handle
+                workstationCont.Overflow(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
+                //If the item can be used as fuel, and we are not using workstation that doesn't use fuel and if refueling the workstation won't overflow
+                //Workstation that dont require fuel such as forge-pump will simply have their Fuel Full boolean set to true thereby false
+                if ((playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
+                {
+                    workstationCont.Refuel(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
+                    playerCont.PlayerInventoryCont.DroppingItem();
+                    return playerCont.HoldingItem;
+                }
                 else
-                    m_CurStockpileCont.Withdraw(1);
-                playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
-
-            }
-            return playerCont.HoldingItem;
+                    return true;
+            case "Ore":
+                //Make sure that the forge is on and that its not already smelting ore(s)
+                if (workstationCont.InUse && !workstationCont.DoingWork)
+                {
+                    workstationCont.Work(playerCont.MainHandTuple);
+                    playerCont.PlayerInventoryCont.DroppingItem();
+                    workstationCont.DoingWork = true;
+                    return false;
+                }
+                else
+                    return true;
+            default:
+                return playerCont.HoldingItem;
         }
-        private bool ForgeInteraction(){
-            switch (playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag)
+    }
+    private void EnvironmentInteraction(){
+        //wall, door, blockage, cliff, shore, etc...
+        switch(playerCont.PlayerLOS.transform.tag){
+            case "Door":
+                playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor(5.0f);
+                break;
+            case "water":
+                //If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
+                //If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
+                if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing && !playerCont.IsUsingStorage)
+                    playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
+                break;
+        }
+    }
+    #endregion
+    #region "Public Functions"
+    public bool UseWorkstation()
+    {
+        //Make sure we have reference to component in players LOS
+        m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+        workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
+        //If the workstation like a forge does not have any item to give to the interacting player, toggle use of workstation.
+        if (m_CurStockpileCont.CurQuantity == 0)
+        {
+            workstationCont.ToggleUse(playerCont);
+            return false;
+        }
+        //If the stockpile has an item to give and the player has at least one free quick slot
+        if (m_CurStockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsFullyOccupied)
+            return PickUpObj();
+        return playerCont.HoldingItem;
+    }
+    public bool InteractWorkstation()
+    {
+        //The player is interacting with a workstation while equiping the item for a special use case like refueling forge or by accident.
+        //If it is a special use case we simply add it to the switch case and create a function that if successfull sets player holding item bool to false.
+        //If this was an accident we want the player to keep holding  the item and simply reassign playerHoldingItem to its current value, presummably true.
+        if (!playerCont.IsUsingStorage)
+        {
+            workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
+            switch (playerCont.PlayerLOS.transform.tag)
             {
-                case "Fuel":
-                    //First we check if this fuel deposit will be more than what the forge can handle
-                    workstationCont.Overflow(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
-                    //If the item can be used as fuel, and we are not using workstation that doesn't use fuel and if refueling the workstation won't overflow
-                    //Workstation that dont require fuel such as forge-pump will simply have their Fuel Full boolean set to true thereby false
-                    if ((playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt != 0.0f) && (!workstationCont.BarFull))
-                    {
-                        workstationCont.Refuel(playerCont.MainHandTuple.Item2.PrefabItemStruct.fuelAmnt);
-                        playerCont.PlayerInventoryCont.DroppingItem();
-                        return playerCont.HoldingItem;
-                    }
-                    else
-                        return true;
-                case "Ore":
-                    //Make sure that the forge is on and that its not already smelting ore(s)
-                    if (workstationCont.InUse && !workstationCont.DoingWork)
-                    {
-                        workstationCont.Work(playerCont.MainHandTuple);
-                        playerCont.PlayerInventoryCont.DroppingItem();
-                        workstationCont.DoingWork = true;
-                        return false;
-                    }
-                    else
-                        return true;
+                case "Forge":
+                    return ForgeInteraction();
                 default:
                     return playerCont.HoldingItem;
             }
         }
-        private void EnvironmentInteraction(){
-            //wall, door, blockage, cliff, shore, etc...
-            switch(playerCont.PlayerLOS.transform.tag){
-                case "Door":
-                    playerCont.PlayerLOS.transform.gameObject.GetComponent<DoorController>().InteractDoor(5.0f);
+        return playerCont.HoldingItem;
+    }
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        //Is the player looking at an object? && Are they pressing the interact button && Is the player using any storage menu?
+        if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.IsUsingStorage)
+        {
+            //Diff scenarios based on what the player is interacting with
+            switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
+            {
+                //wall, door, blockage
+                case "bounds":
+                    EnvironmentInteraction();
                     break;
-                case "water":
-                    //If we are holding an item and that item is a fishing rod we assume player wants to fish, if the player is empty handed we assume they want to swim
-                    //If we choose to implement ^ make sure we unequip the players hand(s) when they go swimming
-                    if(!dynamicSpriteLayering.IsObjInWater() && !playerCont.IsFishing && !playerCont.IsUsingStorage)
-                        playerCont.HoldingItem = playerCont.HoldingItem?(playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag.Contains("FishingRod")?GoFishing():true):false;
+                //Forge, Quencher, Sandstone, etc...
+                case "workstation":
+                    ///<summary>
+                    ///If the player is holding an object let them interact with the workstation.
+                    ///If the player does not have an item them they are going to want to use the workstation.
+                    ///</summary>
+                    playerCont.HoldingItem = playerCont.HoldingItem ? InteractWorkstation() : UseWorkstation();
+                    break;
+                //Coal pile, wood pile, etc...
+                case "stockpile":
+                    ///<summary>
+                    ///If the player is not holding an item check that the quickslots are not full.
+                    ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
+                    ///If the player is holding an object allow them to drop the object
+                    m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
+                    playerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
+                    playerCont.HoldingItem = playerCont.HoldingItem ? DepositObj() : PickUpObj();
+                    break;
+                case "chest":
+                    if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
+                    {
+                        if(playerCont.HoldingItem)
+                            UnEquipItem();
+                        playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject
+                            .GetComponent<ChestController>().OpenChest(playerCont);
+                        playerCont.IsUsingStorage = true;
+                    }
                     break;
             }
         }
-        #endregion
-        #region "Public Functions"
-        public bool UseWorkstation()
+        //       The player is holding an item && The player has no storage open. && The player is not interacting with anything.
+        else if (playerCont.HoldingItem && !playerCont.IsUsingStorage && !(playerCont.PlayerLOS.transform == null))
         {
-            //Make sure we have reference to component in players LOS
-            m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-            workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
-            //If the workstation like a forge does not have any item to give to the interacting player, toggle use of workstation.
-            if (m_CurStockpileCont.CurQuantity == 0)
-            {
-                workstationCont.ToggleUse(playerCont);
-                return false;
-            }
-            //If the stockpile has an item to give and the player has at least one free quick slot
-            if (m_CurStockpileCont.CurQuantity != 0 && !playerCont.PlayerInventoryCont.SlotsFullyOccupied)
-                return PickUpObj();
-            return playerCont.HoldingItem;
+            //TODO: Adding code for dropping objects onto the floor.
         }
-        public bool InteractWorkstation()
+        else
         {
-            //The player is interacting with a workstation while equiping the item for a special use case like refueling forge or by accident.
-            //If it is a special use case we simply add it to the switch case and create a function that if successfull sets player holding item bool to false.
-            //If this was an accident we want the player to keep holding  the item and simply reassign playerHoldingItem to its current value, presummably true.
-            if (!playerCont.IsUsingStorage)
-            {
-                workstationCont = playerCont.PlayerLOS.transform.GetComponent<WorkstationController>();
-                switch (playerCont.PlayerLOS.transform.tag)
-                {
-                    case "Forge":
-                        return ForgeInteraction();
-                    default:
-                        return playerCont.HoldingItem;
-                }
-            }
-            return playerCont.HoldingItem;
+            //m_CurStockpileCont = null;
+            //workstationCont = null;
         }
-        public void OnInteraction(InputAction.CallbackContext context)
-        {
-                //Is the player looking at an object? && Are they pressing the interact button && Is the player using any storage menu?
-            if (playerCont.PlayerLOS.transform != null && context.started && !playerCont.IsUsingStorage)
-            {
-                //Diff scenarios based on what the player is interacting with
-                switch (LayerMask.LayerToName(playerCont.PlayerLOS.transform.gameObject.layer))
-                {
-                    //wall, door, blockage
-                    case "bounds":
-                        EnvironmentInteraction();
-                        break;
-                    //Forge, Quencher, Sandstone, etc...
-                    case "workstation":
-                        ///<summary>
-                        ///If the player is holding an object let them interact with the workstation.
-                        ///If the player does not have an item them they are going to want to use the workstation.
-                        ///</summary>
-                        playerCont.HoldingItem = playerCont.HoldingItem ? InteractWorkstation() : UseWorkstation();
-                        break;
-                    //Coal pile, wood pile, etc...
-                    case "stockpile":
-                        ///<summary>
-                        ///If the player is not holding an item check that the quickslots are not full.
-                        ///and that the player does not have the backpack open in order to allow them to pick up the desired object.
-                        ///If the player is holding an object allow them to drop the object
-                        m_CurStockpileCont = playerCont.PlayerLOS.transform.GetComponent<StockpileController>();
-                        playerCont.PlayerInventoryCont.UpdateQuickSlotStatus();
-                        playerCont.HoldingItem = playerCont.HoldingItem ? DepositObj() : PickUpObj();
-                        break;
-                    case "chest":
-                        if(!playerCont.IsUsingStorage && !playerCont.UsingWorkstation)
-                        {
-                            if(playerCont.HoldingItem)
-                                UnEquipItem();
-                            playerCont.PlayerLOS.transform.Find("Canvas/ChestMenu").gameObject
-                                .GetComponent<ChestController>().OpenChest(playerCont);
-                            playerCont.IsUsingStorage = true;
-                        }
-                        break;
-                }
-            }
-            //       The player is holding an item && The player has no storage open. && The player is not interacting with anything.
-            else if (playerCont.HoldingItem && !playerCont.IsUsingStorage && !(playerCont.PlayerLOS.transform == null))
-            {
-                //TODO: Adding code for dropping objects onto the floor.
-            }
-            else
-            {
-                //m_CurStockpileCont = null;
-                //workstationCont = null;
-            }
-        }
-        #endregion
-        // Start is called before the first frame update
-        void Awake()
-        {
-            playerCont = GetComponent<PlayerController>();
-            dynamicSpriteLayering = GetComponent<DynamicSpriteLayering>();
-            playerFishingCont = GetComponent<PlayerFishingController>();
-        }
+    }
+    #endregion
+    // Start is called before the first frame update
+    void Awake()
+    {
+        playerCont = GetComponent<PlayerController>();
+        dynamicSpriteLayering = GetComponent<DynamicSpriteLayering>();
+        playerFishingCont = GetComponent<PlayerFishingController>();
     }
 }

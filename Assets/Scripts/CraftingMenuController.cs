@@ -4,258 +4,254 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Com.ZiomtechStudios.ForgeExchange
+public class CraftingMenuController : SlotsController
 {
-    public class CraftingMenuController : SlotsController
+    #region "Private Serialized Fields"
+    [SerializeField] private CraftTableController craftTableCont;
+    [Header("Slots in crafting menu.")]
+    [SerializeField] private SlotController[] craftingSlots;
+    [SerializeField] private SlotController[] craftedSlot;
+    [SerializeField] private int craftedSlotNum;
+    [Header("Members for crafting")]
+    [SerializeField] private string currentRecipe;
+    [Header("Current User component(s).")]
+    [SerializeField] private PlayerController currentUserController;
+    [SerializeField] private int smallestIngredientStack;
+    [Header("Global Prefab Dictionary of Item Tuples.")]
+    [SerializeField] private SpriteToTupleController spriteToTupleCont;
+    #endregion
+    #region "Private Funcs/Members
+    private (GameObject, ItemController) potentialItemTuple;
+    private Sprite potentialItemSprite;
+    private RectTransform craftMenuRectTrans;
+    private void AttemptCrafting()
     {
-        #region "Private Serialized Fields"
-        [SerializeField] private CraftTableController craftTableCont;
-        [Header("Slots in crafting menu.")]
-        [SerializeField] private SlotController[] craftingSlots;
-        [SerializeField] private SlotController[] craftedSlot;
-        [SerializeField] private int craftedSlotNum;
-        [Header("Members for crafting")]
-        [SerializeField] private string currentRecipe;
-        [Header("Current User component(s).")]
-        [SerializeField] private PlayerController currentUserController;
-        [SerializeField] private int smallestIngredientStack;
-        [Header("Global Prefab Dictionary of Item Tuples.")]
-        [SerializeField] private SpriteToTupleController spriteToTupleCont;
-        #endregion
-        #region "Private Funcs/Members
-        private (GameObject, ItemController) potentialItemTuple;
-        private Sprite potentialItemSprite;
-        private RectTransform craftMenuRectTrans;
-        private void AttemptCrafting()
+        smallestIngredientStack = 64;
+        //Reevaluating current ingredients the user has deposited into the crafting table.
+        foreach (SlotController ingredient in craftingSlots)
         {
-            
-            smallestIngredientStack = 64;
-            //Reevaluating current ingredients the user has deposited into the crafting table.
-            foreach (SlotController ingredient in craftingSlots)
-            {
-                //When slot is not empty check and see if it is an ingredient stack with the smallest sized\
-                if(ingredient.CurStackQuantity > 0)
-                    smallestIngredientStack = (ingredient.CurStackQuantity < smallestIngredientStack) ? ingredient.CurStackQuantity : smallestIngredientStack;
-                currentRecipe += ingredient.SlotWithItem ? ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemSubTag + ingredient.SlotItemTuple.Item2.PrefabItemStruct.craftingTag : "_";
-            }
-
-            //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
-            if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemSprite) && spriteToTupleCont.SpriteToTupleDict.TryGetValue(potentialItemSprite, out potentialItemTuple))
-            { 
-                //The player has used a valid recipe so we make sure the crafted item slot is populated with the correct item.
-                craftedSlot[0].SlotItemTuple = potentialItemTuple;
-                //If the smallest stack of an ingredient is bigger than the maximum stack size of the final product.
-                //We need to truncate the size of stack of items to be crafted so it does not exceed the max of its item type.
-                smallestIngredientStack = (smallestIngredientStack < craftedSlot[0].SlotItemTuple.Item2.MaxStackQuantity)? smallestIngredientStack : craftedSlot[0].SlotItemTuple.Item2.MaxStackQuantity;
-                craftedSlot[0].ItemImage.sprite = (potentialItemTuple.Item1) ? craftedSlot[0].SlotItemTuple.Item2.ItemIcon : NoItemSprite;
-                craftedSlot[0].SlotWithItem = true;
-                craftedSlot[0].CurStackQuantity = smallestIngredientStack;
-                craftTableCont.Work(craftedSlot[0].SlotItemTuple);
-            }
-            else
-            {
-                //The recipe was not a valid one so we make sure the slot for a crafted item remains blank.
-                DragAndDropSlot.EmptyCurrentSlot(craftedSlot[0], NoItemSprite, false);
-                potentialItemTuple = (null, null);
-                craftTableCont.StockpileCont.Withdraw(1);
-            }
-
-            currentRecipe = null;
+            //When slot is not empty check and see if it is an ingredient stack with the smallest sized\
+            if(ingredient.CurStackQuantity > 0)
+                smallestIngredientStack = (ingredient.CurStackQuantity < smallestIngredientStack) ? ingredient.CurStackQuantity : smallestIngredientStack;
+            currentRecipe += ingredient.SlotWithItem ? ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemSubTag + ingredient.SlotItemTuple.Item2.PrefabItemStruct.craftingTag : "_";
         }
-        #endregion
-        #region Getters/Setters
-        //Still needed even if not used in script, lets me see the value at runtime so when i create new recipes I can copy  and paste into dictionary when in the inspector.
-        public string CurrentRecipe { get { return currentRecipe; } }
-        #endregion
-        #region "Public Functions/Members"
 
-        public void EmptyCraftingMenu()
+        //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
+        if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemSprite) && spriteToTupleCont.SpriteToTupleDict.TryGetValue(potentialItemSprite, out potentialItemTuple))
         { 
-            foreach (SlotController ingredient in craftingSlots)
-            {
-                bool stillAStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
-                DragAndDropSlot.UpdateSlotCounterText(ingredient);
-                ingredient.ItemImage.sprite = stillAStack ? ingredient.SlotItemTuple.Item2.ItemIcon : NoItemSprite;
-                ingredient.SlotItemTuple = stillAStack ? ingredient.SlotItemTuple : (null, null);
-                ingredient.SlotWithItem = stillAStack;
-            }
-            currentRecipe = null;
+            //The player has used a valid recipe so we make sure the crafted item slot is populated with the correct item.
+            craftedSlot[0].SlotItemTuple = potentialItemTuple;
+            //If the smallest stack of an ingredient is bigger than the maximum stack size of the final product.
+            //We need to truncate the size of stack of items to be crafted so it does not exceed the max of its item type.
+            smallestIngredientStack = (smallestIngredientStack < craftedSlot[0].SlotItemTuple.Item2.MaxStackQuantity)? smallestIngredientStack : craftedSlot[0].SlotItemTuple.Item2.MaxStackQuantity;
+            craftedSlot[0].ItemImage.sprite = (potentialItemTuple.Item1) ? craftedSlot[0].SlotItemTuple.Item2.ItemIcon : NoItemSprite;
+            craftedSlot[0].SlotWithItem = true;
+            craftedSlot[0].CurStackQuantity = smallestIngredientStack;
+            craftTableCont.Work(craftedSlot[0].SlotItemTuple);
+        }
+        else
+        {
+            //The recipe was not a valid one so we make sure the slot for a crafted item remains blank.
+            DragAndDropSlot.EmptyCurrentSlot(craftedSlot[0], NoItemSprite, false);
+            potentialItemTuple = (null, null);
             craftTableCont.StockpileCont.Withdraw(1);
         }
+        //Debug.Log(currentRecipe);
+        currentRecipe = null;
+    }
+    #endregion
+    #region Getters/Setters
+    //Still needed even if not used in script, lets me see the value at runtime so when i create new recipes I can copy  and paste into dictionary when in the inspector.
+    public string CurrentRecipe { get { return currentRecipe; } }
+    #endregion
+    #region "Public Functions/Members"
+
+    public void EmptyCraftingMenu()
+    { 
+        foreach (SlotController ingredient in craftingSlots)
+        {
+            bool stillAStack = (ingredient.CurStackQuantity-= smallestIngredientStack) > 0;
+            DragAndDropSlot.UpdateSlotCounterText(ingredient);
+            ingredient.ItemImage.sprite = stillAStack ? ingredient.SlotItemTuple.Item2.ItemIcon : NoItemSprite;
+            ingredient.SlotItemTuple = stillAStack ? ingredient.SlotItemTuple : (null, null);
+            ingredient.SlotWithItem = stillAStack;
+        }
+        currentRecipe = null;
+        craftTableCont.StockpileCont.Withdraw(1);
+    }
         
 
-        public void SubStacking(PointerEventData eventData)
+    public void SubStacking(PointerEventData eventData)
+    {
+        if (initSlots[initSlotNum] != destSlots[destSlotNum])
         {
-            if (initSlots[initSlotNum] != destSlots[destSlotNum])
+            if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
+                DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
+            else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem && movingSlot.CurStackQuantity > 2)
+                ActivateSubStackSlider(eventData);
+            else if(TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem && movingSlot.CurStackQuantity == 2)
+                DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, 1, NoItemSprite);
+        }
+        else
+            ReturnItem(eventData);
+    }
+
+    public override void ReturnItem(PointerEventData eventData)
+    {
+        DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
+    }
+
+    public override void CloseMenu()
+    {
+        if(!isSubStacking)
+            craftTableCont.ToggleUse(currentUserController);
+    }
+    public void SyncCraftingMenuSlots(PlayerController playerCont)
+    {
+        SynchronizeSlots.SyncSlots(backPackSlots,  playerCont.PlayerBackPackCont.backPackSlots);
+        SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
+        currentUserController = playerCont;
+        currentUserController.IsUsingStorage = true;
+    }
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        // Making sure the press point is not on blank space.
+        // Are we sure that what we are dragging from is a slot?
+        // THe slot that we are dragging from, does it have an item?
+        // Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
+        if(!IsSubStacking){
+            if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
             {
-                if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
-                    DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
-                else if (TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem && movingSlot.CurStackQuantity > 2)
-                    ActivateSubStackSlider(eventData);
-                else if(TimerPointerHeldDown >= 1.0f && !destSlots[destSlotNum].SlotWithItem && movingSlot.CurStackQuantity == 2)
-                    DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, 1, NoItemSprite);
+                initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
+                DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
+                switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
+                {
+                    case ("CraftingSlots"):
+                        AttemptCrafting();
+                        break;
+                    case ("CraftingMenu"):
+                        if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
+                            EmptyCraftingMenu();
+                        break;
+                            
+                }
+            }
+        }
+    }
+    public override void OnDrag(PointerEventData eventData)
+    {
+        if (!IsSubStacking && eventData.pointerCurrentRaycast.gameObject)
+        {
+            DragAndDropSlot.MoveItem(eventData, craftMenuRectTrans, MovingSlotRectTrans);
+            initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject
+                .GetComponent<SlotController>();
+            TimerPointerHeldDown = Time.time;
+        }
+    }
+    public override void OnEndDrag(PointerEventData eventData)
+    {
+        //The players finger has stopped dragging onto a slot.
+        //Making sure the destination slot is an appropriate destination.
+        //The player has an item in the moving slot.
+        //Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
+        if (!IsSubStacking)
+        {
+            if (eventData.pointerCurrentRaycast.gameObject != null &&
+                eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem &&
+                MovingSlot.SlotItemTuple.Item1 &&
+                SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
+                    out destSlots))
+            {
+                // Position of the targeted slot
+                destSlotNum =
+                    Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+                TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum])
+                    ? (Time.time - TimerPointerHeldDown)
+                    : 0.0f;
+                switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
+                {
+                    //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
+                    case "CraftingMenu":
+                        ReturnItem(eventData);
+                        break;
+                    //THe player has placed an item onto a slot for the ingredients of a craftable item.
+                    //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
+                    case "CraftingSlots":
+                        SubStacking(eventData);
+                        if (!isSubStacking)
+                            AttemptCrafting();
+                        break;
+                    //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
+                    default:
+                        SubStacking(eventData);
+                        break;
+                }
             }
             else
                 ReturnItem(eventData);
         }
+        //The player is trying to place the item in an inappropriate area so we will just return it back to its original spot.
+        else if(!IsSubStacking)
+            ReturnItem(eventData);
+        TimerPointerHeldDown = 0.0f;
+        initSlotAtDrag = null;
+    }
+    public override void ActivateSubStackSlider(PointerEventData eventData)
+    {
+        isSubStacking = true;
+        subStackSliderCont.InitSlot = initSlots[initSlotNum];
+        subStackSliderCont.DestSlot = destSlots[destSlotNum];
+        subStackSliderCont.MovingSlot = movingSlot;
+        SubStackItemSlider.gameObject.SetActive(true);
+    }
+    public override void ConfirmSubStackQuantity()
+    {
+        DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), NoItemSprite);
+        SubStackItemSlider.value = 0.0f;
+        SubStackItemSlider.gameObject.SetActive(false);
+        isSubStacking = false;
+    }
+    void Update()
+    {
+        //The current recipe is set to "" after an item is crafted so we will check to see if ingredients remain and another item can be crafted.
+        if(currentRecipe == null) 
+            AttemptCrafting();
+    }
+    #endregion
+    void Start()
+    {
+        craftTableCont = transform.parent.parent.GetComponent<CraftTableController>();
+        craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
+        MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
+        craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
+        MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
+        craftingSlots = new SlotController[craftedSlotNum];
+        for (int i = 0; i < craftingSlots.Length; i++)
+            craftingSlots[i] = transform.Find($"CraftingSlots/Slot{i}").gameObject.GetComponent<SlotController>();
+        SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
+        spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>(); 
+    }
 
-        public override void ReturnItem(PointerEventData eventData)
-        {
-            DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
-        }
+    void Awake()
+    {
+        craftedSlot = new SlotController[1];
+        SlotTypeDict = new Dictionary<string, SlotController[]>();
+        SlotTypeDict.Add("BackpackSlots", backPackSlots);
+        SlotTypeDict.Add("QuickSlots", quickSlots);
+        SlotTypeDict.Add("CraftingSlots", craftingSlots);
+        SlotTypeDict.Add("CraftingMenu", craftedSlot);
+        currentRecipe = null;
+        IsSubStacking = false;
+    }
+    void OnEnable()
+    {
+        currentRecipe = null;
+        IsSubStacking = false;
+    }
 
-        public override void CloseMenu()
-        {
-            if(!isSubStacking)
-                craftTableCont.ToggleUse(currentUserController);
-        }
-        public void SyncCraftingMenuSlots(PlayerController playerCont)
-        {
-            SynchronizeSlots.SyncSlots(backPackSlots,  playerCont.PlayerBackPackCont.backPackSlots);
-            SynchronizeSlots.SyncSlots(quickSlots, playerCont.PlayerInventoryCont.SlotConts);
-            currentUserController = playerCont;
-            currentUserController.IsUsingStorage = true;
-        }
-        public override void OnBeginDrag(PointerEventData eventData)
-        {
-            // Making sure the press point is not on blank space.
-            // Are we sure that what we are dragging from is a slot?
-            // THe slot that we are dragging from, does it have an item?
-            // Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
-            if(!IsSubStacking){
-                if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
-                {
-                    initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-                    DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
-                    switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
-                    {
-                        case ("CraftingSlots"):
-                                AttemptCrafting();
-                                break;
-                        case ("CraftingMenu"):
-                            if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
-                                EmptyCraftingMenu();
-                            break;
-                            
-                    }
-                }
-            }
-        }
-        public override void OnDrag(PointerEventData eventData)
-        {
-            if (!IsSubStacking && eventData.pointerCurrentRaycast.gameObject)
-            {
-                DragAndDropSlot.MoveItem(eventData, craftMenuRectTrans, MovingSlotRectTrans);
-                initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject
-                    .GetComponent<SlotController>();
-                TimerPointerHeldDown = Time.time;
-            }
-        }
-        public override void OnEndDrag(PointerEventData eventData)
-        {
-            //The players finger has stopped dragging onto a slot.
-            //Making sure the destination slot is an appropriate destination.
-            //The player has an item in the moving slot.
-            //Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
-            if (!IsSubStacking)
-            {
-                if (eventData.pointerCurrentRaycast.gameObject != null &&
-                    eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem &&
-                    MovingSlot.SlotItemTuple.Item1 &&
-                    SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
-                        out destSlots))
-                {
-                    // Position of the targeted slot
-                    destSlotNum =
-                        Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
-                    TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum])
-                        ? (Time.time - TimerPointerHeldDown)
-                        : 0.0f;
-                    switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
-                    {
-                        //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
-                        case "CraftingMenu":
-                            ReturnItem(eventData);
-                            break;
-                        //THe player has placed an item onto a slot for the ingredients of a craftable item.
-                        //Once they do we want to generate our recipe and see if it is in the dictionary of craftable items.
-                        case "CraftingSlots":
-                            SubStacking(eventData);
-                            if (!isSubStacking)
-                                AttemptCrafting();
-                            break;
-                        //THe player has moved an item to a Backpack or quick-slot so we do or usual moving/swapping logic.
-                        default:
-                            SubStacking(eventData);
-                            break;
-                    }
-                }
-                else
-                    ReturnItem(eventData);
-            }
-            //The player is trying to place the item in an inappropriate area so we will just return it back to its original spot.
-            else if(!IsSubStacking)
-                ReturnItem(eventData);
-            TimerPointerHeldDown = 0.0f;
-            initSlotAtDrag = null;
-        }
-        public override void ActivateSubStackSlider(PointerEventData eventData)
-        {
-            isSubStacking = true;
-            subStackSliderCont.InitSlot = initSlots[initSlotNum];
-            subStackSliderCont.DestSlot = destSlots[destSlotNum];
-            subStackSliderCont.MovingSlot = movingSlot;
-            SubStackItemSlider.gameObject.SetActive(true);
-        }
-        public override void ConfirmSubStackQuantity()
-        {
-            DragAndDropSlot.SplitStack(initSlots[initSlotNum], destSlots[destSlotNum], movingSlot, Mathf.CeilToInt(SubStackItemSlider.value*(movingSlot.CurStackQuantity - 1))+(SubStackItemSlider.value!=0.0f?0:1), NoItemSprite);
-            SubStackItemSlider.value = 0.0f;
-            SubStackItemSlider.gameObject.SetActive(false);
-            isSubStacking = false;
-        }
-        void Update()
-        {
-            //The current recipe is set to "" after an item is crafted so we will check to see if ingredients remain and another item can be crafted.
-            if(currentRecipe == null) 
-                AttemptCrafting();
-        }
-        #endregion
-        void Start()
-        {
-            craftTableCont = transform.parent.parent.GetComponent<CraftTableController>();
-            craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
-            MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
-            craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
-            MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
-            craftingSlots = new SlotController[craftedSlotNum];
-            for (int i = 0; i < craftingSlots.Length; i++)
-                craftingSlots[i] = transform.Find($"CraftingSlots/Slot{i}").gameObject.GetComponent<SlotController>();
-            SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
-            spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>(); 
-        }
-
-        void Awake()
-        {
-            craftedSlot = new SlotController[1];
-            SlotTypeDict = new Dictionary<string, SlotController[]>();
-            SlotTypeDict.Add("BackpackSlots", backPackSlots);
-            SlotTypeDict.Add("QuickSlots", quickSlots);
-            SlotTypeDict.Add("CraftingSlots", craftingSlots);
-            SlotTypeDict.Add("CraftingMenu", craftedSlot);
-            currentRecipe = null;
-            IsSubStacking = false;
-        }
-        void OnEnable()
-        {
-            currentRecipe = null;
-            IsSubStacking = false;
-        }
-
-        void OnDisable()
-        {
-            IsSubStacking = false;
-            currentUserController.IsUsingStorage = false;
-        }
+    void OnDisable()
+    {
+        IsSubStacking = false;
+        currentUserController.IsUsingStorage = false;
     }
 }

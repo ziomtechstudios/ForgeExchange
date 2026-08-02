@@ -1,44 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-namespace Com.ZiomtechStudios.ForgeExchange
-{
-    public class QuickSlotController : MonoBehaviour
-    {
-        #region Private Serialized Fields
-        [SerializeField] private Image slotImage;
-        [SerializeField] private Image itemImage;
-        [SerializeField] private bool slotInUse;
-        [SerializeField] private bool slotWithItem;
-        private (GameObject, ItemController) slotItemTuple;
-        [SerializeField] private int curStackQuantity;
-        [SerializeField] private TextMeshProUGUI counterTMPro;
-        [SerializeField] private SpriteToTupleController spriteToTupleController;
-        #endregion
-        #region Getters/Setters
-        public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
-        public bool SlotWithItem { get { return slotWithItem; } set { slotWithItem = value; } }
-        public (GameObject, ItemController) SlotItemTuple { get { return slotItemTuple; } set { slotItemTuple = value; } }
-        public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
-        public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
-        public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
-        public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
-        public SpriteToTupleController SpriteToTupleCont { get { return spriteToTupleController; } set { spriteToTupleController = value; } }
 
-        #endregion
-        #region Public Funcs
-        public void Start()
-        {
-            spriteToTupleController = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>();
-            if(SlotWithItem)
-                SlotItemTuple = spriteToTupleController.SpriteToTupleDict[ItemImage.sprite];
-            slotImage = GetComponent<Image>();
-            itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
-            counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
-        }
-        #endregion
+public class QuickSlotController : MonoBehaviour
+{
+    #region Private Serialized Fields
+    [SerializeField] private Image slotImage;
+    [SerializeField] private Image itemImage;
+    [SerializeField] private bool slotInUse;
+    [SerializeField] private bool slotWithItem;
+    private (GameObject, ItemController) slotItemTuple;
+    [SerializeField] private int curStackQuantity;
+    [SerializeField] private TextMeshProUGUI counterTMPro;
+    [SerializeField] private SpriteToTupleController spriteToTupleController;
+    #endregion
+    #region Getters/Setters
+    public bool SlotInUse { get { return slotInUse; } set { slotInUse = value; } }
+    public bool SlotWithItem { get { return slotWithItem; } set { slotWithItem = value; } }
+    public (GameObject, ItemController) SlotItemTuple { get { return slotItemTuple; } set { slotItemTuple = value; } }
+    public Image SlotImage { get { return slotImage; } set { slotImage = value; } }
+    public Image ItemImage { get { return itemImage; } set { itemImage = value; } }
+    public int CurStackQuantity { get { return curStackQuantity;} set { curStackQuantity = value; } }
+    public TextMeshProUGUI CounterTMPro { get { return counterTMPro; } set { counterTMPro = value; } }
+    public SpriteToTupleController SpriteToTupleCont { get { return spriteToTupleController; } set { spriteToTupleController = value; } }
+
+    #endregion
+    #region Public Funcs
+    public void Start()
+    {
+        spriteToTupleController = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>();
+        if(SlotWithItem)
+            SlotItemTuple = spriteToTupleController.SpriteToTupleDict[ItemImage.sprite];
+        slotImage = GetComponent<Image>();
+        itemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
+        counterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
     }
+    #endregion
 }

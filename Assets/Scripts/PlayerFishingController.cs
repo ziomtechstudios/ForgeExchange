@@ -1,158 +1,153 @@
-
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Com.ZiomtechStudios.ForgeExchange
+[RequireComponent(typeof(PlayerInteractionController))]
+public class PlayerFishingController : MonoBehaviour
 {
-    [RequireComponent(typeof(PlayerInteractionController))]
-    public class PlayerFishingController : MonoBehaviour
+    #region "Private Serialized Fields"
+    [SerializeField] private PlayerInteractionController playerInteractionCont;
+    [SerializeField] private FishingRodController fishingRodCont;
+    [SerializeField] private float reelingIncrmt;
+    [SerializeField] [Range(0.0f, 1.0f)] private float lineDurability;
+    [SerializeField] private float lineDegradation;
+    [SerializeField] private bool isProperTension;
+    #endregion 
+    #region"Private Members"
+    private int isReelingHash, isFullyReeledHash;
+    private int isCastingHash;
+    private GameObject fishingRod;
+    private bool isFullyReeled;
+    private Vector2 inputVector;
+    private Transform holdingTransform;
+
+    #endregion
+    #region "Public Funcs"
+
+    public void TriggerRodReeling()
     {
-        #region "Private Serialized Fields"
-        [SerializeField] private PlayerInteractionController playerInteractionCont;
-        [SerializeField] private FishingRodController fishingRodCont;
-        [SerializeField] private float reelingIncrmt;
-        [SerializeField] [Range(0.0f, 1.0f)] private float lineDurability;
-        [SerializeField] private float lineDegradation;
-        [SerializeField] private bool isProperTension;
-        #endregion 
-        #region"Private Members"
-        private int isReelingHash, isFullyReeledHash;
-        private int isCastingHash;
-        private GameObject fishingRod;
-        private bool isFullyReeled;
-        private Vector2 inputVector;
-        private Transform holdingTransform;
+        fishingRodCont.RodReeling(true);
+    }
+    public void SpawnRod()
+    {
+        fishingRod = Instantiate(playerInteractionCont.PlayerCont.MainHandTuple.Item1, HoldingTransform, false);
+        fishingRodCont = fishingRod.GetComponent<FishingRodController>();
+    }
+    public void IsFullyReeled()
+    {
+        isFullyReeled = ((fishingRodCont.CurReeledAmnt += reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
+        playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, isFullyReeled);
+        fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
+        fishingRodCont.RodReeling(!isFullyReeled);
+        fishingRodCont.CurReeledAmnt = isFullyReeled ? 0.0f : fishingRodCont.CurReeledAmnt;
+    }
 
-        #endregion
-        #region "Public Funcs"
-
-        public void TriggerRodReeling()
-        {
-            fishingRodCont.RodReeling(true);
-        }
-        public void SpawnRod()
-        {
-            fishingRod = Instantiate(playerInteractionCont.PlayerCont.MainHandTuple.Item1, HoldingTransform, false);
-            fishingRodCont = fishingRod.GetComponent<FishingRodController>();
-        }
-        public void IsFullyReeled()
-        {
-            isFullyReeled = ((fishingRodCont.CurReeledAmnt += reelingIncrmt) >= fishingRodCont.MaxReelAmnt);
-            playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, isFullyReeled);
-            fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, isFullyReeled);
-            fishingRodCont.RodReeling(!isFullyReeled);
-            fishingRodCont.CurReeledAmnt = isFullyReeled ? 0.0f : fishingRodCont.CurReeledAmnt;
-        }
-
-        public void IsProperTension() {
-            isProperTension = OverlappingUI.Overlapping(
+    public void IsProperTension() {
+        isProperTension = OverlappingUI.Overlapping(
             playerInteractionCont.PlayerCont.PlayerUICont.GoodZoneRectTransform,
             playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform);
-        }
-        public void ReelingRod(InputAction.CallbackContext context){
-            if(!isFullyReeled)
-            {
-                if(context.started){
-                    playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, true);
-                }
-                else if(context.canceled || playerInteractionCont.PlayerCont.M_Animator.GetBool(isFullyReeledHash)){
-                    fishingRodCont.RodReeling(false);
-                    playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
-                }
+    }
+    public void ReelingRod(InputAction.CallbackContext context){
+        if(!isFullyReeled)
+        {
+            if(context.started){
+                playerInteractionCont.PlayerCont.M_Animator.SetBool(IsReelingHash, true);
             }
-            else{
+            else if(context.canceled || playerInteractionCont.PlayerCont.M_Animator.GetBool(isFullyReeledHash)){
                 fishingRodCont.RodReeling(false);
                 playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
             }
         }
-        public void KeepingTheBite(InputAction.CallbackContext context)
-        {
-            inputVector = context.ReadValue<Vector2>();
-            //TODO Find appropriate and simple calculation for degradation of Rod when player is reeling in a Bite Based on  player input and satisfying conditions.
-        }
-        public void CastingRod()
-        {
-            if (fishingRod == null)
-                SpawnRod();
-            fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
-            lineDurability = 1.0f;
-            
-        }   
-        /// <summary>
-        /// This function is intended to be called when the last frame of the player's catching animation is played.
-        /// This player's fishing status is set to false and the player's will unequip their fishing pole.
-        /// This way if the player wants to engage in fishing they just have to re-equip the fishing rod and press the interaction button.
-        /// </summary>
-        public void ReelInRod(){
-            playerInteractionCont.PlayerCont.IsFishing = false;
-            playerInteractionCont.PlayerCont.M_Animator.SetBool(playerInteractionCont.PlayerCont.IsFishingHash, false);
-            playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, false);
-            fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, false);
+        else{
             fishingRodCont.RodReeling(false);
-            // Unequip the fishing rod within the quickslot it resides it.
-            playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
-            // In case player no longer wants to fish they can now revert to other activities
-            playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
-
-            // Satisfies condition for casting rod if fishing is done consecutively.
-            // This also ensures that if the player where to equip another item it will be the only gameObject held within the scene @ runtime.
-            if (lineDurability > 0.0f && fishingRodCont.HasBite)
-            {
-                fishingRodCont.HasBite = false;
-                playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem(fishingRodCont.CurFishSpawnerCont.SpawnMob(fishingRodCont.PrefabItemStruct.itemSubTag+"_"+fishingRodCont.PrefabItemStruct.itemTag));
-            }
-            isFullyReeled = false;
-            fishingRodCont.CurFishSpawnerCont = null;
-            Destroy(fishingRod);
-            fishingRod = null;
-            inputVector = Vector2.zero;
+            playerInteractionCont.PlayerCont.M_Animator.SetBool(isReelingHash, false);
         }
-        #endregion
-        #region "Getters/Setters"
-        public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
-        public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
-        public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
-        public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
-        public FishingRodController FishingRodCont{get{return fishingRodCont;} set { fishingRodCont = value; } }
-
-        public Transform HoldingTransform { get { return holdingTransform;} }
-
-        #endregion
-        // Start is called before the first frame update
-        void Start()
-        {
-            playerInteractionCont = GetComponent<PlayerInteractionController>();
-            isFullyReeledHash = Animator.StringToHash("fullyReeled");
-            isReelingHash = Animator.StringToHash("isReeling");
-            isCastingHash = Animator.StringToHash("isCasting");
-            isFullyReeled = false;
-            holdingTransform = transform.Find("HoldingItem");
-        }
-        void FixedUpdate(){
-            if (playerInteractionCont.PlayerCont.IsFishing)
-            {
-                if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
-                    IsFullyReeled();
-                if (fishingRodCont.HasBite)
-                {
-                    // If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
-                    // We then apply minimal wear to durability of the line.
-                    // If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
-                    // If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
-                    // If not the player looses the fish.
-                    // Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
-                    if (inputVector != Vector2.zero)
-                        playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(
-                            new Vector2((inputVector.x), 0.0f));
-                    IsProperTension();
-                    //If proper tension is applied from player input the fishing line experiences minimal degredation.
-                    //If improper tension is applied from player input the rate of the fishing line's degredation is increased;
-                    lineDurability -= ((isProperTension ? 1.00f : 5.00f) * lineDegradation * Time.deltaTime);
-                    playerInteractionCont.PlayerCont.PlayerUICont.OscilateGoodZone();
-                }
-            }
-        }
-
     }
+    public void KeepingTheBite(InputAction.CallbackContext context)
+    {
+        inputVector = context.ReadValue<Vector2>();
+        //TODO Find appropriate and simple calculation for degradation of Rod when player is reeling in a Bite Based on  player input and satisfying conditions.
+    }
+    public void CastingRod()
+    {
+        if (fishingRod == null)
+            SpawnRod();
+        fishingRodCont.CastRod(playerInteractionCont.PlayerCont);
+        lineDurability = 1.0f;
+            
+    }   
+    /// <summary>
+    /// This function is intended to be called when the last frame of the player's catching animation is played.
+    /// This player's fishing status is set to false and the player's will unequip their fishing pole.
+    /// This way if the player wants to engage in fishing they just have to re-equip the fishing rod and press the interaction button.
+    /// </summary>
+    public void ReelInRod(){
+        playerInteractionCont.PlayerCont.IsFishing = false;
+        playerInteractionCont.PlayerCont.M_Animator.SetBool(playerInteractionCont.PlayerCont.IsFishingHash, false);
+        playerInteractionCont.PlayerCont.M_Animator.SetBool(isFullyReeledHash, false);
+        fishingRodCont.M_Animator.SetBool(fishingRodCont.IsRodFullyReeledHash, false);
+        fishingRodCont.RodReeling(false);
+        // Unequip the fishing rod within the quickslot it resides it.
+        playerInteractionCont.PlayerCont.PlayerInventoryCont.SelectSlot(-1);
+        // In case player no longer wants to fish they can now revert to other activities
+        playerInteractionCont.PlayerCont.PlayerInput.SwitchCurrentActionMap("ShopControls");
+
+        // Satisfies condition for casting rod if fishing is done consecutively.
+        // This also ensures that if the player where to equip another item it will be the only gameObject held within the scene @ runtime.
+        if (lineDurability > 0.0f && fishingRodCont.HasBite)
+        {
+            fishingRodCont.HasBite = false;
+            playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem(fishingRodCont.CurFishSpawnerCont.SpawnMob(fishingRodCont.PrefabItemStruct.itemSubTag+"_"+fishingRodCont.PrefabItemStruct.itemTag));
+        }
+        isFullyReeled = false;
+        fishingRodCont.CurFishSpawnerCont = null;
+        Destroy(fishingRod);
+        fishingRod = null;
+        inputVector = Vector2.zero;
+    }
+    #endregion
+    #region "Getters/Setters"
+    public int IsReelingHash{get{return isReelingHash;} set{isReelingHash = value;} }
+    public int IsFullyReeledHash{get{return isFullyReeledHash;} set{isFullyReeledHash = value;} }
+    public int IsCastingHash{get{return isCastingHash;} set{isCastingHash = value;}}
+    public float ReelingIncrmt{get{return reelingIncrmt;}set{reelingIncrmt = value;} }
+    public FishingRodController FishingRodCont{get{return fishingRodCont;} set { fishingRodCont = value; } }
+
+    public Transform HoldingTransform { get { return holdingTransform;} }
+
+    #endregion
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerInteractionCont = GetComponent<PlayerInteractionController>();
+        isFullyReeledHash = Animator.StringToHash("fullyReeled");
+        isReelingHash = Animator.StringToHash("isReeling");
+        isCastingHash = Animator.StringToHash("isCasting");
+        isFullyReeled = false;
+        holdingTransform = transform.Find("HoldingItem");
+    }
+    void FixedUpdate(){
+        if (playerInteractionCont.PlayerCont.IsFishing)
+        {
+            if(playerInteractionCont.PlayerCont.M_Animator.GetBool(isReelingHash) && !isFullyReeled)
+                IsFullyReeled();
+            if (fishingRodCont.HasBite)
+            {
+                // If the vertical line (rect transform) that represents players applicance of tension on the fishing line overlaps the rec transform of the inter oscilating horizontal chunk.
+                // We then apply minimal wear to durability of the line.
+                // If the rect transforms do not overlap we accelerate or increase the rate of durability loss of line.
+                // If the player fully reels in the line without fully draining durability the player has ability to successfully reel in their bite.
+                // If not the player looses the fish.
+                // Player depleting line durability is garunteed to loose bait and cause loss of durability to fishing rod itself.
+                if (inputVector != Vector2.zero)
+                    playerInteractionCont.PlayerCont.PlayerUICont.CurZoneRectTransform.Translate(
+                        new Vector2((inputVector.x), 0.0f));
+                IsProperTension();
+                //If proper tension is applied from player input the fishing line experiences minimal degredation.
+                //If improper tension is applied from player input the rate of the fishing line's degredation is increased;
+                lineDurability -= ((isProperTension ? 1.00f : 5.00f) * lineDegradation * Time.deltaTime);
+                playerInteractionCont.PlayerCont.PlayerUICont.OscilateGoodZone();
+            }
+        }
+    }
+
 }
