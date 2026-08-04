@@ -15,5 +15,4 @@ public class AmmoController : MonoBehaviour
         projectile.transform.Translate(direction , Space.World);
         projectile = null;
     }
-    
 }

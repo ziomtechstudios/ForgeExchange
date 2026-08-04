@@ -24,7 +24,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Taking an item from a stockpile
         public void TakeItem((GameObject, ItemController) newItemTuple)
         {
-            bool canTakeItem = itemTagToSpriteDict.TryGetValue(newItemTuple.Item2.PrefabItemStruct.itemSubTag + newItemTuple.Item2.PrefabItemStruct.itemTag, out var newSprite);
+            bool canTakeItem = itemTagToSpriteDict.TryGetValue(newItemTuple.Item2.PrefabItemStruct.itemTag + " " + newItemTuple.Item2.PrefabItemStruct.itemSubTag, out var newSprite);
             stockPileTuple = canTakeItem ? newItemTuple : (null, null);
             IsEmpty = !canTakeItem;
             M_SpriteRend.sprite = (!IsEmpty) ? newSprite: emptyStockpileSprite;
@@ -32,7 +32,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool Deposit(int amount, (GameObject, ItemController) newItemTuple)
         {
             //if player can deposit item to stockpile update current quantity and return outcome
-            if (IsEmpty && itemTagToSpriteDict.ContainsKey(newItemTuple.Item2.PrefabItemStruct.itemSubTag + newItemTuple.Item2.PrefabItemStruct.itemTag))
+            if (IsEmpty && itemTagToSpriteDict.ContainsKey(newItemTuple.Item2.PrefabItemStruct.itemTag + " " + newItemTuple.Item2.PrefabItemStruct.itemSubTag))
                 TakeItem(newItemTuple);
             if (((CurQuantity + amount) <= MaxQuantity) && (newItemTuple == stockPileTuple))
             {
@@ -63,7 +63,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             foreach (string itemTag in itemTags)
                 itemTagToSpriteDict.Add(itemTag, itemSprites[Array.IndexOf(itemTags, itemTag)]);
             stockPileTuple = (initPrefab, initItemCont);
-            M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[stockPileTuple.Item2.PrefabItemStruct.itemTag + stockPileTuple.Item2.PrefabItemStruct.itemSubTag]);
+            M_SpriteRend.sprite = (IsEmpty) ? (emptyStockpileSprite) : (itemTagToSpriteDict[stockPileTuple.Item2.PrefabItemStruct.itemTag + " " +stockPileTuple.Item2.PrefabItemStruct.itemSubTag]);
         }
     }
 }
