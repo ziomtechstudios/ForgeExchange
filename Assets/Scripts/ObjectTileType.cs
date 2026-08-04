@@ -1,6 +1,9 @@
-public enum ObjectTileType
+namespace Com.ZiomtechStudios.ForgeExchange
 {
-    /* 2001 - 3000 */
-    Empty = 0,
-    OakTree = 2001
+    public enum ObjectTileType
+    {
+        /* 2001 - 3000 */
+        Empty = 0,
+        OakTree = 2001
+    }
 }

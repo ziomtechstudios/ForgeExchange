@@ -1,197 +1,199 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public static class DragAndDropSlot
+namespace Com.ZiomtechStudios.ForgeExchange
 {
-    private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity, Sprite noItemSprite)
+    public static class DragAndDropSlot
     {
-        targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
-        targetSlot.ItemImage.sprite  = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
-        targetSlot.SlotWithItem = true;
-        targetSlot.CurStackQuantity = quantity;
-        UpdateSlotCounterText(targetSlot);
-    }
-    public static void AssignSlotContents(QuickSlotController targetSlot, QuickSlotController referenceSlot, int quantity, Sprite noItemSprite)
-    {
-        targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
-        targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
-        targetSlot.SlotWithItem = referenceSlot.SlotItemTuple != (null, null);
-        targetSlot.CurStackQuantity = quantity;
-        targetSlot.SlotInUse = (targetSlot.SlotInUse && targetSlot.SlotWithItem);
-        targetSlot.SlotImage.fillCenter = !targetSlot.SlotInUse;
-        UpdateSlotCounterText(targetSlot);
-    }
-    public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, int subStackQuantity, Sprite noItemSprite)
-    {
-        AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity - subStackQuantity, noItemSprite);
-        AssignSlotContents(destSlot, movingSlot, subStackQuantity, noItemSprite);
-        EmptyCurrentSlot(movingSlot, noItemSprite, true);
-    }
-    private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
-    {
-        AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity, noItemSprite);
-        EmptyCurrentSlot(initSlot, noItemSprite, false);
-    } 
-    private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
-    {
-        TransferStack(initSlot, destSlot, noItemSprite);
-        return 0;
-    }
-
-    private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
-    {
-        AssignSlotContents(initSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
-        AssignSlotContents(destSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
-        EmptyCurrentSlot(movingSlot, noItemSprite, true);
-    }
-    public static void SwapStacks(QuickSlotController initSlot, QuickSlotController destSlot, QuickSlotController movingSlot, Sprite noItemSprite)
-    {
-        AssignSlotContents(movingSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
-        AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity, noItemSprite);
-        AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
-        EmptyCurrentSlot(movingSlot, noItemSprite, true);
-    }
-    //For situations like Item stacking where we just need to empty the moving slot
-    public static void EmptyCurrentSlot(SlotController curSlot, Sprite noItemSprite, bool isMovingOrTempSlot)
-    {
-        curSlot.ItemImage.sprite = noItemSprite;
-        curSlot.SlotWithItem = false;
-        curSlot.SlotItemTuple = (null, null);
-        curSlot.CurStackQuantity = 0;
-        curSlot.CounterTMPro.text = "";
-        if (isMovingOrTempSlot)
-            curSlot.gameObject.SetActive(false);
-        else
-            UpdateSlotCounterText(curSlot);
-    }
-    public static void EmptyCurrentSlot(QuickSlotController curSlot, Sprite noItemSprite, bool isMovingSlot)
-    {
-        curSlot.ItemImage.sprite = noItemSprite;
-        curSlot.SlotWithItem = false;
-        curSlot.SlotItemTuple = (null, null);
-        curSlot.CurStackQuantity = 0;
-        curSlot.CounterTMPro.text = "";
-        if (isMovingSlot)
-            curSlot.gameObject.SetActive(false);
-        else
-            UpdateSlotCounterText(curSlot);
-    }
-        
-    public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, SlotsController container)
-    {
-        SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
-        if (selectedSlotCont != null && selectedSlotCont.SlotWithItem)
+        private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity, Sprite noItemSprite)
         {
-            //Store reference to original slot in case invalid item drop is later made.
-            container.OgSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
-            container.OgSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
-            if (selectedSlotCont.CurStackQuantity == 1)
-                //Transferring Item from Initial slot and transferring to moving slot.
-                TransferStack(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
-            else if (selectedSlotCont.CurStackQuantity > 1)
-                //Transferring whole stack from initial to moving slot
-                TransferStack(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
-            //Making moving slot visible.
-            movingSlotCont.gameObject.SetActive(true);
+            targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
+            targetSlot.ItemImage.sprite  = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
+            targetSlot.SlotWithItem = true;
+            targetSlot.CurStackQuantity = quantity;
+            UpdateSlotCounterText(targetSlot);
         }
-    }
-    public static void MoveItem(PointerEventData eventData, RectTransform canvasRectTransform, RectTransform movingSlotRectTransform)
-    {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.pointerCurrentRaycast.screenPosition, eventData.pressEventCamera, out Vector2 anchoredPosition);
-        movingSlotRectTransform.anchoredPosition = anchoredPosition;
-    }
-    public static void SwapDropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex, SlotController[] initSlots, int initSlotIndex, PointerEventData eventData)
-    {
-        //We are moving an item and the dest slot has an item
-        if (movingSlotCont.SlotWithItem && destSlots[destSlotIndex].SlotWithItem)
+        public static void AssignSlotContents(QuickSlotController targetSlot, QuickSlotController referenceSlot, int quantity, Sprite noItemSprite)
         {
-            // We are moving an item/stack to a slot that is occupied with the same type of item   /stack
-            if (CheckMatchingItem(movingSlotCont.SlotItemTuple.Item2, destSlots[destSlotIndex].SlotItemTuple.Item2))
-            {
-                //If stacking an item or stack onto an existing stack let us make sure we are exceeding the maximum amount of items.
-                //If we do lets return to moving item/stack back to its original position.
-                bool isOverFilled = ((destSlots[destSlotIndex].CurStackQuantity + movingSlotCont.CurStackQuantity) > destSlots[destSlotIndex].SlotItemTuple.Item2.MaxStackQuantity);
-                destSlots[destSlotIndex].CurStackQuantity += (isOverFilled ? ReturnStack(movingSlotCont, initSlots[initSlotIndex], noItemSprite) : movingSlotCont.CurStackQuantity);
-                destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
-            }
+            targetSlot.SlotItemTuple = referenceSlot.SlotItemTuple;
+            targetSlot.ItemImage.sprite = referenceSlot.SlotItemTuple != (null, null) ? referenceSlot.SlotItemTuple.Item2.ItemIcon :  noItemSprite;
+            targetSlot.SlotWithItem = referenceSlot.SlotItemTuple != (null, null);
+            targetSlot.CurStackQuantity = quantity;
+            targetSlot.SlotInUse = (targetSlot.SlotInUse && targetSlot.SlotWithItem);
+            targetSlot.SlotImage.fillCenter = !targetSlot.SlotInUse;
+            UpdateSlotCounterText(targetSlot);
+        }
+        public static void SplitStack(SlotController initSlot, SlotController destSlot, SlotController movingSlot, int subStackQuantity, Sprite noItemSprite)
+        {
+            AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity - subStackQuantity, noItemSprite);
+            AssignSlotContents(destSlot, movingSlot, subStackQuantity, noItemSprite);
+            EmptyCurrentSlot(movingSlot, noItemSprite, true);
+        }
+        private static void TransferStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
+        {
+            AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity, noItemSprite);
+            EmptyCurrentSlot(initSlot, noItemSprite, false);
+        } 
+        private static int ReturnStack(SlotController initSlot, SlotController destSlot, Sprite noItemSprite)
+        {
+            TransferStack(initSlot, destSlot, noItemSprite);
+            return 0;
+        }
+
+        private static void SwapStacks(SlotController initSlot, SlotController destSlot, SlotController movingSlot, Sprite noItemSprite)
+        {
+            AssignSlotContents(initSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
+            AssignSlotContents(destSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
+            EmptyCurrentSlot(movingSlot, noItemSprite, true);
+        }
+        public static void SwapStacks(QuickSlotController initSlot, QuickSlotController destSlot, QuickSlotController movingSlot, Sprite noItemSprite)
+        {
+            AssignSlotContents(movingSlot, destSlot, destSlot.CurStackQuantity, noItemSprite);
+            AssignSlotContents(destSlot, initSlot, initSlot.CurStackQuantity, noItemSprite);
+            AssignSlotContents(initSlot, movingSlot, movingSlot.CurStackQuantity, noItemSprite);
+            EmptyCurrentSlot(movingSlot, noItemSprite, true);
+        }
+        //For situations like Item stacking where we just need to empty the moving slot
+        public static void EmptyCurrentSlot(SlotController curSlot, Sprite noItemSprite, bool isMovingOrTempSlot)
+        {
+            curSlot.ItemImage.sprite = noItemSprite;
+            curSlot.SlotWithItem = false;
+            curSlot.SlotItemTuple = (null, null);
+            curSlot.CurStackQuantity = 0;
+            curSlot.CounterTMPro.text = "";
+            if (isMovingOrTempSlot)
+                curSlot.gameObject.SetActive(false);
             else
-                SwapStacks(initSlots[initSlotIndex], destSlots[destSlotIndex], movingSlotCont, noItemSprite);
+                UpdateSlotCounterText(curSlot);
         }
-        //We are moving an item and there is no item at the destination slot
-        else if (movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
-            TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
-        EmptyCurrentSlot(movingSlotCont, noItemSprite, true);
-    }
-    public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)
-    {
-        //If we are actually moving an item drop the item where we have stopped dragging
-        if (movingSlotCont.SlotItemTuple != (null, null))
-            TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
-    }
-    public static int GetSlotNum(PointerEventData eventData)
-    {
-        //TODO: Figure out how to handle debug statement for when player selects protion of UI screen that does not provide a string to parse into an int.
-        return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
-    }
-    public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
-    {
-        return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
-    }
-    public static void UpdateSlotCounterText(QuickSlotController slotCont)
-    {
-        slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";
-    }
+        public static void EmptyCurrentSlot(QuickSlotController curSlot, Sprite noItemSprite, bool isMovingSlot)
+        {
+            curSlot.ItemImage.sprite = noItemSprite;
+            curSlot.SlotWithItem = false;
+            curSlot.SlotItemTuple = (null, null);
+            curSlot.CurStackQuantity = 0;
+            curSlot.CounterTMPro.text = "";
+            if (isMovingSlot)
+                curSlot.gameObject.SetActive(false);
+            else
+                UpdateSlotCounterText(curSlot);
+        }
+        
+        public static void SelectItem(PointerEventData eventData, SlotController movingSlotCont, SlotController[] slots, Sprite noItemSprite, SlotsController container)
+        {
+            SlotController selectedSlotCont = (eventData.pointerCurrentRaycast.gameObject == null) ? null : eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
+            if (selectedSlotCont != null && selectedSlotCont.SlotWithItem)
+            {
+                //Store reference to original slot in case invalid item drop is later made.
+                container.OgSlotIndex = Int32.Parse(selectedSlotCont.gameObject.name.Remove(0, 4));
+                container.OgSlotType = eventData.pointerPressRaycast.gameObject.transform.parent.parent.name;
+                if (selectedSlotCont.CurStackQuantity == 1)
+                    //Transferring Item from Initial slot and transferring to moving slot.
+                    TransferStack(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
+                else if (selectedSlotCont.CurStackQuantity > 1)
+                    //Transferring whole stack from initial to moving slot
+                    TransferStack(slots[container.OgSlotIndex], movingSlotCont, noItemSprite);
+                //Making moving slot visible.
+                movingSlotCont.gameObject.SetActive(true);
+            }
+        }
+        public static void MoveItem(PointerEventData eventData, RectTransform canvasRectTransform, RectTransform movingSlotRectTransform)
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.pointerCurrentRaycast.screenPosition, eventData.pressEventCamera, out Vector2 anchoredPosition);
+            movingSlotRectTransform.anchoredPosition = anchoredPosition;
+        }
+        public static void SwapDropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex, SlotController[] initSlots, int initSlotIndex, PointerEventData eventData)
+        {
+            //We are moving an item and the dest slot has an item
+            if (movingSlotCont.SlotWithItem && destSlots[destSlotIndex].SlotWithItem)
+            {
+                // We are moving an item/stack to a slot that is occupied with the same type of item   /stack
+                if (CheckMatchingItem(movingSlotCont.SlotItemTuple.Item2, destSlots[destSlotIndex].SlotItemTuple.Item2))
+                {
+                    //If stacking an item or stack onto an existing stack let us make sure we are exceeding the maximum amount of items.
+                    //If we do lets return to moving item/stack back to its original position.
+                    bool isOverFilled = ((destSlots[destSlotIndex].CurStackQuantity + movingSlotCont.CurStackQuantity) > destSlots[destSlotIndex].SlotItemTuple.Item2.MaxStackQuantity);
+                    destSlots[destSlotIndex].CurStackQuantity += (isOverFilled ? ReturnStack(movingSlotCont, initSlots[initSlotIndex], noItemSprite) : movingSlotCont.CurStackQuantity);
+                    destSlots[destSlotIndex].CounterTMPro.text = (destSlots[destSlotIndex].CurStackQuantity > 1) ? destSlots[destSlotIndex].CurStackQuantity.ToString() : "";
+                }
+                else
+                    SwapStacks(initSlots[initSlotIndex], destSlots[destSlotIndex], movingSlotCont, noItemSprite);
+            }
+            //We are moving an item and there is no item at the destination slot
+            else if (movingSlotCont.SlotWithItem && !destSlots[destSlotIndex].SlotWithItem)
+                TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+            EmptyCurrentSlot(movingSlotCont, noItemSprite, true);
+        }
+        public static void DropItem(SlotController movingSlotCont, SlotController[] destSlots, Sprite noItemSprite, int destSlotIndex)
+        {
+            //If we are actually moving an item drop the item where we have stopped dragging
+            if (movingSlotCont.SlotItemTuple != (null, null))
+                    TransferStack(movingSlotCont, destSlots[destSlotIndex], noItemSprite);
+        }
+        public static int GetSlotNum(PointerEventData eventData)
+        {
+            //TODO: Figure out how to handle debug statement for when player selects protion of UI screen that does not provide a string to parse into an int.
+            return Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
+        }
+        public static bool CheckMatchingItem(ItemController initItemCont, ItemController destItemCont)
+        {
+            return (initItemCont.PrefabItemStruct.itemSubTag + initItemCont.PrefabItemStruct.itemTag) == (destItemCont.PrefabItemStruct.itemSubTag + destItemCont.PrefabItemStruct.itemTag);
+        }
+        public static void UpdateSlotCounterText(QuickSlotController slotCont)
+        {
+            slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";
+        }
 
-    public static void FreeingOffHand(QuickSlotController ogSlotCont, QuickSlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
-    {
-        foreach (QuickSlotController slotCont in destSlotConts)
+        public static void FreeingOffHand(QuickSlotController ogSlotCont, QuickSlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
         {
-            if (!slotCont.SlotWithItem)
+            foreach (QuickSlotController slotCont in destSlotConts)
             {
-                AssignSlotContents(slotCont, ogSlotCont, ogSlotCont.CurStackQuantity, noItemSprite);
-                EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
-                playerCont.OffHandTuple = (null, null);
-                return;
+                if (!slotCont.SlotWithItem)
+                {
+                    AssignSlotContents(slotCont, ogSlotCont, ogSlotCont.CurStackQuantity, noItemSprite);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
+                if (slotCont.SlotWithItem &&
+                    CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
+                        slotCont.SlotItemTuple.Item2) &&
+                    ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
+                     slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                {
+                    slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
+                    UpdateSlotCounterText(slotCont);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
             }
-            if (slotCont.SlotWithItem &&
-                CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
-                    slotCont.SlotItemTuple.Item2) &&
-                ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
-                 slotCont.SlotItemTuple.Item2.MaxStackQuantity))
-            {
-                slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
-                UpdateSlotCounterText(slotCont);
-                EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
-                playerCont.OffHandTuple = (null, null);
-                return;
-            }
-        }
-    } 
-    public static void FreeingOffHand(QuickSlotController ogSlotCont, SlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
-    {
-        foreach (SlotController slotCont in destSlotConts)
+        } 
+        public static void FreeingOffHand(QuickSlotController ogSlotCont, SlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
         {
-            //If we find a slot with no stack in it we move our stack into that free slot 
-            if (!slotCont.SlotWithItem)
+            foreach (SlotController slotCont in destSlotConts)
             {
-                AssignSlotContents(slotCont, ogSlotCont, ogSlotCont.CurStackQuantity, noItemSprite);
-                EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
-                playerCont.OffHandTuple = (null, null);
-                return;
+                //If we find a slot with no stack in it we move our stack into that free slot 
+                if (!slotCont.SlotWithItem)
+                {
+                    AssignSlotContents(slotCont, ogSlotCont, ogSlotCont.CurStackQuantity, noItemSprite);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
+                if (slotCont.SlotWithItem &&
+                    CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
+                        slotCont.SlotItemTuple.Item2) &&
+                    ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
+                     slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                {
+                    slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
+                    UpdateSlotCounterText(slotCont);
+                    EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
+                    playerCont.OffHandTuple = (null, null);
+                    return;
+                }
             }
-            if (slotCont.SlotWithItem &&
-                CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
-                    slotCont.SlotItemTuple.Item2) &&
-                ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
-                 slotCont.SlotItemTuple.Item2.MaxStackQuantity))
-            {
-                slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
-                UpdateSlotCounterText(slotCont);
-                EmptyCurrentSlot(ogSlotCont, noItemSprite, false);
-                playerCont.OffHandTuple = (null, null);
-                return;
-            }
-        }
-    } 
+        } 
+    }
 }

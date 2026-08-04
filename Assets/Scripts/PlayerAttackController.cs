@@ -1,30 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerController))]
-public class PlayerAttackController : MonoBehaviour
+namespace Com.ZiomtechStudios.ForgeExchange
 {
-    #region "Private Serialized Fields
-    [SerializeField] private PlayerController m_PlayerCont;
-    [SerializeField] private WeaponController m_WeaponCont;
-    [SerializeField] private bool alreadyAttacking;
-    [SerializeField] private float timeToCombo;
-    #endregion
-    #region "Private Fields"
-    private int playerAttackHash, weaponAttackHash, LookXHash, LookYHash, weaponTypeHash, comboAtkHash, isWComboAtk;
-    private bool hasWeapon;
-    private bool alreadyDamagedEnemy;
-    private GameObject playerWeapon;
-    private PlayerInteractionController playerInteractionCont;
-    private float timeBetweenAtks;
-    private bool canUpdateWeaponAnim;
-    #endregion
-    #region "Getters/Setters"
-    public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
-    public bool AlreadyAttacking { get { return alreadyAttacking; } set { alreadyAttacking = value; } }
-    public bool AlreadyDamagedEnemy
+    [RequireComponent(typeof(PlayerController))]
+    public class PlayerAttackController : MonoBehaviour
     {
-<<<<<<< Updated upstream
         #region "Private Serialized Fields
         [SerializeField] private PlayerController m_PlayerCont;
         [SerializeField] private WeaponController m_WeaponCont;
@@ -108,76 +89,24 @@ public class PlayerAttackController : MonoBehaviour
                 }
                 if(m_WeaponCont.AmmoCont)
                     CheckIfAmmo();
-=======
-        get { return alreadyDamagedEnemy;}
-        set { alreadyDamagedEnemy = value; }
-    }
-    #endregion
-    #region "Public Fields"
-    public void EquipWeapon()
-    {
-        playerWeapon = Instantiate(m_PlayerCont.MainHandTuple.Item1, transform.Find("HoldingItem"), false);
-        m_WeaponCont = playerWeapon.GetComponent<WeaponController>();
-        m_PlayerCont.M_Animator.SetInteger(weaponTypeHash, (int)m_WeaponCont.m_WeaponStruct.weaponType);
-        hasWeapon = true;
-    }
-    public void AllowAttack()
-    {
-        alreadyAttacking = false;
-        alreadyDamagedEnemy = false;
-        m_PlayerCont.M_Animator.SetBool(comboAtkHash, false);
-        m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, false);
-    }
-    public void UpdateWeaponAnim()
-    {
-        m_WeaponCont.WeaponAnimator.SetFloat(LookXHash, m_PlayerCont.LookDir.x);
-        m_WeaponCont.WeaponAnimator.SetFloat(LookYHash, m_PlayerCont.LookDir.y);
-        if(canUpdateWeaponAnim)
-            m_WeaponCont.WeaponAnimator.SetTrigger(weaponAttackHash);
-    }
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        //TODO: Set up logic at runtime for second attack for combo-light attack.
-        // General logic for this is after player is allowed to attack again and they press attack input within some time period.
-        // Once second attack in combo is triggered we play attack from same blend tree but at a higher speed in reverse for melee and forward for range.
-        //The player is pressing the attack button and has a weapon
-        if (context.started && m_WeaponCont)
-        {
-            if (!alreadyAttacking)
-            {
-                canUpdateWeaponAnim = true;
-                Debug.Log("We are triggering the first attack.");
-                m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
-                alreadyAttacking = true;
-                timeBetweenAtks = Time.time;
-                return;
-            }
-            if (((timeBetweenAtks -= Time.time) <= timeToCombo) && alreadyAttacking && !m_PlayerCont.M_Animator.GetBool(comboAtkHash))
-            {
-                Debug.Log("We are triggering the second attack for a combo attack.");
-                canUpdateWeaponAnim = false;
-                UpdateWeaponAnim();
-                m_PlayerCont.M_Animator.SetBool(comboAtkHash, true);
-                m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, true);
->>>>>>> Stashed changes
             }
         }
-    }
-    #endregion
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_PlayerCont = GetComponent<PlayerController>();
-        playerInteractionCont = GetComponent<PlayerInteractionController>();
-        playerAttackHash = Animator.StringToHash("isAttacking");
-        weaponAttackHash = Animator.StringToHash("isWAttacking");
-        isWComboAtk = Animator.StringToHash("isWComboAtk");
-        LookXHash = Animator.StringToHash("LookX");
-        LookYHash = Animator.StringToHash("LookY");
-        weaponTypeHash = Animator.StringToHash("weaponType");
-        comboAtkHash = Animator.StringToHash("isComboAttack");
-        alreadyAttacking = false;
-        alreadyDamagedEnemy = false;
-        timeBetweenAtks = 0.0f;
+        #endregion
+        // Start is called before the first frame update
+        void Start()
+        {
+            m_PlayerCont = GetComponent<PlayerController>();
+            playerInteractionCont = GetComponent<PlayerInteractionController>();
+            playerAttackHash = Animator.StringToHash("isAttacking");
+            weaponAttackHash = Animator.StringToHash("isWAttacking");
+            isWComboAtk = Animator.StringToHash("isWComboAtk");
+            LookXHash = Animator.StringToHash("LookX");
+            LookYHash = Animator.StringToHash("LookY");
+            weaponTypeHash = Animator.StringToHash("weaponType");
+            comboAtkHash = Animator.StringToHash("isComboAttack");
+            alreadyAttacking = false;
+            alreadyDamagedEnemy = false;
+            timeBetweenAtks = 0.0f;
+        }
     }
 }

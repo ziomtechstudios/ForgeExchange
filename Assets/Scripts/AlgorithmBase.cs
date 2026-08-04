@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public abstract class AlgorithmBase : ScriptableObject
-
+namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public abstract void Apply(MapGenerator gameMap);
-}
+    public abstract class AlgorithmBase : ScriptableObject
+
+    {
+        public abstract void Apply(MapGenerator gameMap);
+    }
+} 

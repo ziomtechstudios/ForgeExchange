@@ -1,34 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ControlsManager : MonoBehaviour
+namespace Com.ZiomtechStudios.ForgeExchange
 {
-    [SerializeField] private bool isGamePadConnected;
-    void OnEnable()
+    public class ControlsManager : MonoBehaviour
     {
-        InputSystem.onDeviceChange += OnDeviceChange;
-    }
-    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-        if (device.name.Equals("iOSGameController"))
+        [SerializeField] private bool isGamePadConnected;
+        void OnEnable()
         {
-            switch (change)
+            InputSystem.onDeviceChange += OnDeviceChange;
+        }
+        private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+        {
+            if (device.name.Equals("iOSGameController"))
             {
-                case (InputDeviceChange.Added):
-                    gameObject.SetActive(false);
-                    break;
-                case (InputDeviceChange.Removed):
-                    gameObject.SetActive(true);
-                    break;
-                case (InputDeviceChange.Disabled):
-                    gameObject.SetActive(true);
-                    break;
-                case (InputDeviceChange.Disconnected):
-                    gameObject.SetActive(true);
-                    break;
-                case (InputDeviceChange.Reconnected):
-                    gameObject.SetActive(false);
-                    break;
+                switch (change)
+                {
+                    case (InputDeviceChange.Added):
+                        gameObject.SetActive(false);
+                        break;
+                    case (InputDeviceChange.Removed):
+                        gameObject.SetActive(true);
+                        break;
+                    case (InputDeviceChange.Disabled):
+                        gameObject.SetActive(true);
+                        break;
+                    case (InputDeviceChange.Disconnected):
+                        gameObject.SetActive(true);
+                        break;
+                    case (InputDeviceChange.Reconnected):
+                        gameObject.SetActive(false);
+                        break;
+                }
             }
         }
     }

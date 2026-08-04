@@ -2602,7 +2602,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.6397707
+      m_AnimationSpeed: 2.1209736
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2613,7 +2613,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.7374656
+      m_AnimationSpeed: 2.9342144
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2624,7 +2624,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.294039
+      m_AnimationSpeed: 2.2067204
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2762,10 +2762,6 @@ PrefabInstance:
     - target: {fileID: 1004073336, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_Color.a
       value: 0.7137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
-      propertyPath: Recipes.Array.data[16]
-      value: StringSingleWoodStick_StringSingle_WoodStickStringSingleWoodStick_
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftedItemSprites.Array.data[9]

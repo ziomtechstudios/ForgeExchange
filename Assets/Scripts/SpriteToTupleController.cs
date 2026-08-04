@@ -1,25 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SpriteToTupleController : MonoBehaviour
+namespace Com.ZiomtechStudios.ForgeExchange
 {
-    [SerializeField] private Sprite[] spriteKeys;
-    [SerializeField] private GameObject[] tuplePrefabs;
-    [SerializeField] private ItemController[] tupleItemConts;
-    private (GameObject, ItemController)[] tupleTerms;
-    public IDictionary<Sprite, (GameObject, ItemController)> SpriteToTupleDict;
-
-    // Start is called before the first frame update
-    void Awake()
+    public class SpriteToTupleController : MonoBehaviour
     {
-        tupleTerms = new (GameObject, ItemController)[tuplePrefabs.Length];
-        SpriteToTupleDict = new Dictionary<Sprite, (GameObject, ItemController)>();
-        spriteKeys = new Sprite[tuplePrefabs.Length];
-        for (int i = 0; i < tuplePrefabs.Length; i++)
-            spriteKeys[i] = tupleItemConts[i].ItemIcon;
-        for(int i = 0 ; i < tupleItemConts.Length; i++)
-            tupleTerms[i] = (tuplePrefabs[i], tupleItemConts[i]);
-        for (int i = 0; i < spriteKeys.Length; i++)
-            SpriteToTupleDict.Add(spriteKeys[i], tupleTerms[i]);
+        [SerializeField] private Sprite[] spriteKeys;
+        [SerializeField] private GameObject[] tuplePrefabs;
+        [SerializeField] private ItemController[] tupleItemConts;
+        private (GameObject, ItemController)[] tupleTerms;
+        public IDictionary<Sprite, (GameObject, ItemController)> SpriteToTupleDict;
+
+        // Start is called before the first frame update
+        void Awake()
+        {
+            tupleTerms = new (GameObject, ItemController)[tuplePrefabs.Length];
+            SpriteToTupleDict = new Dictionary<Sprite, (GameObject, ItemController)>();
+            spriteKeys = new Sprite[tuplePrefabs.Length];
+            for (int i = 0; i < tuplePrefabs.Length; i++)
+                spriteKeys[i] = tupleItemConts[i].ItemIcon;
+            for(int i = 0 ; i < tupleItemConts.Length; i++)
+                tupleTerms[i] = (tuplePrefabs[i], tupleItemConts[i]);
+            for (int i = 0; i < spriteKeys.Length; i++)
+                SpriteToTupleDict.Add(spriteKeys[i], tupleTerms[i]);
+        }
     }
 }
