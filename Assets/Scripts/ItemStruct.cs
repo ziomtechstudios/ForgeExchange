@@ -6,6 +6,6 @@ public class ItemStruct : ScriptableObject
     public float fuelAmnt;
     public string itemTag;
     public string itemSubTag;
-    public string craftingTag;
+    public string interactionTag;
     public float meltingTemp;
 }

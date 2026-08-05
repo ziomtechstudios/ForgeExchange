@@ -2626,7 +2626,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.6979167
+      m_AnimationSpeed: 2.649693
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2637,7 +2637,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.5044394
+      m_AnimationSpeed: 2.5626092
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2648,7 +2648,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.9729073
+      m_AnimationSpeed: 2.0871816
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2788,17 +2788,225 @@ PrefabInstance:
       value: 0.7137255
       objectReference: {fileID: 0}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[0]
+      value: _CopperMetal Bar__CopperMetal Bar__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[1]
+      value: __CopperMetal Bar_CopperMetal Bar_WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[2]
+      value: CopperMetal Bar___CopperMetal Bar___WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[3]
+      value: CopperMetal Bar__CopperMetal Bar__WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[4]
+      value: __CopperMetal Bar__CopperMetal Bar__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[5]
+      value: _AdamantMetal Bar__AdamantMetal Bar__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[6]
+      value: __AdamantMetal Bar_AdamantMetal Bar_WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[7]
+      value: AdamantMetal Bar___AdamantMetal Bar___WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[8]
+      value: AdamantMetal Bar__AdamantMetal Bar__WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[9]
+      value: __AdamantMetal Bar__AdamantMetal Bar__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[10]
+      value: _MithrilOre__MithrilOre__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[11]
+      value: __MithrilOre_MithrilOre_WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[12]
+      value: MithrilOre___MithrilOre___WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[13]
+      value: MithrilOre__MithrilOre__WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[14]
+      value: __MithrilOre__MithrilOre__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[15]
+      value: _IronMetal Bar__IronMetal Bar__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[16]
+      value: __IronMetal Bar_IronMetal Bar_WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[17]
+      value: IronMetal Bar___IronMetal Bar___WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[18]
+      value: IronMetal Bar__IronMetal Bar__WoodStick__
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[19]
+      value: __IronMetal Bar__IronMetal Bar__WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[20]
+      value: StringSingleWoodStick_StringSingle_WoodStickStringSingleWoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[21]
+      value: _WoodStickStringSingleWoodStick_StringSingle_WoodStickStringSingle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[22]
+      value: _WoodStick_WoodStick_WoodStickStringSingleStringSingleStringSingle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[23]
+      value: StringSingleStringSingleStringSingleWoodStick_WoodStick_WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[24]
+      value: __WoodStick_WoodStickStringSingleWoodStick_HookSingle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[25]
+      value: WoodStick__StringSingleWoodStick_HookSingle_WoodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[26]
+      value: _WoodStickStringSingle_WoodStickHookSingle_WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: Recipes.Array.data[27]
+      value: StringSingleWoodStick_HookSingleWoodStick__WoodStick_
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c134656d03908949b2f789887546943, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftedItemSprites.Array.data[9]
       value: 
-      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+      objectReference: {fileID: 21300000, guid: 2b788814eb765114482f9f7ae8ca6b86, type: 3}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftedItemSprites.Array.data[10]
       value: 
-      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+      objectReference: {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
     - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: craftedItemSprites.Array.data[11]
       value: 
+      objectReference: {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[14]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bdbf3327b1af3f48a318da4d14d5d70, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[15]
+      value: 
       objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[16]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[17]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[18]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[19]
+      value: 
+      objectReference: {fileID: 1902795353, guid: 88b2d3e2e0a168b7aaf99411481996bd, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[20]
+      value: 
+      objectReference: {fileID: 813603082, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[21]
+      value: 
+      objectReference: {fileID: 813603082, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[22]
+      value: 
+      objectReference: {fileID: 813603082, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[23]
+      value: 
+      objectReference: {fileID: 813603082, guid: 90fdd9db8af58207386128383a5d9989, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[24]
+      value: 
+      objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[25]
+      value: 
+      objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[26]
+      value: 
+      objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
+    - target: {fileID: 1038668128, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
+      propertyPath: craftedItemSprites.Array.data[27]
+      value: 
+      objectReference: {fileID: -1380078520, guid: fdbe2b90e0447c532b0d69f9cc434d3d, type: 3}
     - target: {fileID: 2819462577265270540, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -65.57
@@ -2868,37 +3076,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7398dcaa8c839184c8ca33de0743dd7d, type: 3}
---- !u!1 &771647360
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 771647361}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &771647361
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771647360}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1382.6469, y: 490.33588, z: 3.8116097}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &812966108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33207,4 +33384,3 @@ SceneRoots:
   - {fileID: 1368643743}
   - {fileID: 2417434154386360278}
   - {fileID: 849459953}
-  - {fileID: 771647361}

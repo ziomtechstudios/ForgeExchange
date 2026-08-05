@@ -69,6 +69,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     slotConts[i].SlotInUse = false;
                     slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
                 }
+                playerCont.HoldingItem = false;
+                playerCont.MainHandTuple = (null, null);
+                
             }
         }
         #endregion
@@ -188,7 +191,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void SwappingPlayerControlMap(){
             //Based on what type of item we are holding will change the players control scheme.
             if(playerCont.HoldingItem){
-                switch(playerCont.MainHandTuple.Item2.PrefabItemStruct.craftingTag){
+                switch(playerCont.MainHandTuple.Item2.PrefabItemStruct.interactionTag){
                     case "Weapon":
                         playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
                         playerCont.PlayerAtkCont.EquipWeapon();

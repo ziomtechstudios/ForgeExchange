@@ -36,7 +36,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //When slot is not empty check and see if it is an ingredient stack with the smallest sized\
                 if(ingredient.CurStackQuantity > 0)
                     smallestIngredientStack = (ingredient.CurStackQuantity < smallestIngredientStack) ? ingredient.CurStackQuantity : smallestIngredientStack;
-                currentRecipe += ingredient.SlotWithItem ? ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemSubTag + ingredient.SlotItemTuple.Item2.PrefabItemStruct.craftingTag : "_";
+                currentRecipe += ingredient.SlotWithItem ? ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemTag + ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemSubTag : "_";
             }
 
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
@@ -59,7 +59,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 potentialItemTuple = (null, null);
                 craftTableCont.StockpileCont.Withdraw(1);
             }
-
+            Debug.Log(currentRecipe);
             currentRecipe = null;
         }
         #endregion
