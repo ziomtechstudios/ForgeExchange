@@ -100,7 +100,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (lineDurability > 0.0f && fishingRodCont.HasBite)
             {
                 fishingRodCont.HasBite = false;
-                playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem(fishingRodCont.CurFishSpawnerCont.SpawnMob(fishingRodCont.PrefabItemStruct.itemSubTag+"_"+fishingRodCont.PrefabItemStruct.itemTag));
+                playerInteractionCont.PlayerCont.MainHandTuple = fishingRodCont.CurFishSpawnerCont.SpawnMob(
+                    fishingRodCont.PrefabItemStruct.itemSubTag + "_" + fishingRodCont.PrefabItemStruct.itemTag);
+                playerInteractionCont.PlayerCont.PlayerInventoryCont.SlotItem();
             }
             isFullyReeled = false;
             fishingRodCont.CurFishSpawnerCont = null;

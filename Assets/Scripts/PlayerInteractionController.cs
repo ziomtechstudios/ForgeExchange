@@ -66,7 +66,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     craftingTableCont.CraftingMenuCont.EmptyCraftingMenu();
                 else
                     m_CurStockpileCont.Withdraw(1);
-                playerCont.PlayerInventoryCont.SlotItem(playerCont.MainHandTuple);
+                playerCont.PlayerInventoryCont.SlotItem();
 
             }
             return playerCont.HoldingItem;

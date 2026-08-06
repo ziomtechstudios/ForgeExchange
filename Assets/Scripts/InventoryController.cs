@@ -120,7 +120,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             }
             UpdateQuickSlotStatus();
         }
-        public void SlotItem((GameObject, ItemController) itemTuple)
+        public void SlotItem()
         {
             ///<summary>
             /// We have two boolean variables that we need to track in order to account for the casses in which it is appropriate to:
@@ -161,7 +161,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     {
                         //Fill slot with it
                         slotCont.SlotWithItem = true;
-                        slotCont.SlotItemTuple = itemTuple;
+                        slotCont.SlotItemTuple = playerCont.MainHandTuple;
                         slotCont.ItemImage.sprite = slotCont.SlotItemTuple.Item2.ItemIcon;
                         slotCont.CurStackQuantity++;
                         //Empty players hands only if the player isn't selecting the slot the item was just slotted into
@@ -196,7 +196,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         playerCont.PlayerInput.SwitchCurrentActionMap("CombatControls");
                         playerCont.PlayerAtkCont.EquipWeapon();
                         break;
-                    case "FishingRod":
+                    case "Fishing":
                         playerCont.PlayerInput.SwitchCurrentActionMap(playerCont.IsFishing?"FishingControls":"ShopControls");
                         playerCont.PlayerInteractionCont.PlayerFishingCont.SpawnRod();
                         break;
