@@ -24,7 +24,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             ItemImage = transform.Find($"Item{transform.name.Remove(0, 4)}").gameObject.GetComponent<Image>();
             CounterTMPro = transform.Find("CurQuantityText").gameObject.GetComponent<TextMeshProUGUI>();
             subStackSliderRectTransform = transform.Find("SubStackSliderRectTransform").GetComponent<RectTransform>();
-
+            if(CurStackQuantity > 1)
+                DragAndDropSlot.UpdateSlotCounterText(this);
         }
         #endregion
     }

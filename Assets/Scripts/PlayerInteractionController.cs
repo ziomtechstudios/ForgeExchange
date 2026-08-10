@@ -72,7 +72,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             return playerCont.HoldingItem;
         }
         private bool ForgeInteraction(){
-            switch (playerCont.MainHandTuple.Item2.PrefabItemStruct.itemTag)
+            switch (playerCont.MainHandTuple.Item2.PrefabItemStruct.itemSubTag)
             {
                 case "Fuel":
                     //First we check if this fuel deposit will be more than what the forge can handle
@@ -194,15 +194,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         break;
                 }
             }
-            //       The player is holding an item && The player has no storage open. && The player is not interacting with anything.
+            //The player is holding an item && The player has no storage open. && The player is not interacting with anything.
             else if (playerCont.HoldingItem && !playerCont.IsUsingStorage && !(playerCont.PlayerLOS.transform == null))
             {
                 //TODO: Adding code for dropping objects onto the floor.
-            }
-            else
-            {
-                //m_CurStockpileCont = null;
-                //workstationCont = null;
             }
         }
         #endregion

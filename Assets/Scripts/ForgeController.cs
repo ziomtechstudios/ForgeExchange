@@ -63,7 +63,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Calculate the quickest time this forge could smelt given ore
                 idealTTS = (((MaxTemp + forgePumpCont.MaxBoostTemp) - smeltedController.PrefabItemStruct.meltingTemp) / smeltedController.PrefabItemStruct.meltingTemp) * ttsScaler;
                 //Pass the proper data about the  soon-to-be bar to the forge so that it will gie it to the player later on
-                spriteToTupleCont.SpriteToTupleDict.TryGetValue(oresToBarsDict[smeltedController.PrefabItemStruct.itemSubTag], out var tempWorkstationTuple);
+                spriteToTupleCont.SpriteToTupleDict.TryGetValue(oresToBarsDict[smeltedController.PrefabItemStruct.itemTag], out var tempWorkstationTuple);
                 forgeStockPileCont.StockPileTuple = tempWorkstationTuple;
             }
         }

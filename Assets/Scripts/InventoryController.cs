@@ -255,9 +255,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 slotConts[i].SlotInUse = false;
                 slotConts[i].SlotWithItem = false;
                 slotConts[i].SlotItemTuple = (null, null);
-                //All of a sudden this line causing Null reference error in simulator and final build(s).
-                //Everything works fine for now with it left out so fuck it leave it for now
-                //slotConts[i].SlotImage.fillCenter = !slotConts[i].SlotInUse;
+
             }
         }
     }

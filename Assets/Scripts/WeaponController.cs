@@ -30,7 +30,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
             m_BoxCollider2D = transform.Find("collider").gameObject.GetComponent<BoxCollider2D>();
             playerAttackCont = transform.parent.parent.GetComponent<PlayerAttackController>();
-            transform.parent.parent.TryGetComponent<AmmoController>(out ammoCont);
+            transform.TryGetComponent(out ammoCont);
             if (ammoCont)
             {
                ammoCont.AmmoPrefab = playerAttackCont.PlayerCont.OffHandTuple.Item1;

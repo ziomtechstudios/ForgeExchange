@@ -2637,7 +2637,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.194097
+      m_AnimationSpeed: 2.158455
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2648,7 +2648,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.5093894
+      m_AnimationSpeed: 2.2116501
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2659,7 +2659,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.8859715
+      m_AnimationSpeed: 2.5334277
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -33350,8 +33350,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1944098048, guid: 33c8be615514ce4579c410babd97a29b, type: 3}
     - target: {fileID: 6001479004233925187, guid: ed908d067836a27448afb9964e27649c, type: 3}
+      propertyPath: itemTags.Array.data[0]
+      value: Copper Metal Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001479004233925187, guid: ed908d067836a27448afb9964e27649c, type: 3}
+      propertyPath: itemTags.Array.data[1]
+      value: Iron Metal Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001479004233925187, guid: ed908d067836a27448afb9964e27649c, type: 3}
       propertyPath: itemTags.Array.data[2]
-      value: AdamantMetalBar
+      value: Adamant Metal Bar
       objectReference: {fileID: 0}
     - target: {fileID: 6085750806094733663, guid: ed908d067836a27448afb9964e27649c, type: 3}
       propertyPath: m_LocalPosition.x

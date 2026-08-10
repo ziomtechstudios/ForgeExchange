@@ -73,10 +73,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 if (!alreadyAttacking)
                 {
                     canUpdateWeaponAnim = true;
-                    Debug.Log("We are triggering the first attack.");
+                        Debug.Log("We are triggering the first attack.");
                     m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
                     alreadyAttacking = true;
                     timeBetweenAtks = Time.time;
+                    if(m_WeaponCont.AmmoCont)
+                        CheckIfAmmo();
                     return;
                 }
                 if (((timeBetweenAtks -= Time.time) <= timeToCombo) && alreadyAttacking && !m_PlayerCont.M_Animator.GetBool(comboAtkHash))
@@ -86,9 +88,9 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     UpdateWeaponAnim();
                     m_PlayerCont.M_Animator.SetBool(comboAtkHash, true);
                     m_WeaponCont.WeaponAnimator.SetBool(isWComboAtk, true);
+                    if(m_WeaponCont.AmmoCont)
+                        CheckIfAmmo();
                 }
-                if(m_WeaponCont.AmmoCont)
-                    CheckIfAmmo();
             }
         }
         #endregion
