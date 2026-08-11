@@ -59,7 +59,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 potentialItemTuple = (null, null);
                 craftTableCont.StockpileCont.Withdraw(1);
             }
-            Debug.Log(currentRecipe);
+            //Debug.Log(currentRecipe);
             currentRecipe = null;
         }
         #endregion
