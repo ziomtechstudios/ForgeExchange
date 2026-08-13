@@ -28,7 +28,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private RectTransform craftMenuRectTrans;
         private void AttemptCrafting()
         {
-            
             smallestIngredientStack = 64;
             //Reevaluating current ingredients the user has deposited into the crafting table.
             foreach (SlotController ingredient in craftingSlots)
@@ -38,7 +37,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     smallestIngredientStack = (ingredient.CurStackQuantity < smallestIngredientStack) ? ingredient.CurStackQuantity : smallestIngredientStack;
                 currentRecipe += ingredient.SlotWithItem ? ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemTag + ingredient.SlotItemTuple.Item2.PrefabItemStruct.itemSubTag : "_";
             }
-
             //Check to make sure that we have a recipe and that the recipe corresponds to an actual recipe we hold in our dictionary
             if (currentRecipe != "" && craftTableCont.CraftedItemDict.TryGetValue(currentRecipe, out potentialItemSprite) && spriteToTupleCont.SpriteToTupleDict.TryGetValue(potentialItemSprite, out potentialItemTuple))
             { 
@@ -68,7 +66,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public string CurrentRecipe { get { return currentRecipe; } }
         #endregion
         #region "Public Functions/Members"
-
         public void EmptyCraftingMenu()
         { 
             foreach (SlotController ingredient in craftingSlots)
@@ -82,11 +79,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             currentRecipe = null;
             craftTableCont.StockpileCont.Withdraw(1);
         }
-        
-
         public void SubStacking(PointerEventData eventData)
         {
-            if (initSlots[initSlotNum] != destSlots[destSlotNum])
+            Debug.Log($"initial slot type ");
+            if (initSlots[initSlotNum] != destSlots[destSlotNum] && initSlots[initSlotNum] != craftedSlot[0])
             {
                 if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
                     DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
@@ -98,12 +94,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             else
                 ReturnItem(eventData);
         }
-
         public override void ReturnItem(PointerEventData eventData)
         {
             DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
         }
-
         public override void CloseMenu()
         {
             if(!isSubStacking)
@@ -159,18 +153,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
             if (!IsSubStacking)
             {
-                if (eventData.pointerCurrentRaycast.gameObject != null &&
-                    eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem &&
-                    MovingSlot.SlotItemTuple.Item1 &&
-                    SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name,
-                        out destSlots))
+                if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotItemTuple.Item1 && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
                 {
                     // Position of the targeted slot
-                    destSlotNum =
-                        Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4));
-                    TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum])
-                        ? (Time.time - TimerPointerHeldDown)
-                        : 0.0f;
+                    destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)); TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time - TimerPointerHeldDown) : 0.0f;
                     switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                     {
                         //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
@@ -234,7 +220,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
             spriteToTupleCont = GameObject.Find("EventSystem").GetComponent<SpriteToTupleController>(); 
         }
-
         void Awake()
         {
             craftedSlot = new SlotController[1];
@@ -251,7 +236,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
             currentRecipe = null;
             IsSubStacking = false;
         }
-
         void OnDisable()
         {
             IsSubStacking = false;
