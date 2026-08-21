@@ -143,7 +143,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             slotCont.CounterTMPro.text = (slotCont.CurStackQuantity > 1) ? slotCont.CurStackQuantity.ToString() : "";
         }
-
         public static void FreeingOffHand(QuickSlotController ogSlotCont, QuickSlotController[] destSlotConts, Sprite noItemSprite, PlayerController playerCont)
         {
             foreach (QuickSlotController slotCont in destSlotConts)
@@ -155,11 +154,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerCont.OffHandTuple = (null, null);
                     return;
                 }
-                if (slotCont.SlotWithItem &&
-                    CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
-                        slotCont.SlotItemTuple.Item2) &&
-                    ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
-                     slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                if (slotCont.SlotWithItem && CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2, slotCont.SlotItemTuple.Item2) && ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <= slotCont.SlotItemTuple.Item2.MaxStackQuantity))
                 {
                     slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
                     UpdateSlotCounterText(slotCont);
@@ -181,11 +176,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     playerCont.OffHandTuple = (null, null);
                     return;
                 }
-                if (slotCont.SlotWithItem &&
-                    CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2,
-                        slotCont.SlotItemTuple.Item2) &&
-                    ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <=
-                     slotCont.SlotItemTuple.Item2.MaxStackQuantity))
+                if (slotCont.SlotWithItem && CheckMatchingItem(ogSlotCont.SlotItemTuple.Item2, slotCont.SlotItemTuple.Item2) && ((slotCont.CurStackQuantity + ogSlotCont.CurStackQuantity) <= slotCont.SlotItemTuple.Item2.MaxStackQuantity))
                 {
                     slotCont.CurStackQuantity+=ogSlotCont.CurStackQuantity;
                     UpdateSlotCounterText(slotCont);
@@ -195,5 +186,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 }
             }
         } 
+        public static bool  CheckForOpenStack((GameObject, ItemController) slottingItemTuple, QuickSlotController targetSlotCont)
+        {
+            return ((targetSlotCont.CurStackQuantity+1) <= targetSlotCont.SlotItemTuple.Item2?.MaxStackQuantity) && DragAndDropSlot.CheckMatchingItem(targetSlotCont.SlotItemTuple.Item2, slottingItemTuple.Item2);
+        }
+        public static bool  CheckForOpenStack((GameObject, ItemController) slottingItemTuple, SlotController targetSlotCont)
+        {
+            return ((targetSlotCont.CurStackQuantity+1) <= targetSlotCont.SlotItemTuple.Item2?.MaxStackQuantity) && DragAndDropSlot.CheckMatchingItem(targetSlotCont.SlotItemTuple.Item2, slottingItemTuple.Item2);
+        }
     }
 }

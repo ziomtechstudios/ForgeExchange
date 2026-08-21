@@ -15,7 +15,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Public Funcs
         public override void CloseMenu()
         {
-            Debug.Log("Trying to close backpack.");
+            //Debug.Log("Trying to close backpack.");
             if(!isSubStacking)
                 transform.parent.gameObject.SetActive(false);
         }

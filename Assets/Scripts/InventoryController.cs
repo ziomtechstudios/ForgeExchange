@@ -83,10 +83,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public PlayerController PlayerCont { get { return playerCont; } }
         #endregion
         #region Public funcs
-        public void CheckForOpenStack((GameObject, ItemController) slottingItemTuple, QuickSlotController targetSlotCont)
-        {
-            hasStackableStack = ((targetSlotCont.CurStackQuantity+1) <= targetSlotCont.SlotItemTuple.Item2?.MaxStackQuantity) && DragAndDropSlot.CheckMatchingItem(targetSlotCont.SlotItemTuple.Item2, slottingItemTuple.Item2);
-        }
+
 
         public void UpdateQuickSlotStatus()
         {
@@ -135,8 +132,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 foreach (QuickSlotController slotCont in slotConts)
                 {
-                    CheckForOpenStack(playerCont.MainHandTuple, slotCont);
-                    if (hasStackableStack)
+                    if (DragAndDropSlot.CheckForOpenStack(playerCont.MainHandTuple, slotCont))
                     {
                         AddToStack(slotCont);
                         return;
@@ -151,8 +147,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 foreach (QuickSlotController slotCont in slotConts)
                 {
-                    CheckForOpenStack(playerCont.MainHandTuple, slotCont);
-                    if (hasStackableStack)
+                    if (DragAndDropSlot.CheckForOpenStack(playerCont.MainHandTuple, slotCont))
                     {
                         AddToStack(slotCont);
                         return;

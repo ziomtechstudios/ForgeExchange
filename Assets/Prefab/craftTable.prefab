@@ -317,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1004073335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -330,7 +330,6 @@ RectTransform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4684369572580527806}
   - {fileID: 830821699}
   - {fileID: 1937696522}
   - {fileID: 1806179801}
@@ -338,6 +337,7 @@ RectTransform:
   - {fileID: 360646570}
   - {fileID: 877341180811411126}
   - {fileID: 456625501076138215}
+  - {fileID: 4937788101866528467}
   m_Father: {fileID: 213639623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -626,6 +626,42 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 5.333252, y: -516}
   m_SizeDelta: {x: 90.09, y: 15.000008}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &3927934685635835293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4937788101866528467}
+  m_Layer: 8
+  m_Name: CraftedSlots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4937788101866528467
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3927934685635835293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4684369572580527806}
+  m_Father: {fileID: 1004073335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4053388588453723865
 GameObject:
@@ -2628,7 +2664,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1004073335}
+    m_TransformParent: {fileID: 4937788101866528467}
     m_Modifications:
     - target: {fileID: 694261606274635325, guid: 2401648c4b8954374a5b23fce767fbce, type: 3}
       propertyPath: m_Name

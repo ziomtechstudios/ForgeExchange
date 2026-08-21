@@ -61,8 +61,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             currentRecipe = null;
         }
         #endregion
-        #region Getters/Setters
-        //Still needed even if not used in script, lets me see the value at runtime so when i create new recipes I can copy  and paste into dictionary when in the inspector.
+        #region Getters/Setters  
+        //Still needed even if not used in script, value is visible @ runtime so it makes it easier when creating new recipes.
         public string CurrentRecipe { get { return currentRecipe; } }
         #endregion
         #region "Public Functions/Members"
@@ -81,8 +81,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SubStacking(PointerEventData eventData)
         {
-            Debug.Log($"initial slot type ");
-            if (initSlots[initSlotNum] != destSlots[destSlotNum] && initSlots[initSlotNum] != craftedSlot[0])
+            if ((initSlots[initSlotNum] != destSlots[destSlotNum]))
             {
                 if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem || movingSlot.CurStackQuantity == 1)
                     DragAndDropSlot.SwapDropItem(movingSlot, destSlots, NoItemSprite, destSlotNum, initSlots, initSlotNum, eventData);
@@ -110,27 +109,44 @@ namespace Com.ZiomtechStudios.ForgeExchange
             currentUserController = playerCont;
             currentUserController.IsUsingStorage = true;
         }
+
         public override void OnBeginDrag(PointerEventData eventData)
         {
             // Making sure the press point is not on blank space.
             // Are we sure that what we are dragging from is a slot?
             // THe slot that we are dragging from, does it have an item?
             // Making sure the slot we are dragging from belongs to a group from our dictionary of slot types.
-            if(!IsSubStacking){
-                if (eventData.pointerPressRaycast.gameObject != null && !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") && eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>().SlotWithItem && SlotTypeDict.TryGetValue(eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
+            if (!IsSubStacking)
+            {
+                if (eventData.pointerPressRaycast.gameObject != null &&
+                    !eventData.pointerPressRaycast.gameObject.transform.parent.name.Contains("Canvas") &&
+                    eventData.pointerPressRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>()
+                        .SlotWithItem && SlotTypeDict.TryGetValue(
+                        eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
                 {
                     initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                     DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
                     switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                     {
                         case ("CraftingSlots"):
-                                AttemptCrafting();
-                                break;
-                        case ("CraftingMenu"):
+                            AttemptCrafting();
+                            break;
+                        case ("CraftedSlots"):
                             if (!craftedSlot[0].SlotWithItem && movingSlot.SlotWithItem)
                                 EmptyCraftingMenu();
+                            foreach (SlotController backPackSlot in backPackSlots)
+                            {
+                                if (!backPackSlot.SlotWithItem)
+                                {
+                                    initSlots = backPackSlots;
+                                    initSlotNum = Array.IndexOf(backPackSlots, backPackSlot);
+                                    break;
+                                }
+                            }
+
                             break;
-                            
+                        case ("Canvas"):
+                            break;
                     }
                 }
             }
@@ -140,8 +156,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             if (!IsSubStacking && eventData.pointerCurrentRaycast.gameObject)
             {
                 DragAndDropSlot.MoveItem(eventData, craftMenuRectTrans, MovingSlotRectTrans);
-                initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject
-                    .GetComponent<SlotController>();
+                initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
                 TimerPointerHeldDown = Time.time;
             }
         }
@@ -156,11 +171,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotItemTuple.Item1 && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
                 {
                     // Position of the targeted slot
-                    destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)); TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time - TimerPointerHeldDown) : 0.0f;
+                    destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)); 
+                    TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time - TimerPointerHeldDown) : 0.0f;
                     switch (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name)
                     {
-                        //The player is trying to drag an item onto the slot designed for crafted items, we do not want to let them do that.
-                        case "CraftingMenu":
+                        //The player is trying to drag an item onto the slot designed for crafted     items, we do not want to let them do that.
+                        case "CraftedSlots":
                             ReturnItem(eventData);
                             break;
                         //THe player has placed an item onto a slot for the ingredients of a craftable item.
@@ -212,7 +228,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftTableCont = transform.parent.parent.GetComponent<CraftTableController>();
             craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
-            craftedSlot[0] = transform.Find("Slot0").gameObject.GetComponent<SlotController>();
+            craftedSlot[0] = transform.Find("CraftedSlots/Slot0").gameObject.GetComponent<SlotController>();
             MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             craftingSlots = new SlotController[craftedSlotNum];
             for (int i = 0; i < craftingSlots.Length; i++)
@@ -227,7 +243,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SlotTypeDict.Add("BackpackSlots", backPackSlots);
             SlotTypeDict.Add("QuickSlots", quickSlots);
             SlotTypeDict.Add("CraftingSlots", craftingSlots);
-            SlotTypeDict.Add("CraftingMenu", craftedSlot);
+            SlotTypeDict.Add("CraftedSlots", craftedSlot);
             currentRecipe = null;
             IsSubStacking = false;
         }
