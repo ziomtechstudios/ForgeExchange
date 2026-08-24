@@ -58,8 +58,15 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             Debug.Log("Checking for ammunition.");
             //Making sure this weapon uses ammo and that we have enough ammo to make a shot.
-            if (PlayerCont.PlayerInventoryCont.OfHandSlotCont.CurStackQuantity-1 >= 0)
+            if (PlayerCont.PlayerInventoryCont.OfHandSlotCont.CurStackQuantity - 1 >= 0)
+            {
                 m_WeaponCont.AmmoCont.LaunchProjectile(PlayerCont.LookDir);
+                PlayerCont.PlayerInventoryCont.OfHandSlotCont.CurStackQuantity--;
+                if(PlayerCont.PlayerInventoryCont.OfHandSlotCont.CurStackQuantity == 0)
+                    DragAndDropSlot.EmptyCurrentSlot(PlayerCont.PlayerInventoryCont.OfHandSlotCont, PlayerCont.PlayerInventoryCont.NoItemSprite, false);
+                else
+                    DragAndDropSlot.UpdateSlotCounterText(PlayerCont.PlayerInventoryCont.OfHandSlotCont);
+            }
         }
         public void OnAttack(InputAction.CallbackContext context)
         {

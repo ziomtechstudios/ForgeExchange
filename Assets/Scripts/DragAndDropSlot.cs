@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 namespace Com.ZiomtechStudios.ForgeExchange
 {
-    public static class DragAndDropSlot
+    public struct DragAndDropSlot
     {
         private static void AssignSlotContents(SlotController targetSlot, SlotController referenceSlot, int quantity, Sprite noItemSprite)
         {

@@ -92,13 +92,14 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private void ApplyMovement(InputAction.CallbackContext context)
         {
             IsMoving = (moveDir != Vector2.zero);
-            lookDir = (IsMoving && !usingWorkstation) ? (moveDir) : (lookDir);
+            lookDir = (IsMoving && !usingWorkstation) ? (moveDir.normalized) : (lookDir);
         }
         #endregion
         #region Public Members
         public void OnMove(InputAction.CallbackContext context)
         {
             moveDir = context.ReadValue<Vector2>();
+            //lookDir = new Vector2(0,0);
             ApplyMovement(context);
         }
         public void ToggleRun(InputAction.CallbackContext context)

@@ -12,7 +12,7 @@ public class AmmoController : MonoBehaviour
     public GameObject AmmoPrefab { get => ammoPrefab; set => ammoPrefab = value; }
     public AmmoStruct AmmoStruct { get => mAmmoStruct; set => mAmmoStruct = value; }
     private Rigidbody2D ammoRb;
-    public void LaunchProjectile(Vector3 direction)
+    public void LaunchProjectile(Vector2 direction)
     {
         Debug.Log("There was ammo, we are now launching a projectile.");
         GameObject projectile = Instantiate(ammoPrefab, transform.position, transform.rotation);

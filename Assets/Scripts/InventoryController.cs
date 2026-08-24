@@ -250,7 +250,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 slotConts[i].SlotInUse = false;
                 slotConts[i].SlotWithItem = false;
                 slotConts[i].SlotItemTuple = (null, null);
-
             }
         }
     }

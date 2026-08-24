@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class PlayerInteractionController : MonoBehaviour
@@ -17,7 +16,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         #region Getters/Setters"
         public PlayerController PlayerCont => playerCont;
         public PlayerFishingController PlayerFishingCont => playerFishingCont;
-        
+        public WorkstationController WorkstationCont {get => workstationCont; set => workstationCont = value; }
         #endregion
         #region "Private Fields"
         private bool GoFishing(){

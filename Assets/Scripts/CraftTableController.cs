@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Com.ZiomtechStudios.ForgeExchange
 {
     public class CraftTableController : WorkstationController
@@ -36,7 +34,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Doing the same to Backpack slots since we can rearange contents of backpack within crafting table
                 SynchronizeSlots.SyncSlots(playerCont.PlayerBackPackCont.backPackSlots, craftingMenuController.backPackSlots);
                 SynchronizeSlots.SyncSlots(playerCont.PlayerInventoryCont.SlotConts, craftingMenuController.quickSlots);
-                //Reveal in-game quick-slots, set status of using workstation flse so we can move
+                //Reveal in-game quick-slots, set status of using workstation false so we can move
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(true);
                 playerCont.UsingWorkstation = false;
                 InUse = false;
@@ -52,6 +50,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 //Hide in-game quick slots
                 playerCont.PlayerUICont.InGameQuickSlotObjs.SetActive(false);
                 InUse = true;
+                playerCont.PlayerInteractionCont.WorkstationCont = null;
             }
         }
         public override void Work((GameObject, ItemController) craftedTuple)
@@ -72,7 +71,6 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 craftedItemsDict.Add(Recipes[i], craftedItemSprites[i]);
             stockpileController = GetComponent<StockpileController>();
         }
-
         void Start()
         {
             craftMenuObj = transform.Find("Canvas/CraftingMenu").gameObject;
