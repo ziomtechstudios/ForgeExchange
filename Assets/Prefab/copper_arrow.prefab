@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: copper_arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 1058772223118592864, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6629121145320022952, guid: 3fdf5722c648f73f88f99f4a77d7fe09, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
@@ -205,7 +209,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.005746497, y: -0.013893329}
+  m_Offset: {x: 0.0050995713, y: -0.013893329}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -216,5 +220,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.06030724, y: 0.13221334}
+  m_Size: {x: 0.061619602, y: 0.13221334}
   m_EdgeRadius: 0

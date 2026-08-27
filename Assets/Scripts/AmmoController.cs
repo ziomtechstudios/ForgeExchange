@@ -17,14 +17,14 @@ public class AmmoController : MonoBehaviour
         Debug.Log("There was ammo, we are now launching a projectile.");
         GameObject projectile = Instantiate(ammoPrefab, transform.position, transform.rotation);
         ammoRb = projectile.GetComponent<Rigidbody2D>();
-        projectile.transform.Rotate(Vector3.forward, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, Space.World);
+        projectile.transform.rotation = Quaternion.Euler(0,0,(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg)+90.0f);
         if(mWeaponCont.m_WeaponStruct is ProjectileWeaponStruct projStruct)
-            ammoRb.AddForce(direction * Random.Range(projStruct.minDist, projStruct.maxDist));
+            ammoRb.AddForce(direction * Random.Range(projStruct.minDist, projStruct.maxDist) * 20 );
         projectile = null;
         ammoRb = null;
     }
 
-    void Start()
+    void Start()                                                                                                                                       
     {
         mWeaponCont = gameObject.GetComponent<WeaponController>();
     }
