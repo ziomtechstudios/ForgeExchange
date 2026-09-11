@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Com.ZiomtechStudios.ForgeExchange
@@ -202,35 +200,37 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public void SwapHands()
         {
-            UpdateQuickSlotStatus();
-            //Swapping items held in offhand and in main hand
-            if (playerCont.HoldingItem)
+            if (!playerCont.IsFishing && !playerCont.PlayerAtkCont.AlreadyAttacking)
             {
-                foreach (QuickSlotController slotCont in slotConts)
+                UpdateQuickSlotStatus();
+                //Swapping items held in offhand and in main hand
+                if (playerCont.HoldingItem)
                 {
-                    if (slotCont.SlotInUse)
+                    foreach (QuickSlotController slotCont in slotConts)
                     {
-                        DragAndDropSlot.SwapStacks(slotCont, offHandSlotCont, tempSlotCont, noItemSprite);
-                        playerCont.HoldingItem = slotCont.SlotInUse;
-                        playerCont.MainHandTuple = slotCont.SlotItemTuple;
-                        playerCont.OffHandTuple = offHandSlotCont.SlotItemTuple;
-                        SwappingPlayerControlMap();
-                        return;
+                        if (slotCont.SlotInUse)
+                        {
+                            DragAndDropSlot.SwapStacks(slotCont, offHandSlotCont, tempSlotCont, noItemSprite);
+                            playerCont.HoldingItem = slotCont.SlotInUse;
+                            playerCont.MainHandTuple = slotCont.SlotItemTuple;
+                            playerCont.OffHandTuple = offHandSlotCont.SlotItemTuple;
+                            SwappingPlayerControlMap();
+                            return;
+                        }
                     }
                 }
-            }
-            //Item and or stack only held in offhand so we are emptying offhand and placing item/stack in an open quick slot or backpack slot.
-            else if(!playerCont.HoldingItem && playerCont.OffHandTuple != (null,null))
-            {
-                //We know there is a quick slot free and/or it or other quick slots have room left in it's existing stack.
-                if(!slotsFullyOccupied)
-                    DragAndDropSlot.FreeingOffHand(offHandSlotCont, slotConts, noItemSprite, playerCont);
-                //Let's start looking for room in the backpack.
-                else if (slotsFullyOccupied)
+                //Item and or stack only held in offhand so we are emptying offhand and placing item/stack in an open quick slot or backpack slot.
+                else if (!playerCont.HoldingItem && playerCont.OffHandTuple != (null, null))
                 {
-                    Debug.Log("We are attempting to place item in off hand slot into the backpack!");
-                    DragAndDropSlot.FreeingOffHand(offHandSlotCont, playerCont.PlayerBackPackCont.backPackSlots,
-                        noItemSprite, playerCont);
+                    //We know there is a quick slot free and/or it or other quick slots have room left in it's existing stack.
+                    if (!slotsFullyOccupied)
+                        DragAndDropSlot.FreeingOffHand(offHandSlotCont, slotConts, noItemSprite, playerCont);
+                    //Let's start looking for room in the backpack.
+                    else if (slotsFullyOccupied)
+                    {
+                        DragAndDropSlot.FreeingOffHand(offHandSlotCont, playerCont.PlayerBackPackCont.backPackSlots,
+                            noItemSprite, playerCont);
+                    }
                 }
             }
         }

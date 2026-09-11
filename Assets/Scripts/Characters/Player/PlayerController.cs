@@ -8,7 +8,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
     public class PlayerController : HumanoidController
     {
         #region Private Serialized Fields  
-        [Header("Player Movement")]
+        [Header("Player Movement/Interaction")]
         [SerializeField] private bool isRunning, canRun;
         [SerializeField] private Vector2 lookDir;
         [SerializeField] private Vector2 moveDir;
@@ -19,6 +19,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         [SerializeField] private float interactDist;
         [SerializeField] private bool holdingItem;
         [SerializeField] private bool isUsingStorage;
+        [SerializeField] private float playerLOSRadius;
         [Header("Player Interaction/Inventory")]
         [SerializeField] private bool usingWorkstation;
         [SerializeReference] private InventoryController m_InventoryCont;
@@ -145,7 +146,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         void FixedUpdate()
         {
             //Is the player looking at an interactable object + within an interactable distance?
-            hit = Physics2D.Raycast(transform.position, lookDir, interactDist, layerMask);
+            hit = Physics2D.CircleCast(transform.position, playerLOSRadius, lookDir, interactDist, layerMask);
             //hit = Physics2D.CircleCast(transform.position, 0.5f, lookDir, interactDist, layerMask);
             //If player wants to move make sure they are alive and not interacting with anything that would impede movement 
             if (IsMoving && (M_HealthCont.HP > 0.0f) && (!UsingWorkstation && !IsUsingStorage))

@@ -28,13 +28,13 @@ namespace Com.ZiomtechStudios.ForgeExchange
         {
             m_Animator = GetComponent<Animator>();
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
-            transform.Find("collider")?.TryGetComponent<BoxCollider2D>(out  m_BoxCollider2D);
+            transform.Find("collider")?.TryGetComponent(out  m_BoxCollider2D);
             playerAttackCont = transform.parent.parent.GetComponent<PlayerAttackController>();
             transform.TryGetComponent(out ammoCont);
             if (ammoCont)
             {
-               ammoCont.AmmoPrefab = playerAttackCont.PlayerCont.OffHandTuple.Item1;
-               ammoCont.AmmoStruct = (AmmoStruct)playerAttackCont.PlayerCont.OffHandTuple.Item2.PrefabItemStruct;
+                ammoCont.AmmoPrefab = playerAttackCont.PlayerCont.OffHandTuple.Item1;
+                ammoCont.AmmoStruct = (AmmoStruct)playerAttackCont.PlayerCont.OffHandTuple.Item2.PrefabItemStruct;
             }
                 
                 
