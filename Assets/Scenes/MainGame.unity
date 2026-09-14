@@ -2637,7 +2637,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.671478
+      m_AnimationSpeed: 2.6205544
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -2648,7 +2648,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.5475426
+      m_AnimationSpeed: 2.4275117
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 12, y: 5, z: 0}
@@ -2659,7 +2659,7 @@ Tilemap:
       - {fileID: -1176456220, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: -1425055406, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
       - {fileID: 1167977315, guid: af1967301a6322022b1af2255cbc0f52, type: 3}
-      m_AnimationSpeed: 2.1079364
+      m_AnimationSpeed: 2.6860476
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -32677,7 +32677,7 @@ GameObject:
   - component: {fileID: 2090771559}
   - component: {fileID: 2090771558}
   - component: {fileID: 2090771560}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: tilemap_buildings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36123,7 +36123,7 @@ PrefabInstance:
       objectReference: {fileID: 2417434155176800257, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
     - target: {fileID: 2417434155176800258, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: playerLOSRadius
-      value: 0.5
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 2417434155176800262, guid: ebcd30f56c9f99f81924416e8794ec83, type: 3}
       propertyPath: m_Name
@@ -36229,6 +36229,14 @@ PrefabInstance:
     - target: {fileID: 7377294636323037782, guid: 88a6915873a235c47b6b9aae7b3f984b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929090284868021776, guid: 88a6915873a235c47b6b9aae7b3f984b, type: 3}
+      propertyPath: m_Size.x
+      value: 1.148673
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929090284868021776, guid: 88a6915873a235c47b6b9aae7b3f984b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.066037655
       objectReference: {fileID: 0}
     - target: {fileID: 7929090284868021778, guid: 88a6915873a235c47b6b9aae7b3f984b, type: 3}
       propertyPath: m_LocalPosition.x

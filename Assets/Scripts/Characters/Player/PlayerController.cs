@@ -1,4 +1,5 @@
 
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -57,8 +58,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         private int layerMask;
         private GameObject backPackObj;
         private RaycastHit2D hit;
-        private (GameObject, ItemController) mainHandTuple;
-        private (GameObject, ItemController) offHandTuple;
+        [CanBeNull] private (GameObject, ItemController) mainHandTuple;
+        [CanBeNull] private (GameObject, ItemController) offHandTuple;
         //Parametric bool for moving represents object desire to move, IsMoving represents if obj meets conditions in order to move
         private void MovePlayer(bool moving)
         {

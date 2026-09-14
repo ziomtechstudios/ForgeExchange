@@ -37,12 +37,12 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
+            //Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
             playerAtkCont = collision.gameObject.GetComponent<PlayerAttackController>();
             if (enemyCollider.IsTouchingLayers(layerMask) && !playerAtkCont.AlreadyDamagedEnemy)
             {
-                Debug.Log("The enemy is taking damage from a weapon!");
-                healthController.InstDmg = collision.collider.transform.parent.gameObject.GetComponent<WeaponController>().ApplyBaseDmg();
+                //Debug.Log("The enemy is taking damage from a weapon!");
+                healthController.InstDmg = playerAtkCont.WeaponCont.ApplyBaseDmg();
                 healthController.HP -= healthController.InstDmg;
                 healthController.HealthBarAmnt = healthController.HP / healthController.MaxHP;
                 healthController.IsDamaged = true;

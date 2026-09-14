@@ -25,11 +25,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
         public bool HasWeapon { get { return hasWeapon; } set{hasWeapon = value;}}
         public bool AlreadyAttacking { get { return alreadyAttacking; } set { alreadyAttacking = value; } }
         public PlayerController PlayerCont { get { return m_PlayerCont; }}
-        public bool AlreadyDamagedEnemy
-        {
-            get { return alreadyDamagedEnemy;}
-            set { alreadyDamagedEnemy = value; }
-        }
+        public WeaponController WeaponCont { get { return m_WeaponCont; } }
+        public bool AlreadyDamagedEnemy { get { return alreadyDamagedEnemy;} set { alreadyDamagedEnemy = value; } }
         #endregion
         #region "Public Fields"
         public void EquipWeapon()
@@ -79,7 +76,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 if (!alreadyAttacking)
                 {
                     canUpdateWeaponAnim = true;
-                        Debug.Log("We are triggering the first attack.");
+                    //Debug.Log("We are triggering the first attack.");
                     m_PlayerCont.M_Animator.SetTrigger(playerAttackHash);
                     alreadyAttacking = true;
                     timeBetweenAtks = Time.time;
@@ -89,7 +86,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                 }
                 if (((timeBetweenAtks -= Time.time) <= timeToCombo) && alreadyAttacking && !m_PlayerCont.M_Animator.GetBool(comboAtkHash))
                 {
-                    Debug.Log("We are triggering the second attack for a combo attack.");
+                    //Debug.Log("We are triggering the second attack for a combo attack.");
                     canUpdateWeaponAnim = false;
                     UpdateWeaponAnim();
                     m_PlayerCont.M_Animator.SetBool(comboAtkHash, true);
