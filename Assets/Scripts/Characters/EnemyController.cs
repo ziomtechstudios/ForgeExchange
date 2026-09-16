@@ -36,8 +36,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             isAttacking = false;
         }
         private void OnCollisionEnter2D(Collision2D collision)
-        {
-            //Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
+        { 
+            Debug.Log($"Other colliders layer: {LayerMask.LayerToName(collision.gameObject.layer)}, is touching my layer: {LayerMask.LayerToName(gameObject.layer)}.");
             playerAtkCont = collision.gameObject.GetComponent<PlayerAttackController>();
             if (enemyCollider.IsTouchingLayers(layerMask) && !playerAtkCont.AlreadyDamagedEnemy)
             {

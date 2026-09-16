@@ -2,7 +2,10 @@ namespace Com.ZiomtechStudios.ForgeExchange
 {
     public enum WeaponType 
     {
-        OneHandedSword = 0,
-        Bow = 1
+        OneHandedMelee = 0,
+        TwoHandedRange = 1,
+        TwoHandedMelee = 2,
+        OneHandedRange = 3
+        
     }
 }

@@ -18,8 +18,9 @@ public class AmmoController : MonoBehaviour
         GameObject projectile = Instantiate(ammoPrefab, transform.position, transform.rotation);
         ammoRb = projectile.GetComponent<Rigidbody2D>();
         projectile.transform.rotation = Quaternion.Euler(0,0,(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg)+90.0f);
-        if(mWeaponCont.m_WeaponStruct is ProjectileWeaponStruct projStruct)
-            ammoRb.AddForce(direction * Random.Range(projStruct.minDist, projStruct.maxDist) * 20 );
+        if (mWeaponCont.m_WeaponStruct is ProjectileWeaponStruct projStruct)
+            ammoRb.velocity = (direction * Random.Range(projStruct.minDist, projStruct.maxDist));
+        //ammoRb.AddForce(direction * Random.Range(projStruct.minDist, projStruct.maxDist) * 10);
         projectile = null;
         ammoRb = null;
     }

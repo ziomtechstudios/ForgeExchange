@@ -29,7 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
             transform.Find("collider")?.TryGetComponent(out  m_BoxCollider2D);
             playerAttackCont = transform.parent.parent.GetComponent<PlayerAttackController>();
-            if(weaponStruct.weaponType == WeaponType.Bow)
+            if(weaponStruct.weaponType == WeaponType.OneHandedRange || weaponStruct.weaponType == WeaponType.TwoHandedRange)
                 ammoCont = GetComponent<AmmoController>();
             if (ammoCont)
             {
