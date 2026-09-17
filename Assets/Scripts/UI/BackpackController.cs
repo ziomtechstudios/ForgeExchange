@@ -50,7 +50,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
                 initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
-                if(distanceMoved <= MinDistToStopTimer)
+                if(distanceMoved >= MinDistToStopTimer)
                     TimerPointerHeldDown = Time.time;
             }
         }
