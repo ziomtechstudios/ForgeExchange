@@ -95,7 +95,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         }
         public override void ReturnItem(PointerEventData eventData)
         {
-            DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
+            DragAndDropSlot.DropItem(movingSlot, initSlots, NoItemSprite, initSlotNum);
         }
         public override void CloseMenu()
         {
@@ -125,7 +125,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         eventData.pointerPressRaycast.gameObject.transform.parent.parent.name, out initSlots))
                 {
                     initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-                    DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
+                    DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, NoItemSprite, this);
                     switch (eventData.pointerPressRaycast.gameObject.transform.parent.parent.name)
                     {
                         case ("CraftingSlots"):
@@ -168,7 +168,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             //Making sure the slot we are dropping onto belongs to a group from our dictionary of slot types.
             if (!IsSubStacking)
             {
-                if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && MovingSlot.SlotWithItem && MovingSlot.SlotItemTuple.Item1 && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
+                if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot") && movingSlot.SlotWithItem && movingSlot.SlotItemTuple.Item1 && SlotTypeDict.TryGetValue(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.name, out destSlots))
                 {
                     // Position of the targeted slot
                     destSlotNum = Int32.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.Remove(0, 4)); 
@@ -229,7 +229,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             craftMenuRectTrans = gameObject.GetComponent<RectTransform>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             craftedSlot[0] = transform.Find("CraftedSlots/Slot0").gameObject.GetComponent<SlotController>();
-            MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
+            movingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             craftingSlots = new SlotController[craftedSlotNum];
             for (int i = 0; i < craftingSlots.Length; i++)
                 craftingSlots[i] = transform.Find($"CraftingSlots/Slot{i}").gameObject.GetComponent<SlotController>();

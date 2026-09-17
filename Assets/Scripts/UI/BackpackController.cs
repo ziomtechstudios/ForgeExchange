@@ -26,6 +26,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
         //Store info of original item is contained in and move the item to the moving slot
         public override void OnBeginDrag(PointerEventData eventData)
         {
+            InitTouchPos = eventData.position;
             if (!IsSubStacking) 
             {
                 // If the player is pressing on a slot with an item &&
@@ -39,19 +40,23 @@ namespace Com.ZiomtechStudios.ForgeExchange
                     DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, InventoryCont.NoItemSprite, this);
                 }
             }
+           
         }
         //Move moving slot to corresponding current touch position
         public override void OnDrag(PointerEventData eventData)
         {
+            float distanceMoved = Vector2.Distance(InitTouchPos, eventData.position);
             if (!IsSubStacking && eventData.pointerCurrentRaycast.gameObject)
             {
                 DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
                 initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
-                TimerPointerHeldDown = Time.time;
+                if(distanceMoved <= MinDistToStopTimer)
+                    TimerPointerHeldDown = Time.time;
             }
         }
         public override void OnEndDrag(PointerEventData eventData)  
         {
+            
             if (!IsSubStacking)
             {
                 // Finger released over UI element. &&
@@ -65,9 +70,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
                         out destSlots))
                 {
                     destSlotNum = DragAndDropSlot.GetSlotNum(eventData);
-                    TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum])
-                        ? (Time.time - TimerPointerHeldDown)
-                        : 0.0f;
+                    TimerPointerHeldDown = (initSlotAtDrag == destSlots[destSlotNum]) ? (Time.time - TimerPointerHeldDown) : 0.0f;
                     if (initSlots[initSlotNum] != destSlots[destSlotNum])
                     {
                         if (TimerPointerHeldDown < 1.0f || destSlots[destSlotNum].SlotWithItem ||
@@ -117,7 +120,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             SubStackItemSlider = transform.Find(SubStackItemTransformPath).gameObject.GetComponent<Slider>();
             subStackSliderCont = SubStackItemSlider.gameObject.GetComponent<SubsetStackSliderController>();
             movingSlot = transform.Find("Slot13").GetComponent<SlotController>();
-            MovingSlotRectTrans = MovingSlot.gameObject.GetComponent<RectTransform>();
+            MovingSlotRectTrans = movingSlot.gameObject.GetComponent<RectTransform>();
             backPackRectTransform = GetComponent<RectTransform>();
         } 
         void Awake()
@@ -125,6 +128,7 @@ namespace Com.ZiomtechStudios.ForgeExchange
             InventoryCont = transform.parent.parent.parent.Find("InventorySlots").gameObject.GetComponent<InventoryController>();
             SlotTypeDict = new Dictionary<string, SlotController[]>();
             isSubStacking = false;
+            
         }
         void OnEnable()
         {

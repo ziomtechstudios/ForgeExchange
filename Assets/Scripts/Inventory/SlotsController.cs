@@ -12,15 +12,19 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         private float timerPointerHeldDown;
         private bool isHolding;
         private Slider subStackItemSlider;
+        private Vector2 initTouchPos;
+        private float minDistToStopTimer;
         #endregion
         #region 'Getters / Setters
-        public SlotController MovingSlot{get{return movingSlot;}set{movingSlot = value;}}
+        //public SlotController MovingSlot{get{return movingSlot;}set{movingSlot = value;}}
+        public Vector2 InitTouchPos{get{return initTouchPos;}set{initTouchPos=value;}}
         public int BackPackSlotNum{get;set;}
         public int QuickSlotsSlotNum{get;set;}
         public RectTransform MovingSlotRectTrans{get{return movingSlotRectTrans;}set{movingSlotRectTrans=value;}}
         public InventoryController InventoryCont{get{return inventoryCont;}set{ inventoryCont = value;}}
         public IDictionary<string, SlotController[]> SlotTypeDict{get{return slotTypeDict;}set{slotTypeDict=value;}} public string OgSlotType{get;set;}
         public int OgSlotIndex{get;set;}
+        public float MinDistToStopTimer{get{return minDistToStopTimer;} set{minDistToStopTimer=value;}}
         public float TimerPointerHeldDown{get{return timerPointerHeldDown;}set{timerPointerHeldDown=value;}}
         public bool IsHolding{get{return isHolding;}set{isHolding=value;}}
         public Slider SubStackItemSlider{get{return subStackItemSlider;}set{subStackItemSlider=value;}}

@@ -29,7 +29,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         void Awake()
         {
-            MovingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
+            movingSlot = transform.Find("Slot13").gameObject.GetComponent<SlotController>();
             MovingSlotRectTrans = transform.Find("Slot13").gameObject.GetComponent<RectTransform>();
             chestRectTransform = GetComponent<RectTransform>();
         }
@@ -60,7 +60,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void ReturnItem(PointerEventData eventData)
         {
-            DragAndDropSlot.DropItem(MovingSlot, initSlots, NoItemSprite, initSlotNum);
+            DragAndDropSlot.DropItem(movingSlot, initSlots, NoItemSprite, initSlotNum);
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {   
@@ -82,7 +82,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
                     initSlotNum = DragAndDropSlot.GetSlotNum(eventData);
                     initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject
                         .GetComponent<SlotController>();
-                    DragAndDropSlot.SelectItem(eventData, MovingSlot, initSlots, NoItemSprite, this);
+                    DragAndDropSlot.SelectItem(eventData, movingSlot, initSlots, NoItemSprite, this);
                 }
             }
         }
