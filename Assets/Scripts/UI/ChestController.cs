@@ -70,6 +70,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
             /// The slot that we are draggin from, does it have an item? &&
             /// The type of slot we are dragging and item from is in our Dictionary if SlotTypes
             /// </summary>
+            InitTouchPos = eventData.position;
             if (!IsSubStacking)
             {
                 if (eventData.pointerPressRaycast.gameObject != null &&
@@ -88,6 +89,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         }
         public override void OnDrag(PointerEventData eventData)
         {
+            float distanceMoved = Vector2.Distance(InitTouchPos, eventData.position);
             if (!IsSubStacking)
             {
                 DragAndDropSlot.MoveItem(eventData, chestRectTransform, MovingSlotRectTrans);

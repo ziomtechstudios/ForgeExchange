@@ -50,6 +50,8 @@ namespace Com.ZiomtechStudios.ForgeExchange
             {
                 DragAndDropSlot.MoveItem(eventData, backPackRectTransform, MovingSlotRectTrans);
                 initSlotAtDrag = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<SlotController>();
+                //If player moves the finger ever so slightly when hovering over an empty slot won't cause the timer for the sub-stacking UI slider appearance to reset.
+                //When players where playing on phone it was hard to keep finger perfectly still and would prevent triggering of sub-stacking slider.
                 if(distanceMoved >= MinDistToStopTimer)
                     TimerPointerHeldDown = Time.time;
             }
