@@ -116,12 +116,12 @@ namespace Com.ZiomtechStudios.ForgeExchange{
         {
             m_SpriteRend = GetComponent<SpriteRenderer>();
             m_GridLayout  = GameObject.Find("Grid").GetComponent<GridLayout>();
-            buildingTileMap = m_GridLayout.gameObject.transform.Find("tilemap_buildings").gameObject.GetComponent<Tilemap>();
-            environmentTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment").gameObject.GetComponent<Tilemap>();
-            underwallTileMap = m_GridLayout.gameObject.transform.Find("tilemap_underwall").gameObject.GetComponent<Tilemap>();
-            entryExitTileMap = m_GridLayout.gameObject.transform.Find("tilemap_underwall/tilemap_entry_exit").gameObject.GetComponent<Tilemap>();
-            ornamentsTileMap  = m_GridLayout.gameObject.transform.Find("tilemap_underwall/tilemap_ornaments").gameObject.GetComponent<Tilemap>();
-            waterTileMap = m_GridLayout.gameObject.transform.Find("tilemap_environment/tilemap_water").gameObject.GetComponent<Tilemap>();
+            buildingTileMap = m_GridLayout.gameObject.transform.Find("Ground Level/tilemap_buildings").gameObject.GetComponent<Tilemap>();
+            environmentTileMap = m_GridLayout.gameObject.transform.Find("Ground Level/tilemap_environment").gameObject.GetComponent<Tilemap>();
+            underwallTileMap = m_GridLayout.gameObject.transform.Find("Ground Level/tilemap_underwall").gameObject.GetComponent<Tilemap>();
+            entryExitTileMap = m_GridLayout.gameObject.transform.Find("Ground Level/tilemap_underwall/tilemap_entry_exit").gameObject.GetComponent<Tilemap>();
+            ornamentsTileMap  = m_GridLayout.gameObject.transform.Find("Ground Level/tilemap_underwall/tilemap_ornaments").gameObject.GetComponent<Tilemap>();
+            waterTileMap = m_GridLayout.gameObject.transform.Find("Ground Level/tilemap_environment/tilemap_water").gameObject.GetComponent<Tilemap>();
             m_SpriteSortPoint = transform.Find("SpriteSortPos");
             m_OrnamentSortPoint = transform.Find("ornamentSortPoint");
         }
