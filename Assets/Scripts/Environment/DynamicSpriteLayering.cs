@@ -163,7 +163,7 @@ namespace Com.ZiomtechStudios.ForgeExchange{
 
         void Update()
         {
-            Debug.Log($"Is under roof: {IsUnderRoof()}.");
+            //Debug.Log($"Is under roof: {IsUnderRoof()}.");
             if (IsUnderRoof())
             {
                 //MakeTileMapTransparent(roofingTileMap);
